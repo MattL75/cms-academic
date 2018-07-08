@@ -17,7 +17,6 @@ CREATE TABLE Company (
 CREATE TABLE Department (
 	id INT(4) NOT NULL,
 	company_id INT(4) NOT NULL,
-	manager_id INT(4) NOT NULL,
 	name VARCHAR(255),
 	service_type VARCHAR(255),
 	PRIMARY KEY (id),
@@ -40,7 +39,6 @@ CREATE TABLE Manager (
 CREATE TABLE Contract (
 	id INT(4) NOT NULL,
 	department_id INT(4) NOT NULL,
-	manager_id INT(4) NOT NULL,
 	contract_type VARCHAR(255),
 	acv DOUBLE,
 	initial_amount DOUBLE,
@@ -65,13 +63,13 @@ INSERT INTO Company
 VALUES (1002, 'Jebabo Incorporated', 'Saskatoon', 'T5P BP7', '403 Maisonneuve', 'Saskatchewan');
 
 INSERT INTO Department
-VALUES (2001, 1001, 3001, 'Local', 'On-premises');
+VALUES (2001, 1001, 'Local', 'On-premises');
 
 INSERT INTO Department
-VALUES (2002, 1001, 3002, 'Server', 'Cloud');
+VALUES (2002, 1001, 'Server', 'Cloud');
 
 INSERT INTO Department
-VALUES (2003, 1002, 3003, 'Food', 'Delivery');
+VALUES (2003, 1002, 'Food', 'Delivery');
 
 INSERT INTO Manager
 VALUES (3001, 2001, 'juan.vasquez@gsc.ca', '345-4456', 'Juan', 'Vasquez', 'MP');
@@ -83,22 +81,22 @@ INSERT INTO Manager
 VALUES (3003, 2003, 'khaled.jebabo@jebabo.ca', '545-1337', 'Khaled', 'Jebabo', 'JB');
 
 INSERT INTO Contract
-VALUES (4001, 2001, 3001, 'Gold', 90000, 10000, CURRENT_TIMESTAMP);
+VALUES (4001, 2001, 'Gold', 90000, 10000, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract
-VALUES (4002, 2001, 3001, 'Bronze', 3000, 100, CURRENT_TIMESTAMP);
+VALUES (4002, 2001, 'Bronze', 3000, 100, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract
-VALUES (4003, 2001, 3001, 'Gold', 135000, 12000, CURRENT_TIMESTAMP);
+VALUES (4003, 2001, 'Gold', 135000, 12000, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract
-VALUES (4004, 2002, 3002, 'Platinum', 500000, 75000, CURRENT_TIMESTAMP);
+VALUES (4004, 2002, 'Platinum', 500000, 75000, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract
-VALUES (4005, 2002, 3002, 'Silver', 45000, 6000, CURRENT_TIMESTAMP);
+VALUES (4005, 2002, 'Silver', 45000, 6000, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract
-VALUES (4006, 2003, 3003, 'Silver', 50000, 5000, CURRENT_TIMESTAMP);
+VALUES (4006, 2003, 'Silver', 50000, 5000, CURRENT_TIMESTAMP);
 
 INSERT INTO Employee
 VALUES (5001, 3001, 'John', 'Baker');
