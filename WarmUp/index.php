@@ -9,9 +9,7 @@ $db = "testdb";
 $dbConnect = new mysqli('localhost', $user, $pass, $db);
 
 // Check connection status
-if ($dbConnect->connect_error) {
-	die("Connection failed: " . $dbConnect->connect_error);
-}
+if ($dbConnect->connect_error) die("Connection failed: " . $dbConnect->connect_error);
 echo "Successfully connected to database <strong>$db</strong>.<br>";
 
 // Get script content from file
