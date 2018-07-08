@@ -61,14 +61,44 @@ CREATE TABLE Employee (
 INSERT INTO Company
 VALUES (1001, 'GSC Corporation', 'Montreal', 'J2P RP5', '403 Notre-Dame West', 'Quebec');
 
+INSERT INTO Company
+VALUES (1002, 'Jebabo Incorporated', 'Saskatoon', 'T5P BP7', '403 Maisonneuve', 'Saskatchewan');
+
 INSERT INTO Department
 VALUES (2001, 1001, 3001, 'Local', 'On-premises');
+
+INSERT INTO Department
+VALUES (2002, 1001, 3002, 'Server', 'Cloud');
+
+INSERT INTO Department
+VALUES (2003, 1002, 3003, 'Food', 'Delivery');
 
 INSERT INTO Manager
 VALUES (3001, 2001, 'juan.vasquez@gsc.ca', '345-4456', 'Juan', 'Vasquez', 'MP');
 
+INSERT INTO Manager
+VALUES (3002, 2002, 'alain.moreau@gsc.ca', '345-5437', 'Alain', 'Moreau', 'BH');
+
+INSERT INTO Manager
+VALUES (3003, 2003, 'khaled.jebabo@jebabo.ca', '545-1337', 'Khaled', 'Jebabo', 'JB');
+
 INSERT INTO Contract
 VALUES (4001, 2001, 3001, 'Gold', 90000, 10000, CURRENT_TIMESTAMP);
+
+INSERT INTO Contract
+VALUES (4002, 2001, 3001, 'Bronze', 3000, 100, CURRENT_TIMESTAMP);
+
+INSERT INTO Contract
+VALUES (4003, 2001, 3001, 'Gold', 135000, 12000, CURRENT_TIMESTAMP);
+
+INSERT INTO Contract
+VALUES (4004, 2002, 3002, 'Platinum', 500000, 75000, CURRENT_TIMESTAMP);
+
+INSERT INTO Contract
+VALUES (4005, 2002, 3002, 'Silver', 45000, 6000, CURRENT_TIMESTAMP);
+
+INSERT INTO Contract
+VALUES (4006, 2003, 3003, 'Silver', 50000, 5000, CURRENT_TIMESTAMP);
 
 INSERT INTO Employee
 VALUES (5001, 3001, 'John', 'Baker');
@@ -83,10 +113,10 @@ INSERT INTO Employee
 VALUES (5004, 3001, 'Robert', 'Gates');
 
 INSERT INTO Employee
-VALUES (5005, 3001, 'Warren', 'Buffet');
+VALUES (5005, 3001, 'Alicia', 'Buffet');
 
 INSERT INTO Employee
-VALUES (5006, 3001, 'Joe', 'Desjardins');
+VALUES (5006, 3001, 'Ginette', 'Desjardins');
 
 INSERT INTO Employee
 VALUES (5007, 3001, 'Armand', 'Desormiers');
@@ -99,3 +129,21 @@ VALUES (5009, 3001, 'Jean', 'Lafontaine');
 
 INSERT INTO Employee
 VALUES (5010, 3001, 'Marco', 'Savard');
+
+INSERT INTO Employee
+VALUES (5011, 3002, 'Louis-Georges', 'Lajoie');
+
+INSERT INTO Employee
+VALUES (5012, 3002, 'Jean-Guy', 'Pomerleau');
+
+INSERT INTO Employee
+VALUES (5013, 3002, 'Guy-Robert', 'Savoie');
+
+INSERT INTO Employee
+VALUES (5014, 3002, 'Ghyslaine', 'Dumoulin');
+
+INSERT INTO Employee
+VALUES (5015, 3003, 'Elize', 'Samoisette');
+
+INSERT INTO Employee
+VALUES (5016, 3003, 'Alessandro', 'Power');
