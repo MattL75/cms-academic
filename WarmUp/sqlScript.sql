@@ -13,7 +13,6 @@ CREATE TABLE Company (
 	province VARCHAR(255),
 	PRIMARY KEY (id)
 );
-ALTER TABLE Company AUTO_INCREMENT=1001;
 
 CREATE TABLE Department (
 	id INT(4) NOT NULL AUTO_INCREMENT,
@@ -23,7 +22,6 @@ CREATE TABLE Department (
 	PRIMARY KEY (id),
 	FOREIGN KEY (company_id) REFERENCES Company(id)
 );
-ALTER TABLE Department AUTO_INCREMENT=2001;
 
 CREATE TABLE Manager (
 	employee_id INT(4) NOT NULL AUTO_INCREMENT,
@@ -37,7 +35,6 @@ CREATE TABLE Manager (
 	FOREIGN KEY (department_id) REFERENCES Department(id),
 	UNIQUE (department_id)
 );
-ALTER TABLE Manager AUTO_INCREMENT=3001;
 
 CREATE TABLE Contract (
 	id INT(4) NOT NULL AUTO_INCREMENT,
@@ -49,7 +46,6 @@ CREATE TABLE Contract (
 	PRIMARY KEY (id),
 	FOREIGN KEY (department_id) REFERENCES Department(id)
 );
-ALTER TABLE Contract AUTO_INCREMENT=4001;
 
 CREATE TABLE Employee (
 	employee_id INT(4) NOT NULL AUTO_INCREMENT,
@@ -59,7 +55,6 @@ CREATE TABLE Employee (
 	PRIMARY KEY (employee_id),
 	FOREIGN KEY (manager_id) REFERENCES Manager(employee_id)
 );
-ALTER TABLE Employee AUTO_INCREMENT=5001;
 
 INSERT INTO Company (name, city, postal_code, address, province)
 VALUES ('GSC Corporation', 'Montreal', 'J2P RP5', '403 Notre-Dame West', 'Quebec');
@@ -68,85 +63,85 @@ INSERT INTO Company (name, city, postal_code, address, province)
 VALUES ('Jebabo Incorporated', 'Saskatoon', 'T5P BP7', '403 Maisonneuve', 'Saskatchewan');
 
 INSERT INTO Department (company_id, name, service_type)
-VALUES (1001, 'Local', 'On-premises');
+VALUES (1, 'Local', 'On-premises');
 
 INSERT INTO Department (company_id, name, service_type)
-VALUES (1001, 'Server', 'Cloud');
+VALUES (1, 'Server', 'Cloud');
 
 INSERT INTO Department (company_id, name, service_type)
-VALUES (1002, 'Food', 'Delivery');
+VALUES (2, 'Food', 'Delivery');
 
 INSERT INTO Manager (department_id, email, phone_number, first_name, last_name, initials)
-VALUES (2001, 'juan.vasquez@gsc.ca', '345-4456', 'Juan', 'Vasquez', 'MP');
+VALUES (1, 'juan.vasquez@gsc.ca', '345-4456', 'Juan', 'Vasquez', 'MP');
 
 INSERT INTO Manager (department_id, email, phone_number, first_name, last_name, initials)
-VALUES (2002, 'alain.moreau@gsc.ca', '345-5437', 'Alain', 'Moreau', 'BH');
+VALUES (2, 'alain.moreau@gsc.ca', '345-5437', 'Alain', 'Moreau', 'BH');
 
 INSERT INTO Manager (department_id, email, phone_number, first_name, last_name, initials)
-VALUES (2003, 'khaled.jebabo@jebabo.ca', '545-1337', 'Khaled', 'Jebabo', 'JB');
+VALUES (3, 'khaled.jebabo@jebabo.ca', '545-1337', 'Khaled', 'Jebabo', 'JB');
 
 INSERT INTO Contract (department_id, contract_type, acv, initial_amount, start_date)
-VALUES (2001, 'Gold', 90000, 10000, CURRENT_TIMESTAMP);
+VALUES (1, 'Gold', 90000, 10000, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract (department_id, contract_type, acv, initial_amount, start_date)
-VALUES (2001, 'Bronze', 3000, 100, CURRENT_TIMESTAMP);
+VALUES (1, 'Bronze', 3000, 100, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract (department_id, contract_type, acv, initial_amount, start_date)
-VALUES (2001, 'Gold', 135000, 12000, CURRENT_TIMESTAMP);
+VALUES (1, 'Gold', 135000, 12000, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract (department_id, contract_type, acv, initial_amount, start_date)
-VALUES (2002, 'Platinum', 500000, 75000, CURRENT_TIMESTAMP);
+VALUES (2, 'Platinum', 500000, 75000, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract (department_id, contract_type, acv, initial_amount, start_date)
-VALUES (2002, 'Silver', 45000, 6000, CURRENT_TIMESTAMP);
+VALUES (2, 'Silver', 45000, 6000, CURRENT_TIMESTAMP);
 
 INSERT INTO Contract (department_id, contract_type, acv, initial_amount, start_date)
-VALUES (2003, 'Silver', 50000, 5000, CURRENT_TIMESTAMP);
+VALUES (3, 'Silver', 50000, 5000, CURRENT_TIMESTAMP);
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'John', 'Baker');
+VALUES (1, 'John', 'Baker');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'Gaetan', 'Paquette');
+VALUES (1, 'Gaetan', 'Paquette');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'Stephane', 'Granger');
+VALUES (1, 'Stephane', 'Granger');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'Robert', 'Gates');
+VALUES (1, 'Robert', 'Gates');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'Alicia', 'Buffet');
+VALUES (1, 'Alicia', 'Buffet');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'Ginette', 'Desjardins');
+VALUES (1, 'Ginette', 'Desjardins');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'Armand', 'Desormiers');
+VALUES (1, 'Armand', 'Desormiers');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'Guillaume', 'Tremblay');
+VALUES (1, 'Guillaume', 'Tremblay');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'Jean', 'Lafontaine');
+VALUES (1, 'Jean', 'Lafontaine');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3001, 'Marco', 'Savard');
+VALUES (1, 'Marco', 'Savard');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3002, 'Louis-Georges', 'Lajoie');
+VALUES (2, 'Louis-Georges', 'Lajoie');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3002, 'Jean-Guy', 'Pomerleau');
+VALUES (2, 'Jean-Guy', 'Pomerleau');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3002, 'Guy-Robert', 'Savoie');
+VALUES (2, 'Guy-Robert', 'Savoie');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3002, 'Ghyslaine', 'Dumoulin');
+VALUES (2, 'Ghyslaine', 'Dumoulin');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3003, 'Elize', 'Samoisette');
+VALUES (3, 'Elize', 'Samoisette');
 
 INSERT INTO Employee (manager_id, first_name, last_name)
-VALUES (3003, 'Alessandro', 'Power');
+VALUES (3, 'Alessandro', 'Power');
