@@ -57,10 +57,10 @@ CREATE TABLE Employee (
 	FOREIGN KEY (manager_id) REFERENCES Manager(employee_id)
 );
 
-INSERT INTO Company (name, city, postal_code, address, province)
+INSERT INTO Company (name, city, postal_code, address, province, email_id)
 VALUES ('GSC Corporation', 'Montreal', 'J2P RP5', '403 Notre-Dame West', 'Quebec', 'gsc.ca');
 
-INSERT INTO Company (name, city, postal_code, address, province)
+INSERT INTO Company (name, city, postal_code, address, province, email_id)
 VALUES ('Jababo Incorporated', 'Saskatoon', 'T5P BP7', '403 Maisonneuve', 'Saskatchewan', 'jababo.ca');
 
 INSERT INTO Department (company_id, name, service_type)
