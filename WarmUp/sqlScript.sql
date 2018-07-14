@@ -60,7 +60,7 @@ INSERT INTO Company (name, city, postal_code, address, province)
 VALUES ('GSC Corporation', 'Montreal', 'J2P RP5', '403 Notre-Dame West', 'Quebec');
 
 INSERT INTO Company (name, city, postal_code, address, province)
-VALUES ('Jebabo Incorporated', 'Saskatoon', 'T5P BP7', '403 Maisonneuve', 'Saskatchewan');
+VALUES ('Jababo Incorporated', 'Saskatoon', 'T5P BP7', '403 Maisonneuve', 'Saskatchewan');
 
 INSERT INTO Department (company_id, name, service_type)
 VALUES (1, 'Local', 'On-premises');
@@ -72,13 +72,13 @@ INSERT INTO Department (company_id, name, service_type)
 VALUES (2, 'Food', 'Delivery');
 
 INSERT INTO Manager (department_id, email, phone_number, first_name, last_name, initials)
-VALUES (1, 'juan.vasquez@gsc.ca', '345-4456', 'Juan', 'Vasquez', 'MP');
+VALUES (1, 'juan.vasquez@gsc.ca', '345-4456', 'Juan', 'Vasquez', 'JV');
 
 INSERT INTO Manager (department_id, email, phone_number, first_name, last_name, initials)
-VALUES (2, 'alain.moreau@gsc.ca', '345-5437', 'Alain', 'Moreau', 'BH');
+VALUES (2, 'alain.moreau@gsc.ca', '345-5437', 'Alain', 'Moreau', 'AM');
 
 INSERT INTO Manager (department_id, email, phone_number, first_name, last_name, initials)
-VALUES (3, 'khaled.jebabo@jebabo.ca', '545-1337', 'Khaled', 'Jebabo', 'JB');
+VALUES (3, 'khaled.jababo@jababo.ca', '545-1337', 'Khaled', 'Jababo', 'KJ');
 
 INSERT INTO Contract (department_id, contract_type, acv, initial_amount, start_date)
 VALUES (1, 'Gold', 90000, 10000, CURRENT_TIMESTAMP);
