@@ -11,6 +11,7 @@ CREATE TABLE Company (
 	postal_code VARCHAR(255),
 	address VARCHAR(255),
 	province VARCHAR(255),
+	email_id VARCHAR(255),
 	PRIMARY KEY (id)
 );
 
@@ -57,10 +58,10 @@ CREATE TABLE Employee (
 );
 
 INSERT INTO Company (name, city, postal_code, address, province)
-VALUES ('GSC Corporation', 'Montreal', 'J2P RP5', '403 Notre-Dame West', 'Quebec');
+VALUES ('GSC Corporation', 'Montreal', 'J2P RP5', '403 Notre-Dame West', 'Quebec', 'gsc.ca');
 
 INSERT INTO Company (name, city, postal_code, address, province)
-VALUES ('Jababo Incorporated', 'Saskatoon', 'T5P BP7', '403 Maisonneuve', 'Saskatchewan');
+VALUES ('Jababo Incorporated', 'Saskatoon', 'T5P BP7', '403 Maisonneuve', 'Saskatchewan', 'jababo.ca');
 
 INSERT INTO Department (company_id, name, service_type)
 VALUES (1, 'Local', 'On-premises');
