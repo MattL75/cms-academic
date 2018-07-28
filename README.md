@@ -6,3 +6,5 @@ Databases project
 * Mathieu Lajoie
 * Manel Guay-Montserrat
 * Jesse Tremblay
+
+### Getting Started
