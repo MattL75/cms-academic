@@ -1,0 +1,15 @@
+<div class="flex-column grow center">
+    <span class="auth-page-title">Login</span>
+    <form class="flex-column grow center login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Username" formControlName="username"/>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Password" formControlName="password"/>
+        </mat-form-field>
+        <div class="flex-row submit-space">
+            <mat-progress-spinner class="spinner-margin" *ngIf="querying" [color]="'primary'" [mode]="'indeterminate'" [diameter]="'20'"></mat-progress-spinner>
+            <button type="submit" [disabled]="!loginForm.valid || querying" class="login-button" mat-flat-button color="primary">Submit</button>
+        </div>
+    </form>
+</div>

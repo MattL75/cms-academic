@@ -1,0 +1,84 @@
+:host {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.main-toolbar {
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    z-index: 1000;
+}
+
+.sidebar-btn {
+    margin-right: 12px;
+}
+
+.sidebar-container {
+    background-color: #efefef;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.main-content {
+    padding: 28px 30px;
+}
+
+.main-sidebar {
+    width: 226px;
+    padding: 12px 0;
+    background-color: #e6e6e6;
+}
+
+.nav-item {
+    align-items: center;
+    padding: 12px 24px;
+    user-select: none;
+    &:focus {
+        outline: none !important;
+    }
+    &:hover {
+        background-color: #dbdbdb;
+        cursor: pointer;
+    }
+    .nav-text {
+    }
+    .nav-icon {
+        margin-right: 24px;
+        color: hsl(0, 0%, 48%);
+        transition: color 0.1s linear;
+    }
+}
+
+.route-active {
+    background-color: #cecece;
+    .nav-icon {
+        color: #3f51b5;
+    }
+    &:hover {
+        background-color: #cecece;
+    }
+}
+
+.vert-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.data-card {
+    width: 100%;
+    font-family: 'Lato', sans-serif !important;
+    color: hsl(0, 0%, 7%) !important;
+    margin-bottom: 56px;
+    padding: 0 !important;
+    .data-card-header {
+        padding: 12px;
+        .data-card-title {
+            font-size: 16px;
+        }
+        .action-container {
+            color: grey;
+        }
+    }
+}
