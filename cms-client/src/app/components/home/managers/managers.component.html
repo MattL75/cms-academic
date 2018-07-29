@@ -1,5 +1,5 @@
 <div class="flex-row grow">
-    <mat-card class="data-card">
+    <mat-card class="flex-column data-card">
         <mat-card-header class="flex-row grow center data-card-header">
             <span class="data-card-title">Managers</span>
             <div class="flex-row grow"></div>
@@ -10,9 +10,31 @@
                 </button>
             </div>
         </mat-card-header>
-        <mat-divider></mat-divider>
-        <mat-card-content>
-            TESTING
+        <mat-divider style="position: static"></mat-divider>
+        <mat-card-content class="data-card-content">
+            <table class="material-table" mat-table [dataSource]="dataSource">
+
+                <!-- Id Column -->
+                <ng-container matColumnDef="employeeId">
+                    <th mat-header-cell *matHeaderCellDef> <strong>Id</strong> </th>
+                    <td mat-cell *matCellDef="let element"> {{element.employeeId}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> <strong>Name</strong> </th>
+                    <td mat-cell *matCellDef="let element"> {{element.first_name + ' ' + element.last_name}} </td>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> <strong>Email</strong> </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
         </mat-card-content>
     </mat-card>
 </div>

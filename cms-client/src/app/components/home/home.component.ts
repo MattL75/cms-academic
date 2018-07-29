@@ -19,7 +19,12 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        window.innerWidth <= 800 ? this.sideMode = 'over' : this.sideMode = 'side';
+        if (window.innerWidth <= 800) {
+            this.sideMode = 'over';
+            this.menuOpen = false;
+        } else {
+            this.sideMode = 'side';
+        }
     }
 
     logout(): void {

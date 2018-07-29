@@ -9,10 +9,10 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import {
-    MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule,
+    MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatPaginatorModule,
     MatProgressSpinnerModule,
     MatRippleModule,
-    MatSidenavModule, MatTableModule,
+    MatSidenavModule, MatSortModule, MatTableModule,
     MatToolbarModule
 } from '@angular/material';
 import { UserAuthComponent } from './components/login/user-auth/user-auth.component';
@@ -48,7 +48,8 @@ import { EmployeesComponent } from './components/home/employees/employees.compon
         MatMenuModule,
         MatCardModule,
         MatDividerModule,
-        MatTableModule
+        MatTableModule,
+        MatSortModule,
     ],
     providers: [
         AuthService,
