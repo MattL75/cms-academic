@@ -9,10 +9,20 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import {
-    MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatPaginatorModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     MatRippleModule,
-    MatSidenavModule, MatSnackBarModule, MatSortModule, MatTableModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
     MatToolbarModule
 } from '@angular/material';
 import { UserAuthComponent } from './components/login/user-auth/user-auth.component';
@@ -21,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManagersComponent } from './components/home/managers/managers.component';
 import { EmployeesComponent } from './components/home/employees/employees.component';
 import { SnackbarService } from './services/snackbar.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -34,6 +45,7 @@ import { SnackbarService } from './services/snackbar.service';
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         FormsModule,
@@ -51,7 +63,8 @@ import { SnackbarService } from './services/snackbar.service';
         MatDividerModule,
         MatTableModule,
         MatSortModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatDialogModule
     ],
     providers: [
         AuthService,

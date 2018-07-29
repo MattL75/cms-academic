@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HomeComponent implements OnInit {
     menuOpen = true;
-    sideMode;
+    sideMode: string;
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
