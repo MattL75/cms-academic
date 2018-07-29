@@ -4,7 +4,7 @@
 }
 
 .main-toolbar {
-    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    //box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
     z-index: 1000;
 }
 
@@ -23,6 +23,9 @@
     padding: 28px 30px;
     display: flex;
     width: 100%;
+    @media screen and (max-width: 600px) {
+        padding: 0;
+    }
 }
 
 .main-sidebar {
@@ -74,6 +77,10 @@
     color: hsl(0, 0%, 7%) !important;
     margin-bottom: 56px;
     padding: 0 !important;
+
+    @media screen and (max-width: 600px) {
+        margin-bottom: 0;
+    }
     .data-card-content {
         overflow: auto;
     }
@@ -91,4 +98,15 @@
 .material-table {
     width: 100%;
     height: 100%;
+}
+
+.actions-column {
+    width: 100px;
+    padding-right: 0 !important;
+    color: grey;
+}
+
+.actions-header {
+    padding-right: 0 !important;
+    width: 100px;
 }

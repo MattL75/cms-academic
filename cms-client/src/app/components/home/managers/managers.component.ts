@@ -28,7 +28,7 @@ export class ManagersComponent implements OnInit {
     ];
 
     dataSource = new MatTableDataSource<Manager>(this.TEST_DATA);
-    displayedColumns: string[] = ['employeeId', 'name', 'email'];
+    displayedColumns: string[] = ['employeeId', 'name', 'email', 'actions'];
 
     constructor() {
     }
@@ -36,4 +36,19 @@ export class ManagersComponent implements OnInit {
     ngOnInit() {
     }
 
+    addEntity(): void {
+        // Open new entity dialog
+        // Snackbar confirmation
+    }
+
+    edit(element: Manager): void {
+        // Open new entity dialog, populated with element
+        // Snackbar confirmation
+    }
+
+    delete(element: Manager): void {
+        // Open confirmation dialog
+        // Delete item
+        // Snackbar confirmation
+    }
 }
