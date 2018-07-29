@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatSnackBar, MatTableDataSource } from '@angular/material';
 import { SnackbarService } from '../../../services/snackbar.service';
+import { ManagersService } from '../../../services/entity/managers.service';
+import { ManagersDialogComponent } from './managers-dialog/managers-dialog.component';
+import { ConfirmDialogComponent } from '../../utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
     selector: 'cms-managers',
@@ -31,28 +34,75 @@ export class ManagersComponent implements OnInit {
     dataSource = new MatTableDataSource<Manager>(this.TEST_DATA);
     displayedColumns: string[] = ['employeeId', 'name', 'email', 'actions'];
 
-    constructor(private snackbar: SnackbarService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private http: ManagersService) {
     }
 
     ngOnInit() {
+        this.populate();
     }
 
-    add(): void {
-        // Open new entity dialog
-        // Snackbar confirmation
-        this.snackbar.open('Manager added.', 'Success!');
+    public add(): void {
+        const dialogRef = this.dialog.open(ManagersDialogComponent, {
+            width: '350px',
+            data: {
+                manager: {first_name: '', last_name: '', email: ''},
+                title: 'Add a Manager',
+                action: 'Add'
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            // Create Manager, subscribe, then snackbar inside.
+            // Backend generates id, then returns here in subscribe, get new item created
+            if (result) {
+                this.TEST_DATA.push(result);
+                this.dataSource = new MatTableDataSource<Manager>(this.TEST_DATA);
+                this.snackbar.open('Manager added.', 'Success!');
+            }
+        });
     }
 
-    edit(element: Manager): void {
-        // Open new entity dialog, populated with element
-        // Snackbar confirmation
-        this.snackbar.open('Manager modified.', 'Success!');
+    public edit(manager: Manager): void {
+        const dialogRef = this.dialog.open(ManagersDialogComponent, {
+            width: '350px',
+            data: {
+                manager: Object.assign({}, manager),
+                title: 'Edit a Manager',
+                action: 'Save'
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            // Update manager, subscribe, then snackbar inside.
+            if (result) {
+                Object.assign(manager, result);
+                this.snackbar.open('Manager modified.', 'Success!');
+            }
+        });
     }
 
-    delete(element: Manager): void {
-        // Open confirmation dialog
-        // Delete item
-        // Snackbar confirmation
-        this.snackbar.open('Manager deleted.', 'Success!');
+    public delete(element: Manager): void {
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+            width: '350px',
+            data: {
+                title: 'Warning',
+                icon: 'warning',
+                action: 'Delete',
+                content: 'Are you sure you want to delete this manager?'
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                // Or just repopulate
+                this.TEST_DATA.splice(this.TEST_DATA.indexOf(element), 1);
+                this.dataSource = new MatTableDataSource<Manager>(this.TEST_DATA);
+                this.snackbar.open('Manager deleted.', 'Success!');
+            }
+        });
+    }
+
+    private populate(): void {
+        // Gets managers to put in table
     }
 }

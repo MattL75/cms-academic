@@ -32,6 +32,8 @@ import { ManagersComponent } from './components/home/managers/managers.component
 import { EmployeesComponent } from './components/home/employees/employees.component';
 import { SnackbarService } from './services/snackbar.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ManagersDialogComponent } from './components/home/managers/managers-dialog/managers-dialog.component';
+import { ConfirmDialogComponent } from './components/utils/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +43,9 @@ import { HttpClientModule } from '@angular/common/http';
         UserAuthComponent,
         RegisterComponent,
         ManagersComponent,
-        EmployeesComponent
+        EmployeesComponent,
+        ManagersDialogComponent,
+        ConfirmDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -70,6 +74,10 @@ import { HttpClientModule } from '@angular/common/http';
         AuthService,
         AuthGuard,
         SnackbarService,
+    ],
+    entryComponents: [
+        ManagersDialogComponent,
+        ConfirmDialogComponent
     ],
     bootstrap: [AppComponent]
 })

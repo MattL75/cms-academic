@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <div class="dialog-field-row">
+        <mat-form-field class="dialog-field">
+            <input matInput [(ngModel)]="data.manager.first_name" placeholder="First name">
+        </mat-form-field>
+        <mat-form-field class="dialog-field">
+            <input matInput [(ngModel)]="data.manager.last_name" placeholder="Last name">
+        </mat-form-field>
+    </div>
+    <mat-form-field class="full-width">
+        <input matInput [(ngModel)]="data.manager.email" placeholder="Email">
+    </mat-form-field>
+</div>
+<div class="flex-row dialog-actions" mat-dialog-actions>
+    <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" [disabled]="!checkValid()" [mat-dialog-close]="data.manager" cdkFocusInitial>{{data.action}}</button>
+</div>
