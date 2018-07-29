@@ -5,7 +5,7 @@
             <div class="flex-row grow"></div>
             <div class="flex-row action-container">
                 <!-- Open entity creation dialog -->
-                <button mat-icon-button>
+                <button mat-icon-button (click)="add()">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -43,10 +43,10 @@
                     </th>
                     <td mat-cell class="actions-column" *matCellDef="let element">
                         <div class="flex-row center">
-                            <button mat-icon-button>
+                            <button mat-icon-button (click)="edit(element)">
                                 <mat-icon>edit</mat-icon>
                             </button>
-                            <button mat-icon-button>
+                            <button mat-icon-button (click)="delete(element)">
                                 <mat-icon>delete</mat-icon>
                             </button>
                         </div>

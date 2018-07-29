@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { MatSnackBar, MatTableDataSource } from '@angular/material';
+import { SnackbarService } from '../../../services/snackbar.service';
 
 @Component({
     selector: 'cms-managers',
@@ -30,25 +31,28 @@ export class ManagersComponent implements OnInit {
     dataSource = new MatTableDataSource<Manager>(this.TEST_DATA);
     displayedColumns: string[] = ['employeeId', 'name', 'email', 'actions'];
 
-    constructor() {
+    constructor(private snackbar: SnackbarService) {
     }
 
     ngOnInit() {
     }
 
-    addEntity(): void {
+    add(): void {
         // Open new entity dialog
         // Snackbar confirmation
+        this.snackbar.open('Manager added.', 'Success!');
     }
 
     edit(element: Manager): void {
         // Open new entity dialog, populated with element
         // Snackbar confirmation
+        this.snackbar.open('Manager modified.', 'Success!');
     }
 
     delete(element: Manager): void {
         // Open confirmation dialog
         // Delete item
         // Snackbar confirmation
+        this.snackbar.open('Manager deleted.', 'Success!');
     }
 }

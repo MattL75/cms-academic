@@ -12,7 +12,7 @@ import {
     MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatPaginatorModule,
     MatProgressSpinnerModule,
     MatRippleModule,
-    MatSidenavModule, MatSortModule, MatTableModule,
+    MatSidenavModule, MatSnackBarModule, MatSortModule, MatTableModule,
     MatToolbarModule
 } from '@angular/material';
 import { UserAuthComponent } from './components/login/user-auth/user-auth.component';
@@ -20,6 +20,7 @@ import { RegisterComponent } from './components/login/register/register.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManagersComponent } from './components/home/managers/managers.component';
 import { EmployeesComponent } from './components/home/employees/employees.component';
+import { SnackbarService } from './services/snackbar.service';
 
 @NgModule({
     declarations: [
@@ -50,10 +51,12 @@ import { EmployeesComponent } from './components/home/employees/employees.compon
         MatDividerModule,
         MatTableModule,
         MatSortModule,
+        MatSnackBarModule
     ],
     providers: [
         AuthService,
-        AuthGuard
+        AuthGuard,
+        SnackbarService,
     ],
     bootstrap: [AppComponent]
 })
