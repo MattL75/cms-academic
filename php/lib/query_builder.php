@@ -24,6 +24,14 @@ class QueryBuilder {
 
     return new InsertBuilder(QueryBuilder::$conn, $table, $column_value);
   }
+
+  public static function update(string $table, array $column_value) {
+    if (!isset(QueryBuilder::$conn)) {
+      die("must call init before querying");
+    }
+
+    return new UpdateBuilder(QueryBuilder::$conn, $table, $column_value);
+  }
 }
 
 class SelectBuilder {
@@ -92,7 +100,7 @@ class SelectBuilder {
   }
 
   public function execute() {
-    echo $this->getQuery();
+    // echo $this->getQuery();
     return $this->connection->query($this->getQuery())->fetchAll();
   }
 }
@@ -121,7 +129,7 @@ class InsertBuilder {
   }
 
   public function execute() {
-    echo $this->getQuery();
+    // echo $this->getQuery();
     $stmnt = $this->connection->prepare($this->getQuery());
     if ($stmnt->execute($this->data)) {
       return $this->connection->lastInsertId();
@@ -130,5 +138,61 @@ class InsertBuilder {
     }
     // $err = $stmnt->errorInfo(); // uncomment to see possible errors
   }
+}
+
+class UpdateBuilder {
+  private $connection;
+  private $update_string;
+  private $set_string = '';
+  private $filter_string;
+
+  function __construct(PDO $connection, string $table_name, array $data) {
+    $this->connection = $connection;
+    $this->update_string = "UPDATE {$table_name} SET";
+    $comma = '';
+    foreach ($data as $column => $value) {
+      $this->set_string .= "{$comma}{$table_name}.{$column} = \"{$value}\"";
+      $comma = ', ';
+    }
+  }
+
+  // make this work with prepared statements to protect from injection
+  public function where(string $condition) {
+    $this->filter_string = "WHERE {$condition}";
+
+    return $this;
+  }
+  
+     // make this work with prepared statements to protect from injection
+  public function or(string $condition) {
+    if (isset($this->filter_string)) {
+      $this->filter_string .= "\nOR {$condition}";
+    } else {
+      // error
+    }
+
+    return $this;
+  }
+  
+     // make this work with prepared statements to protect from injection
+  public function and(string $condition) {
+    if (isset($this->filter_string)) {
+      $this->filter_string .= "\nAND {$condition}";
+    } else {
+      // error
+    }
+
+    return $this;
+  }
+
+  public function getQuery() {
+    return "{$this->update_string} {$this->set_string} {$this->filter_string};";
+  }
+  
+  public function execute() {
+    // echo $this->getQuery();
+    return $this->connection->query($this->getQuery());
+  }
+  
 }
 ?>
