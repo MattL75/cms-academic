@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
                 this.router.navigate(['']);
             }
             this.querying = false;
-        }, 5000);
+        }, 3000);
     }
 
 }

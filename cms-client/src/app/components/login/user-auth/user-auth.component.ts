@@ -33,7 +33,7 @@ export class UserAuthComponent implements OnInit {
                 this.router.navigate(['']);
             }
             this.querying = false;
-        }, 2000);
+        }, 3000);
     }
 
 }
