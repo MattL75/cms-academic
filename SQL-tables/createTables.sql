@@ -2,10 +2,10 @@ CREATE TABLE Department
 (
   service_type VARCHAR(255) NOT NULL,
   name VARCHAR(30) NOT NULL,
-  departmentID INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY 
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY 
 );
 
-CREATE TABLE Lines_of_Buisness
+CREATE TABLE Lines_Of_Buisness
 (
   name VARCHAR(30) NOT NULL,
   PRIMARY KEY (name)
@@ -56,12 +56,11 @@ CREATE TABLE City
 
 CREATE TABLE Address
 (
+  id INT(255) AUTO_INCREMENT PRIMARY KEY,
   postal_code VARCHAR(6) NOT NULL,
-  street VARCHAR(30) NOT NULL,
-  number INT(10) NOT NULL,
+  street_address VARCHAR(30) NOT NULL,
   city_name VARCHAR(30) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
-  PRIMARY KEY (street, city_name, province_name),
   FOREIGN KEY (city_name, province_name) REFERENCES City(city_name, province_name)
 );
 
@@ -80,9 +79,9 @@ CREATE TABLE Client
 (
   email_domain VARCHAR(255) NOT NULL,
   name VARCHAR(30) NOT NULL,
-  client_id INT(6) NOT NULL,
+  client_id INT(6) NOT NULL AUTO_INCREMENT,
   province_name VARCHAR(30) NOT NULL,
-  user_id INT(6) NOT NULL AUTO_INCREMENT,
+  user_id INT(6) NOT NULL ,
   PRIMARY KEY (client_id),
   FOREIGN KEY (province_name) REFERENCES Province(province_name),
   FOREIGN KEY (user_id) REFERENCES User(user_id)
@@ -98,7 +97,7 @@ CREATE TABLE Employee
   province_name VARCHAR(30) NOT NULL,
   user_id INT(6) NOT NULL,
   PRIMARY KEY (employee_id),
-  FOREIGN KEY (departmentID) REFERENCES Department(departmentID),
+  FOREIGN KEY (departmentID) REFERENCES Department(id),
   FOREIGN KEY (insurance_type) REFERENCES Insurance_Plan(insurance_type),
   FOREIGN KEY (province_name) REFERENCES Province(province_name),
   FOREIGN KEY (user_id) REFERENCES User(user_id)
@@ -110,7 +109,7 @@ CREATE TABLE works_in
   name VARCHAR(30) NOT NULL,
   PRIMARY KEY (client_id, name),
   FOREIGN KEY (client_id) REFERENCES Client(client_id),
-  FOREIGN KEY (name) REFERENCES Lines_of_Buisness(name)
+  FOREIGN KEY (name) REFERENCES Lines_Of_Buisness(name)
 );
 
 CREATE TABLE Contract
@@ -126,9 +125,9 @@ CREATE TABLE Contract
   line_of_buisness VARCHAR(30) NOT NULL,
   contract_type VARCHAR(30) NOT NULL,
   PRIMARY KEY (contract_id),
-  FOREIGN KEY (departmentID) REFERENCES Department(departmentID),
+  FOREIGN KEY (departmentID) REFERENCES Department(id),
   FOREIGN KEY (client_id) REFERENCES Client(client_id),
-  FOREIGN KEY (line_of_buisness) REFERENCES Lines_of_Buisness(name),
+  FOREIGN KEY (line_of_buisness) REFERENCES Lines_Of_Buisness(name),
   FOREIGN KEY (contract_type) REFERENCES Contract_Type(name)
 );
 
