@@ -7,8 +7,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. Install [Node.js and npm](https://nodejs.org/en/download/).
 2. Install the Angular CLI by running `npm install -g @angular/cli`.
 3. Navigate to the repository and enter the cms-client folder.
-4. Run `ng serve` or `npm start`.
-5. Visit `localhost:4200`.
+4. Run `npm install`.
+5. Run `ng serve` or `npm start`.
+6. Visit `localhost:4200`.
 
 Address is subject to change for backend compatibility.
 
