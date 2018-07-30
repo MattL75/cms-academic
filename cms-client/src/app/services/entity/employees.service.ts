@@ -6,33 +6,33 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
-export class ManagersService {
+export class EmployeesService {
 
-    baseUrl = '/api/managers';
+    baseUrl = '/api/employees';
     suffix = '.php';
 
     constructor(private http: HttpClient) {
     }
 
-    public getManagers(): Observable<Manager[]> {
-        return this.http.get<Manager[]>(this.baseUrl + this.suffix).pipe(
+    public getEmployees(): Observable<Employee[]> {
+        return this.http.get<Employee[]>(this.baseUrl + this.suffix).pipe(
             catchError(this.handleError)
         );
     }
 
-    public addManager(manager: Manager): Observable<Manager> {
-        return this.http.post<Manager>(this.baseUrl + this.suffix, manager).pipe(
+    public addEmployee(employee: Employee): Observable<Employee> {
+        return this.http.post<Employee>(this.baseUrl + this.suffix, employee).pipe(
             catchError(this.handleError)
         );
     }
 
-    public updateManager(manager: Manager): Observable<Manager> {
-        return this.http.put<Manager>(this.baseUrl + this.suffix, manager).pipe(
+    public updateEmployee(employee: Employee): Observable<Employee> {
+        return this.http.put<Employee>(this.baseUrl + this.suffix, employee).pipe(
             catchError(this.handleError)
         );
     }
 
-    public deleteManager(id: number): Observable<{}> {
+    public deleteEmployee(id: number): Observable<{}> {
         return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
             catchError(this.handleError)
         );
