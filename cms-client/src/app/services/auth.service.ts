@@ -1,28 +1,80 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class AuthService {
 
     private loggedIn = true;
+    private querying = false;
+    private currentUser;
+    private baseUrl = '/api/login';
+    private suffix = '.php';
 
-    constructor(private router: Router) {
+    constructor(private http: HttpClient, private router: Router) {
     }
 
-    public login(): void {
-        this.loggedIn = true;
+    public login(username: string, password: string): void {
+        this.querying = true;
+        this.http.post<User>(this.baseUrl + this.suffix, {username: username, password: password}).pipe(
+            catchError(this.handleError)
+        ).subscribe((user: User) => {
+            this.currentUser = user;
+            this.loggedIn = true;
+            this.querying = false;
+            this.router.navigate(['home']);
+        });
     }
 
     public logout(): void {
-        this.loggedIn = false;
-        this.router.navigate(['auth']);
+        this.querying = true;
+        this.http.get('/api/logout' + this.suffix).pipe(
+            catchError(this.handleError)
+        ).subscribe(() => {
+            this.loggedIn = false;
+            this.querying = false;
+            this.router.navigate(['auth']);
+        });
     }
 
     public isAuthenticated(): boolean {
         return this.loggedIn;
     }
 
-    public register(): void {
-        this.login();
+    public register(username: string, password: string): void {
+        this.querying = true;
+        this.http.post('/api/register' + this.suffix, {username: username, password: password}).pipe(
+            catchError(this.handleError)
+        ).subscribe((user: User) => {
+            this.currentUser = user;
+            this.querying = false;
+            this.loggedIn = true;
+            this.router.navigate(['home']);
+        });
+    }
+
+    public getCurrentUser(): User {
+        return this.currentUser;
+    }
+
+    public getUserRole(): string {
+        return this.currentUser.role;
+    }
+
+    public getQuerying(): boolean {
+        return this.querying;
+    }
+
+    private handleError(error: HttpErrorResponse) {
+        if (error.error instanceof ErrorEvent) {
+            console.error('An error occurred:', error.error.message);
+        } else {
+            console.error(
+                `Backend returned code ${error.status}, ` +
+                `body was: ${error.error}`);
+        }
+        return throwError('Something bad happened; please try again later.');
     }
 }

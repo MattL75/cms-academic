@@ -56,7 +56,7 @@ export class ManagersComponent implements OnInit {
             // Backend generates id, then returns here in subscribe, get new item created
             if (result) {
                 this.TEST_DATA.push(result);
-                this.dataSource = new MatTableDataSource<Manager>(this.TEST_DATA);
+                this.populate();
                 this.snackbar.open('Manager added.', 'Success!');
             }
         });
@@ -96,13 +96,13 @@ export class ManagersComponent implements OnInit {
             if (result) {
                 // Or just repopulate
                 this.TEST_DATA.splice(this.TEST_DATA.indexOf(element), 1);
-                this.dataSource = new MatTableDataSource<Manager>(this.TEST_DATA);
+                this.populate();
                 this.snackbar.open('Manager deleted.', 'Success!');
             }
         });
     }
 
     private populate(): void {
-        // Gets managers to put in table
+        this.dataSource = new MatTableDataSource<Manager>(this.TEST_DATA);
     }
 }

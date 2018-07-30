@@ -20,6 +20,12 @@
     <mat-sidenav-container class="flex-row grow sidebar-container">
         <mat-sidenav #sidenav class="main-sidebar" [mode]="sideMode" [(opened)]="menuOpen">
             <div class="flex-column grow">
+                <div class="flex-row nav-item" mat-ripple routerLink="/dashboard" routerLinkActive="route-active">
+                    <mat-icon class="nav-icon">dashboard</mat-icon>
+                    <span class="nav-text">Dashboard</span>
+                </div>
+            </div>
+            <div class="flex-column grow">
                 <div class="flex-row nav-item" mat-ripple routerLink="/managers" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">supervisor_account</mat-icon>
                     <span class="nav-text">Managers</span>
