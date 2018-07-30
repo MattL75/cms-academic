@@ -3,10 +3,10 @@ class QueryBuilder {
   private static $conn;
 
   public static function init() { // allow db params to be args
-    $servername = "mysql_comp353"; // name of container on docker network
-    $username = "root";
+    $servername = "test_db2"; // name of container on docker network
+    $username = "php";
     $password = "1234";
-    $dbname = "warmup_project"; // name of database
+    $dbname = "test_db"; // name of database
     QueryBuilder::$conn = new PDO("mysql:host={$servername};dbname={$dbname};charset=utf8", $username, $password);
   }
   
@@ -17,6 +17,13 @@ class QueryBuilder {
     return new SelectBuilder(QueryBuilder::$conn, $table, $columns);
   }
 
+  public static function insert(string $table, array $column_value) {
+    if (!isset(QueryBuilder::$conn)) {
+      die("must call init before querying");
+    }
+
+    return new InsertBuilder(QueryBuilder::$conn, $table, $column_value);
+  }
 }
 
 class SelectBuilder {
@@ -25,6 +32,7 @@ class SelectBuilder {
   private $from_string;
   private $join_string;
   private $where_string;
+  private $tokens; // store key value pair
   
   public function __construct(PDO $connection, string $table, array $columns) {
     $this->connection = $connection;
@@ -89,4 +97,38 @@ class SelectBuilder {
   }
 }
 
+class InsertBuilder {
+  private $key_strings = '';
+  private $value_strings = '';
+  private $insert_string;
+  private $connection;
+  private $data;
+  
+  public function __construct(PDO $connection, string $table, array $column_value_pair) {
+    $this->connection = $connection;
+    $this->data = $column_value_pair;
+    $this->insert_string = "INSERT INTO {$table}";
+    $comma = '';
+    foreach ($column_value_pair as $column => $value) {
+      $this->key_strings .= "{$comma} {$column}";
+      $this->value_strings .= "{$comma} :{$column}";
+      $comma = ', ';
+    }
+  }
+
+  public function getQuery() {
+    return "{$this->insert_string} ({$this->key_strings}) VALUES ({$this->value_strings});";
+  }
+
+  public function execute() {
+    echo $this->getQuery();
+    $stmnt = $this->connection->prepare($this->getQuery());
+    if ($stmnt->execute($this->data)) {
+      return $this->connection->lastInsertId();
+    } else {
+      die ($stmnt->errorInfo());
+    }
+    // $err = $stmnt->errorInfo(); // uncomment to see possible errors
+  }
+}
 ?>
