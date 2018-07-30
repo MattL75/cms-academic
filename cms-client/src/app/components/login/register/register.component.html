@@ -1,0 +1,30 @@
+<div class="flex-column grow center">
+    <span class="auth-page-title">Register</span>
+    <form class="flex-column grow center login-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Username" formControlName="username"/>
+            <mat-error *ngIf="!registerForm.controls['username'].valid">
+                Username is required.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput type="password" placeholder="Password" formControlName="password"/>
+            <mat-error *ngIf="!registerForm.controls['password'].valid">
+                Must be at least 5 characters long.
+            </mat-error>
+        </mat-form-field>
+        <div class="flex-row submit-space">
+            <span class="bottom-text">
+                <span>Already have an account?&nbsp;</span>
+                <span class="bottom-text bottom-link" [routerLink]="['/auth/login']">Login!</span>
+            </span>
+            <div class="flex-row grow end-button">
+                <mat-progress-spinner class="spinner-margin" *ngIf="querying" [color]="'primary'" [mode]="'indeterminate'"
+                                      [diameter]="'20'"></mat-progress-spinner>
+                <button type="submit" [disabled]="!registerForm.valid || querying" class="login-button" mat-flat-button color="primary">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

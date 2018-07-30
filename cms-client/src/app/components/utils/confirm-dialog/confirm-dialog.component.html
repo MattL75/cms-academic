@@ -1,0 +1,11 @@
+<h1 class="dialog-header" mat-dialog-title>
+    <mat-icon class="title-icon" *ngIf="data.icon">{{data.icon}}</mat-icon>
+    {{data.title}}
+</h1>
+<div mat-dialog-content>
+    <span>{{data.content}}</span>
+</div>
+<div class="flex-row dialog-actions" mat-dialog-actions>
+    <button mat-button style="margin-right: 10px" (click)="close(false)">Cancel</button>
+    <button mat-flat-button color="primary" (click)="close(true)" cdkFocusInitial>{{data.action}}</button>
+</div>

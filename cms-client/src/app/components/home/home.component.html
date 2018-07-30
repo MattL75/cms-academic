@@ -1,0 +1,39 @@
+<div class="flex-column full-height">
+    <mat-toolbar class="main-toolbar" color="primary">
+        <mat-toolbar-row>
+            <button mat-icon-button color="white" class="sidebar-btn" (click)="menuOpen = !menuOpen">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span class="flex-row grow">Contract Management</span>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <!-- Can add 'disabled' directive -->
+                <button class="vert-menu-item" mat-menu-item (click)="logout()">
+                    <mat-icon>power_settings_new</mat-icon>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container class="flex-row grow sidebar-container">
+        <mat-sidenav #sidenav class="main-sidebar" [mode]="sideMode" [(opened)]="menuOpen">
+            <div class="flex-column grow">
+                <div class="flex-row nav-item" mat-ripple routerLink="/managers" routerLinkActive="route-active">
+                    <mat-icon class="nav-icon">supervisor_account</mat-icon>
+                    <span class="nav-text">Managers</span>
+                </div>
+            </div>
+            <div class="flex-column grow">
+                <div class="flex-row nav-item" mat-ripple routerLink="/employees" routerLinkActive="route-active">
+                    <mat-icon class="nav-icon">person</mat-icon>
+                    <span class="nav-text">Employees</span>
+                </div>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content class="main-content">
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
