@@ -4,11 +4,15 @@ import { SnackbarService } from '../../../services/snackbar.service';
 import { ManagersService } from '../../../services/entity/managers.service';
 import { ManagersDialogComponent } from './managers-dialog/managers-dialog.component';
 import { ConfirmDialogComponent } from '../../utils/confirm-dialog/confirm-dialog.component';
+import { expandX } from '../../../animations/expand';
 
 @Component({
     selector: 'cms-managers',
     templateUrl: './managers.component.html',
-    styleUrls: ['./managers.component.scss', '../home.component.scss']
+    styleUrls: ['./managers.component.scss', '../home.component.scss'],
+    animations: [
+        expandX({time: 200})
+    ]
 })
 export class ManagersComponent implements OnInit {
 
@@ -34,6 +38,7 @@ export class ManagersComponent implements OnInit {
     dataSource: MatTableDataSource<Manager>;
     displayedColumns: string[] = ['id', 'first_name', 'email', 'actions'];
     querying = false;
+    openFilter = false;
 
     @ViewChild(MatSort) sort: MatSort;
 
@@ -105,7 +110,6 @@ export class ManagersComponent implements OnInit {
     }
 
     public applyFilter(filterValue): void {
-        console.log(filterValue);
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 

@@ -3,9 +3,15 @@
         <mat-card class="flex-column data-card">
             <mat-card-header class="flex-row center data-card-header">
                 <span class="data-card-title">Managers</span>
-                <div class="flex-row grow"></div>
-                <div class="flex-row action-container">
-                    <!-- Since teracovalent sucks donkeyballs, use a normal input, with SLIGHTLY darker background, that collapses when you click search -->
+                <div class="flex-row grow action-container">
+                    <div class="search-bar-container">
+                        <div class="search-bar">
+                            <button mat-icon-button (click)="openFilter = !openFilter">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                            <input autofocus *ngIf="openFilter" [@expandX] class="search-bar-field" type="text" placeholder="Search here" (keyup)="applyFilter($event.target.value)" />
+                        </div>
+                    </div>
                     <button mat-icon-button (click)="add()">
                         <mat-icon>add</mat-icon>
                     </button>
