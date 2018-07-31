@@ -1,10 +1,5 @@
 <?php
-include "../../lib/query_builder.php";
-include "../../lib/entities/company.php";
-
-QueryBuilder::init();
-// send JSON response not HTML
-header('Content-Type: application/json');
+include "../../lib/api.php"; // script to initialize api
 
 // get request handler
 function get() {
@@ -38,20 +33,5 @@ function delete() {
   Companies::find(['id' => $delete_body->id])->delete(); // TODO find a good way to ensure deleted entities are not used
 
   return '{"deleted": true}';
-}
-
-switch ($_SERVER['REQUEST_METHOD']) {
-  case 'GET':
-    echo get();
-    break;
-  case 'POST':
-    echo post();
-    break;
-  case 'PUT':
-    echo put();
-    break;
-  case 'DELETE':
-    echo delete();
-    break;
 }
 ?> 
