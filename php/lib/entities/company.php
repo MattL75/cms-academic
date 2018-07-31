@@ -1,17 +1,20 @@
 <?php
-
+/**
+ * Factory for company entity instances from database
+ */
 class Companies {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
-    $qb = QueryBuilder::select(Company::$TABLE_NAME, Company::$TABLE_FIELDS);
+    // query builder must be included in another file
+    $qb = QueryBuilder::select(Company::TABLE_NAME, Company::TABLE_FIELDS);
     $first = true;
     foreach ($params as $field => $value) {
       if ($first) {
-        $qb->where(Company::$TABLE_NAME.".{$field} = \"{$value}\"");
+        $qb->where(Company::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;
       } else {
-        $qb->and(Company::$TABLE_NAME.".{$field} = \"{$value}\"");
+        $qb->and(Company::TABLE_NAME.".{$field} = \"{$value}\"");
       }
     }
 
@@ -26,7 +29,7 @@ class Companies {
 
   static function create(array $data) {
     // todo validate data
-    $record_id = QueryBuilder::insert(Company::$TABLE_NAME, $data)->execute();
+    $record_id = QueryBuilder::insert(Company::TABLE_NAME, $data)->execute();
     return Companies::find(['id' => $record_id]);
   }
 
@@ -41,9 +44,12 @@ class Companies {
   }
 }
 
+/**
+ * Object representation of a Company entity (will become client)
+ */
 class Company {
-  public static $TABLE_NAME = 'Company';
-  public static $TABLE_FIELDS = 
+  const  TABLE_NAME = 'Company';
+  const  TABLE_FIELDS = 
   [
     'id',
     'name',
@@ -71,7 +77,13 @@ class Company {
     $this->email_id = $data['email_id'];
   }
 
-  public function update(array $data) {
+  /**
+   * function to update fields of a company based on a given map
+   * 
+   * this function automatically saves the changes to the database
+   */
+  public function update(array $data): Company {
+    // check which fields are sent by the request
     if (isset($data['name'])) {
       $this->name = $data['name'];
     }
@@ -90,22 +102,39 @@ class Company {
     if (isset($data['email_id'])) {
       $this->email_id = $data['email_id'];
     }
+    $this->save();
+
+    return $this;
   }
 
-  public function save() {
+  /**
+   * Function to write fields to database
+   * 
+   * TODO(QOL) only update "dirty fields"
+   */
+  public function save(): Company {
     $updata = get_object_vars($this);
     unset($updata['id']); // don't attempt to update id
     
-    QueryBuilder::update(Company::$TABLE_NAME, $updata)
+    QueryBuilder::update(Company::TABLE_NAME, $updata)
       ->where("id = \"{$this->id}\"")
       ->execute();
     $this->sync();
+
+    return $this;
   }
 
-  public function sync() {
-    $data = QueryBuilder::select(Company::$TABLE_NAME, Company::$TABLE_FIELDS)
+  /**
+   * function to fetch data from DB and update memebers
+   */
+  public function sync(): Company {
+    $data = QueryBuilder::select(Company::TABLE_NAME, Company::TABLE_FIELDS)
               ->where("id = \"{$this->id}\"")
               ->execute()[0];
+    if (!isset($data)) {
+      // error (could happen if delete is called  before) for now just short circuit
+      return $this;
+    }
     $this->id = $data['id'];
     $this->name = $data['name'];
     $this->city = $data['city'];
@@ -113,10 +142,18 @@ class Company {
     $this->address = $data['address'];
     $this->province = $data['province'];
     $this->email_id = $data['email_id'];
+
+    return $this;
   }
 
-  function toJson() {
-    return json_encode(get_object_vars($this));
+  function delete() {
+    QueryBuilder::delete(Company::TABLE_NAME)
+      ->where("id = {$this->id}")
+      ->execute();
+  }
+
+  function toJson(): string {
+    return json_encode($this);
   }
 }
 

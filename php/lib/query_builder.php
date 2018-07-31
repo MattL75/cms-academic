@@ -1,4 +1,5 @@
 <?php
+// TODO abstract filtering functionality to reduce code duplication
 class QueryBuilder {
   private static $conn;
 
@@ -10,14 +11,14 @@ class QueryBuilder {
     QueryBuilder::$conn = new PDO("mysql:host={$servername};dbname={$dbname};charset=utf8", $username, $password);
   }
   
-  public static function select(string $table, array $columns) {
+  public static function select(string $table, array $columns): SelectBuilder {
     if (!isset(QueryBuilder::$conn)) {
       die("must call init before querying");
     }
     return new SelectBuilder(QueryBuilder::$conn, $table, $columns);
   }
 
-  public static function insert(string $table, array $column_value) {
+  public static function insert(string $table, array $column_value): InsertBuilder {
     if (!isset(QueryBuilder::$conn)) {
       die("must call init before querying");
     }
@@ -25,12 +26,20 @@ class QueryBuilder {
     return new InsertBuilder(QueryBuilder::$conn, $table, $column_value);
   }
 
-  public static function update(string $table, array $column_value) {
+  public static function update(string $table, array $column_value): UpdateBuilder {
     if (!isset(QueryBuilder::$conn)) {
       die("must call init before querying");
     }
 
     return new UpdateBuilder(QueryBuilder::$conn, $table, $column_value);
+  }
+  
+  public static function delete(string $table): DeleteBuilder {
+    if (!isset(QueryBuilder::$conn)) {
+      die("must call init before querying");
+    }
+
+    return new DeleteBuilder(QueryBuilder::$conn, $table);
   }
 }
 
@@ -194,5 +203,40 @@ class UpdateBuilder {
     return $this->connection->query($this->getQuery());
   }
   
+}
+
+class DeleteBuilder {
+  private $connection;
+  private $delete_string;
+  private $filter_string;
+  
+  function __construct(PDO $connection, string $table) {
+    $this->connection = $connection;
+    $this->delete_string = "DELETE FROM {$table}";
+  }
+
+  function where(string $condition): DeleteBuilder {
+    $this->filter_string = "WHERE {$condition}";
+
+    return $this;
+  }
+  public function and(string $condition) {
+    if (isset($this->filter_string)) {
+      $this->filter_string .= "\nAND {$condition}";
+    } else {
+      // error
+    }
+
+    return $this;
+  }
+
+  public function getQuery() {
+    return "{$this->delete_string} {$this->filter_string};";
+  }
+  
+  public function execute() {
+    echo $this->getQuery();
+    return $this->connection->query($this->getQuery());
+  }
 }
 ?>
