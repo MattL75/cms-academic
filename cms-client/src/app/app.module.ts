@@ -49,7 +49,7 @@ import { DashboardComponent } from './components/home/dashboard/dashboard.compon
         EmployeesComponent,
         ManagersDialogComponent,
         ConfirmDialogComponent,
-        DashboardComponent
+        DashboardComponent,
     ],
     imports: [
         BrowserModule,
@@ -58,6 +58,8 @@ import { DashboardComponent } from './components/home/dashboard/dashboard.compon
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
+
+        // Material Modules
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
@@ -73,7 +75,7 @@ import { DashboardComponent } from './components/home/dashboard/dashboard.compon
         MatSortModule,
         MatSnackBarModule,
         MatDialogModule,
-        MatExpansionModule
+        MatExpansionModule,
     ],
     providers: [
         AuthService,

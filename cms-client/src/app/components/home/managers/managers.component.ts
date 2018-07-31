@@ -32,7 +32,7 @@ export class ManagersComponent implements OnInit {
     ];
 
     dataSource: MatTableDataSource<Manager>;
-    displayedColumns: string[] = ['id', 'name', 'email', 'actions'];
+    displayedColumns: string[] = ['id', 'first_name', 'email', 'actions'];
     querying = false;
 
     @ViewChild(MatSort) sort: MatSort;
@@ -102,6 +102,11 @@ export class ManagersComponent implements OnInit {
                 this.snackbar.open('Manager deleted.', 'Success!');
             }
         });
+    }
+
+    public applyFilter(filterValue): void {
+        console.log(filterValue);
+        this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
     private populate(): void {

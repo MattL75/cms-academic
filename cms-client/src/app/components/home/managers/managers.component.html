@@ -5,6 +5,7 @@
                 <span class="data-card-title">Managers</span>
                 <div class="flex-row grow"></div>
                 <div class="flex-row action-container">
+                    <!-- Since teracovalent sucks donkeyballs, use a normal input, with SLIGHTLY darker background, that collapses when you click search -->
                     <button mat-icon-button (click)="add()">
                         <mat-icon>add</mat-icon>
                     </button>
@@ -24,7 +25,7 @@
                     </ng-container>
 
                     <!-- Name Column -->
-                    <ng-container matColumnDef="name">
+                    <ng-container matColumnDef="first_name">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Name</strong> </th>
                         <td mat-cell *matCellDef="let element"> {{element.first_name + ' ' + element.last_name}} </td>
                     </ng-container>
