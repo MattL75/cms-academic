@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+    // TODO make specific dashboard queries for each role's reports
+
     constructor() {
     }
 

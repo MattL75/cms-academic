@@ -13,3 +13,12 @@
 .dashboard-accordion {
     width: 100%;
 }
+
+.dashboard-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+    @media screen and (max-width: 500px) {
+        margin-top: 12px;
+        align-self: center;
+    }
+}
