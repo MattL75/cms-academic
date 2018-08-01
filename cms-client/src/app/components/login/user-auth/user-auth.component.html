@@ -13,7 +13,7 @@
                 <span class="bottom-text bottom-link" [routerLink]="['/auth/register']">Register!</span>
             </span>
             <div class="flex-row grow end-button">
-                <mat-progress-spinner class="spinner-margin" *ngIf="querying" [color]="'primary'" [mode]="'indeterminate'"
+                <mat-progress-spinner class="spinner-margin" *ngIf="getQuerying()" [color]="'primary'" [mode]="'indeterminate'"
                                       [diameter]="'20'"></mat-progress-spinner>
                 <button type="submit" [disabled]="!loginForm.valid || querying" class="login-button" mat-flat-button
                         color="primary">Submit

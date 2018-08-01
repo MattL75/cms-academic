@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -9,31 +8,25 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./register.component.scss', '../login.component.scss']
 })
 export class RegisterComponent implements OnInit {
-    querying = false;
 
     registerForm = new FormGroup({
         username: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.compose([Validators.required, Validators.minLength(5)])]),
     });
 
-    constructor(private auth: AuthService, private router: Router) {
+    constructor(private auth: AuthService) {
     }
 
     ngOnInit() {
     }
 
     onSubmit() {
-        // To be put inside an async call
-        this.querying = true;
-        this.auth.register();
+        this.auth.register(this.registerForm.controls['username'].value, this.registerForm.controls['password'].value);
+    }
 
-        setTimeout(() => {
-            if (this.auth.isAuthenticated()) {
-                // Probably do this in the service
-                this.router.navigate(['']);
-            }
-            this.querying = false;
-        }, 3000);
+    public getQuerying(): boolean {
+        // TODO test that this works - seems to always be true after a call?
+        return this.auth.getQuerying();
     }
 
 }

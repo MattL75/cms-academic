@@ -7,13 +7,15 @@ import { RegisterComponent } from './components/login/register/register.componen
 import { UserAuthComponent } from './components/login/user-auth/user-auth.component';
 import { ManagersComponent } from './components/home/managers/managers.component';
 import { EmployeesComponent } from './components/home/employees/employees.component';
+import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 
 const routes: Routes = [
     {
         path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
         {path: 'managers', component: ManagersComponent},
         {path: 'employees', component: EmployeesComponent},
-        {path: '', redirectTo: 'managers', pathMatch: 'full'}
+        {path: 'dashboard', component: DashboardComponent},
+        {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
     ]
     },
     {

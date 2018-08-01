@@ -12,7 +12,7 @@ import {
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
-    MatDividerModule,
+    MatDividerModule, MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -34,6 +34,9 @@ import { SnackbarService } from './services/snackbar.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ManagersDialogComponent } from './components/home/managers/managers-dialog/managers-dialog.component';
 import { ConfirmDialogComponent } from './components/utils/confirm-dialog/confirm-dialog.component';
+import { ManagersService } from './services/entity/managers.service';
+import { EmployeesService } from './services/entity/employees.service';
+import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +48,8 @@ import { ConfirmDialogComponent } from './components/utils/confirm-dialog/confir
         ManagersComponent,
         EmployeesComponent,
         ManagersDialogComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        DashboardComponent,
     ],
     imports: [
         BrowserModule,
@@ -54,6 +58,8 @@ import { ConfirmDialogComponent } from './components/utils/confirm-dialog/confir
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
+
+        // Material Modules
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
@@ -68,12 +74,15 @@ import { ConfirmDialogComponent } from './components/utils/confirm-dialog/confir
         MatTableModule,
         MatSortModule,
         MatSnackBarModule,
-        MatDialogModule
+        MatDialogModule,
+        MatExpansionModule,
     ],
     providers: [
         AuthService,
         AuthGuard,
         SnackbarService,
+        ManagersService,
+        EmployeesService
     ],
     entryComponents: [
         ManagersDialogComponent,
