@@ -118,9 +118,9 @@ CREATE TABLE works_in
 CREATE TABLE Contract
 (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  acv DOUBLE NOT NULL,
+  acv DECIMAL(10,2) NOT NULL,
   start_date DATE NOT NULL,
-  initial_amount DOUBLE NOT NULL,
+  initial_amount DECIMAL(10,2) NOT NULL,
   client_satisfaction INT(2),
   recorded_by INT(6) NOT NULL,
   department_id INT(6) NOT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE Manager
 
 CREATE TABLE Hours
 (
-  hours_worked DOUBLE NOT NULL,
+  hours_worked TIME NOT NULL,
   employee_id INT(6) NOT NULL,
   date_worked DATE NOT NULL,
   contract_id INT(6) NOT NULL,
