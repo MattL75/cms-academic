@@ -37,6 +37,10 @@ import { ConfirmDialogComponent } from './components/utils/confirm-dialog/confir
 import { ManagersService } from './services/entity/managers.service';
 import { EmployeesService } from './services/entity/employees.service';
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
+import { ContractsComponent } from './components/home/contracts/contracts.component';
+import { ClientsComponent } from './components/home/clients/clients.component';
+import { DepartmentsComponent } from './components/home/departments/departments.component';
+import { UsersComponent } from './components/home/users/users.component';
 
 @NgModule({
     declarations: [
@@ -50,6 +54,10 @@ import { DashboardComponent } from './components/home/dashboard/dashboard.compon
         ManagersDialogComponent,
         ConfirmDialogComponent,
         DashboardComponent,
+        ContractsComponent,
+        ClientsComponent,
+        DepartmentsComponent,
+        UsersComponent,
     ],
     imports: [
         BrowserModule,

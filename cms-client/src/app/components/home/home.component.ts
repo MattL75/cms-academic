@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
         event.target.innerWidth <= 800 ? this.sideMode = 'over' : this.sideMode = 'side';
     }
 
-    constructor(private auth: AuthService) {
+    constructor(protected auth: AuthService) {
     }
 
     ngOnInit() {
@@ -25,9 +25,5 @@ export class HomeComponent implements OnInit {
         } else {
             this.sideMode = 'side';
         }
-    }
-
-    logout(): void {
-        this.auth.logout();
     }
 }
