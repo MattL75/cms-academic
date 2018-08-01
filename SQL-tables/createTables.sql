@@ -5,7 +5,7 @@ CREATE TABLE Department
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY 
 );
 
-CREATE TABLE Lines_Of_Buisness
+CREATE TABLE Business_Line 
 (
   name VARCHAR(30) NOT NULL UNIQUE,
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY 
@@ -68,7 +68,7 @@ CREATE TABLE Address
 CREATE TABLE User
 (
   id INT(6) NOT NULL AUTO_INCREMENT,
-  user_name VARCHAR(30) NOT NULL UNIQUE,
+  username VARCHAR(30) NOT NULL UNIQUE,
   password VARCHAR(30) NOT NULL,
   is_admin BOOLEAN NOT NULL,
   name VARCHAR(30) NOT NULL,
@@ -93,12 +93,12 @@ CREATE TABLE Employee
   id INT(6) NOT NULL AUTO_INCREMENT,
   last_name VARCHAR(30) NOT NULL,
   first_name VARCHAR(30) NOT NULL,
-  departmentID INT(6) NOT NULL,
+  department_id INT(6) NOT NULL,
   insurance_type VARCHAR(255) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
   user_id INT(6) NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (departmentID) REFERENCES Department(id),
+  FOREIGN KEY (department_id) REFERENCES Department(id),
   FOREIGN KEY (insurance_type) REFERENCES Insurance_Plan(insurance_type),
   FOREIGN KEY (province_name) REFERENCES Province(province_name),
   FOREIGN KEY (user_id) REFERENCES User(id)
@@ -111,8 +111,8 @@ CREATE TABLE works_in
   line_id int(6) NOT NULL,
   PRIMARY KEY (client_id, line_id),
   FOREIGN KEY (client_id) REFERENCES Client(id),
-  FOREIGN KEY (name) REFERENCES Lines_Of_Buisness(name),
-  FOREIGN KEY (line_id) REFERENCES Lines_Of_Buisness(id)
+  FOREIGN KEY (name) REFERENCES Business_Line(name),
+  FOREIGN KEY (line_id) REFERENCES Business_Line(id)
 );
 
 CREATE TABLE Contract
@@ -130,7 +130,7 @@ CREATE TABLE Contract
   PRIMARY KEY (id),
   FOREIGN KEY (department_id) REFERENCES Department(id),
   FOREIGN KEY (client_id) REFERENCES Client(id),
-  FOREIGN KEY (line_of_buisness) REFERENCES Lines_Of_Buisness(name),
+  FOREIGN KEY (line_of_buisness) REFERENCES Business_Line(name),
   FOREIGN KEY (contract_type) REFERENCES Contract_Type(name)
 );
 
