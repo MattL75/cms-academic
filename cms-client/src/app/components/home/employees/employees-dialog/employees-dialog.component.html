@@ -1,21 +1,12 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
-    <form class="" [formGroup]="managersForm">
+    <form class="" [formGroup]="entityForm">
         <div class="dialog-field-row">
             <mat-form-field class="dialog-field">
                 <input matInput formControlName="first_name" placeholder="First name">
             </mat-form-field>
             <mat-form-field class="dialog-field">
                 <input matInput formControlName="last_name" placeholder="Last name">
-            </mat-form-field>
-            <mat-form-field class="dialog-field">
-                <input matInput formControlName="email" placeholder="Email">
-            </mat-form-field>
-            <mat-form-field class="dialog-field">
-                <input matInput formControlName="phone_number" placeholder="Phone number">
-            </mat-form-field>
-            <mat-form-field class="dialog-field">
-                <input matInput formControlName="middle_initials" placeholder="Middle initial">
             </mat-form-field>
             <mat-form-field class="dialog-field">
                 <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
@@ -26,14 +17,14 @@
                 </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <mat-select placeholder="Province" [formControl]="managersForm.controls['province']">
+                <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">
                     <mat-option *ngFor="let province of provinces" [value]="province">
                         {{province}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <mat-select placeholder="Insurance" [formControl]="managersForm.controls['insurance']">
+                <mat-select placeholder="Insurance" [formControl]="entityForm.controls['insurance']">
                     <mat-option *ngFor="let insurance of insuranceTypes" [value]="insurance">
                         {{insurance}}
                     </mat-option>
@@ -44,5 +35,5 @@
 </div>
 <div class="flex-row dialog-actions" mat-dialog-actions>
     <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" [disabled]="!managersForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
 </div>

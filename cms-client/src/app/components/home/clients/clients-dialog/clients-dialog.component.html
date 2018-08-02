@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <form class="" [formGroup]="entityForm">
+        <div class="dialog-field-row">
+            <mat-form-field class="dialog-field">
+                <input matInput formControlName="name" placeholder="Name">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input matInput formControlName="email_domain" placeholder="Email domain">
+            </mat-form-field>
+            <mat-form-field class="dialog-field full-width">
+                <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">
+                    <mat-option *ngFor="let province of provinces" [value]="province">
+                        {{province}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div class="flex-row dialog-actions" mat-dialog-actions>
+    <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+</div>

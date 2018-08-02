@@ -5,6 +5,7 @@ import { ManagersService } from '../../../services/entity/managers.service';
 import { ManagersDialogComponent } from './managers-dialog/managers-dialog.component';
 import { ConfirmDialogComponent } from '../../utils/confirm-dialog/confirm-dialog.component';
 import { expandX } from '../../../animations/expand';
+import { Manager } from '../../../models/manager.model';
 
 @Component({
     selector: 'cms-managers',

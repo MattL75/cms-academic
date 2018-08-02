@@ -1,21 +1,18 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
-    <form class="" [formGroup]="managersForm">
+    <form class="" [formGroup]="entityForm">
         <div class="dialog-field-row">
             <mat-form-field class="dialog-field">
-                <input matInput formControlName="first_name" placeholder="First name">
+                <input type="number" matInput formControlName="acv" placeholder="Annual value">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input matInput formControlName="last_name" placeholder="Last name">
+                <input type="number" matInput formControlName="initial_amount" placeholder="Initial amount">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input matInput formControlName="email" placeholder="Email">
+                <input type="date" matInput formControlName="start_date" placeholder="Start date">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input matInput formControlName="phone_number" placeholder="Phone number">
-            </mat-form-field>
-            <mat-form-field class="dialog-field">
-                <input matInput formControlName="middle_initials" placeholder="Middle initial">
+                <input type="text" matInput formControlName="business_line" placeholder="Business Line">
             </mat-form-field>
             <mat-form-field class="dialog-field">
                 <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
@@ -26,16 +23,17 @@
                 </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <mat-select placeholder="Province" [formControl]="managersForm.controls['province']">
-                    <mat-option *ngFor="let province of provinces" [value]="province">
-                        {{province}}
+                <input type="text" placeholder="Client" matInput formControlName="client_id" [matAutocomplete]="clientCmp">
+                <mat-autocomplete #clientCmp="matAutocomplete">
+                    <mat-option *ngFor="let option of clients | async" [value]="option">
+                        {{option}}
                     </mat-option>
-                </mat-select>
+                </mat-autocomplete>
             </mat-form-field>
-            <mat-form-field class="dialog-field">
-                <mat-select placeholder="Insurance" [formControl]="managersForm.controls['insurance']">
-                    <mat-option *ngFor="let insurance of insuranceTypes" [value]="insurance">
-                        {{insurance}}
+            <mat-form-field class="dialog-field full-width">
+                <mat-select placeholder="Type" [formControl]="entityForm.controls['contract_type']">
+                    <mat-option *ngFor="let contractType of contractTypes" [value]="contractType">
+                        {{contractType}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
