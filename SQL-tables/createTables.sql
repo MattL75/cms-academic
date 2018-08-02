@@ -75,6 +75,15 @@ CREATE TABLE User
   FOREIGN KEY (role) REFERENCES Role(name)
 );
 
+CREATE TABLE Sales_Associate
+(
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  user_id INT(6) NOT NULL ,
+  FOREIGN KEY (user_id) REFERENCES User(id)
+);
+
 CREATE TABLE Client
 ( 
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -124,6 +133,7 @@ CREATE TABLE Contract
   client_id INT(6) NOT NULL,
   business_line VARCHAR(30) NOT NULL,
   contract_type VARCHAR(30) NOT NULL,
+  FOREIGN KEY (recorded_by) REFERENCES Sales_Associate(id),
   FOREIGN KEY (department_id) REFERENCES Department(id),
   FOREIGN KEY (client_id) REFERENCES Client(id),
   FOREIGN KEY (business_line) REFERENCES Business_Line(name),
