@@ -1,8 +1,8 @@
-class Client {
-    constructor(email_domain: string,
-                name: string,
-                province_name: string,
-                user_id: number,
-                id?: number) {
+export class Client {
+    constructor(public email_domain: string,
+                public name: string,
+                public province_name: string,
+                public user_id: number,
+                public id?: number) {
     }
 }
