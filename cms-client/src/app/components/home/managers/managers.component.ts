@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { ManagersService } from '../../../services/entity/managers.service';
@@ -42,7 +42,7 @@ export class ManagersComponent implements OnInit {
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private managersService: ManagersService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private managersService: ManagersService, private cdRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -63,9 +63,10 @@ export class ManagersComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             // Create Manager, subscribe, then snackbar inside.
-            // Backend generates id, then returns here in subscribe, get new item created
+            // Backend generates id, then returns here in subscribe, re-populate
             if (result) {
-                this.dataSource.data.push(result);
+                this.TEST_DATA.push(result);
+                this.populate();
                 this.snackbar.open('Manager added.', 'Success!');
             }
         });
@@ -82,9 +83,10 @@ export class ManagersComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            // Update manager, subscribe, then snackbar inside.
+            // Update manager, subscribe, refresh (populate) then snackbar inside.
             if (result) {
                 Object.assign(manager, result);
+                this.populate();
                 this.snackbar.open('Manager modified.', 'Success!');
             }
         });
@@ -121,6 +123,7 @@ export class ManagersComponent implements OnInit {
         // this.managersService.getManagers().subscribe(managers => {
         //     this.dataSource.data = managers;
         //     this.querying = false;
+        //     this.cdRef.detectChanges();
         // });
     }
 }
