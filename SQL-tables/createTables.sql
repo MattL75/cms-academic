@@ -59,9 +59,9 @@ CREATE TABLE Address
   id INT(10) AUTO_INCREMENT PRIMARY KEY,
   postal_code CHAR(6) NOT NULL,
   street_address VARCHAR(30) NOT NULL,
-  city_name VARCHAR(30) NOT NULL,
+  city_id INT(10) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
-  FOREIGN KEY (city_name) REFERENCES City(name),
+  FOREIGN KEY (city_id) REFERENCES City(id),
   FOREIGN KEY (province_name) REFERENCES Province(name)
 );
 
