@@ -20,7 +20,7 @@ CREATE TABLE Contract_Type
 CREATE TABLE Deliverable
 (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  number INT(3) NOT NULL,
+  number INT(1) NOT NULL,
   is_final BOOLEAN NOT NULL,
   due_date DATE NOT NULL,
   contract_type VARCHAR(30) NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE Contract
 CREATE TABLE Manager
 (
   id INT(6) NOT NULL,
-  email VARCHAR(30) NOT NULL,
+  email VARCHAR(60) NOT NULL,
   phone_number VARCHAR(30) NOT NULL,
   middle_initial CHAR(1),
   PRIMARY KEY (id),
