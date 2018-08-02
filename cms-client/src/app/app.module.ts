@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import {
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
@@ -41,6 +42,10 @@ import { ContractsComponent } from './components/home/contracts/contracts.compon
 import { ClientsComponent } from './components/home/clients/clients.component';
 import { DepartmentsComponent } from './components/home/departments/departments.component';
 import { UsersComponent } from './components/home/users/users.component';
+import { UsersService } from './services/entity/users.service';
+import { DepartmentsService } from './services/entity/departments.service';
+import { ContractsService } from './services/entity/contracts.service';
+import { ClientsService } from './services/entity/clients.service';
 
 @NgModule({
     declarations: [
@@ -84,13 +89,18 @@ import { UsersComponent } from './components/home/users/users.component';
         MatSnackBarModule,
         MatDialogModule,
         MatExpansionModule,
+        MatAutocompleteModule
     ],
     providers: [
         AuthService,
         AuthGuard,
         SnackbarService,
         ManagersService,
-        EmployeesService
+        EmployeesService,
+        UsersService,
+        DepartmentsService,
+        ContractsService,
+        ClientsService
     ],
     entryComponents: [
         ManagersDialogComponent,

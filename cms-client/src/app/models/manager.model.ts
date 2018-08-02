@@ -4,6 +4,7 @@ class Manager {
                 public email: string = 'john.doe@gmail.com',
                 public phone_number: string = '123-4567',
                 public middle_initials: string = 'M',
+                public department_id?: number,
                 public id?: number) {
     }
 }
