@@ -22,7 +22,7 @@ CREATE TABLE Deliverable
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   number INT(1) NOT NULL,
   is_final BOOLEAN NOT NULL,
-  due_date DATE NOT NULL,
+  days_to_delivery INT(3) NOT NULL,
   contract_type VARCHAR(30) NOT NULL,
   FOREIGN KEY (contract_type) REFERENCES Contract_Type(name)
 );
