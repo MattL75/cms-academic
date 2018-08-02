@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import {
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
@@ -37,6 +38,14 @@ import { ConfirmDialogComponent } from './components/utils/confirm-dialog/confir
 import { ManagersService } from './services/entity/managers.service';
 import { EmployeesService } from './services/entity/employees.service';
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
+import { ContractsComponent } from './components/home/contracts/contracts.component';
+import { ClientsComponent } from './components/home/clients/clients.component';
+import { DepartmentsComponent } from './components/home/departments/departments.component';
+import { UsersComponent } from './components/home/users/users.component';
+import { UsersService } from './services/entity/users.service';
+import { DepartmentsService } from './services/entity/departments.service';
+import { ContractsService } from './services/entity/contracts.service';
+import { ClientsService } from './services/entity/clients.service';
 
 @NgModule({
     declarations: [
@@ -50,6 +59,10 @@ import { DashboardComponent } from './components/home/dashboard/dashboard.compon
         ManagersDialogComponent,
         ConfirmDialogComponent,
         DashboardComponent,
+        ContractsComponent,
+        ClientsComponent,
+        DepartmentsComponent,
+        UsersComponent,
     ],
     imports: [
         BrowserModule,
@@ -76,13 +89,18 @@ import { DashboardComponent } from './components/home/dashboard/dashboard.compon
         MatSnackBarModule,
         MatDialogModule,
         MatExpansionModule,
+        MatAutocompleteModule
     ],
     providers: [
         AuthService,
         AuthGuard,
         SnackbarService,
         ManagersService,
-        EmployeesService
+        EmployeesService,
+        UsersService,
+        DepartmentsService,
+        ContractsService,
+        ClientsService
     ],
     entryComponents: [
         ManagersDialogComponent,

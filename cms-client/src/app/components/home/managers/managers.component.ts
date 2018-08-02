@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { ManagersService } from '../../../services/entity/managers.service';
@@ -17,22 +17,22 @@ import { expandX } from '../../../animations/expand';
 export class ManagersComponent implements OnInit {
 
     TEST_DATA: Manager[] = [
-        {id: 1, first_name: 'John', last_name: 'Doe', email: 'john.doe@doe.com'},
-        {id: 2, first_name: 'Rob', last_name: 'Ford', email: 'crack@ford.com'},
-        {id: 3, first_name: 'Doug', last_name: 'Ford', email: 'doug@ford.com'},
-        {id: 4, first_name: 'Kebab', last_name: 'Kebabo', email: 'kebabo@kebabo.com'},
-        {id: 5, first_name: 'Martin', last_name: 'Spasov', email: 'nerd1@kebabo.com'},
-        {id: 6, first_name: 'Jesse', last_name: 'Tremblay', email: 'nerd2@kebabo.com'},
-        {id: 7, first_name: 'Manel', last_name: 'Guay-Montserrat', email: 'nerd3@kebabo.com'},
-        {id: 8, first_name: 'Mathieu', last_name: 'Lajoie', email: 'nerd4@kebabo.com'},
-        {id: 9, first_name: 'Richard', last_name: 'Lajoie', email: 'richard@nuance.com'},
-        {id: 10, first_name: 'Alain', last_name: 'Ratier', email: 'ratier@soluteo.com'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com'},
+        {id: 1, first_name: 'John', last_name: 'Doe', email: 'john.doe@doe.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 2, first_name: 'Rob', last_name: 'Ford', email: 'crack@ford.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 3, first_name: 'Doug', last_name: 'Ford', email: 'doug@ford.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 4, first_name: 'Kebab', last_name: 'Kebabo', email: 'kebabo@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 5, first_name: 'Martin', last_name: 'Spasov', email: 'nerd1@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 6, first_name: 'Jesse', last_name: 'Tremblay', email: 'nerd2@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 7, first_name: 'Manel', last_name: 'Guay-Montserrat', email: 'nerd3@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 8, first_name: 'Mathieu', last_name: 'Lajoie', email: 'nerd4@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 9, first_name: 'Richard', last_name: 'Lajoie', email: 'richard@nuance.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 10, first_name: 'Alain', last_name: 'Ratier', email: 'ratier@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
+        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
     ];
 
     dataSource: MatTableDataSource<Manager>;
@@ -42,7 +42,7 @@ export class ManagersComponent implements OnInit {
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private managersService: ManagersService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private managersService: ManagersService, private cdRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -63,9 +63,10 @@ export class ManagersComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             // Create Manager, subscribe, then snackbar inside.
-            // Backend generates id, then returns here in subscribe, get new item created
+            // Backend generates id, then returns here in subscribe, re-populate
             if (result) {
-                this.dataSource.data.push(result);
+                this.TEST_DATA.push(result);
+                this.populate();
                 this.snackbar.open('Manager added.', 'Success!');
             }
         });
@@ -82,9 +83,10 @@ export class ManagersComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            // Update manager, subscribe, then snackbar inside.
+            // Update manager, subscribe, refresh (populate) then snackbar inside.
             if (result) {
                 Object.assign(manager, result);
+                this.populate();
                 this.snackbar.open('Manager modified.', 'Success!');
             }
         });
@@ -121,6 +123,7 @@ export class ManagersComponent implements OnInit {
         // this.managersService.getManagers().subscribe(managers => {
         //     this.dataSource.data = managers;
         //     this.querying = false;
+        //     this.cdRef.detectChanges();
         // });
     }
 }

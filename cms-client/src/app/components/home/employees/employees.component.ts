@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'cms-employees',
-  templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.scss']
+    selector: 'cms-employees',
+    templateUrl: './employees.component.html',
+    styleUrls: ['./employees.component.scss', '../home.component.scss']
 })
 export class EmployeesComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

@@ -10,7 +10,7 @@
             </button>
             <mat-menu #menu="matMenu">
                 <!-- Can add 'disabled' directive -->
-                <button class="vert-menu-item" mat-menu-item (click)="logout()">
+                <button class="vert-menu-item" mat-menu-item (click)="auth.logout()">
                     <mat-icon>power_settings_new</mat-icon>
                     <span>Logout</span>
                 </button>
@@ -35,6 +35,30 @@
                 <div class="flex-row nav-item" mat-ripple routerLink="/employees" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">person</mat-icon>
                     <span class="nav-text">Employees</span>
+                </div>
+            </div>
+            <div class="flex-column grow">
+                <div class="flex-row nav-item" mat-ripple routerLink="/contracts" routerLinkActive="route-active">
+                    <mat-icon class="nav-icon">receipt</mat-icon>
+                    <span class="nav-text">Contracts</span>
+                </div>
+            </div>
+            <div class="flex-column grow">
+                <div class="flex-row nav-item" mat-ripple routerLink="/clients" routerLinkActive="route-active">
+                    <mat-icon class="nav-icon">shopping_cart</mat-icon>
+                    <span class="nav-text">Clients</span>
+                </div>
+            </div>
+            <div class="flex-column grow">
+                <div class="flex-row nav-item" mat-ripple routerLink="/users" routerLinkActive="route-active">
+                    <mat-icon class="nav-icon">face</mat-icon>
+                    <span class="nav-text">Users</span>
+                </div>
+            </div>
+            <div class="flex-column grow">
+                <div class="flex-row nav-item" mat-ripple routerLink="/departments" routerLinkActive="route-active">
+                    <mat-icon class="nav-icon">business</mat-icon>
+                    <span class="nav-text">Departments</span>
                 </div>
             </div>
         </mat-sidenav>

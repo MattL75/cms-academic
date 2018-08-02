@@ -8,6 +8,10 @@ import { UserAuthComponent } from './components/login/user-auth/user-auth.compon
 import { ManagersComponent } from './components/home/managers/managers.component';
 import { EmployeesComponent } from './components/home/employees/employees.component';
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
+import { ContractsComponent } from './components/home/contracts/contracts.component';
+import { ClientsComponent } from './components/home/clients/clients.component';
+import { UsersComponent } from './components/home/users/users.component';
+import { DepartmentsComponent } from './components/home/departments/departments.component';
 
 const routes: Routes = [
     {
@@ -15,6 +19,10 @@ const routes: Routes = [
         {path: 'managers', component: ManagersComponent},
         {path: 'employees', component: EmployeesComponent},
         {path: 'dashboard', component: DashboardComponent},
+        {path: 'contracts', component: ContractsComponent},
+        {path: 'clients', component: ClientsComponent},
+        {path: 'users', component: UsersComponent},
+        {path: 'departments', component: DepartmentsComponent},
         {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
     ]
     },

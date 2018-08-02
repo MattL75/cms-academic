@@ -1,18 +1,34 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
-    <div class="dialog-field-row">
-        <mat-form-field class="dialog-field">
-            <input matInput [(ngModel)]="data.manager.first_name" placeholder="First name">
-        </mat-form-field>
-        <mat-form-field class="dialog-field">
-            <input matInput [(ngModel)]="data.manager.last_name" placeholder="Last name">
-        </mat-form-field>
-    </div>
-    <mat-form-field class="full-width">
-        <input matInput [(ngModel)]="data.manager.email" placeholder="Email">
-    </mat-form-field>
+    <form class="" [formGroup]="managersForm">
+        <div class="dialog-field-row">
+            <mat-form-field class="dialog-field">
+                <input matInput formControlName="first_name" placeholder="First name">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input matInput formControlName="last_name" placeholder="Last name">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input matInput formControlName="email" placeholder="Email">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input matInput formControlName="phone_number" placeholder="Phone number">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input matInput formControlName="middle_initials" placeholder="Middle initial">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of departments | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </form>
 </div>
 <div class="flex-row dialog-actions" mat-dialog-actions>
     <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" [disabled]="!checkValid()" [mat-dialog-close]="data.manager" cdkFocusInitial>{{data.action}}</button>
+    <button mat-flat-button color="primary" [disabled]="!managersForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
 </div>

@@ -7,8 +7,9 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class AuthService {
 
+    public querying = false;
+
     private loggedIn = true;
-    private querying = false;
     private currentUser;
     private baseUrl = '/api/login';
     private suffix = '.php';
@@ -19,7 +20,7 @@ export class AuthService {
     public login(username: string, password: string): void {
         this.querying = true;
         this.http.post<User>(this.baseUrl + this.suffix, {username: username, password: password}).pipe(
-            catchError(this.handleError)
+                catchError(this.handleError)
         ).subscribe((user: User) => {
             this.currentUser = user;
             this.loggedIn = true;
@@ -63,13 +64,9 @@ export class AuthService {
         return this.currentUser.role;
     }
 
-    public getQuerying(): boolean {
-        return this.querying;
-    }
-
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
-            console.error('An error occurred:', error.error.message);
+            console.error('An error occurred: ', error.error.message);
         } else {
             console.error(
                 `Backend returned code ${error.status}, ` +
