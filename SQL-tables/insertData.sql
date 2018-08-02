@@ -236,6 +236,10 @@ INSERT INTO User (username, password, is_admin, role) VALUES ('client18', 'pw123
 INSERT INTO User (username, password, is_admin, role) VALUES ('client19', 'pw12345', FALSE, 'Client');
 INSERT INTO User (username, password, is_admin, role) VALUES ('client20', 'pw12345', FALSE, 'Client');
 
+INSERT INTO Sales_Associate (first_name, last_name, user_id) VALUES ('Rebecca', 'Styles', 2);
+INSERT INTO Sales_Associate (first_name, last_name, user_id) VALUES ('Carl', 'Chance', 3);
+INSERT INTO Sales_Associate (first_name, last_name, user_id) VALUES ('Anita', 'Lachance', 4);
+
 INSERT INTO Client (name, email_domain, province_name, user_id) VALUES ('GSC Corporation', 'gsc.ca', 'Quebec', 46);
 INSERT INTO Client (name, email_domain, province_name, user_id) VALUES ('Nike', 'nike.ca', 'Ontario', 47);
 INSERT INTO Client (name, email_domain, province_name, user_id) VALUES ('Adidas', 'fakeemail.ca', 'Nova Scotia', 48);
