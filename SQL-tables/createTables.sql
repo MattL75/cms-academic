@@ -48,7 +48,7 @@ CREATE TABLE Province
 
 CREATE TABLE City
 (
-  name VARCHAR(30) NOT NULL UNIQUE,
+  name VARCHAR(30) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
   id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   FOREIGN KEY (province_name) REFERENCES Province(name)
@@ -58,7 +58,7 @@ CREATE TABLE Address
 (
   id INT(10) AUTO_INCREMENT PRIMARY KEY,
   postal_code CHAR(6) NOT NULL,
-  street_address VARCHAR(30) NOT NULL UNIQUE,
+  street_address VARCHAR(30) NOT NULL,
   city_name VARCHAR(30) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
   FOREIGN KEY (city_name) REFERENCES City(name),
@@ -88,20 +88,17 @@ CREATE TABLE Client
 
 CREATE TABLE Employee
 (
-  id INT(6) NOT NULL AUTO_INCREMENT,
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   department_id INT(6) NOT NULL,
   insurance_type VARCHAR(255),
   province_name VARCHAR(30) NOT NULL,
   user_id INT(6) NOT NULL,
-  managed_by INT(6) NOT NULL,
-  PRIMARY KEY (id),
   FOREIGN KEY (department_id) REFERENCES Department(id),
   FOREIGN KEY (insurance_type) REFERENCES Insurance_Plan(type),
   FOREIGN KEY (province_name) REFERENCES Province(name),
-  FOREIGN KEY (user_id) REFERENCES User(id),
-  FOREIGN KEY (managed_by) REFERENCES Manager(id)
+  FOREIGN KEY (user_id) REFERENCES User(id)
 );
 
 CREATE TABLE works_in
@@ -127,12 +124,10 @@ CREATE TABLE Contract
   client_id INT(6) NOT NULL,
   business_line VARCHAR(30) NOT NULL,
   contract_type VARCHAR(30) NOT NULL,
-  managed_by INT(6) NOT NULL,
   FOREIGN KEY (department_id) REFERENCES Department(id),
   FOREIGN KEY (client_id) REFERENCES Client(id),
   FOREIGN KEY (business_line) REFERENCES Business_Line(name),
-  FOREIGN KEY (contract_type) REFERENCES Contract_Type(name),
-  FOREIGN KEY (managed_by) REFERENCES Manager(id)
+  FOREIGN KEY (contract_type) REFERENCES Contract_Type(name)
 );
 
 CREATE TABLE Manager
@@ -151,7 +146,7 @@ CREATE TABLE Hours
   employee_id INT(6) NOT NULL,
   date_worked DATE NOT NULL,
   contract_id INT(6) NOT NULL,
-  PRIMARY KEY (contract_id,employee_id),
+  PRIMARY KEY (contract_id,employee_id,date_worked),
   FOREIGN KEY (contract_id) REFERENCES Contract(id),
   FOREIGN KEY (employee_id) REFERENCES Employee(id)
 );
