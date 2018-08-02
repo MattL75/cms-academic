@@ -9,24 +9,22 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class UserAuthComponent implements OnInit {
 
+    // TODO test that the 'querying' variable works in authService, seems to always be true.
+
     loginForm = new FormGroup({
         username: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required]),
     });
 
-    constructor(private auth: AuthService) {
+    constructor(protected auth: AuthService) {
     }
 
     ngOnInit() {
     }
 
     onSubmit() {
+        // TODO need to realize when a login attempt fails.
         this.auth.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value);
-    }
-
-    public getQuerying(): boolean {
-        // TODO test that this works - seems to always be true after a call?
-        return this.auth.getQuerying();
     }
 
 }
