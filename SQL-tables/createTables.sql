@@ -1,64 +1,64 @@
 CREATE TABLE Department
 (
-  service_type VARCHAR(255) NOT NULL,
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30) NOT NULL UNIQUE,
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY 
+  service_type VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Business_Line 
 (
-  name VARCHAR(30) NOT NULL UNIQUE,
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY 
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30) NOT NULL UNIQUE
 );
 
 CREATE TABLE Contract_Type
 (
-  name VARCHAR(30) NOT NULL UNIQUE,
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY 
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30) NOT NULL UNIQUE
 );
 
 CREATE TABLE Deliverable
 (
-  due_date DATE NOT NULL,
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   number INT(3) NOT NULL,
   is_final BOOLEAN NOT NULL,
+  due_date DATE NOT NULL,
   contract_type VARCHAR(30) NOT NULL,
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   FOREIGN KEY (contract_type) REFERENCES Contract_Type(name)
 );
 
 CREATE TABLE Insurance_Plan
 (
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   type VARCHAR(255) NOT NULL UNIQUE,
-  rate INT(2) NOT NULL,
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY 
+  rate INT(2) NOT NULL
 );
 
 CREATE TABLE Role
 (
-  name VARCHAR(30) NOT NULL UNIQUE,
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY 
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30) NOT NULL UNIQUE
 );
 
 CREATE TABLE Province
 (
-  name VARCHAR(30) NOT NULL UNIQUE,
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY 
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30) NOT NULL UNIQUE
 );
 
 CREATE TABLE City
 (
+  id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
-  id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   FOREIGN KEY (province_name) REFERENCES Province(name)
 );
 
 CREATE TABLE Address
 (
   id INT(10) AUTO_INCREMENT PRIMARY KEY,
-  postal_code CHAR(6) NOT NULL,
   street_address VARCHAR(30) NOT NULL,
+  postal_code CHAR(6) NOT NULL,
   city_id INT(10) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
   FOREIGN KEY (city_id) REFERENCES City(id),
@@ -78,8 +78,8 @@ CREATE TABLE User
 CREATE TABLE Client
 ( 
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  email_domain VARCHAR(255) NOT NULL,
   name VARCHAR(30) NOT NULL,
+  email_domain VARCHAR(255) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
   user_id INT(6) NOT NULL ,
   FOREIGN KEY (province_name) REFERENCES Province(name),
@@ -104,22 +104,22 @@ CREATE TABLE Employee
 CREATE TABLE works_in
 (
   client_id INT(6) NOT NULL,
-  business_line VARCHAR(30) NOT NULL,
   line_id int(6) NOT NULL,
+  business_line VARCHAR(30) NOT NULL,
   PRIMARY KEY (client_id, line_id),
   FOREIGN KEY (client_id) REFERENCES Client(id),
-  FOREIGN KEY (business_line) REFERENCES Business_Line(name),
-  FOREIGN KEY (line_id) REFERENCES Business_Line(id)
+  FOREIGN KEY (line_id) REFERENCES Business_Line(id),
+  FOREIGN KEY (business_line) REFERENCES Business_Line(name)
 );
 
 CREATE TABLE Contract
 (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   acv DECIMAL(10,2) NOT NULL,
-  start_date DATE NOT NULL,
   initial_amount DECIMAL(10,2) NOT NULL,
-  client_satisfaction INT(2),
   recorded_by INT(6) NOT NULL,
+  start_date DATE NOT NULL,
+  client_satisfaction INT(2),
   department_id INT(6) NOT NULL,
   client_id INT(6) NOT NULL,
   business_line VARCHAR(30) NOT NULL,
@@ -132,20 +132,20 @@ CREATE TABLE Contract
 
 CREATE TABLE Manager
 (
+  id INT(6) NOT NULL,
   email VARCHAR(30) NOT NULL,
   phone_number VARCHAR(30) NOT NULL,
   middle_initial CHAR(1),
-  id INT(6) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (id) REFERENCES Employee(id)
 );
 
 CREATE TABLE Hours
 (
-  hours_worked TIME NOT NULL,
-  employee_id INT(6) NOT NULL,
   date_worked DATE NOT NULL,
+  hours_worked TIME NOT NULL,
   contract_id INT(6) NOT NULL,
+  employee_id INT(6) NOT NULL,
   PRIMARY KEY (contract_id,employee_id,date_worked),
   FOREIGN KEY (contract_id) REFERENCES Contract(id),
   FOREIGN KEY (employee_id) REFERENCES Employee(id)
