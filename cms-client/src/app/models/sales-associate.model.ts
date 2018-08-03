@@ -1,9 +1,8 @@
 import { Role } from './enums/role.enum';
 
-export class Client {
-    constructor(public email_domain: string,
-                public name: string,
-                public province_name: string,
+export class SalesAssociate {
+    constructor(public first_name: string = 'John',
+                public last_name: string = 'Doe',
                 public username?: string,
                 public password?: string,
                 public role?: Role,

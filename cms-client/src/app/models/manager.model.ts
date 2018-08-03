@@ -1,5 +1,6 @@
 import { InsuranceType } from './enums/insurance.enum';
 import { Province } from './enums/province.enum';
+import { Role } from './enums/role.enum';
 
 export class Manager {
     constructor(public first_name: string = 'John',
@@ -10,6 +11,10 @@ export class Manager {
                 public insurance?: InsuranceType,
                 public province?: Province,
                 public department_id?: number,
+                public username?: string,
+                public password?: string,
+                public role?: Role,
+                public is_admin?: boolean,
                 public id?: number) {
     }
 }
