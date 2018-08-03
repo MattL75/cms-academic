@@ -32,7 +32,7 @@ export class AuthService {
 
     public logout(): void {
         this.querying = true;
-        this.http.get('/api/logout' + this.suffix).pipe(
+        this.http.delete(this.baseUrl + this.suffix).pipe(
             catchError(this.handleError)
         ).subscribe(() => {
             this.loggedIn = false;
