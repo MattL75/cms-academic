@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { User } from '../models/user.model';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,7 @@ export class AuthService {
     private baseUrl = '/api/login';
     private suffix = '.php';
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private http: HttpClient, private router: Router, private snackbar: SnackbarService) {
     }
 
     public login(username: string, password: string): void {
@@ -27,6 +27,9 @@ export class AuthService {
             this.loggedIn = true;
             this.querying = false;
             this.router.navigate(['home']);
+        }, () => {
+            this.querying = false;
+            this.snackbar.open('Invalid username or password.', 'Dismiss');
         });
     }
 
@@ -38,6 +41,9 @@ export class AuthService {
             this.loggedIn = false;
             this.querying = false;
             this.router.navigate(['auth']);
+        }, () => {
+            this.querying = false;
+            this.snackbar.open('Failed to logout.', 'Dismiss');
         });
     }
 
@@ -54,6 +60,9 @@ export class AuthService {
             this.querying = false;
             this.loggedIn = true;
             this.router.navigate(['home']);
+        }, () => {
+            this.querying = false;
+            this.snackbar.open('Failed to register.', 'Dismiss');
         });
     }
 
