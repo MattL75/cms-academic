@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <form class="" [formGroup]="entityForm">
+        <div class="dialog-field-row">
+            <mat-form-field class="dialog-field full-width">
+                <input matInput formControlName="username" placeholder="Username">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="User role" [formControl]="entityForm.controls['role']">
+                    <mat-option *ngFor="let role of roles" [value]="role">
+                        {{role}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="Admin?" [formControl]="entityForm.controls['is_admin']">
+                    <mat-option [value]="true">True</mat-option>
+                    <mat-option [value]="false">False</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div class="flex-row dialog-actions" mat-dialog-actions>
+    <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+</div>

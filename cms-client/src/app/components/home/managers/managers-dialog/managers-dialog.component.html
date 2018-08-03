@@ -18,12 +18,32 @@
                 <input matInput formControlName="middle_initials" placeholder="Middle initial">
             </mat-form-field>
             <mat-form-field class="dialog-field">
+                <input matInput formControlName="username" placeholder="Username">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input matInput type="password" formControlName="password" placeholder="Password">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
                 <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let option of departments | async" [value]="option">
                         {{option}}
                     </mat-option>
                 </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="Province" [formControl]="managersForm.controls['province']">
+                    <mat-option *ngFor="let province of provinces" [value]="province">
+                        {{province | normalize}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="Insurance" [formControl]="managersForm.controls['insurance']">
+                    <mat-option *ngFor="let insurance of insuranceTypes" [value]="insurance">
+                        {{insurance | normalize}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
     </form>

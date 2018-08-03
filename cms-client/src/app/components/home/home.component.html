@@ -10,6 +10,10 @@
             </button>
             <mat-menu #menu="matMenu">
                 <!-- Can add 'disabled' directive -->
+                <button class="vert-menu-item" mat-menu-item *ngIf="checkProfileAccess()" routerLink="/profile">
+                    <mat-icon>person</mat-icon>
+                    <span>My Profile</span>
+                </button>
                 <button class="vert-menu-item" mat-menu-item (click)="auth.logout()">
                     <mat-icon>power_settings_new</mat-icon>
                     <span>Logout</span>

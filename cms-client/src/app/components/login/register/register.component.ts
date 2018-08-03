@@ -9,12 +9,14 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+    // TODO test the 'querying' field works, seems to always be true after call?
+
     registerForm = new FormGroup({
         username: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.compose([Validators.required, Validators.minLength(5)])]),
     });
 
-    constructor(private auth: AuthService) {
+    constructor(protected auth: AuthService) {
     }
 
     ngOnInit() {
@@ -22,11 +24,6 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         this.auth.register(this.registerForm.controls['username'].value, this.registerForm.controls['password'].value);
-    }
-
-    public getQuerying(): boolean {
-        // TODO test that this works - seems to always be true after a call?
-        return this.auth.getQuerying();
     }
 
 }

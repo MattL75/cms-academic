@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <form class="" [formGroup]="entityForm">
+        <div class="dialog-field-row">
+            <mat-form-field class="dialog-field">
+                <input type="number" matInput formControlName="acv" placeholder="Annual value">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="number" matInput formControlName="initial_amount" placeholder="Initial amount">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="date" matInput formControlName="start_date" placeholder="Start date">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="text" matInput formControlName="business_line" placeholder="Business Line">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of departments | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="Client" matInput formControlName="client_id" [matAutocomplete]="clientCmp">
+                <mat-autocomplete #clientCmp="matAutocomplete">
+                    <mat-option *ngFor="let option of clients | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="dialog-field full-width">
+                <mat-select placeholder="Type" [formControl]="entityForm.controls['contract_type']">
+                    <mat-option *ngFor="let contractType of contractTypes" [value]="contractType">
+                        {{contractType}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div class="flex-row dialog-actions" mat-dialog-actions>
+    <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" [disabled]="!managersForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+</div>

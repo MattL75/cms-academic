@@ -19,7 +19,7 @@ import {
     MatInputModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    MatRippleModule,
+    MatRippleModule, MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatSortModule,
@@ -46,6 +46,15 @@ import { UsersService } from './services/entity/users.service';
 import { DepartmentsService } from './services/entity/departments.service';
 import { ContractsService } from './services/entity/contracts.service';
 import { ClientsService } from './services/entity/clients.service';
+import { EmployeesDialogComponent } from './components/home/employees/employees-dialog/employees-dialog.component';
+import { DepartmentsDialogComponent } from './components/home/departments/departments-dialog/departments-dialog.component';
+import { UsersDialogComponent } from './components/home/users/users-dialog/users-dialog.component';
+import { ContractsDialogComponent } from './components/home/contracts/contracts-dialog/contracts-dialog.component';
+import { ClientsDialogComponent } from './components/home/clients/clients-dialog/clients-dialog.component';
+import { SalesAssociatesComponent } from './components/home/sales-associates/sales-associates.component';
+import { SalesAssociatesDialogComponent } from './components/home/sales-associates/sales-associates-dialog/sales-associates-dialog.component';
+import { NormalizePipe } from './pipes/normalize.pipe';
+import { EmployeeProfileComponent } from './components/profiles/employee-profile/employee-profile.component';
 
 @NgModule({
     declarations: [
@@ -63,6 +72,15 @@ import { ClientsService } from './services/entity/clients.service';
         ClientsComponent,
         DepartmentsComponent,
         UsersComponent,
+        EmployeesDialogComponent,
+        DepartmentsDialogComponent,
+        UsersDialogComponent,
+        ContractsDialogComponent,
+        ClientsDialogComponent,
+        SalesAssociatesComponent,
+        SalesAssociatesDialogComponent,
+        NormalizePipe,
+        EmployeeProfileComponent,
     ],
     imports: [
         BrowserModule,
@@ -89,7 +107,8 @@ import { ClientsService } from './services/entity/clients.service';
         MatSnackBarModule,
         MatDialogModule,
         MatExpansionModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatSelectModule
     ],
     providers: [
         AuthService,
@@ -103,8 +122,13 @@ import { ClientsService } from './services/entity/clients.service';
         ClientsService
     ],
     entryComponents: [
+        ConfirmDialogComponent,
         ManagersDialogComponent,
-        ConfirmDialogComponent
+        EmployeesDialogComponent,
+        DepartmentsDialogComponent,
+        UsersDialogComponent,
+        ContractsDialogComponent,
+        ClientsDialogComponent,
     ],
     bootstrap: [AppComponent]
 })

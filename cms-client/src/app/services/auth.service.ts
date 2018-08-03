@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -19,9 +20,9 @@ export class AuthService {
 
     public login(username: string, password: string): void {
         this.querying = true;
-        this.http.post<User>(this.baseUrl + this.suffix, {username: username, password: password}).pipe(
+        this.http.post<any>(this.baseUrl + this.suffix, {username: username, password: password}).pipe(
                 catchError(this.handleError)
-        ).subscribe((user: User) => {
+        ).subscribe((user: any) => {
             this.currentUser = user;
             this.loggedIn = true;
             this.querying = false;
@@ -31,7 +32,7 @@ export class AuthService {
 
     public logout(): void {
         this.querying = true;
-        this.http.get('/api/logout' + this.suffix).pipe(
+        this.http.delete(this.baseUrl + this.suffix).pipe(
             catchError(this.handleError)
         ).subscribe(() => {
             this.loggedIn = false;
@@ -48,7 +49,7 @@ export class AuthService {
         this.querying = true;
         this.http.post('/api/register' + this.suffix, {username: username, password: password}).pipe(
             catchError(this.handleError)
-        ).subscribe((user: User) => {
+        ).subscribe((user: any) => {
             this.currentUser = user;
             this.querying = false;
             this.loggedIn = true;
@@ -56,7 +57,7 @@ export class AuthService {
         });
     }
 
-    public getCurrentUser(): User {
+    public getCurrentUser(): any {
         return this.currentUser;
     }
 
