@@ -12,26 +12,29 @@ import { ContractsComponent } from './components/home/contracts/contracts.compon
 import { ClientsComponent } from './components/home/clients/clients.component';
 import { UsersComponent } from './components/home/users/users.component';
 import { DepartmentsComponent } from './components/home/departments/departments.component';
+import { EmployeeProfileComponent } from './components/profiles/employee-profile/employee-profile.component';
+import { EmployeeGuard } from './guards/employee.guard';
 
 const routes: Routes = [
     {
         path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
-        {path: 'managers', component: ManagersComponent},
-        {path: 'employees', component: EmployeesComponent},
-        {path: 'dashboard', component: DashboardComponent},
-        {path: 'contracts', component: ContractsComponent},
-        {path: 'clients', component: ClientsComponent},
-        {path: 'users', component: UsersComponent},
-        {path: 'departments', component: DepartmentsComponent},
-        {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
-    ]
+            {path: 'managers', component: ManagersComponent},
+            {path: 'employees', component: EmployeesComponent},
+            {path: 'dashboard', component: DashboardComponent},
+            {path: 'contracts', component: ContractsComponent},
+            {path: 'clients', component: ClientsComponent},
+            {path: 'users', component: UsersComponent},
+            {path: 'departments', component: DepartmentsComponent},
+            {path: 'profile', component: EmployeeProfileComponent, canActivate: [EmployeeGuard]},
+            {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
+        ]
     },
     {
         path: 'auth', component: LoginComponent, children: [
-        {path: 'login', component: UserAuthComponent},
-        {path: 'register', component: RegisterComponent},
-        {path: '', redirectTo: 'login', pathMatch: 'full'}
-    ]
+            {path: 'login', component: UserAuthComponent},
+            {path: 'register', component: RegisterComponent},
+            {path: '', redirectTo: 'login', pathMatch: 'full'}
+        ]
     },
     {path: '**', redirectTo: '', pathMatch: 'full'}
 ];

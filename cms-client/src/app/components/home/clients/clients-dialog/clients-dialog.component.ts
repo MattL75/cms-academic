@@ -31,7 +31,7 @@ export class ClientsDialogComponent implements OnInit {
     ngOnInit() {
         this.entityForm.controls['email_domain'].setValue(this.data.entity.email_domain);
         this.entityForm.controls['name'].setValue(this.data.entity.name);
-        this.entityForm.controls['province'].setValue(this.data.entity.province_name);
+        this.entityForm.controls['province'].setValue(this.data.entity.province);
         this.entityForm.controls['username'].setValue(this.data.entity.username);
         this.entityForm.controls['password'].setValue(this.data.entity.password);
     }

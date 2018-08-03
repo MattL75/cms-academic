@@ -20,9 +20,9 @@ export class AuthService {
 
     public login(username: string, password: string): void {
         this.querying = true;
-        this.http.post<User>(this.baseUrl + this.suffix, {username: username, password: password}).pipe(
+        this.http.post<any>(this.baseUrl + this.suffix, {username: username, password: password}).pipe(
                 catchError(this.handleError)
-        ).subscribe((user: User) => {
+        ).subscribe((user: any) => {
             this.currentUser = user;
             this.loggedIn = true;
             this.querying = false;
@@ -49,7 +49,7 @@ export class AuthService {
         this.querying = true;
         this.http.post('/api/register' + this.suffix, {username: username, password: password}).pipe(
             catchError(this.handleError)
-        ).subscribe((user: User) => {
+        ).subscribe((user: any) => {
             this.currentUser = user;
             this.querying = false;
             this.loggedIn = true;
@@ -57,7 +57,7 @@ export class AuthService {
         });
     }
 
-    public getCurrentUser(): User {
+    public getCurrentUser(): any {
         return this.currentUser;
     }
 

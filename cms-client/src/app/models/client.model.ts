@@ -3,7 +3,7 @@ import { Role } from './enums/role.enum';
 export class Client {
     constructor(public email_domain: string,
                 public name: string,
-                public province_name: string,
+                public province: string,
                 public username?: string,
                 public password?: string,
                 public role?: Role,

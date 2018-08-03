@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Role } from '../../models/enums/role.enum';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'cms-home',
@@ -9,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class HomeComponent implements OnInit {
     menuOpen = true;
     sideMode: string;
+    roles: Role;
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
@@ -25,5 +28,11 @@ export class HomeComponent implements OnInit {
         } else {
             this.sideMode = 'side';
         }
+    }
+
+    checkProfileAccess(): boolean {
+        return true;
+        // TODO Uncomment
+        // return this.auth.getUserRole() === Role.EMPLOYEE || this.auth.getUserRole() === Role.MANAGER;
     }
 }

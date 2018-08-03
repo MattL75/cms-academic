@@ -25,14 +25,14 @@
             <mat-form-field class="dialog-field">
                 <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">
                     <mat-option *ngFor="let province of provinces" [value]="province">
-                        {{province}}
+                        {{province | normalize}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="dialog-field">
                 <mat-select placeholder="Insurance" [formControl]="entityForm.controls['insurance']">
                     <mat-option *ngFor="let insurance of insuranceTypes" [value]="insurance">
-                        {{insurance}}
+                        {{insurance | normalize}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
