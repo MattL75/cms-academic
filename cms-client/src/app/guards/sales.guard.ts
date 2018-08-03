@@ -14,7 +14,7 @@ export class SalesGuard implements CanActivate {
         if (!this.auth.isAuthenticated()) {
             this.router.navigate(['auth']);
             return false;
-        } else if (this.auth.getCurrentUser().role !== Role.SALES_ASSOCIATE) {
+        } else if (this.auth.getCurrentUser().role !== Role.SALES_ASSOCIATE && !this.auth.getCurrentUser().is_admin) {
             return false;
         }
         return true;
