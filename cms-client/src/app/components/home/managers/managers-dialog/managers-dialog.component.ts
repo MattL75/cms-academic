@@ -17,6 +17,7 @@ export class ManagersDialogComponent implements OnInit {
     // TODO add filtering for the autocomplete fields
 
     managersForm = new FormGroup({
+        id: new FormControl(null),
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.compose([Validators.email, Validators.required])]),
@@ -40,6 +41,7 @@ export class ManagersDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.managersForm.controls['id'].setValue(this.data.manager.id);
         this.managersForm.controls['first_name'].setValue(this.data.manager.first_name);
         this.managersForm.controls['last_name'].setValue(this.data.manager.last_name);
         this.managersForm.controls['email'].setValue(this.data.manager.email);

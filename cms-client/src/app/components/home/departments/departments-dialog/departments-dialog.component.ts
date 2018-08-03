@@ -11,6 +11,7 @@ import { Department } from '../../../../models/department.model';
 export class DepartmentsDialogComponent implements OnInit {
 
     entityForm = new FormGroup({
+        id: new FormControl(null),
         name: new FormControl('', [Validators.required]),
         service_type: new FormControl('', [Validators.required]),
     });
@@ -20,6 +21,7 @@ export class DepartmentsDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.entityForm.controls['id'].setValue(this.data.entity.id);
         this.entityForm.controls['name'].setValue(this.data.entity.name);
         this.entityForm.controls['service_type'].setValue(this.data.entity.service_type);
     }

@@ -17,6 +17,7 @@ export class EmployeesDialogComponent implements OnInit {
     // TODO add filtering for the autocomplete fields
 
     entityForm = new FormGroup({
+        id: new FormControl(null),
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
         province: new FormControl('', [Validators.required]),
@@ -37,6 +38,7 @@ export class EmployeesDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.entityForm.controls['id'].setValue(this.data.employee.id);
         this.entityForm.controls['first_name'].setValue(this.data.employee.first_name);
         this.entityForm.controls['last_name'].setValue(this.data.employee.last_name);
         this.entityForm.controls['province'].setValue(this.data.employee.province);

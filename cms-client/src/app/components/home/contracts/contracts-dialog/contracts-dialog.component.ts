@@ -18,6 +18,7 @@ export class ContractsDialogComponent implements OnInit {
     // TODO add filtering for the autocomplete fields
 
     entityForm = new FormGroup({
+        id: new FormControl(null),
         acv: new FormControl('', [Validators.required]),
         initial_amount: new FormControl('', [Validators.required]),
         start_date: new FormControl('', [Validators.required]),
@@ -37,6 +38,7 @@ export class ContractsDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.entityForm.controls['id'].setValue(this.data.entity.id);
         this.entityForm.controls['acv'].setValue(this.data.entity.acv);
         this.entityForm.controls['initial_amount'].setValue(this.data.entity.initial_amount);
         this.entityForm.controls['start_date'].setValue(this.data.entity.start_date);

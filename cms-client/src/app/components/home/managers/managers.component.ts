@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { ManagersService } from '../../../services/entity/managers.service';
@@ -43,7 +43,7 @@ export class ManagersComponent implements OnInit {
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private managersService: ManagersService, private cdRef: ChangeDetectorRef) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private managersService: ManagersService) {
     }
 
     ngOnInit() {
@@ -56,7 +56,7 @@ export class ManagersComponent implements OnInit {
         const dialogRef = this.dialog.open(ManagersDialogComponent, {
             width: '450px',
             data: {
-                manager: {first_name: '', last_name: '', email: ''},
+                manager: {},
                 title: 'Add a Manager',
                 action: 'Add'
             }

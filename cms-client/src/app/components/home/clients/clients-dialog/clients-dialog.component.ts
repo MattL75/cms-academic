@@ -13,6 +13,7 @@ import { Role } from '../../../../models/enums/role.enum';
 export class ClientsDialogComponent implements OnInit {
 
     entityForm = new FormGroup({
+        id: new FormControl(null),
         email_domain: new FormControl('', [Validators.required]),
         name: new FormControl('', [Validators.required]),
         province: new FormControl('', [Validators.required]),
@@ -29,6 +30,7 @@ export class ClientsDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.entityForm.controls['id'].setValue(this.data.entity.id);
         this.entityForm.controls['email_domain'].setValue(this.data.entity.email_domain);
         this.entityForm.controls['name'].setValue(this.data.entity.name);
         this.entityForm.controls['province'].setValue(this.data.entity.province);
