@@ -51,6 +51,8 @@ import { DepartmentsDialogComponent } from './components/home/departments/depart
 import { UsersDialogComponent } from './components/home/users/users-dialog/users-dialog.component';
 import { ContractsDialogComponent } from './components/home/contracts/contracts-dialog/contracts-dialog.component';
 import { ClientsDialogComponent } from './components/home/clients/clients-dialog/clients-dialog.component';
+import { SalesAssociatesComponent } from './components/home/sales-associates/sales-associates.component';
+import { SalesAssociatesDialogComponent } from './components/home/sales-associates/sales-associates-dialog/sales-associates-dialog.component';
 
 @NgModule({
     declarations: [
@@ -73,6 +75,8 @@ import { ClientsDialogComponent } from './components/home/clients/clients-dialog
         UsersDialogComponent,
         ContractsDialogComponent,
         ClientsDialogComponent,
+        SalesAssociatesComponent,
+        SalesAssociatesDialogComponent,
     ],
     imports: [
         BrowserModule,
