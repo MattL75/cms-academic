@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { InsuranceType } from '../../../../models/enums/insurance.enum';
 import { Province } from '../../../../models/enums/province.enum';
 import { Employee } from '../../../../models/employee.model';
+import { Role } from '../../../../models/enums/role.enum';
 
 @Component({
     selector: 'cms-employees-dialog',
@@ -20,6 +21,10 @@ export class EmployeesDialogComponent implements OnInit {
         last_name: new FormControl('', [Validators.required]),
         province: new FormControl('', [Validators.required]),
         insurance: new FormControl('', [Validators.required]),
+        username: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required]),
+        role: new FormControl(Role.EMPLOYEE),
+        is_admin: new FormControl(false),
         department_id: new FormControl('', [Validators.required])
     });
     departments: number[];
@@ -36,6 +41,8 @@ export class EmployeesDialogComponent implements OnInit {
         this.entityForm.controls['last_name'].setValue(this.data.employee.last_name);
         this.entityForm.controls['province'].setValue(this.data.employee.province);
         this.entityForm.controls['insurance'].setValue(this.data.employee.insurance);
+        this.entityForm.controls['username'].setValue(this.data.employee.username);
+        this.entityForm.controls['password'].setValue(this.data.employee.password);
         this.entityForm.controls['department_id'].setValue(this.data.employee.department_id);
 
         this.depts.getDepartments().subscribe(depts => {

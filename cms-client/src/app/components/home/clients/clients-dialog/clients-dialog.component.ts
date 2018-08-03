@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Client } from '../../../../models/client.model';
 import { Province } from '../../../../models/enums/province.enum';
+import { Role } from '../../../../models/enums/role.enum';
 
 @Component({
     selector: 'cms-clients-dialog',
@@ -15,6 +16,10 @@ export class ClientsDialogComponent implements OnInit {
         email_domain: new FormControl('', [Validators.required]),
         name: new FormControl('', [Validators.required]),
         province: new FormControl('', [Validators.required]),
+        username: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required]),
+        role: new FormControl(Role.CLIENT),
+        is_admin: new FormControl(false)
     });
 
     provinces = Object.keys(Province);
@@ -27,6 +32,8 @@ export class ClientsDialogComponent implements OnInit {
         this.entityForm.controls['email_domain'].setValue(this.data.entity.email_domain);
         this.entityForm.controls['name'].setValue(this.data.entity.name);
         this.entityForm.controls['province'].setValue(this.data.entity.province_name);
+        this.entityForm.controls['username'].setValue(this.data.entity.username);
+        this.entityForm.controls['password'].setValue(this.data.entity.password);
     }
 
     public close(): void {
