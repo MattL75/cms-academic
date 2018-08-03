@@ -54,7 +54,7 @@ export class ManagersComponent implements OnInit {
 
     public add(): void {
         const dialogRef = this.dialog.open(ManagersDialogComponent, {
-            width: '350px',
+            width: '450px',
             data: {
                 manager: {first_name: '', last_name: '', email: ''},
                 title: 'Add a Manager',
@@ -75,7 +75,7 @@ export class ManagersComponent implements OnInit {
 
     public edit(manager: Manager): void {
         const dialogRef = this.dialog.open(ManagersDialogComponent, {
-            width: '350px',
+            width: '450px',
             data: {
                 manager: Object.assign({}, manager),
                 title: 'Edit a Manager',

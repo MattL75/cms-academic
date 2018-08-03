@@ -53,6 +53,7 @@ import { ContractsDialogComponent } from './components/home/contracts/contracts-
 import { ClientsDialogComponent } from './components/home/clients/clients-dialog/clients-dialog.component';
 import { SalesAssociatesComponent } from './components/home/sales-associates/sales-associates.component';
 import { SalesAssociatesDialogComponent } from './components/home/sales-associates/sales-associates-dialog/sales-associates-dialog.component';
+import { NormalizePipe } from './pipes/normalize.pipe';
 
 @NgModule({
     declarations: [
@@ -77,6 +78,7 @@ import { SalesAssociatesDialogComponent } from './components/home/sales-associat
         ClientsDialogComponent,
         SalesAssociatesComponent,
         SalesAssociatesDialogComponent,
+        NormalizePipe,
     ],
     imports: [
         BrowserModule,
