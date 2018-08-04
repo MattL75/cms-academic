@@ -6,6 +6,9 @@ import { InsuranceType } from '../../../../models/enums/insurance.enum';
 import { Province } from '../../../../models/enums/province.enum';
 import { Employee } from '../../../../models/employee.model';
 import { Role } from '../../../../models/enums/role.enum';
+import { Department } from '../../../../models/department.model';
+import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'cms-employees-dialog',
@@ -28,7 +31,8 @@ export class EmployeesDialogComponent implements OnInit {
         is_admin: new FormControl(false),
         department_id: new FormControl('', [Validators.required])
     });
-    departments: number[];
+    departments: Department[];
+    filteredDepartments: Observable<Department[]>;
     insuranceTypes = Object.keys(InsuranceType);
     provinces = Object.keys(Province);
 
@@ -48,8 +52,14 @@ export class EmployeesDialogComponent implements OnInit {
         this.entityForm.controls['department_id'].setValue(this.data.employee.department_id);
 
         this.depts.getDepartments().subscribe(depts => {
-            this.departments = depts.map(dept => dept.id);
+            this.departments = depts;
         });
+
+        this.filteredDepartments = this.entityForm.controls['department_id'].valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this.departmentFilter(value))
+            );
     }
 
     public close(): void {
@@ -58,6 +68,25 @@ export class EmployeesDialogComponent implements OnInit {
 
     public closeSubmit(): void {
         this.dialogRef.close(this.entityForm.value);
+    }
+
+    // Needed to access variables inside the component
+    getDepartmentLinkFn() {
+        return (val) => this.displayDepartmentFn(val);
+    }
+
+    // Performs the actual operation of mapping id to name
+    displayDepartmentFn(department: number): string | undefined {
+        const result = this.departments.find(x => x.id === department);
+        return result ? result.name : undefined;
+    }
+
+    private departmentFilter(value: string): Department[] {
+        if (typeof value !== 'string') {
+            return null;
+        }
+        const filterValue = value.toLowerCase();
+        return this.departments.filter(option => option.name.toLowerCase().includes(filterValue));
     }
 
 }

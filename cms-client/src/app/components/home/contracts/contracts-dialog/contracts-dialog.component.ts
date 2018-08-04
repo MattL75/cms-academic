@@ -7,6 +7,9 @@ import { ClientsService } from '../../../../services/entity/clients.service';
 import { Client } from '../../../../models/client.model';
 import { ContractType } from '../../../../models/enums/contract-type.enum';
 import { AuthService } from '../../../../services/auth.service';
+import { Department } from '../../../../models/department.model';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
     selector: 'cms-contracts-dialog',
@@ -14,8 +17,6 @@ import { AuthService } from '../../../../services/auth.service';
     styleUrls: ['./contracts-dialog.component.scss', '../../home.component.scss']
 })
 export class ContractsDialogComponent implements OnInit {
-
-    // TODO add filtering for the autocomplete fields
 
     entityForm = new FormGroup({
         id: new FormControl(null),
@@ -28,8 +29,10 @@ export class ContractsDialogComponent implements OnInit {
         business_line: new FormControl('', [Validators.required]),
         contract_type: new FormControl('', [Validators.required]),
     });
-    departments: number[];
-    clients: number[];
+    departments: Department[];
+    filteredDepartments: Observable<Department[]>;
+    clients: Client[];
+    filteredClients: Observable<Client[]>;
     contractTypes = Object.keys(ContractType);
 
     constructor(public dialogRef: MatDialogRef<ContractsDialogComponent>,
@@ -49,12 +52,22 @@ export class ContractsDialogComponent implements OnInit {
         this.entityForm.controls['recorded_by'].setValue(this.authService.getCurrentUser().id);
 
         this.depts.getDepartments().subscribe(depts => {
-            this.departments = depts.map(dept => dept.id);
+            this.departments = depts;
         });
+        this.filteredDepartments = this.entityForm.controls['department_id'].valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this.departmentFilter(value))
+            );
 
         this.clientService.getClients().subscribe(clientArray => {
-            this.clients = clientArray.map(client => client.id);
+            this.clients = clientArray;
         });
+        this.filteredClients = this.entityForm.controls['client_id'].valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this.clientFilter(value))
+            );
     }
 
     public close(): void {
@@ -63,6 +76,40 @@ export class ContractsDialogComponent implements OnInit {
 
     public closeSubmit(): void {
         this.dialogRef.close(this.entityForm.value);
+    }
+
+    getDepartmentLinkFn() {
+        return (val) => this.displayDepartmentFn(val);
+    }
+
+    displayDepartmentFn(department: number): string | undefined {
+        const result = this.departments.find(x => x.id === department);
+        return result ? result.name : undefined;
+    }
+
+    private departmentFilter(value: string): Department[] {
+        if (typeof value !== 'string') {
+            return null;
+        }
+        const filterValue = value.toLowerCase();
+        return this.departments.filter(option => option.name.toLowerCase().includes(filterValue));
+    }
+
+    getClientLinkFn() {
+        return (val) => this.displayClientFn(val);
+    }
+
+    displayClientFn(client: number): string | undefined {
+        const result = this.clients.find(x => x.id === client);
+        return result ? result.name : undefined;
+    }
+
+    private clientFilter(value: string): Client[] {
+        if (typeof value !== 'string') {
+            return null;
+        }
+        const filterValue = value.toLowerCase();
+        return this.clients.filter(option => option.name.toLowerCase().includes(filterValue));
     }
 
 }
