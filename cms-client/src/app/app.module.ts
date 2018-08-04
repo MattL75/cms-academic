@@ -129,6 +129,7 @@ import { EmployeeProfileComponent } from './components/profiles/employee-profile
         UsersDialogComponent,
         ContractsDialogComponent,
         ClientsDialogComponent,
+        SalesAssociatesDialogComponent
     ],
     bootstrap: [AppComponent]
 })

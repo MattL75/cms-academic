@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Contract Management System</title>
+    <title>Contract MS</title>
     <base href="/">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +11,55 @@
           rel="stylesheet">
 </head>
 <body>
-<cms-root></cms-root>
+<cms-root>
+    <style type="text/css">
+        body, html {
+            height: 100%;
+        }
+        .app-loading {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background-color: #efefef;
+        }
+        .logo {
+            font-size: 30px;
+            font-weight: bolder;
+            font-family: "Helvetica Neue", sans-serif, Arial;
+        }
+        .app-loading .spinner {
+            height: 200px;
+            width: 200px;
+            animation: rotate 1.75s linear infinite;
+            transform-origin: center center;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        .app-loading .spinner .path {
+            stroke-dasharray: 30, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            stroke: #3f51b5;
+        }
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <div class="app-loading">
+        <div class="logo">CMS</div>
+        <svg class="spinner" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+    </div>
+</cms-root>
 </body>
 </html>

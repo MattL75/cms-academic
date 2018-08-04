@@ -14,6 +14,7 @@ import { UsersComponent } from './components/home/users/users.component';
 import { DepartmentsComponent } from './components/home/departments/departments.component';
 import { EmployeeProfileComponent } from './components/profiles/employee-profile/employee-profile.component';
 import { EmployeeGuard } from './guards/employee.guard';
+import { SalesAssociatesComponent } from './components/home/sales-associates/sales-associates.component';
 
 const routes: Routes = [
     {
@@ -25,6 +26,7 @@ const routes: Routes = [
             {path: 'clients', component: ClientsComponent},
             {path: 'users', component: UsersComponent},
             {path: 'departments', component: DepartmentsComponent},
+            {path: 'associates', component: SalesAssociatesComponent},
             {path: 'profile', component: EmployeeProfileComponent, canActivate: [EmployeeGuard]},
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
         ]
