@@ -23,7 +23,6 @@ export class UserAuthComponent implements OnInit {
     }
 
     onSubmit() {
-        // TODO need to realize when a login attempt fails.
         this.auth.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value);
     }
 
