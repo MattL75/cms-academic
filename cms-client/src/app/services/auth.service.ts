@@ -10,6 +10,7 @@ export class AuthService {
 
     public querying = false;
 
+    // TODO set to false
     private loggedIn = true;
     private currentUser;
     private baseUrl = '/api/login';
@@ -71,7 +72,12 @@ export class AuthService {
     }
 
     public getUserRole(): string {
-        return this.currentUser.role;
+        return 'manager';
+        // return this.currentUser.role;
+    }
+
+    public setUser(user: any): void {
+        this.currentUser = user;
     }
 
     private handleError(error: HttpErrorResponse) {

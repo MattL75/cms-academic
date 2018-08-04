@@ -8,35 +8,39 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { DepartmentsService } from '../../../services/entity/departments.service';
 import { Role } from '../../../models/enums/role.enum';
-import { Employee } from '../../../models/employee.model';
-import { EmployeesService } from '../../../services/entity/employees.service';
+import { ManagersService } from '../../../services/entity/managers.service';
 import { SnackbarService } from '../../../services/snackbar.service';
+import { Manager } from '../../../models/manager.model';
 
 @Component({
-    selector: 'cms-employee-profile',
-    templateUrl: './employee-profile.component.html',
-    styleUrls: ['./employee-profile.component.scss', '../../home/home.component.scss', '../base-profile/base-profile.component.scss']
+    selector: 'cms-manager-profile',
+    templateUrl: './manager-profile.component.html',
+    styleUrls: ['./manager-profile.component.scss', '../../home/home.component.scss', '../base-profile/base-profile.component.scss']
 })
-export class EmployeeProfileComponent implements OnInit {
+export class ManagerProfileComponent implements OnInit {
 
     entityForm = new FormGroup({
+        id: new FormControl(null),
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.compose([Validators.email, Validators.required])]),
+        phone_number: new FormControl('', [Validators.required]),
+        middle_initials: new FormControl('', [Validators.required]),
         province: new FormControl('', [Validators.required]),
         insurance: new FormControl('', [Validators.required]),
+        department_id: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required]),
-        role: new FormControl(Role.EMPLOYEE, [Validators.required]),
+        role: new FormControl(Role.MANAGER, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required]),
-        department_id: new FormControl('', [Validators.required])
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
     insuranceTypes = Object.keys(InsuranceType);
     provinces = Object.keys(Province);
-    user: Employee;
+    user: Manager;
 
-    constructor(private authService: AuthService, private depts: DepartmentsService, private employeesService: EmployeesService, private snackbar: SnackbarService) {
+    constructor(private authService: AuthService, private depts: DepartmentsService, private managerService: ManagersService, private snackbar: SnackbarService) {
     }
 
     ngOnInit() {
@@ -52,6 +56,9 @@ export class EmployeeProfileComponent implements OnInit {
         this.entityForm.controls['insurance'].setValue(this.user.insurance);
         this.entityForm.controls['username'].setValue(this.user.username);
         this.entityForm.controls['password'].setValue(this.user.password);
+        this.entityForm.controls['email'].setValue(this.user.email);
+        this.entityForm.controls['phone_number'].setValue(this.user.phone_number);
+        this.entityForm.controls['middle_initials'].setValue(this.user.middle_initials);
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;
@@ -65,7 +72,7 @@ export class EmployeeProfileComponent implements OnInit {
     }
 
     save(): void {
-        this.employeesService.updateEmployee(this.entityForm.value).subscribe((newUser) => {
+        this.managerService.updateManager(this.entityForm.value).subscribe((newUser) => {
             //  TODO Refresh session? Login then logout? Check if works.
             this.authService.setUser(newUser);
             this.snackbar.open('Details saved.', 'Success!');

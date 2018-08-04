@@ -1,0 +1,5 @@
+<ng-container [ngSwitch]="role">
+    <cms-employee-profile *ngSwitchCase="'employee'"></cms-employee-profile>
+    <cms-manager-profile *ngSwitchCase="'manager'"></cms-manager-profile>
+    <cms-client-profile *ngSwitchCase="'client'"></cms-client-profile>
+</ng-container>

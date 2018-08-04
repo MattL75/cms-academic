@@ -11,7 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 import {
     MatAutocompleteModule,
     MatButtonModule,
-    MatCardModule,
+    MatCardModule, MatDatepickerModule,
     MatDialogModule,
     MatDividerModule, MatExpansionModule,
     MatFormFieldModule,
@@ -23,7 +23,7 @@ import {
     MatSidenavModule,
     MatSnackBarModule,
     MatSortModule,
-    MatTableModule,
+    MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
 import { UserAuthComponent } from './components/login/user-auth/user-auth.component';
@@ -55,6 +55,9 @@ import { SalesAssociatesComponent } from './components/home/sales-associates/sal
 import { SalesAssociatesDialogComponent } from './components/home/sales-associates/sales-associates-dialog/sales-associates-dialog.component';
 import { NormalizePipe } from './pipes/normalize.pipe';
 import { EmployeeProfileComponent } from './components/profiles/employee-profile/employee-profile.component';
+import { BaseProfileComponent } from './components/profiles/base-profile/base-profile.component';
+import { ManagerProfileComponent } from './components/profiles/manager-profile/manager-profile.component';
+import { ClientProfileComponent } from './components/profiles/client-profile/client-profile.component';
 
 @NgModule({
     declarations: [
@@ -81,6 +84,9 @@ import { EmployeeProfileComponent } from './components/profiles/employee-profile
         SalesAssociatesDialogComponent,
         NormalizePipe,
         EmployeeProfileComponent,
+        BaseProfileComponent,
+        ManagerProfileComponent,
+        ClientProfileComponent,
     ],
     imports: [
         BrowserModule,
@@ -108,7 +114,9 @@ import { EmployeeProfileComponent } from './components/profiles/employee-profile
         MatDialogModule,
         MatExpansionModule,
         MatAutocompleteModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDatepickerModule,
+        MatTabsModule
     ],
     providers: [
         AuthService,

@@ -19,6 +19,15 @@
                                     <input matInput type="password" formControlName="password" placeholder="Password">
                                 </mat-form-field>
                                 <mat-form-field class="dialog-field">
+                                    <input matInput formControlName="email" placeholder="Email">
+                                </mat-form-field>
+                                <mat-form-field class="dialog-field">
+                                    <input type="tel" matInput formControlName="phone_number" placeholder="Phone number">
+                                </mat-form-field>
+                                <mat-form-field class="dialog-field">
+                                    <input matInput formControlName="middle_initials" placeholder="Middle initial">
+                                </mat-form-field>
+                                <mat-form-field class="dialog-field">
                                     <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
                                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
                                         <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
