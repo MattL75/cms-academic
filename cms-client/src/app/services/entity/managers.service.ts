@@ -21,7 +21,7 @@ export class ManagersService {
         );
     }
 
-    public getManagerEmployees(id: number): Observable<any> {
+    public getMyEmployees(id: number): Observable<any> {
         return this.http.get<any>('/api/worksin' + this.suffix + `?manager_id= ${id}`).pipe(
             catchError(this.handleError)
         );
