@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
     checkProfileAccess(): boolean {
         return true;
-        // TODO Uncomment
+        // TODO Uncomment when api works, also put this in the html
         // return this.auth.getUserRole() === Role.EMPLOYEE || this.auth.getUserRole() === Role.MANAGER;
     }
 }
