@@ -22,7 +22,12 @@
                             <input matInput type="password" formControlName="password" placeholder="Password">
                         </mat-form-field>
                         <mat-form-field class="dialog-field">
-                            <input type="text" placeholder="Department" matInput formControlName="department_id">
+                            <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
+                                <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
+                                    {{option.name}}
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
                         <mat-form-field class="dialog-field">
                             <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">
