@@ -17,6 +17,8 @@ import { Manager } from '../../../models/manager.model';
 })
 export class ManagersComponent implements OnInit {
 
+    // TODO Copy employeesComponent to here and modify
+
     TEST_DATA: Manager[] = [
         {id: 1, first_name: 'John', last_name: 'Doe', email: 'john.doe@doe.com', phone_number: '123-1345', middle_initials: 'M'},
         {id: 2, first_name: 'Rob', last_name: 'Ford', email: 'crack@ford.com', phone_number: '123-1345', middle_initials: 'M'},

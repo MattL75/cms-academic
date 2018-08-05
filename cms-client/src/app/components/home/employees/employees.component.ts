@@ -50,6 +50,7 @@ export class EmployeesComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Employee added.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }
@@ -73,6 +74,7 @@ export class EmployeesComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Employee modified.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }
@@ -97,6 +99,7 @@ export class EmployeesComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Employee deleted.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }
