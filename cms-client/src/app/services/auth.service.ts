@@ -73,6 +73,7 @@ export class AuthService {
 
     public getUserRole(): string {
         return 'manager';
+        // TODO Uncomment
         // return this.currentUser.role;
     }
 
