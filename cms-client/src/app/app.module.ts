@@ -59,6 +59,8 @@ import { BaseProfileComponent } from './components/profiles/base-profile/base-pr
 import { ManagerProfileComponent } from './components/profiles/manager-profile/manager-profile.component';
 import { ClientProfileComponent } from './components/profiles/client-profile/client-profile.component';
 import { SalesProfileComponent } from './components/profiles/sales-profile/sales-profile.component';
+import { ClientContractsComponent } from './components/role-pages/client/client-contracts/client-contracts.component';
+import { SupervisedComponent } from './components/role-pages/manager/supervised/supervised.component';
 
 @NgModule({
     declarations: [
@@ -89,6 +91,8 @@ import { SalesProfileComponent } from './components/profiles/sales-profile/sales
         ManagerProfileComponent,
         ClientProfileComponent,
         SalesProfileComponent,
+        ClientContractsComponent,
+        SupervisedComponent,
     ],
     imports: [
         BrowserModule,
