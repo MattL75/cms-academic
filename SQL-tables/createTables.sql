@@ -7,14 +7,12 @@ CREATE TABLE Department
 
 CREATE TABLE Business_Line 
 (
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL UNIQUE
+  name VARCHAR(30) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE Contract_Type
 (
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL UNIQUE
+  name VARCHAR(30) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE Deliverable
@@ -36,21 +34,19 @@ CREATE TABLE Insurance_Plan
 
 CREATE TABLE Role
 (
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL UNIQUE
+  name VARCHAR(30) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE Province
 (
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL UNIQUE
+  name VARCHAR(30) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE City
 (
-  id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
+  PRIMARY KEY (name, province_name),
   FOREIGN KEY (province_name) REFERENCES Province(name)
 );
 
@@ -59,9 +55,7 @@ CREATE TABLE Address
   id INT(10) AUTO_INCREMENT PRIMARY KEY,
   street_address VARCHAR(30) NOT NULL,
   postal_code CHAR(6) NOT NULL,
-  city_id INT(10) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
-  FOREIGN KEY (city_id) REFERENCES City(id),
   FOREIGN KEY (province_name) REFERENCES Province(name)
 );
 
@@ -77,47 +71,42 @@ CREATE TABLE User
 
 CREATE TABLE Sales_Associate
 (
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id INT(6) NOT NULL  PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
-  user_id INT(6) NOT NULL ,
-  FOREIGN KEY (user_id) REFERENCES User(id)
+  FOREIGN KEY (id) REFERENCES User(id)
 );
 
 CREATE TABLE Client
 ( 
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id INT(6) NOT NULL PRIMARY KEY,
   name VARCHAR(30) NOT NULL,
   email_domain VARCHAR(255) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
-  user_id INT(6) NOT NULL ,
   FOREIGN KEY (province_name) REFERENCES Province(name),
-  FOREIGN KEY (user_id) REFERENCES User(id)
+  FOREIGN KEY (id) REFERENCES User(id)
 );
 
 CREATE TABLE Employee
 (
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id INT(6) NOT NULL PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   department_id INT(6) NOT NULL,
   insurance_type VARCHAR(255),
   province_name VARCHAR(30) NOT NULL,
-  user_id INT(6) NOT NULL,
   FOREIGN KEY (department_id) REFERENCES Department(id),
   FOREIGN KEY (insurance_type) REFERENCES Insurance_Plan(type),
   FOREIGN KEY (province_name) REFERENCES Province(name),
-  FOREIGN KEY (user_id) REFERENCES User(id)
+  FOREIGN KEY (id) REFERENCES User(id)
 );
 
 CREATE TABLE works_in
 (
   client_id INT(6) NOT NULL,
-  line_id int(6) NOT NULL,
   business_line VARCHAR(30) NOT NULL,
-  PRIMARY KEY (client_id, line_id),
+  PRIMARY KEY (client_id, business_line),
   FOREIGN KEY (client_id) REFERENCES Client(id),
-  FOREIGN KEY (line_id) REFERENCES Business_Line(id),
   FOREIGN KEY (business_line) REFERENCES Business_Line(name)
 );
 
