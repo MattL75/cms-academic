@@ -50,6 +50,7 @@ export class DepartmentsComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Department added.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }
@@ -73,6 +74,7 @@ export class DepartmentsComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Department modified.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }
@@ -97,6 +99,7 @@ export class DepartmentsComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Department deleted.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }

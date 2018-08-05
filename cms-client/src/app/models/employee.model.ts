@@ -5,7 +5,6 @@ import { Role } from './enums/role.enum';
 export class Employee {
     constructor(public first_name: string = 'John',
                 public last_name: string = 'Doe',
-                public email: string = 'john.doe@gmail.com',
                 public insurance: InsuranceType,
                 public province: Province,
                 public username?: string,

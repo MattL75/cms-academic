@@ -18,7 +18,7 @@ import { Employee } from '../../../models/employee.model';
 export class EmployeesComponent implements OnInit {
 
     dataSource: MatTableDataSource<Employee>;
-    displayedColumns: string[] = ['id', 'first_name', 'email', 'insurance', 'province', 'department_id', 'actions'];
+    displayedColumns: string[] = ['id', 'first_name', 'insurance', 'province', 'department_id', 'actions'];
     querying = false;
     openFilter = false;
 
@@ -50,6 +50,7 @@ export class EmployeesComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Employee added.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }
@@ -73,6 +74,7 @@ export class EmployeesComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Employee modified.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }
@@ -97,6 +99,7 @@ export class EmployeesComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Employee deleted.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }

@@ -83,12 +83,15 @@ export class ContractsDialogComponent implements OnInit {
     }
 
     displayDepartmentFn(department: number): string | undefined {
+        if (!this.departments) {
+            return undefined;
+        }
         const result = this.departments.find(x => x.id === department);
         return result ? result.name : undefined;
     }
 
     private departmentFilter(value: string): Department[] {
-        if (typeof value !== 'string') {
+        if (typeof value !== 'string' || !this.departments) {
             return null;
         }
         const filterValue = value.toLowerCase();
@@ -100,12 +103,15 @@ export class ContractsDialogComponent implements OnInit {
     }
 
     displayClientFn(client: number): string | undefined {
+        if (!this.clients) {
+            return undefined;
+        }
         const result = this.clients.find(x => x.id === client);
         return result ? result.name : undefined;
     }
 
     private clientFilter(value: string): Client[] {
-        if (typeof value !== 'string') {
+        if (typeof value !== 'string' || !this.clients) {
             return null;
         }
         const filterValue = value.toLowerCase();

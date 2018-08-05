@@ -3,6 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Manager } from '../../models/manager.model';
+import { Employee } from '../../models/employee.model';
+import { Contract } from '../../models/contract.model';
 
 @Injectable({
     providedIn: 'root'
@@ -21,8 +23,20 @@ export class ManagersService {
         );
     }
 
-    public getMyEmployees(id: number): Observable<any> {
-        return this.http.get<any>('/api/worksin' + this.suffix + `?manager_id= ${id}`).pipe(
+    public getSupervisedEmployees(id: number): Observable<Employee> {
+        return this.http.get<any>(this.baseUrl + '/employee' + this.suffix + `?manager_id= ${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    public getManagedContracts(id: number): Observable<Contract[]> {
+        return this.http.get<Contract[]>(this.baseUrl + '/contract' + this.suffix + `?manager_id= ${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    public getManagedContractsByCategory(id: number, type: string): Observable<Contract[]> {
+        return this.http.get<Contract[]>(this.baseUrl + '/contract' + this.suffix + `?manager_id= ${id}&type=${type}`).pipe(
             catchError(this.handleError)
         );
     }
@@ -48,10 +62,6 @@ export class ManagersService {
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
             console.error('An error occurred:', error.error.message);
-        } else {
-            console.error(
-                `Backend returned code ${error.status}, ` +
-                `body was: ${error.error}`);
         }
         return throwError('Something bad happened; please try again later.');
     }
