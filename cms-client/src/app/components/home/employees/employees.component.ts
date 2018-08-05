@@ -18,7 +18,7 @@ import { Employee } from '../../../models/employee.model';
 export class EmployeesComponent implements OnInit {
 
     dataSource: MatTableDataSource<Employee>;
-    displayedColumns: string[] = ['id', 'first_name', 'email', 'insurance', 'province', 'department_id', 'actions'];
+    displayedColumns: string[] = ['id', 'first_name', 'insurance', 'province', 'department_id', 'actions'];
     querying = false;
     openFilter = false;
 
