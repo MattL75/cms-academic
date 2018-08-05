@@ -35,7 +35,7 @@
             <mat-form-field class="dialog-field full-width">
                 <mat-select placeholder="Type" [formControl]="entityForm.controls['contract_type']">
                     <mat-option *ngFor="let contractType of contractTypes" [value]="contractType">
-                        {{contractType}}
+                        {{contractType | normalize}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -44,5 +44,5 @@
 </div>
 <div class="flex-row dialog-actions" mat-dialog-actions>
     <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" [disabled]="!managersForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
 </div>

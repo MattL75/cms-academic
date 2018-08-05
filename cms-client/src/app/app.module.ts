@@ -17,7 +17,7 @@ import {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatMenuModule,
+    MatMenuModule, MatNativeDateModule,
     MatProgressSpinnerModule,
     MatRippleModule, MatSelectModule,
     MatSidenavModule,
@@ -118,6 +118,7 @@ import { SalesProfileComponent } from './components/profiles/sales-profile/sales
         MatAutocompleteModule,
         MatSelectModule,
         MatDatepickerModule,
+        MatNativeDateModule
     ],
     providers: [
         AuthService,
