@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
 import { SnackbarService } from '../../../services/snackbar.service';
-import { ManagersService } from '../../../services/entity/managers.service';
-import { ManagersDialogComponent } from './managers-dialog/managers-dialog.component';
 import { ConfirmDialogComponent } from '../../utils/confirm-dialog/confirm-dialog.component';
 import { expandX } from '../../../animations/expand';
 import { Manager } from '../../../models/manager.model';
+import { ManagersService } from '../../../services/entity/managers.service';
+import { ManagersDialogComponent } from './managers-dialog/managers-dialog.component';
 
 @Component({
     selector: 'cms-managers',
@@ -17,29 +17,8 @@ import { Manager } from '../../../models/manager.model';
 })
 export class ManagersComponent implements OnInit {
 
-    // TODO Copy employeesComponent to here and modify
-
-    TEST_DATA: Manager[] = [
-        {id: 1, first_name: 'John', last_name: 'Doe', email: 'john.doe@doe.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 2, first_name: 'Rob', last_name: 'Ford', email: 'crack@ford.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 3, first_name: 'Doug', last_name: 'Ford', email: 'doug@ford.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 4, first_name: 'Kebab', last_name: 'Kebabo', email: 'kebabo@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 5, first_name: 'Martin', last_name: 'Spasov', email: 'nerd1@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 6, first_name: 'Jesse', last_name: 'Tremblay', email: 'nerd2@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 7, first_name: 'Manel', last_name: 'Guay-Montserrat', email: 'nerd3@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 8, first_name: 'Mathieu', last_name: 'Lajoie', email: 'nerd4@kebabo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 9, first_name: 'Richard', last_name: 'Lajoie', email: 'richard@nuance.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 10, first_name: 'Alain', last_name: 'Ratier', email: 'ratier@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
-        {id: 11, first_name: 'Marijane', last_name: 'Moreau-Peterson', email: 'marijane@soluteo.com', phone_number: '123-1345', middle_initials: 'M'},
-    ];
-
     dataSource: MatTableDataSource<Manager>;
-    displayedColumns: string[] = ['id', 'first_name', 'email', 'actions'];
+    displayedColumns: string[] = ['id', 'first_name', 'email', 'phone_number', 'middle_initials', 'insurance', 'province', 'department_id', 'actions'];
     querying = false;
     openFilter = false;
 
@@ -65,12 +44,15 @@ export class ManagersComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            // Create Manager, subscribe, then snackbar inside.
-            // Backend generates id, then returns here in subscribe, re-populate
             if (result) {
-                this.TEST_DATA.push(result);
-                this.populate();
-                this.snackbar.open('Manager added.', 'Success!');
+                this.querying = true;
+                this.managersService.addManager(result).subscribe(() => {
+                    this.populate();
+                    this.snackbar.open('Manager added.', 'Success!');
+                }, () => {
+                    this.querying = false;
+                    this.snackbar.open('Operation failed.', 'Dismiss');
+                });
             }
         });
     }
@@ -86,11 +68,15 @@ export class ManagersComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            // Update manager, subscribe, refresh (populate) then snackbar inside.
             if (result) {
-                Object.assign(manager, result);
-                this.populate();
-                this.snackbar.open('Manager modified.', 'Success!');
+                this.querying = true;
+                this.managersService.updateManager(result).subscribe(() => {
+                    this.populate();
+                    this.snackbar.open('Manager modified.', 'Success!');
+                }, () => {
+                    this.querying = false;
+                    this.snackbar.open('Operation failed.', 'Dismiss');
+                });
             }
         });
     }
@@ -108,8 +94,14 @@ export class ManagersComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.dataSource.data.splice(this.TEST_DATA.indexOf(element), 1);
-                this.snackbar.open('Manager deleted.', 'Success!');
+                this.querying = true;
+                this.managersService.deleteManager(element.id).subscribe(() => {
+                    this.populate();
+                    this.snackbar.open('Manager deleted.', 'Success!');
+                }, () => {
+                    this.querying = false;
+                    this.snackbar.open('Operation failed.', 'Dismiss');
+                });
             }
         });
     }
@@ -119,14 +111,13 @@ export class ManagersComponent implements OnInit {
     }
 
     private populate(): void {
-        this.dataSource.data = this.TEST_DATA;
-
-        // TODO Uncomment when API works
-        // this.querying = true;
-        // this.managersService.getManagers().subscribe(managers => {
-        //     this.dataSource.data = managers;
-        //     this.querying = false;
-        //     this.cdRef.detectChanges();
-        // });
+        this.querying = true;
+        this.managersService.getManagers().subscribe(managers => {
+            this.dataSource.data = managers;
+            this.querying = false;
+        }, () => {
+            this.snackbar.open('Population query failed.', 'Dismiss');
+            this.querying = false;
+        });
     }
 }
