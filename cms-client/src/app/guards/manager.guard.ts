@@ -15,7 +15,7 @@ export class ManagerGuard implements CanActivate {
         if (!this.auth.isAuthenticated()) {
             this.router.navigate(['auth']);
             return false;
-        } else if (this.auth.getCurrentUser().role !== Role.MANAGER && this.auth.getCurrentUser().is_admin === false) {
+        } else if (this.auth.getUserRole() !== Role.MANAGER && this.auth.getCurrentUser().is_admin === false) {
             this.snackbar.open('Access denied.', 'Dismiss');
             return false;
         }

@@ -16,6 +16,8 @@ import { SalesAssociatesComponent } from './components/home/sales-associates/sal
 import { BaseProfileComponent } from './components/profiles/base-profile/base-profile.component';
 import { ClientContractsComponent } from './components/role-pages/client/client-contracts/client-contracts.component';
 import { ClientGuard } from './guards/client.guard';
+import { ManagedComponent } from './components/role-pages/manager/managed/managed.component';
+import { ManagerGuard } from './guards/manager.guard';
 
 const routes: Routes = [
     {
@@ -30,6 +32,7 @@ const routes: Routes = [
             {path: 'associates', component: SalesAssociatesComponent},
             {path: 'profile', component: BaseProfileComponent},
             {path: 'my-contracts', component: ClientContractsComponent, canActivate: [ClientGuard]},
+            {path: 'managed-contracts', component: ManagedComponent, canActivate: [ManagerGuard]},
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
         ]
     },
