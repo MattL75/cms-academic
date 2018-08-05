@@ -21,6 +21,12 @@ export class ManagersService {
         );
     }
 
+    public getMyEmployees(id: number): Observable<any> {
+        return this.http.get<any>('/api/worksin' + this.suffix + `?manager_id= ${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     public addManager(manager: Manager): Observable<Manager> {
         return this.http.post<Manager>(this.baseUrl + this.suffix, manager).pipe(
             catchError(this.handleError)

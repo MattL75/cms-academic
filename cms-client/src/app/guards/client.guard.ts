@@ -7,7 +7,7 @@ import { SnackbarService } from '../services/snackbar.service';
 @Injectable({
     providedIn: 'root'
 })
-export class EmployeeGuard implements CanActivate {
+export class ClientGuard implements CanActivate {
     constructor(private auth: AuthService, private router: Router, private snackbar: SnackbarService) {
     }
 
@@ -15,7 +15,7 @@ export class EmployeeGuard implements CanActivate {
         if (!this.auth.isAuthenticated()) {
             this.router.navigate(['auth']);
             return false;
-        } else if (this.auth.getCurrentUser().role !== Role.EMPLOYEE && this.auth.getCurrentUser().role !== Role.MANAGER && this.auth.getCurrentUser().is_admin === false) {
+        } else if (this.auth.getCurrentUser().role !== Role.CLIENT && this.auth.getCurrentUser().is_admin === false) {
             this.snackbar.open('Access denied.', 'Dismiss');
             return false;
         }

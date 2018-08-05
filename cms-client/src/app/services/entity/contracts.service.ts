@@ -21,6 +21,12 @@ export class ContractsService {
         );
     }
 
+    public getClientContracts(id: number): Observable<Contract[]> {
+        return this.http.get<Contract[]>(this.baseUrl + this.suffix + `?client_id= ${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     public addContract(contract: Contract): Observable<Contract> {
         return this.http.post<Contract>(this.baseUrl + this.suffix, contract).pipe(
             catchError(this.handleError)
