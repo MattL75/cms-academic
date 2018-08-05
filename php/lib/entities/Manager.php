@@ -28,6 +28,7 @@ class Managers {
     return new Manager($result_data);
   }
 
+  // should have an employee record already created
   static function create(array $data) {
     // todo validate data
     $record_id = QueryBuilder::insert(Manager::TABLE_NAME, $data)->execute(); // data must include employee id

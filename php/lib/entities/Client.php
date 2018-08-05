@@ -27,6 +27,7 @@ class Clients {
     return new Client($result_data);
   }
 
+  // TODO create user before creating client
   static function create(array $data) {
     // todo validate data
     $record_id = QueryBuilder::insert(Client::TABLE_NAME, $data)->execute();
