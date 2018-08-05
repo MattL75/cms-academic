@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'cms-supervised',
-  templateUrl: './supervised.component.html',
-  styleUrls: ['./supervised.component.scss']
+    selector: 'cms-supervised',
+    templateUrl: './supervised.component.html',
+    styleUrls: ['./supervised.component.scss']
 })
 export class SupervisedComponent implements OnInit {
 
-  constructor() { }
+    // TODO page for the 'supervises' table
 
-  ngOnInit() {
-  }
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
 
 }
