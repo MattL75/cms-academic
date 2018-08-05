@@ -72,9 +72,8 @@ export class AuthService {
     }
 
     public getUserRole(): string {
-        return 'manager';
-        // TODO Uncomment
-        // return this.currentUser.role;
+        // TODO simplify when API works
+        return (this.currentUser && this.currentUser.role ? this.currentUser.role : '');
     }
 
     public setUser(user: any): void {

@@ -62,6 +62,7 @@ import { SalesProfileComponent } from './components/profiles/sales-profile/sales
 import { ClientContractsComponent } from './components/role-pages/client/client-contracts/client-contracts.component';
 import { SupervisedComponent } from './components/role-pages/manager/supervised/supervised.component';
 import { ManagedComponent } from './components/role-pages/manager/managed/managed.component';
+import { ClientContractsDialogComponent } from './components/role-pages/client/client-contracts/client-contracts-dialog/client-contracts-dialog.component';
 
 @NgModule({
     declarations: [
@@ -95,6 +96,7 @@ import { ManagedComponent } from './components/role-pages/manager/managed/manage
         ClientContractsComponent,
         SupervisedComponent,
         ManagedComponent,
+        ClientContractsDialogComponent,
     ],
     imports: [
         BrowserModule,

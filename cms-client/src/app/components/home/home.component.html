@@ -9,8 +9,7 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <!-- Can add 'disabled' directive -->
-                <button class="vert-menu-item" mat-menu-item *ngIf="checkProfileAccess()" routerLink="/profile">
+                <button class="vert-menu-item" mat-menu-item routerLink="/profile">
                     <mat-icon>person</mat-icon>
                     <span>My Profile</span>
                 </button>
@@ -27,6 +26,12 @@
                 <div class="flex-row nav-item" mat-ripple routerLink="/dashboard" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">dashboard</mat-icon>
                     <span class="nav-text">Dashboard</span>
+                </div>
+            </div>
+            <div class="flex-column grow" *ngIf="this.userRole === 'client'">
+                <div class="flex-row nav-item" mat-ripple routerLink="/my-contracts" routerLinkActive="route-active">
+                    <mat-icon class="nav-icon">receipt</mat-icon>
+                    <span class="nav-text">My Contracts</span>
                 </div>
             </div>
             <div class="flex-column grow">
