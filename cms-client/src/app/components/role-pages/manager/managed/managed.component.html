@@ -1,3 +1,104 @@
-<p>
-  managed works!
-</p>
+<div class="flex-row grow">
+    <div class="card-barrier-div">
+        <mat-card class="flex-column data-card">
+            <mat-card-header class="flex-row center data-card-header">
+                <span class="data-card-title">Contracts</span>
+                <div class="flex-row grow action-container">
+                    <div class="search-bar-container">
+                        <div class="search-bar">
+                            <button mat-icon-button (click)="openFilter = !openFilter">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                            <input autofocus *ngIf="openFilter" [@expandX] class="search-bar-field" type="text" placeholder="Search here" (keyup)="applyFilter($event.target.value)" />
+                        </div>
+                    </div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>category</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button class="vert-menu-item" mat-menu-item (click)="populate()">
+                            <mat-icon *ngIf="'all' === activeCategory">check</mat-icon>
+                            <span>All</span>
+                        </button>
+                        <button class="vert-menu-item" *ngFor="let type of types" mat-menu-item (click)="selectCategory(type)">
+                            <mat-icon *ngIf="type === activeCategory">check</mat-icon>
+                            <span>{{type | normalize}}</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </mat-card-header>
+            <mat-divider style="position: static"></mat-divider>
+            <div class="querying-shade" *ngIf="querying">
+                <mat-spinner *ngIf="querying"></mat-spinner>
+            </div>
+            <mat-card-content class="data-card-content">
+                <table class="material-table" mat-table matSort [dataSource]="dataSource">
+
+                    <!-- Id Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Id</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+
+                    <!-- ACV Column -->
+                    <ng-container matColumnDef="acv">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>ACV</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.acv | currency}} </td>
+                    </ng-container>
+
+                    <!-- Start Date Column -->
+                    <ng-container matColumnDef="start_date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Start</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.start_date | date:'shortDate' }} </td>
+                    </ng-container>
+
+                    <!-- Initial Amount Column -->
+                    <ng-container matColumnDef="initial_amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Initial</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.initial_amount | currency}} </td>
+                    </ng-container>
+
+                    <!-- Recorded By Column -->
+                    <ng-container matColumnDef="recorded_by">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Recorder</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.recorded_by}} </td>
+                    </ng-container>
+
+                    <!-- Department Column -->
+                    <ng-container matColumnDef="department_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Department</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.department_id}} </td>
+                    </ng-container>
+
+                    <!-- Business Line Column -->
+                    <ng-container matColumnDef="business_line">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Business</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.business_line}} </td>
+                    </ng-container>
+
+                    <!-- Client Column -->
+                    <ng-container matColumnDef="client_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Client</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.client_id}} </td>
+                    </ng-container>
+
+                    <!-- Contract Type Column -->
+                    <ng-container matColumnDef="contract_type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Type</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.contract_type | normalize}} </td>
+                    </ng-container>
+
+                    <!-- Satisfaction Column -->
+                    <ng-container matColumnDef="client_satisfaction">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Rating</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.client_satisfaction}}/10 </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <div class="empty-message flex-row center" *ngIf="dataSource.data.length === 0 || this.dataSource.filteredData.length === 0">No contracts found.</div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
