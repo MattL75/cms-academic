@@ -1,57 +1,44 @@
-<div class="flex-row grow">
-    <div class="card-barrier-div">
-        <mat-card class="flex-column data-card">
-            <mat-tab-group>
-                <mat-tab label="Profile">
-                    <div class="profile-tab-content">
-                        <form class="" [formGroup]="entityForm">
-                            <div class="dialog-field-row">
-                                <mat-form-field class="dialog-field">
-                                    <input matInput formControlName="first_name" placeholder="First name">
-                                </mat-form-field>
-                                <mat-form-field class="dialog-field">
-                                    <input matInput formControlName="last_name" placeholder="Last name">
-                                </mat-form-field>
-                                <mat-form-field class="dialog-field">
-                                    <input matInput formControlName="username" placeholder="Username">
-                                </mat-form-field>
-                                <mat-form-field class="dialog-field">
-                                    <input matInput type="password" formControlName="password" placeholder="Password">
-                                </mat-form-field>
-                                <mat-form-field class="dialog-field">
-                                    <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
-                                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
-                                        <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
-                                            {{option.name}}
-                                        </mat-option>
-                                    </mat-autocomplete>
-                                </mat-form-field>
-                                <mat-form-field class="dialog-field">
-                                    <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">
-                                        <mat-option *ngFor="let province of provinces" [value]="province">
-                                            {{province | normalize}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                <mat-form-field class="dialog-field">
-                                    <mat-select placeholder="Insurance" [formControl]="entityForm.controls['insurance']">
-                                        <mat-option *ngFor="let insurance of insuranceTypes" [value]="insurance">
-                                            {{insurance | normalize}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                        </form>
-                        <div class="flex-row profile-submit-bar">
-                            <button mat-flat-button color="primary" [disabled]="!entityForm.valid || !entityForm.dirty" (click)="closeSubmit()">Save</button>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Control Panel" [disabled]="true">
-                    <!-- Controls exclusive to the employee role, if any. Could also add more stuff here. Useful numbers. -->
-                    There is nothing here for now.
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
+<form [formGroup]="entityForm">
+    <div class="profile-field-row">
+        <mat-form-field class="profile-field">
+            <input matInput formControlName="first_name" placeholder="First name">
+        </mat-form-field>
+        <mat-form-field class="profile-field">
+            <input matInput formControlName="last_name" placeholder="Last name">
+        </mat-form-field>
+        <mat-form-field class="profile-field">
+            <input matInput formControlName="username" placeholder="Username">
+        </mat-form-field>
+        <mat-form-field class="profile-field">
+            <input matInput type="password" formControlName="password" placeholder="Password">
+        </mat-form-field>
+        <mat-form-field class="profile-field">
+            <input type="text" placeholder="Department" matInput formControlName="department_id"
+                   [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
+                <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
+                    {{option.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="profile-field">
+            <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">
+                <mat-option *ngFor="let province of provinces" [value]="province">
+                    {{province | normalize}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="profile-field">
+            <mat-select placeholder="Insurance" [formControl]="entityForm.controls['insurance']">
+                <mat-option *ngFor="let insurance of insuranceTypes" [value]="insurance">
+                    {{insurance | normalize}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
+</form>
+<div class="flex-row profile-submit-bar">
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid || !entityForm.dirty" (click)="closeSubmit()">
+        Save
+    </button>
 </div>

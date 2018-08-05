@@ -23,7 +23,7 @@ import {
     MatSidenavModule,
     MatSnackBarModule,
     MatSortModule,
-    MatTableModule, MatTabsModule,
+    MatTableModule,
     MatToolbarModule
 } from '@angular/material';
 import { UserAuthComponent } from './components/login/user-auth/user-auth.component';
@@ -116,7 +116,6 @@ import { ClientProfileComponent } from './components/profiles/client-profile/cli
         MatAutocompleteModule,
         MatSelectModule,
         MatDatepickerModule,
-        MatTabsModule
     ],
     providers: [
         AuthService,

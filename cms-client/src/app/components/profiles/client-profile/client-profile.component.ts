@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Province } from '../../../models/enums/province.enum';
 import { AuthService } from '../../../services/auth.service';
-import { DepartmentsService } from '../../../services/entity/departments.service';
 import { Role } from '../../../models/enums/role.enum';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { Client } from '../../../models/client.model';
@@ -11,7 +10,7 @@ import { ClientsService } from '../../../services/entity/clients.service';
 @Component({
     selector: 'cms-client-profile',
     templateUrl: './client-profile.component.html',
-    styleUrls: ['./client-profile.component.scss', '../../home/home.component.scss', '../base-profile/base-profile.component.scss']
+    styleUrls: ['./client-profile.component.scss', '../base-profile/base-profile.component.scss']
 })
 export class ClientProfileComponent implements OnInit {
 

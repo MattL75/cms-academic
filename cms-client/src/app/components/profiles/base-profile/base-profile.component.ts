@@ -4,7 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 @Component({
     selector: 'cms-base-profile',
     templateUrl: './base-profile.component.html',
-    styleUrls: ['./base-profile.component.scss']
+    styleUrls: ['./base-profile.component.scss', '../../home/home.component.scss']
 })
 export class BaseProfileComponent implements OnInit {
 

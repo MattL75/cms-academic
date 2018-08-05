@@ -15,7 +15,7 @@ import { Manager } from '../../../models/manager.model';
 @Component({
     selector: 'cms-manager-profile',
     templateUrl: './manager-profile.component.html',
-    styleUrls: ['./manager-profile.component.scss', '../../home/home.component.scss', '../base-profile/base-profile.component.scss']
+    styleUrls: ['./manager-profile.component.scss', '../base-profile/base-profile.component.scss']
 })
 export class ManagerProfileComponent implements OnInit {
 

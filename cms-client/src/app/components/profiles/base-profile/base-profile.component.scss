@@ -11,3 +11,19 @@
     align-items: center;
     justify-content: flex-end;
 }
+
+.data-card-title {
+    padding-top: 6px;
+    padding-bottom: 6px
+}
+
+.profile-field-row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .profile-field {
+        width: 45%;
+    }
+}

@@ -15,7 +15,7 @@ import { SnackbarService } from '../../../services/snackbar.service';
 @Component({
     selector: 'cms-employee-profile',
     templateUrl: './employee-profile.component.html',
-    styleUrls: ['./employee-profile.component.scss', '../../home/home.component.scss', '../base-profile/base-profile.component.scss']
+    styleUrls: ['./employee-profile.component.scss', '../base-profile/base-profile.component.scss']
 })
 export class EmployeeProfileComponent implements OnInit {
 
