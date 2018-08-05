@@ -1,7 +1,9 @@
 <?php
 include "../../lib/query_builder.php";
+include "../../lib/auth.php";
 // entitiy imports
 include "../../lib/entities/company.php"; // template entity
+include "../../lib/entities/User.php";
 include "../../lib/entities/Employee.php";
 include "../../lib/entities/Department.php";
 include "../../lib/entities/Manager.php";
@@ -10,7 +12,7 @@ include "../../lib/entities/Contract.php";
 
 QueryBuilder::init();
 // send JSON response not HTML
-header('Content-Type: application/json');
+// header('Content-Type: application/json');
 
 // these methods should be defined in the file that includes this
 try {

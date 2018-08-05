@@ -145,6 +145,10 @@ class Manager {
     return $this;
   }
 
+  public function getEmployees(Array $query) {
+    // fetch using manages table
+  }
+
   /**
    * function to fetch data from DB and update memebers
    */
