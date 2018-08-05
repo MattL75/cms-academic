@@ -20,7 +20,7 @@ import { Manager } from '../../../models/manager.model';
 export class ManagerProfileComponent implements OnInit {
 
     entityForm = new FormGroup({
-        id: new FormControl(null),
+        id: new FormControl(null, [Validators.required]),
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.compose([Validators.email, Validators.required])]),
@@ -45,6 +45,7 @@ export class ManagerProfileComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.authService.getCurrentUser();
+        this.entityForm.controls['id'].setValue(this.user.id);
         this.entityForm.controls['department_id'].setValue(this.user.department_id);
         this.entityForm.controls['role'].setValue(this.user.role);
         this.entityForm.controls['role'].disable();

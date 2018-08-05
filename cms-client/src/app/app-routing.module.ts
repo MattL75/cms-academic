@@ -12,11 +12,8 @@ import { ContractsComponent } from './components/home/contracts/contracts.compon
 import { ClientsComponent } from './components/home/clients/clients.component';
 import { UsersComponent } from './components/home/users/users.component';
 import { DepartmentsComponent } from './components/home/departments/departments.component';
-import { EmployeeProfileComponent } from './components/profiles/employee-profile/employee-profile.component';
-import { EmployeeGuard } from './guards/employee.guard';
 import { SalesAssociatesComponent } from './components/home/sales-associates/sales-associates.component';
 import { BaseProfileComponent } from './components/profiles/base-profile/base-profile.component';
-import { ProfileGuard } from './guards/profile.guard';
 
 const routes: Routes = [
     {
@@ -29,7 +26,7 @@ const routes: Routes = [
             {path: 'users', component: UsersComponent},
             {path: 'departments', component: DepartmentsComponent},
             {path: 'associates', component: SalesAssociatesComponent},
-            {path: 'profile', component: BaseProfileComponent, canActivate: [ProfileGuard]},
+            {path: 'profile', component: BaseProfileComponent},
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
         ]
     },
