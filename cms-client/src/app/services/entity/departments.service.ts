@@ -9,7 +9,7 @@ import { Department } from '../../models/department.model';
 })
 export class DepartmentsService {
 
-    baseUrl = '/api/departments';
+    baseUrl = '/api/department';
     suffix = '.php';
 
     constructor(private http: HttpClient) {

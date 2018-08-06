@@ -9,7 +9,7 @@ import { WorkLog } from '../../models/work-log.model';
 })
 export class WorkLogService {
 
-    baseUrl = '/api/hours';
+    baseUrl = '/api/work_log';
     suffix = '.php';
 
     constructor(private http: HttpClient) {

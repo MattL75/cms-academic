@@ -8,6 +8,7 @@ import { ContractsService } from '../../../services/entity/contracts.service';
 import { ContractsDialogComponent } from './contracts-dialog/contracts-dialog.component';
 import { AuthService } from '../../../services/auth.service';
 import { Role } from '../../../models/enums/role.enum';
+import { ContractType } from '../../../models/enums/contract-type.enum';
 
 @Component({
     selector: 'cms-contracts',
@@ -27,6 +28,7 @@ export class ContractsComponent implements OnInit {
     userRole = '';
     is_admin = false;
     Roles = Role;
+    types = Object.keys(ContractType);
 
     @ViewChild(MatSort) sort: MatSort;
 

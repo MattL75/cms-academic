@@ -9,7 +9,7 @@ import { User } from '../../models/user.model';
 })
 export class UsersService {
 
-    baseUrl = '/api/users';
+    baseUrl = '/api/user';
     suffix = '.php';
 
     constructor(private http: HttpClient) {

@@ -9,7 +9,7 @@ import { Contract } from '../../models/contract.model';
 })
 export class ContractsService {
 
-    baseUrl = '/api/contracts';
+    baseUrl = '/api/contract';
     suffix = '.php';
 
     constructor(private http: HttpClient) {
