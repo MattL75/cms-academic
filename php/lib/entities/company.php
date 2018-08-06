@@ -156,5 +156,4 @@ class Company {
     return json_encode($this);
   }
 }
-
 ?>

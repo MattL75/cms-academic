@@ -146,9 +146,26 @@ class Employee {
       ->execute();
   }
 
+  function getContracts() {
+    $results = QueryBuilder::select(Contract::TABLE_NAME, Contract::TABLE_FIELDS)
+                ->join("Assignment", [], "contract_id", "Contract.id")
+                ->where("employee_id = \"{$this->id}\"")->execute();
+    $contracts = [];
+    foreach ($results as $con) {
+      array_push($contracts, new Contract($con));
+    }
+
+    return $contracts;
+  }
+
+    // TODO add hours
+  
+  function addContract(string $contract_id) {
+    QueryBuilder::insert("Assignment", ["employee_id" => $this->id, "contract_id" => $contract_id]);
+  }
+
   function toJson(): string {
     return json_encode($this);
   }
 }
-
 ?>

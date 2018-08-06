@@ -67,7 +67,6 @@ class Manager {
   public $province_name;
   public $phone_number;
   public $email;
-  public $user_id;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -79,7 +78,6 @@ class Manager {
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];
-    $this->user_id = $data['user_id'];
   }
 
   /**
@@ -112,9 +110,6 @@ class Manager {
     }
     if (isset($data['phone_number'])) {
       $this->phone_number = $data['phone_number'];
-    }
-    if (isset($data['user_id'])) {
-      $this->user_id = $data['user_id'];
     }
     $this->save();
 
@@ -169,14 +164,11 @@ class Manager {
   }
 
   public function getContracts() {
-    $results = QueryBuilder::select(Contract::TABLE_NAME, Contract::TABLE_FIELDS)
-                ->where("manager_id = \"{$this->id}\"")->execute();
-    $contracts = [];
-    foreach ($results as $emp) {
-      array_push($contracts, new Employee($emp));
-    }
+    return Contracts::findAll(["manager_id" => $this->id]);
+  }
 
-    return $contracts;
+  public function addContract(string $contract_id) {
+    Contracts::find(["id" => $contract_id])->update(["manager_id" => $this->id]);
   }
 
   /**
@@ -200,7 +192,6 @@ class Manager {
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];
-    $this->user_id = $data['user_id'];
 
     return $this;
   }

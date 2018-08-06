@@ -60,7 +60,8 @@ class Contract {
     'department_id',
     'client_id',
     'business_line',
-    'contract_type'
+    'contract_type',
+    'manager_id'
   ];
   public $id;
   public $acv;
@@ -72,6 +73,7 @@ class Contract {
   public $client_id;
   public $business_line;
   public $contract_type;
+  public $manager_id;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -84,6 +86,7 @@ class Contract {
     $this->client_id = $data['client_id'];
     $this->business_line = $data['business_line'];
     $this->contract_type = $data['contract_type'];
+    $this->manager_id = $data['manager_id'];
   }
 
   /**
@@ -119,6 +122,9 @@ class Contract {
     }
     if (isset($data['contract_type'])) {
       $this->contract_type = $data['contract_type'];
+    }
+    if (isset($data['manager_id'])) {
+      $this->manager_id = $data['manager_id'];
     }
     $this->save();
 
@@ -163,8 +169,21 @@ class Contract {
     $this->client_id = $data['client_id'];
     $this->business_line = $data['business_line'];
     $this->contract_type = $data['contract_type'];
+    $this->manager_id = $data['manager_id'];
 
     return $this;
+  }
+
+  public function getHours() {
+    return WorkLogs::findAll(["contract_id" => $this->id]);
+  }
+
+  public function getManager() {
+    return Managers::find(["id" => $this->manager_id]);
+  }
+
+  public function addHours(string $employee_id, Date $date, string $hours) {
+
   }
 
   function delete() {
