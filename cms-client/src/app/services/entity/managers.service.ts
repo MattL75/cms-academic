@@ -4,7 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Manager } from '../../models/manager.model';
 import { Employee } from '../../models/employee.model';
-import { Contract } from '../../models/contract.model';
 
 @Injectable({
     providedIn: 'root'
@@ -25,18 +24,6 @@ export class ManagersService {
 
     public getSupervisedEmployees(id: number): Observable<Employee> {
         return this.http.get<any>(this.baseUrl + '/employee' + this.suffix + `?manager_id= ${id}`).pipe(
-            catchError(this.handleError)
-        );
-    }
-
-    public getManagedContracts(id: number): Observable<Contract[]> {
-        return this.http.get<Contract[]>(this.baseUrl + '/contract' + this.suffix + `?manager_id= ${id}`).pipe(
-            catchError(this.handleError)
-        );
-    }
-
-    public getManagedContractsByCategory(id: number, type: string): Observable<Contract[]> {
-        return this.http.get<Contract[]>(this.baseUrl + '/contract' + this.suffix + `?manager_id= ${id}&type=${type}`).pipe(
             catchError(this.handleError)
         );
     }

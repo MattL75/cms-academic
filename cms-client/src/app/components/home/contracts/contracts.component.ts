@@ -21,6 +21,7 @@ export class ContractsComponent implements OnInit {
     displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type', 'active', 'actions'];
     querying = false;
     openFilter = false;
+    activeCategory = 'all';
 
     @ViewChild(MatSort) sort: MatSort;
 
@@ -110,10 +111,23 @@ export class ContractsComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
+    selectCategory(category: string): void {
+        this.querying = true;
+        this.contractService.getContractsByCategory(category).subscribe(contracts => {
+            this.dataSource.data = contracts;
+            this.activeCategory = category;
+            this.querying = false;
+        }, () => {
+            this.snackbar.open('Category change failed.', 'Dismiss');
+            this.querying = false;
+        });
+    }
+
     private populate(): void {
         this.querying = true;
         this.contractService.getContracts().subscribe(contracts => {
             this.dataSource.data = contracts;
+            this.activeCategory = 'all';
             this.querying = false;
         }, () => {
             this.snackbar.open('Population query failed.', 'Dismiss');

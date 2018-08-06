@@ -27,6 +27,12 @@ export class ContractsService {
         );
     }
 
+    public getContractsByCategory(type: string): Observable<Contract[]> {
+        return this.http.get<Contract[]>(this.baseUrl + '/contract' + this.suffix + `?contract_type=${type}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     public addContract(contract: Contract): Observable<Contract> {
         return this.http.post<Contract>(this.baseUrl + this.suffix, contract).pipe(
             catchError(this.handleError)

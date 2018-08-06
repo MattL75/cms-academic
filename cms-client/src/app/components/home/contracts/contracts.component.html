@@ -12,6 +12,19 @@
                             <input autofocus *ngIf="openFilter" [@expandX] class="search-bar-field" type="text" placeholder="Search here" (keyup)="applyFilter($event.target.value)" />
                         </div>
                     </div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>category</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button class="vert-menu-item" mat-menu-item (click)="populate()">
+                            <mat-icon *ngIf="'all' === activeCategory">check</mat-icon>
+                            <span>All</span>
+                        </button>
+                        <button class="vert-menu-item" *ngFor="let type of types" mat-menu-item (click)="selectCategory(type)">
+                            <mat-icon *ngIf="type === activeCategory">check</mat-icon>
+                            <span>{{type | normalize}}</span>
+                        </button>
+                    </mat-menu>
                     <button mat-icon-button (click)="add()">
                         <mat-icon>add</mat-icon>
                     </button>
