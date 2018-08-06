@@ -1,3 +1,22 @@
+DROP TABLE IF EXISTS Department;
+DROP TABLE IF EXISTS Business_Line;
+DROP TABLE IF EXISTS Contract_Type;
+DROP TABLE IF EXISTS Insurance_Plan;
+DROP TABLE IF EXISTS Role;
+DROP TABLE IF EXISTS Province;
+DROP TABLE IF EXISTS City;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Sales_Associate;
+DROP TABLE IF EXISTS Client;
+DROP TABLE IF EXISTS Employee;
+DROP TABLE IF EXISTS Works_In;
+DROP TABLE IF EXISTS Contract;
+DROP TABLE IF EXISTS Manager;
+DROP TABLE IF EXISTS Work_Log;
+DROP TABLE IF EXISTS Assignment;
+DROP TABLE IF EXISTS Supervises;
+
+
 CREATE TABLE Department
 (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -13,18 +32,6 @@ CREATE TABLE Business_Line
 CREATE TABLE Contract_Type
 (
   name VARCHAR(30) NOT NULL PRIMARY KEY
-);
-
-CREATE TABLE Deliverable
-(
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  deliv_number INT(1) NOT NULL,
-  is_final BOOLEAN NOT NULL,
-  days_to_delivery INT(3) NOT NULL,
-  days_taken INT(3) NOT NULL,
-  is_active BOOLEAN NOT NULL,
-  contract_id INT(6) NOT NULL,
-  FOREIGN KEY (contract_id) REFERENCES Contract(id)
 );
 
 CREATE TABLE Insurance_Plan
@@ -106,6 +113,16 @@ CREATE TABLE Works_In
   FOREIGN KEY (business_line) REFERENCES Business_Line(name)
 );
 
+CREATE TABLE Manager
+(
+  id INT(6) NOT NULL,
+  email VARCHAR(60) NOT NULL,
+  phone_number VARCHAR(30) NOT NULL,
+  middle_initial CHAR(1),
+  PRIMARY KEY (id),
+  FOREIGN KEY (id) REFERENCES Employee(id)
+);
+
 CREATE TABLE Contract
 (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -128,23 +145,17 @@ CREATE TABLE Contract
   FOREIGN KEY (manager_id) REFERENCES Manager(id)
 );
 
-CREATE TABLE Manager
-(
-  id INT(6) NOT NULL,
-  email VARCHAR(60) NOT NULL,
-  phone_number VARCHAR(30) NOT NULL,
-  middle_initial CHAR(1),
-  PRIMARY KEY (id),
-  FOREIGN KEY (id) REFERENCES Employee(id)
-);
 
-CREATE TABLE Work_Log
+CREATE TABLE Deliverable
 (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  date_worked DATE NOT NULL,
-  hours_worked TIME NOT NULL,
-  assignment_id INT(6) NOT NULL,
-  FOREIGN KEY (assignment_id) REFERENCES Assignment(id)
+  deliv_number INT(1) NOT NULL,
+  is_final BOOLEAN NOT NULL,
+  days_to_delivery INT(3) NOT NULL,
+  days_taken INT(3) NOT NULL,
+  is_active BOOLEAN NOT NULL,
+  contract_id INT(6) NOT NULL,
+  FOREIGN KEY (contract_id) REFERENCES Contract(id)
 );
 
 CREATE TABLE Assignment
@@ -155,6 +166,15 @@ CREATE TABLE Assignment
   employee_id INT(6) NOT NULL,
   FOREIGN KEY (deliverable_id) REFERENCES Deliverable(id),
   FOREIGN KEY (employee_id) REFERENCES Employee(id)
+);
+
+CREATE TABLE Work_Log
+(
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  date_worked DATE NOT NULL,
+  hours_worked TIME NOT NULL,
+  assignment_id INT(6) NOT NULL,
+  FOREIGN KEY (assignment_id) REFERENCES Assignment(id)
 );
 
 CREATE TABLE Supervises
