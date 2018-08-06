@@ -1,5 +1,18 @@
 <?php
-// TODO abstract filtering functionality to reduce code duplication
+// all or nothing filtering at the moment
+function filter(Array $fields, Array $tupples, bool $strict = FALSE) {
+  $filtered = [];
+  foreach($fields as $field) {
+    if (isset($tupples[$field])) {
+      $filtered[$field] = $tupples[$field];
+    } else if($strict) {
+      throw new Exception("{$field} required");
+    }
+  }
+
+  return $filtered;
+}
+
 class QueryBuilder {
   private static $conn;
 

@@ -6,10 +6,11 @@ class WorkLogs {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(WorkLogs::TABLE_FIELDS, $params);
     // query builder must be included in another file
     $qb = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS);
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
         $qb->where(WorkLog::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;

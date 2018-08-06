@@ -6,10 +6,11 @@ class Users {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(User::TABLE_FIELDS, $params);
     // query builder must be included in another file
     $qb = QueryBuilder::select(User::TABLE_NAME, User::TABLE_FIELDS);
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
         $qb->where(User::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;

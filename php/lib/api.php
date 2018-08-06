@@ -12,7 +12,7 @@ include __DIR__."/entities/Contract.php";
 
 QueryBuilder::init();
 // send JSON response not HTML
-// header('Content-Type: application/json');
+header('Content-Type: application/json');
 
 // these methods should be defined in the file that includes this
 try {
@@ -31,6 +31,8 @@ try {
       break;
   }
 } catch (Exception $e) {
+  // TODO QOL proper custom exception
+  http_response_code(400);
   echo "{\"error\": \"true\", \"message\":\"{$e->getMessage()}\"}";
 }
 ?>

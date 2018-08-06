@@ -6,10 +6,11 @@ class Employees {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(Employee::TABLE_FIELDS, $params);
     // query builder must be included in another file
-    $qb = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS);
+    $qb = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS)->join("Insurance_Plan", ["rate"], "type", "insurance_type");
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
         $qb->where(Employee::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;
@@ -22,7 +23,7 @@ class Employees {
   }
   
   static function find(array $params) {
-    $result_data = Employees::fullFind($params)[0];
+    $result_data = Employees::fullFind($filtered)[0];
 
     return new Employee($result_data);
   }
@@ -64,6 +65,7 @@ class Employee {
   public $last_name;
   public $department_id;
   public $insurance_type;
+  public $insurance_rate;
   public $province_name;
 
   function __construct(array $data) {
@@ -72,6 +74,7 @@ class Employee {
     $this->last_name = $data['last_name'];
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
+    $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
   }
 
@@ -124,6 +127,7 @@ class Employee {
    */
   public function sync(): Employee {
     $data = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS)
+              ->join("Insurance_Plan", ["rate"], "type", "insurance_type")
               ->where("id = \"{$this->id}\"")
               ->execute()[0];
     if (!isset($data)) {
@@ -135,6 +139,7 @@ class Employee {
     $this->last_name = $data['last_name'];
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
+    $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
 
     return $this;

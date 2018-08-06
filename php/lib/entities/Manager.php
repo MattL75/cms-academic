@@ -6,11 +6,13 @@ class Managers {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(Manager::TABLE_FIELDS, $params);
     // query builder must be included in another file
     $qb = QueryBuilder::select(Manager::TABLE_NAME, Manager::TABLE_FIELDS)
-          ->join(Employee::TABLE_NAME, Employee::TABLE_FIELDS, 'Employee.id', 'Manager.id');//think of a way to make this work
+          ->join(Employee::TABLE_NAME, Employee::TABLE_FIELDS, 'Employee.id', 'Manager.id')
+          ->join('Insurance_Plan', ["rate"], 'insurance_type', 'type');
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
         $qb->where(Manager::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;
@@ -64,6 +66,7 @@ class Manager {
   public $last_name;
   public $department_id;
   public $insurance_type;
+  public $insurance_rate;
   public $province_name;
   public $phone_number;
   public $email;
@@ -75,6 +78,7 @@ class Manager {
     $this->last_name = $data['last_name'];
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
+    $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];
@@ -143,6 +147,7 @@ class Manager {
   public function getEmployees() {
     $results = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS)
                 ->join("Supervises", [], "employee_id", "Employee.id")
+                ->join("Insurance_Plan", ["rate"], "type", "insurance_type")
                 ->where("manager_id = \"{$this->id}\"")->execute();
     $employees = [];
     foreach ($results as $emp) {
@@ -189,6 +194,7 @@ class Manager {
     $this->last_name = $data['last_name'];
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
+    $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];

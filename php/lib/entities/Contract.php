@@ -6,10 +6,11 @@ class Contracts {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(Contract::TABLE_FIELDS, $params);
     // query builder must be included in another file
     $qb = QueryBuilder::select(Contract::TABLE_NAME, Contract::TABLE_FIELDS);
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
         $qb->where(Contract::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;
@@ -174,16 +175,8 @@ class Contract {
     return $this;
   }
 
-  public function getHours() {
-    return WorkLogs::findAll(["contract_id" => $this->id]);
-  }
-
   public function getManager() {
     return Managers::find(["id" => $this->manager_id]);
-  }
-
-  public function addHours(string $employee_id, Date $date, string $hours) {
-
   }
 
   function delete() {
