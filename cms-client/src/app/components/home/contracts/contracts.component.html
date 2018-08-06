@@ -25,7 +25,7 @@
                             <span>{{type | normalize}}</span>
                         </button>
                     </mat-menu>
-                    <button mat-icon-button (click)="add()">
+                    <button mat-icon-button *ngIf="this.userRole === Roles.SALES_ASSOCIATE || this.is_admin" (click)="add()">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -114,10 +114,10 @@
                         </th>
                         <td mat-cell class="actions-column" *matCellDef="let element">
                             <div class="flex-row center">
-                                <button mat-icon-button (click)="edit(element)">
+                                <button mat-icon-button [disabled]="this.userRole !== Roles.SALES_ASSOCIATE && !this.is_admin" (click)="edit(element)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
-                                <button mat-icon-button (click)="delete(element)">
+                                <button mat-icon-button [disabled]="this.userRole !== Roles.SALES_ASSOCIATE && !this.is_admin" (click)="delete(element)">
                                     <mat-icon>delete</mat-icon>
                                 </button>
                             </div>

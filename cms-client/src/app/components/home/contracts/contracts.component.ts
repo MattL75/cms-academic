@@ -6,6 +6,8 @@ import { expandX } from '../../../animations/expand';
 import { Contract } from '../../../models/contract.model';
 import { ContractsService } from '../../../services/entity/contracts.service';
 import { ContractsDialogComponent } from './contracts-dialog/contracts-dialog.component';
+import { AuthService } from '../../../services/auth.service';
+import { Role } from '../../../models/enums/role.enum';
 
 @Component({
     selector: 'cms-contracts',
@@ -22,19 +24,28 @@ export class ContractsComponent implements OnInit {
     querying = false;
     openFilter = false;
     activeCategory = 'all';
+    userRole = '';
+    is_admin = false;
+    Roles = Role;
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private contractService: ContractsService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private contractService: ContractsService, private auth: AuthService) {
     }
 
     ngOnInit() {
+        this.userRole = this.auth.getUserRole();
+        this.is_admin = this.auth.getCurrentUser().is_admin;
         this.dataSource = new MatTableDataSource<Contract>();
         this.dataSource.sort = this.sort;
         this.populate();
     }
 
     public add(): void {
+        if (this.userRole !== this.Roles.SALES_ASSOCIATE && !this.is_admin) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         const dialogRef = this.dialog.open(ContractsDialogComponent, {
             width: '450px',
             data: {
@@ -59,6 +70,10 @@ export class ContractsComponent implements OnInit {
     }
 
     public edit(contract: Contract): void {
+        if (this.userRole !== this.Roles.SALES_ASSOCIATE && !this.is_admin) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         const dialogRef = this.dialog.open(ContractsDialogComponent, {
             width: '450px',
             data: {
@@ -83,6 +98,10 @@ export class ContractsComponent implements OnInit {
     }
 
     public delete(element: Contract): void {
+        if (this.userRole !== this.Roles.SALES_ASSOCIATE && !this.is_admin) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             width: '350px',
             data: {

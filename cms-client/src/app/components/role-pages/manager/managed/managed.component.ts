@@ -44,25 +44,25 @@ export class ManagedComponent implements OnInit {
     }
 
     populate(): void {
-        this.querying = true;
-        this.managerService.getManagedContracts(this.auth.getCurrentUser().id).subscribe(contracts => {
-            this.dataSource.data = contracts;
-            this.querying = false;
-        }, () => {
-            this.snackbar.open('Population query failed.', 'Dismiss');
-            this.querying = false;
-        });
+        // this.querying = true;
+        // this.managerService.getManagedContracts(this.auth.getCurrentUser().id).subscribe(contracts => {
+        //     this.dataSource.data = contracts;
+        //     this.querying = false;
+        // }, () => {
+        //     this.snackbar.open('Population query failed.', 'Dismiss');
+        //     this.querying = false;
+        // });
     }
 
     selectCategory(category: string): void {
-        this.querying = true;
-        this.managerService.getManagedContractsByCategory(this.auth.getCurrentUser().id, category).subscribe(contracts => {
-            this.dataSource.data = contracts;
-            this.activeCategory = category;
-            this.querying = false;
-        }, () => {
-            this.snackbar.open('Category change failed.', 'Dismiss');
-            this.querying = false;
-        });
+        // this.querying = true;
+        // this.managerService.getManagedContractsByCategory(this.auth.getCurrentUser().id, category).subscribe(contracts => {
+        //     this.dataSource.data = contracts;
+        //     this.activeCategory = category;
+        //     this.querying = false;
+        // }, () => {
+        //     this.snackbar.open('Category change failed.', 'Dismiss');
+        //     this.querying = false;
+        // });
     }
 }

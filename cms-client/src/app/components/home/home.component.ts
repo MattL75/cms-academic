@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Role } from '../../models/enums/role.enum';
 
 @Component({
     selector: 'cms-home',
@@ -11,6 +12,7 @@ export class HomeComponent implements OnInit {
     sideMode: string;
     userRole: string;
     is_admin: boolean;
+    Roles = Role;
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
