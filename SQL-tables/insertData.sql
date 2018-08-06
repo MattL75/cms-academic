@@ -110,7 +110,7 @@ INSERT INTO User (username, password, is_admin, role) VALUES ('funnybunny', 'pw1
 INSERT INTO User (username, password, is_admin, role) VALUES ('carldatank', 'exquizit', FALSE, 'Sales Associate');
 INSERT INTO User (username, password, is_admin, role) VALUES ('anita69', 'pw12345', FALSE, 'Sales Associate');
 INSERT INTO User (username, password, is_admin, role) VALUES ('curious', 'password', FALSE, 'Admin');
-INSERT INTO User (username, password, is_admin, role) VALUES ('man01', 'pw12345', FALSE, 'Manager');
+INSERT INTO User (username, password, is_admin, role) VALUES ('manager', 'manager', FALSE, 'Manager');
 INSERT INTO User (username, password, is_admin, role) VALUES ('man02', 'pw12345', FALSE, 'Manager');
 INSERT INTO User (username, password, is_admin, role) VALUES ('man03', 'pw12345', FALSE, 'Manager');
 INSERT INTO User (username, password, is_admin, role) VALUES ('man04', 'pw12345', FALSE, 'Manager');
@@ -130,7 +130,7 @@ INSERT INTO User (username, password, is_admin, role) VALUES ('man17', 'pw12345'
 INSERT INTO User (username, password, is_admin, role) VALUES ('man18', 'pw12345', FALSE, 'Manager');
 INSERT INTO User (username, password, is_admin, role) VALUES ('man19', 'pw12345', FALSE, 'Manager');
 INSERT INTO User (username, password, is_admin, role) VALUES ('man20', 'pw12345', FALSE, 'Manager');
-INSERT INTO User (username, password, is_admin, role) VALUES ('emp01', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('employee', 'employee', FALSE, 'Employee');
 INSERT INTO User (username, password, is_admin, role) VALUES ('emp02', 'pw12345', FALSE, 'Employee');
 INSERT INTO User (username, password, is_admin, role) VALUES ('emp03', 'pw12345', FALSE, 'Employee');
 INSERT INTO User (username, password, is_admin, role) VALUES ('emp04', 'pw12345', FALSE, 'Employee');
@@ -150,7 +150,7 @@ INSERT INTO User (username, password, is_admin, role) VALUES ('emp17', 'pw12345'
 INSERT INTO User (username, password, is_admin, role) VALUES ('emp18', 'pw12345', FALSE, 'Employee');
 INSERT INTO User (username, password, is_admin, role) VALUES ('emp19', 'pw12345', FALSE, 'Employee');
 INSERT INTO User (username, password, is_admin, role) VALUES ('emp20', 'pw12345', FALSE, 'Employee');
-INSERT INTO User (username, password, is_admin, role) VALUES ('client01', 'pw12345', FALSE, 'Client');
+INSERT INTO User (username, password, is_admin, role) VALUES ('client', 'client', FALSE, 'Client');
 INSERT INTO User (username, password, is_admin, role) VALUES ('client02', 'pw12345', FALSE, 'Client');
 INSERT INTO User (username, password, is_admin, role) VALUES ('client03', 'pw12345', FALSE, 'Client');
 INSERT INTO User (username, password, is_admin, role) VALUES ('client04', 'pw12345', FALSE, 'Client');
