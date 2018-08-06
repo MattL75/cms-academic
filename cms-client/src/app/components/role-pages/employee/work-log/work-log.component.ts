@@ -20,7 +20,7 @@ import { WorkLogDialogComponent } from './work-log-dialog/work-log-dialog.compon
 export class WorkLogComponent implements OnInit {
 
     dataSource: MatTableDataSource<WorkLog>;
-    displayedColumns: string[] = ['date_worked', 'hours_worked', 'contract_id', 'actions'];
+    displayedColumns: string[] = ['date_worked', 'hours_worked', 'assignment_id', 'actions'];
     querying = false;
     openFilter = false;
 
@@ -96,15 +96,14 @@ export class WorkLogComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                // TODO find way to do this
-                // this.querying = true;
-                // this.workService.deleteWorkLog(element.id).subscribe(() => {
-                //     this.populate();
-                //     this.snackbar.open('Work log deleted.', 'Success!');
-                // }, () => {
-                //     this.querying = false;
-                //     this.snackbar.open('Operation failed.', 'Dismiss');
-                // });
+                this.querying = true;
+                this.workService.deleteWorkLog(element.id).subscribe(() => {
+                    this.populate();
+                    this.snackbar.open('Work log deleted.', 'Success!');
+                }, () => {
+                    this.querying = false;
+                    this.snackbar.open('Operation failed.', 'Dismiss');
+                });
             }
         });
     }

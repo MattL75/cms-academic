@@ -18,7 +18,7 @@ import { ContractsDialogComponent } from './contracts-dialog/contracts-dialog.co
 export class ContractsComponent implements OnInit {
 
     dataSource: MatTableDataSource<Contract>;
-    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type', 'actions'];
+    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type', 'active', 'actions'];
     querying = false;
     openFilter = false;
 

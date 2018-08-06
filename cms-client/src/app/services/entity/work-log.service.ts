@@ -39,12 +39,11 @@ export class WorkLogService {
         );
     }
 
-    // TODO find way to delete these, composite id. Need to send all primary attributes.
-    // public deleteWorkLog(id: number): Observable<{}> {
-    //     return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
-    //         catchError(this.handleError)
-    //     );
-    // }
+    public deleteWorkLog(id: number): Observable<{}> {
+        return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
