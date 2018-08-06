@@ -74,6 +74,8 @@ CREATE TABLE Client
   name VARCHAR(30) NOT NULL,
   email_domain VARCHAR(255) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
+  address VARCHAR(60) NOT NULL,
+  postal_code CHAR(6) NOT NULL,
   FOREIGN KEY (province_name) REFERENCES Province(name),
   FOREIGN KEY (id) REFERENCES User(id)
 );
