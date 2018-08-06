@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <form class="" [formGroup]="entityForm">
+        <div class="dialog-field-row">
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="Manager" matInput formControlName="manager_id" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getManagerLinkFn()">
+                    <mat-option *ngFor="let option of filteredManagers | async" [value]="option.id">
+                        {{option.first_name | normalize}}&nbsp;{{option.last_name | normalize}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-icon>forward</mat-icon>
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="Employee" matInput formControlName="employee_id" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getEmployeeLinkFn()">
+                    <mat-option *ngFor="let option of filteredEmployees | async" [value]="option.id">
+                        {{option.first_name | normalize}}&nbsp;{{option.last_name | normalize}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div class="flex-row dialog-actions" mat-dialog-actions>
+    <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+</div>

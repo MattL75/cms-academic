@@ -40,20 +40,26 @@ export class ManagersService {
         );
     }
 
-    public getSupervisedEmployees(id: number): Observable<Employee[]> {
-        return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix + `?manager_id=${id}`).pipe(
+    public getSupervisedEmployees(id?: number): Observable<Employee[]> {
+        if (id) {
+            return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix + `?manager_id=${id}`).pipe(
+                catchError(this.handleError)
+            );
+        } else {
+            return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix).pipe(
+                catchError(this.handleError)
+            );
+        }
+    }
+
+    public addSupervisedEmployee(supervises: {man_id: number, emp_id: number}): Observable<any> {
+        return this.http.post<any>(this.baseUrl + '/employee' + this.suffix, {manager_id: supervises.man_id, employee_id: supervises.emp_id}).pipe(
             catchError(this.handleError)
         );
     }
 
-    public addSupervisedEmployee(man_id: number, emp_id: number): Observable<any> {
-        return this.http.post<any>(this.baseUrl + '/employee' + this.suffix, {manager_id: man_id, employee_id: emp_id}).pipe(
-            catchError(this.handleError)
-        );
-    }
-
-    public deleteSupervisedEmployee(man_id: number, emp_id: number): Observable<any> {
-        return this.http.delete<any>(this.baseUrl + '/employee' + this.suffix + `?manager_id=${man_id}&employee_id=${emp_id}`).pipe(
+    public deleteSupervisedEmployee(supervises: {man_id: number, emp_id: number}): Observable<any> {
+        return this.http.delete<any>(this.baseUrl + '/employee' + this.suffix + `?manager_id=${supervises.man_id}&employee_id=${supervises.emp_id}`).pipe(
             catchError(this.handleError)
         );
     }
