@@ -18,6 +18,9 @@ import { ClientContractsComponent } from './components/role-pages/client/client-
 import { ClientGuard } from './guards/client.guard';
 import { ManagedComponent } from './components/role-pages/manager/managed/managed.component';
 import { ManagerGuard } from './guards/manager.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { WorkLogComponent } from './components/role-pages/employee/work-log/work-log.component';
+import { EmployeeGuard } from './guards/employee.guard';
 
 const routes: Routes = [
     {
@@ -27,12 +30,13 @@ const routes: Routes = [
             {path: 'dashboard', component: DashboardComponent},
             {path: 'contracts', component: ContractsComponent},
             {path: 'clients', component: ClientsComponent},
-            {path: 'users', component: UsersComponent},
+            {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
             {path: 'departments', component: DepartmentsComponent},
             {path: 'associates', component: SalesAssociatesComponent},
             {path: 'profile', component: BaseProfileComponent},
             {path: 'my-contracts', component: ClientContractsComponent, canActivate: [ClientGuard]},
             {path: 'managed-contracts', component: ManagedComponent, canActivate: [ManagerGuard]},
+            {path: 'worklog', component: WorkLogComponent, canActivate: [EmployeeGuard]},
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
         ]
     },

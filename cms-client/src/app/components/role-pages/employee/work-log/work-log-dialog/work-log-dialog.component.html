@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="entityForm">
+        <div class="dialog-field-row center">
+            <mat-form-field class="dialog-field">
+                <input matInput [matDatepicker]="picker1" placeholder="Date worked" formControlName="date_worked">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="number" matInput formControlName="hours_worked" placeholder="Hours worked">
+            </mat-form-field>
+
+            <!-- Should be an autocomplete or something. Problem is, nothing to autocomplete on, really. -->
+            <mat-form-field class="dialog-field">
+                <input type="number" matInput formControlName="contract_id" placeholder="Contract Id">
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div class="flex-row dialog-actions" mat-dialog-actions>
+    <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid || !entityForm.dirty" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+</div>

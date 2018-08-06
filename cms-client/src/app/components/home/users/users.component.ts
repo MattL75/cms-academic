@@ -33,29 +33,6 @@ export class UsersComponent implements OnInit {
         this.populate();
     }
 
-    public add(): void {
-        const dialogRef = this.dialog.open(UsersDialogComponent, {
-            width: '450px',
-            data: {
-                entity: {},
-                title: 'Add a User',
-                action: 'Add'
-            }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            if (result) {
-                this.querying = true;
-                this.usersService.addUser(result).subscribe(() => {
-                    this.populate();
-                    this.snackbar.open('User added.', 'Success!');
-                }, () => {
-                    this.snackbar.open('Operation failed.', 'Dismiss');
-                });
-            }
-        });
-    }
-
     public edit(user: User): void {
         const dialogRef = this.dialog.open(UsersDialogComponent, {
             width: '450px',

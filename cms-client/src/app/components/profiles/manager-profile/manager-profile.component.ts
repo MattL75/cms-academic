@@ -25,7 +25,7 @@ export class ManagerProfileComponent implements OnInit {
         last_name: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.compose([Validators.email, Validators.required])]),
         phone_number: new FormControl('', [Validators.required]),
-        middle_initials: new FormControl('', [Validators.required]),
+        middle_initial: new FormControl(''),
         province: new FormControl('', [Validators.required]),
         insurance: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
@@ -59,7 +59,7 @@ export class ManagerProfileComponent implements OnInit {
         this.entityForm.controls['password'].setValue(this.user.password);
         this.entityForm.controls['email'].setValue(this.user.email);
         this.entityForm.controls['phone_number'].setValue(this.user.phone_number);
-        this.entityForm.controls['middle_initials'].setValue(this.user.middle_initials);
+        this.entityForm.controls['middle_initials'].setValue(this.user.middle_initial);
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;
