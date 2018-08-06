@@ -17,12 +17,12 @@
                     </button>
                     <mat-menu #menu="matMenu">
                         <button class="vert-menu-item" mat-menu-item (click)="populate()">
-                            <mat-icon *ngIf="'all' === activeCategory">check</mat-icon>
                             <span>All</span>
+                            <mat-icon class="backend-filter-icon" *ngIf="'all' === activeCategory">check</mat-icon>
                         </button>
                         <button class="vert-menu-item" *ngFor="let type of types" mat-menu-item (click)="selectCategory(type)">
-                            <mat-icon *ngIf="type === activeCategory">check</mat-icon>
                             <span>{{type | normalize}}</span>
+                            <mat-icon class="backend-filter-icon" *ngIf="type === activeCategory">check</mat-icon>
                         </button>
                     </mat-menu>
                     <button mat-icon-button *ngIf="this.userRole === Roles.SALES_ASSOCIATE || this.is_admin" (click)="add()">
