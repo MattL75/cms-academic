@@ -63,6 +63,8 @@ import { ClientContractsComponent } from './components/role-pages/client/client-
 import { SupervisedComponent } from './components/role-pages/manager/supervised/supervised.component';
 import { ManagedComponent } from './components/role-pages/manager/managed/managed.component';
 import { ClientContractsDialogComponent } from './components/role-pages/client/client-contracts/client-contracts-dialog/client-contracts-dialog.component';
+import { WorkLogComponent } from './components/role-pages/employee/work-log/work-log.component';
+import { WorkLogDialogComponent } from './components/role-pages/employee/work-log/work-log-dialog/work-log-dialog.component';
 
 @NgModule({
     declarations: [
@@ -97,6 +99,8 @@ import { ClientContractsDialogComponent } from './components/role-pages/client/c
         SupervisedComponent,
         ManagedComponent,
         ClientContractsDialogComponent,
+        WorkLogComponent,
+        WorkLogDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -147,7 +151,9 @@ import { ClientContractsDialogComponent } from './components/role-pages/client/c
         UsersDialogComponent,
         ContractsDialogComponent,
         ClientsDialogComponent,
-        SalesAssociatesDialogComponent
+        SalesAssociatesDialogComponent,
+        ClientContractsDialogComponent,
+        WorkLogDialogComponent,
     ],
     bootstrap: [AppComponent]
 })

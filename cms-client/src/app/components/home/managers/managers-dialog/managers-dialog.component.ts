@@ -23,7 +23,7 @@ export class ManagersDialogComponent implements OnInit {
         last_name: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.compose([Validators.email, Validators.required])]),
         phone_number: new FormControl('', [Validators.required]),
-        middle_initials: new FormControl('', [Validators.required]),
+        middle_initial: new FormControl(''),
         province: new FormControl('', [Validators.required]),
         insurance: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
@@ -48,7 +48,7 @@ export class ManagersDialogComponent implements OnInit {
         this.managersForm.controls['last_name'].setValue(this.data.manager.last_name);
         this.managersForm.controls['email'].setValue(this.data.manager.email);
         this.managersForm.controls['phone_number'].setValue(this.data.manager.phone_number);
-        this.managersForm.controls['middle_initials'].setValue(this.data.manager.middle_initials);
+        this.managersForm.controls['middle_initial'].setValue(this.data.manager.middle_initial);
         this.managersForm.controls['province'].setValue(this.data.manager.province);
         this.managersForm.controls['insurance'].setValue(this.data.manager.insurance);
         this.managersForm.controls['department_id'].setValue(this.data.manager.department_id);

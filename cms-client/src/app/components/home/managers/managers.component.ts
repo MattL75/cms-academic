@@ -18,7 +18,7 @@ import { ManagersDialogComponent } from './managers-dialog/managers-dialog.compo
 export class ManagersComponent implements OnInit {
 
     dataSource: MatTableDataSource<Manager>;
-    displayedColumns: string[] = ['id', 'first_name', 'email', 'phone_number', 'middle_initials', 'insurance', 'province', 'department_id', 'actions'];
+    displayedColumns: string[] = ['id', 'first_name', 'email', 'phone_number', 'middle_initial', 'insurance', 'province', 'department_id', 'actions'];
     querying = false;
     openFilter = false;
 
