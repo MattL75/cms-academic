@@ -4,10 +4,10 @@ class QueryBuilder {
   private static $conn;
 
   public static function init() { // allow db params to be args
-    $servername = "test_db2"; // name of container on docker network
-    $username = "php";
+    $servername = "mysql_comp353"; // name of container on docker network
+    $username = "root";
     $password = "1234";
-    $dbname = "test_db"; // name of database
+    $dbname = "project_db"; // name of database
     QueryBuilder::$conn = new PDO("mysql:host={$servername};dbname={$dbname};charset=utf8", $username, $password);
   }
   
@@ -110,7 +110,11 @@ class SelectBuilder {
 
   public function execute() {
     // echo $this->getQuery();
-    return $this->connection->query($this->getQuery())->fetchAll();
+    $result =  $this->connection->query($this->getQuery());
+    if (!$result || $result->rowCount() == 0) {
+      throw new Exception("No results found");
+    }
+    return $result->fetchAll();
   }
 }
 
@@ -143,9 +147,8 @@ class InsertBuilder {
     if ($stmnt->execute($this->data)) {
       return $this->connection->lastInsertId();
     } else {
-      die ($stmnt->errorInfo());
+      throw new Exception($stmnt->errorInfo());
     }
-    // $err = $stmnt->errorInfo(); // uncomment to see possible errors
   }
 }
 
@@ -200,7 +203,11 @@ class UpdateBuilder {
   
   public function execute() {
     // echo $this->getQuery();
-    return $this->connection->query($this->getQuery());
+    $result =  $this->connection->query($this->getQuery());
+    if (!$result) {
+      throw new Exception("update failed");
+    }
+    return $result;
   }
   
 }
@@ -235,8 +242,11 @@ class DeleteBuilder {
   }
   
   public function execute() {
-    echo $this->getQuery();
-    return $this->connection->query($this->getQuery());
+    $result =  $this->connection->query($this->getQuery());
+    if (!$result) {
+      throw new Exception("delete failed");
+    }
+    return $result;
   }
 }
 ?>

@@ -27,7 +27,7 @@ CREATE TABLE Deliverable
 
 CREATE TABLE Insurance_Plan
 (
-  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  -- id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   type VARCHAR(255) NOT NULL UNIQUE,
   rate INT(2) NOT NULL
 );
@@ -92,7 +92,7 @@ CREATE TABLE Employee
   FOREIGN KEY (id) REFERENCES User(id)
 );
 
-CREATE TABLE works_in
+CREATE TABLE Works_In
 (
   client_id INT(6) NOT NULL,
   business_line VARCHAR(30) NOT NULL,
