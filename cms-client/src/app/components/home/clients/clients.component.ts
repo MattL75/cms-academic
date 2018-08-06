@@ -18,7 +18,7 @@ import { ClientsDialogComponent } from './clients-dialog/clients-dialog.componen
 export class ClientsComponent implements OnInit {
 
     dataSource: MatTableDataSource<Client>;
-    displayedColumns: string[] = ['id', 'name', 'province', 'email_domain', 'actions'];
+    displayedColumns: string[] = ['id', 'name', 'province', 'address', 'postal_code', 'email_domain', 'actions'];
     querying = false;
     openFilter = false;
 
