@@ -18,7 +18,7 @@ CREATE TABLE Contract_Type
 CREATE TABLE Deliverable
 (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  number INT(1) NOT NULL,
+  deliv_number INT(1) NOT NULL,
   is_final BOOLEAN NOT NULL,
   days_to_delivery INT(3) NOT NULL,
   contract_type VARCHAR(30) NOT NULL,
@@ -47,15 +47,6 @@ CREATE TABLE City
   name VARCHAR(30) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
   PRIMARY KEY (name, province_name),
-  FOREIGN KEY (province_name) REFERENCES Province(name)
-);
-
-CREATE TABLE Address
-(
-  id INT(10) AUTO_INCREMENT PRIMARY KEY,
-  street_address VARCHAR(30) NOT NULL,
-  postal_code CHAR(6) NOT NULL,
-  province_name VARCHAR(30) NOT NULL,
   FOREIGN KEY (province_name) REFERENCES Province(name)
 );
 
@@ -145,7 +136,7 @@ CREATE TABLE Hours
   hours_worked TIME NOT NULL,
   contract_id INT(6) NOT NULL,
   employee_id INT(6) NOT NULL,
-  PRIMARY KEY (contract_id,employee_id,date_worked),
+  PRIMARY KEY (contract_id, employee_id, date_worked),
   FOREIGN KEY (contract_id) REFERENCES Contract(id),
   FOREIGN KEY (employee_id) REFERENCES Employee(id)
 );
