@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
 export class HomeComponent implements OnInit {
     menuOpen = true;
     sideMode: string;
+    userRole: string;
 
     @HostListener('window:resize', ['$event'])
     onResize(event) {
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.userRole = this.auth.getUserRole();
         if (window.innerWidth <= 800) {
             this.sideMode = 'over';
             this.menuOpen = false;

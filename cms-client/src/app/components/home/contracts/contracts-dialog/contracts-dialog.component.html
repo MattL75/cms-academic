@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <form class="" [formGroup]="entityForm">
+        <div class="dialog-field-row">
+            <mat-form-field class="dialog-field">
+                <input type="number" matInput formControlName="acv" placeholder="Annual value">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="number" matInput formControlName="initial_amount" placeholder="Initial amount">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input matInput [matDatepicker]="picker1" placeholder="Start date" formControlName="start_date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="text" matInput formControlName="business_line" placeholder="Business Line">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
+                    <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
+                        {{option.name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="Client" matInput formControlName="client_id" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getClientLinkFn()">
+                    <mat-option *ngFor="let option of filteredClients | async" [value]="option.id">
+                        {{option.name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="dialog-field full-width">
+                <mat-select placeholder="Type" [formControl]="entityForm.controls['contract_type']">
+                    <mat-option *ngFor="let contractType of contractTypes" [value]="contractType">
+                        {{contractType | normalize}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div class="flex-row dialog-actions" mat-dialog-actions>
+    <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+</div>

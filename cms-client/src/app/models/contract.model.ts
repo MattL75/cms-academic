@@ -1,4 +1,4 @@
-class Contract {
+export class Contract {
     constructor(public acv: number,
                 public start_date: Date,
                 public initial_amount: number,
@@ -9,11 +9,4 @@ class Contract {
                 public business_line: string,
                 public contract_type: string,
                 public id?: number) {}
-}
-
-enum ContractType {
-    GOLD = 'gold',
-    SILVER = 'silver',
-    PLATINUM = 'platinum',
-    BRONZE = 'bronze'
 }

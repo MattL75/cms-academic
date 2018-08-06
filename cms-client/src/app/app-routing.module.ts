@@ -12,26 +12,40 @@ import { ContractsComponent } from './components/home/contracts/contracts.compon
 import { ClientsComponent } from './components/home/clients/clients.component';
 import { UsersComponent } from './components/home/users/users.component';
 import { DepartmentsComponent } from './components/home/departments/departments.component';
+import { SalesAssociatesComponent } from './components/home/sales-associates/sales-associates.component';
+import { BaseProfileComponent } from './components/profiles/base-profile/base-profile.component';
+import { ClientContractsComponent } from './components/role-pages/client/client-contracts/client-contracts.component';
+import { ClientGuard } from './guards/client.guard';
+import { ManagedComponent } from './components/role-pages/manager/managed/managed.component';
+import { ManagerGuard } from './guards/manager.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { WorkLogComponent } from './components/role-pages/employee/work-log/work-log.component';
+import { EmployeeGuard } from './guards/employee.guard';
 
 const routes: Routes = [
     {
-        path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
-        {path: 'managers', component: ManagersComponent},
-        {path: 'employees', component: EmployeesComponent},
-        {path: 'dashboard', component: DashboardComponent},
-        {path: 'contracts', component: ContractsComponent},
-        {path: 'clients', component: ClientsComponent},
-        {path: 'users', component: UsersComponent},
-        {path: 'departments', component: DepartmentsComponent},
-        {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
-    ]
+        path: '', component: HomeComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
+            {path: 'managers', component: ManagersComponent},
+            {path: 'employees', component: EmployeesComponent},
+            {path: 'dashboard', component: DashboardComponent},
+            {path: 'contracts', component: ContractsComponent},
+            {path: 'clients', component: ClientsComponent},
+            {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
+            {path: 'departments', component: DepartmentsComponent},
+            {path: 'associates', component: SalesAssociatesComponent},
+            {path: 'profile', component: BaseProfileComponent},
+            {path: 'my-contracts', component: ClientContractsComponent, canActivate: [ClientGuard]},
+            {path: 'managed-contracts', component: ManagedComponent, canActivate: [ManagerGuard]},
+            {path: 'worklog', component: WorkLogComponent, canActivate: [EmployeeGuard]},
+            {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
+        ]
     },
     {
         path: 'auth', component: LoginComponent, children: [
-        {path: 'login', component: UserAuthComponent},
-        {path: 'register', component: RegisterComponent},
-        {path: '', redirectTo: 'login', pathMatch: 'full'}
-    ]
+            {path: 'login', component: UserAuthComponent},
+            {path: 'register', component: RegisterComponent},
+            {path: '', redirectTo: 'login', pathMatch: 'full'}
+        ]
     },
     {path: '**', redirectTo: '', pathMatch: 'full'}
 ];

@@ -1,0 +1,20 @@
+<div class="flex-row grow">
+    <div class="card-barrier-div">
+        <mat-card class="flex-column data-card">
+            <mat-card-header class="flex-row center data-card-header">
+                <span class="data-card-title">Profile</span>
+                <div class="flex-row grow"></div>
+            </mat-card-header>
+            <mat-divider style="position: static"></mat-divider>
+            <div class="profile-tab-content">
+                <ng-container [ngSwitch]="role">
+                    <cms-employee-profile *ngSwitchCase="'employee'"></cms-employee-profile>
+                    <cms-manager-profile *ngSwitchCase="'manager'"></cms-manager-profile>
+                    <cms-client-profile *ngSwitchCase="'client'"></cms-client-profile>
+                    <cms-sales-profile *ngSwitchCase="'sales_associate'"></cms-sales-profile>
+                    <div *ngSwitchDefault>An error occurred. No role detected.</div>
+                </ng-container>
+            </div>
+        </mat-card>
+    </div>
+</div>

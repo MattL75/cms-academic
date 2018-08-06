@@ -42,6 +42,36 @@
                         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
                     </ng-container>
 
+                    <!-- Phone Column -->
+                    <ng-container matColumnDef="phone_number">
+                        <th mat-header-cell *matHeaderCellDef> <strong>Phone</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.phone_number}} </td>
+                    </ng-container>
+
+                    <!-- Initials Column -->
+                    <ng-container matColumnDef="middle_initial">
+                        <th mat-header-cell *matHeaderCellDef> <strong>Initial</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.middle_initial}} </td>
+                    </ng-container>
+
+                    <!-- Insurance Column -->
+                    <ng-container matColumnDef="insurance">
+                        <th mat-header-cell *matHeaderCellDef> <strong>Insurance</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.insurance | normalize}} </td>
+                    </ng-container>
+
+                    <!-- Province Column -->
+                    <ng-container matColumnDef="province">
+                        <th mat-header-cell *matHeaderCellDef> <strong>Province</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.province | normalize}} </td>
+                    </ng-container>
+
+                    <!-- Department Column -->
+                    <ng-container matColumnDef="department_id">
+                        <th mat-header-cell *matHeaderCellDef> <strong>Dept. Id</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.department_id}} </td>
+                    </ng-container>
+
                     <!-- Actions Column -->
                     <ng-container matColumnDef="actions" stickyEnd>
                         <th mat-header-cell class="actions-header" *matHeaderCellDef>
@@ -66,7 +96,7 @@
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
-                <div class="empty-message flex-row center" *ngIf="dataSource.data.length === 0">No managers found.</div>
+                <div class="empty-message flex-row center" *ngIf="dataSource.data.length === 0 || this.dataSource.filteredData.length === 0">No managers found.</div>
             </mat-card-content>
         </mat-card>
     </div>

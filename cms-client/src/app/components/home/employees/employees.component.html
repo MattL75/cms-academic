@@ -1,1 +1,85 @@
-Employees
+<div class="flex-row grow">
+    <div class="card-barrier-div">
+        <mat-card class="flex-column data-card">
+            <mat-card-header class="flex-row center data-card-header">
+                <span class="data-card-title">Employees</span>
+                <div class="flex-row grow action-container">
+                    <div class="search-bar-container">
+                        <div class="search-bar">
+                            <button mat-icon-button (click)="openFilter = !openFilter">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                            <input autofocus *ngIf="openFilter" [@expandX] class="search-bar-field" type="text" placeholder="Search here" (keyup)="applyFilter($event.target.value)" />
+                        </div>
+                    </div>
+                    <button mat-icon-button (click)="add()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </mat-card-header>
+            <mat-divider style="position: static"></mat-divider>
+            <div class="querying-shade" *ngIf="querying">
+                <mat-spinner *ngIf="querying"></mat-spinner>
+            </div>
+            <mat-card-content class="data-card-content">
+                <table class="material-table" mat-table matSort [dataSource]="dataSource">
+
+                    <!-- Id Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Id</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="first_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Name</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.first_name + ' ' + element.last_name}} </td>
+                    </ng-container>
+
+                    <!-- Insurance Column -->
+                    <ng-container matColumnDef="insurance">
+                        <th mat-header-cell *matHeaderCellDef> <strong>Insurance</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.insurance | normalize}} </td>
+                    </ng-container>
+
+                    <!-- Province Column -->
+                    <ng-container matColumnDef="province">
+                        <th mat-header-cell *matHeaderCellDef> <strong>Province</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.province | normalize}} </td>
+                    </ng-container>
+
+                    <!-- Department Column -->
+                    <ng-container matColumnDef="department_id">
+                        <th mat-header-cell *matHeaderCellDef> <strong>Dept. Id</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.department_id}} </td>
+                    </ng-container>
+
+                    <!-- Actions Column -->
+                    <ng-container matColumnDef="actions" stickyEnd>
+                        <th mat-header-cell class="actions-header" *matHeaderCellDef>
+                            <div class="flex-row center">
+                                <strong>
+                                    Actions
+                                </strong>
+                            </div>
+                        </th>
+                        <td mat-cell class="actions-column" *matCellDef="let element">
+                            <div class="flex-row center">
+                                <button mat-icon-button (click)="edit(element)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button (click)="delete(element)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <div class="empty-message flex-row center" *ngIf="dataSource.data.length === 0 || this.dataSource.filteredData.length === 0">No employees found.</div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

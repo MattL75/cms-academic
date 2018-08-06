@@ -11,15 +11,15 @@ import { AuthGuard } from './guards/auth.guard';
 import {
     MatAutocompleteModule,
     MatButtonModule,
-    MatCardModule,
+    MatCardModule, MatDatepickerModule,
     MatDialogModule,
     MatDividerModule, MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatMenuModule,
+    MatMenuModule, MatNativeDateModule,
     MatProgressSpinnerModule,
-    MatRippleModule,
+    MatRippleModule, MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatSortModule,
@@ -46,6 +46,25 @@ import { UsersService } from './services/entity/users.service';
 import { DepartmentsService } from './services/entity/departments.service';
 import { ContractsService } from './services/entity/contracts.service';
 import { ClientsService } from './services/entity/clients.service';
+import { EmployeesDialogComponent } from './components/home/employees/employees-dialog/employees-dialog.component';
+import { DepartmentsDialogComponent } from './components/home/departments/departments-dialog/departments-dialog.component';
+import { UsersDialogComponent } from './components/home/users/users-dialog/users-dialog.component';
+import { ContractsDialogComponent } from './components/home/contracts/contracts-dialog/contracts-dialog.component';
+import { ClientsDialogComponent } from './components/home/clients/clients-dialog/clients-dialog.component';
+import { SalesAssociatesComponent } from './components/home/sales-associates/sales-associates.component';
+import { SalesAssociatesDialogComponent } from './components/home/sales-associates/sales-associates-dialog/sales-associates-dialog.component';
+import { NormalizePipe } from './pipes/normalize.pipe';
+import { EmployeeProfileComponent } from './components/profiles/employee-profile/employee-profile.component';
+import { BaseProfileComponent } from './components/profiles/base-profile/base-profile.component';
+import { ManagerProfileComponent } from './components/profiles/manager-profile/manager-profile.component';
+import { ClientProfileComponent } from './components/profiles/client-profile/client-profile.component';
+import { SalesProfileComponent } from './components/profiles/sales-profile/sales-profile.component';
+import { ClientContractsComponent } from './components/role-pages/client/client-contracts/client-contracts.component';
+import { SupervisedComponent } from './components/role-pages/manager/supervised/supervised.component';
+import { ManagedComponent } from './components/role-pages/manager/managed/managed.component';
+import { ClientContractsDialogComponent } from './components/role-pages/client/client-contracts/client-contracts-dialog/client-contracts-dialog.component';
+import { WorkLogComponent } from './components/role-pages/employee/work-log/work-log.component';
+import { WorkLogDialogComponent } from './components/role-pages/employee/work-log/work-log-dialog/work-log-dialog.component';
 
 @NgModule({
     declarations: [
@@ -63,6 +82,25 @@ import { ClientsService } from './services/entity/clients.service';
         ClientsComponent,
         DepartmentsComponent,
         UsersComponent,
+        EmployeesDialogComponent,
+        DepartmentsDialogComponent,
+        UsersDialogComponent,
+        ContractsDialogComponent,
+        ClientsDialogComponent,
+        SalesAssociatesComponent,
+        SalesAssociatesDialogComponent,
+        NormalizePipe,
+        EmployeeProfileComponent,
+        BaseProfileComponent,
+        ManagerProfileComponent,
+        ClientProfileComponent,
+        SalesProfileComponent,
+        ClientContractsComponent,
+        SupervisedComponent,
+        ManagedComponent,
+        ClientContractsDialogComponent,
+        WorkLogComponent,
+        WorkLogDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -89,7 +127,10 @@ import { ClientsService } from './services/entity/clients.service';
         MatSnackBarModule,
         MatDialogModule,
         MatExpansionModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     providers: [
         AuthService,
@@ -103,8 +144,16 @@ import { ClientsService } from './services/entity/clients.service';
         ClientsService
     ],
     entryComponents: [
+        ConfirmDialogComponent,
         ManagersDialogComponent,
-        ConfirmDialogComponent
+        EmployeesDialogComponent,
+        DepartmentsDialogComponent,
+        UsersDialogComponent,
+        ContractsDialogComponent,
+        ClientsDialogComponent,
+        SalesAssociatesDialogComponent,
+        ClientContractsDialogComponent,
+        WorkLogDialogComponent,
     ],
     bootstrap: [AppComponent]
 })
