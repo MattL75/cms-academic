@@ -76,7 +76,7 @@
                     <span class="nav-text">Associates</span>
                 </div>
             </div>
-            <div class="flex-column grow" *ngIf="this.userRole === Roles.MANAGER || this.userRole === Roles.EMPLOYEE">
+            <div class="flex-column grow" *ngIf="this.userRole === Roles.MANAGER || this.userRole === Roles.EMPLOYEE || this.is_admin">
                 <div class="flex-row nav-item" mat-ripple routerLink="/worklog" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">assignment</mat-icon>
                     <span class="nav-text">Worklog</span>

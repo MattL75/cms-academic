@@ -10,7 +10,7 @@
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
-            <mat-icon>forward</mat-icon>
+            <mat-icon class="separation-icon">forward</mat-icon>
             <mat-form-field class="dialog-field">
                 <input type="text" placeholder="Employee" matInput formControlName="employee_id" [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="getEmployeeLinkFn()">

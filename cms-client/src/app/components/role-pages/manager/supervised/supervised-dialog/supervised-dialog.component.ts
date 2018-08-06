@@ -4,8 +4,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Manager } from '../../../../../models/manager.model';
 import { Employee } from '../../../../../models/employee.model';
-import { Department } from '../../../../../models/department.model';
 import { map, startWith } from 'rxjs/operators';
+import { EmployeesService } from '../../../../../services/entity/employees.service';
+import { ManagersService } from '../../../../../services/entity/managers.service';
 
 @Component({
     selector: 'cms-supervised-dialog',
@@ -13,8 +14,6 @@ import { map, startWith } from 'rxjs/operators';
     styleUrls: ['./supervised-dialog.component.scss', '../../../../home/home.component.scss']
 })
 export class SupervisedDialogComponent implements OnInit {
-
-    // TODO Autocompletes on name for both
 
     entityForm = new FormGroup({
         manager_id: new FormControl('', [Validators.required]),
@@ -28,13 +27,21 @@ export class SupervisedDialogComponent implements OnInit {
     filteredEmployees: Observable<Employee[]>;
 
     constructor(public dialogRef: MatDialogRef<SupervisedDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: {id: number, is_admin: boolean, title: string, action: string}) {
+                @Inject(MAT_DIALOG_DATA) public data: {id: number, is_admin: boolean, title: string, action: string}, private managerService: ManagersService, private employeeService: EmployeesService) {
     }
 
     ngOnInit() {
         if (!this.data.is_admin) {
             this.entityForm.controls['manager_id'].setValue(this.data.id);
         }
+
+        this.managerService.getManagers().subscribe(mans => {
+            this.managers = mans;
+        });
+
+        this.employeeService.getEmployees().subscribe(emps => {
+            this.employees = emps;
+        });
 
         this.filteredManagers = this.entityForm.controls['manager_id'].valueChanges
             .pipe(
