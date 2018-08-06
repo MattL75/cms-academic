@@ -21,14 +21,15 @@ CREATE TABLE Deliverable
   deliv_number INT(1) NOT NULL,
   is_final BOOLEAN NOT NULL,
   days_to_delivery INT(3) NOT NULL,
-  contract_type VARCHAR(30) NOT NULL,
-  FOREIGN KEY (contract_type) REFERENCES Contract_Type(name)
+  days_taken INT(3) NOT NULL,
+  is_active BOOLEAN NOT NULL,
+  contract_id INT(6) NOT NULL,
+  FOREIGN KEY (contract_id) REFERENCES Contract(id)
 );
 
 CREATE TABLE Insurance_Plan
 (
-  -- id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  type VARCHAR(255) NOT NULL UNIQUE,
+  type VARCHAR(255) NOT NULL PRIMARY KEY,
   rate INT(2) NOT NULL
 );
 
@@ -88,10 +89,12 @@ CREATE TABLE Employee
   department_id INT(6) NOT NULL,
   insurance_type VARCHAR(255),
   province_name VARCHAR(30) NOT NULL,
+  contract_type_preference VARCHAR(30) NOT NULL,
   FOREIGN KEY (department_id) REFERENCES Department(id),
   FOREIGN KEY (insurance_type) REFERENCES Insurance_Plan(type),
   FOREIGN KEY (province_name) REFERENCES Province(name),
-  FOREIGN KEY (id) REFERENCES User(id)
+  FOREIGN KEY (id) REFERENCES User(id),
+  FOREIGN KEY (contract_type_preference) REFERENCES Contract_Type(name)
 );
 
 CREATE TABLE Works_In
@@ -109,9 +112,11 @@ CREATE TABLE Contract
   acv DECIMAL(10,2) NOT NULL,
   initial_amount DECIMAL(10,2) NOT NULL,
   recorded_by INT(6) NOT NULL,
+  is_active BOOLEAN NOT NULL,
   start_date DATE NOT NULL,
   client_satisfaction INT(2),
   department_id INT(6) NOT NULL,
+  manager_id INT(6) NOT NULL,
   client_id INT(6) NOT NULL,
   business_line VARCHAR(30) NOT NULL,
   contract_type VARCHAR(30) NOT NULL,
@@ -119,7 +124,8 @@ CREATE TABLE Contract
   FOREIGN KEY (department_id) REFERENCES Department(id),
   FOREIGN KEY (client_id) REFERENCES Client(id),
   FOREIGN KEY (business_line) REFERENCES Business_Line(name),
-  FOREIGN KEY (contract_type) REFERENCES Contract_Type(name)
+  FOREIGN KEY (contract_type) REFERENCES Contract_Type(name),
+  FOREIGN KEY (manager_id) REFERENCES Manager(id)
 );
 
 CREATE TABLE Manager
@@ -132,24 +138,27 @@ CREATE TABLE Manager
   FOREIGN KEY (id) REFERENCES Employee(id)
 );
 
-CREATE TABLE Hours
+CREATE TABLE Work_Log
 (
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   date_worked DATE NOT NULL,
   hours_worked TIME NOT NULL,
   contract_id INT(6) NOT NULL,
   employee_id INT(6) NOT NULL,
-  PRIMARY KEY (contract_id, employee_id, date_worked),
   FOREIGN KEY (contract_id) REFERENCES Contract(id),
   FOREIGN KEY (employee_id) REFERENCES Employee(id)
 );
 
-CREATE TABLE Manages
+CREATE TABLE Assignment
 (
-  contract_id INT(6) NOT NULL,
-  manager_id INT(6) NOT NULL,
-  PRIMARY KEY (contract_id),
-  FOREIGN KEY (contract_id) REFERENCES Contract(id),
-  FOREIGN KEY (manager_id) REFERENCES Manager(id)
+  id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  is_active BOOLEAN NOT NULL,
+  deliverable_id INT(6) NOT NULL,
+  work_log_id INT(6) NOT NULL,
+  employee_id INT(6) NOT NULL,
+  FOREIGN KEY (deliverable_id) REFERENCES Deliverable(id),
+  FOREIGN KEY (work_log_id) REFERENCES Work_Log(id),
+  FOREIGN KEY (employee_id) REFERENCES Employee(id)
 );
 
 CREATE TABLE Supervises
