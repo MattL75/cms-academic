@@ -57,8 +57,7 @@ class Employee {
     'last_name',
     'department_id',
     'insurance_type',
-    'province_name',
-    'user_id'
+    'province_name'
   ];
   public $id;
   public $first_name;
@@ -66,7 +65,6 @@ class Employee {
   public $department_id;
   public $insurance_type;
   public $province_name;
-  public $user_id;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -75,7 +73,6 @@ class Employee {
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
     $this->province_name = $data['province_name'];
-    $this->user_id = $data['user_id'];
   }
 
   /**
@@ -99,9 +96,6 @@ class Employee {
     }
     if (isset($data['province_name'])) {
       $this->province = $data['province_name'];
-    }
-    if (isset($data['user_id'])) {
-      $this->email_id = $data['user_id'];
     }
     $this->save();
 
@@ -142,7 +136,6 @@ class Employee {
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
     $this->province_name = $data['province_name'];
-    $this->user_id = $data['user_id'];
 
     return $this;
   }

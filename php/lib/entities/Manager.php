@@ -12,10 +12,10 @@ class Managers {
     $first = true;
     foreach ($params as $field => $value) {
       if ($first) {
-        $qb->where(Manager::TABLE_NAME."{$field} = \"{$value}\"");
+        $qb->where(Manager::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;
       } else {
-        $qb->and(Manager::TABLE_NAME."{$field} = \"{$value}\"");
+        $qb->and(Manager::TABLE_NAME.".{$field} = \"{$value}\"");
       }
     }
 
@@ -145,8 +145,38 @@ class Manager {
     return $this;
   }
 
-  public function getEmployees(Array $query) {
-    // fetch using manages table
+  public function getEmployees() {
+    $results = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS)
+                ->join("Supervises", [], "employee_id", "Employee.id")
+                ->where("manager_id = \"{$this->id}\"")->execute();
+    $employees = [];
+    foreach ($results as $emp) {
+      array_push($employees, new Employee($emp));
+    }
+
+    return $employees;
+  }
+
+  public function addEmployee(string $employee_id) {
+    QueryBuilder::insert("Supervises", ["manager_id"=>"{$this->id}", "employee_id" => "{$employee_id}"])->execute();
+  }
+
+  public function removeEmployee(string $employee_id) {
+    QueryBuilder::delete("Supervises")
+    ->where("manager_id = \"{$this->id}\"")
+    ->and("employee_id = \"{$employee_id}\"")
+    ->execute();
+  }
+
+  public function getContracts() {
+    $results = QueryBuilder::select(Contract::TABLE_NAME, Contract::TABLE_FIELDS)
+                ->where("manager_id = \"{$this->id}\"")->execute();
+    $contracts = [];
+    foreach ($results as $emp) {
+      array_push($contracts, new Employee($emp));
+    }
+
+    return $contracts;
   }
 
   /**

@@ -59,14 +59,14 @@ class User {
   ];
   public $id;
   public $username;
-  public $password;
+  // public $password;
   public $is_admin;
   public $role;
 
   function __construct(array $data) {
     $this->id = $data['id'];
     $this->username = $data['username'];
-    $this->password = $data['password'];
+    // $this->password = $data['password'];
     $this->is_admin = $data['is_admin'];
     $this->role = $data['role']; // eager load?
   }
@@ -81,14 +81,14 @@ class User {
     if (isset($data['username'])) {
       $this->username = $data['username'];
     }
-    if (isset($data['password'])) {
-      $this->city = $data['password'];
-    }
+    // if (isset($data['password'])) {
+    //   $this->city = $data['password'];
+    // }
     if (isset($data['is_admin'])) {
-      $this->postal_code = $data['is_admin'];
+      $this->is_admin = $data['is_admin'];
     }
     if (isset($data['role'])) {
-      $this->address = $data['role'];
+      $this->role = $data['role'];
     }
     $this->save();
 
@@ -125,7 +125,7 @@ class User {
     }
     $this->id = $data['id'];
     $this->username = $data['username'];
-    $this->password = $data['password'];
+    // $this->password = $data['password'];
     $this->is_admin = $data['is_admin'];
     $this->role = $data['role']; // eager load?
 

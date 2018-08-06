@@ -1,14 +1,14 @@
 <?php
-include "../../lib/query_builder.php";
-include "../../lib/auth.php";
+include __DIR__."/query_builder.php";
+include __DIR__."/auth.php";
 // entitiy imports
-include "../../lib/entities/company.php"; // template entity
-include "../../lib/entities/User.php";
-include "../../lib/entities/Employee.php";
-include "../../lib/entities/Department.php";
-include "../../lib/entities/Manager.php";
-include "../../lib/entities/Client.php";
-include "../../lib/entities/Contract.php";
+include __DIR__."/entities/company.php"; // template entity
+include __DIR__."/entities/User.php";
+include __DIR__."/entities/Employee.php";
+include __DIR__."/entities/Department.php";
+include __DIR__."/entities/Manager.php";
+include __DIR__."/entities/Client.php";
+include __DIR__."/entities/Contract.php";
 
 QueryBuilder::init();
 // send JSON response not HTML
