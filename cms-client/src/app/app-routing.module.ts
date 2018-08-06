@@ -19,6 +19,7 @@ import { ClientGuard } from './guards/client.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { WorkLogComponent } from './components/role-pages/employee/work-log/work-log.component';
 import { EmployeeGuard } from './guards/employee.guard';
+import { NotClientGuard } from './guards/not-client.guard';
 
 const routes: Routes = [
     {
@@ -26,7 +27,7 @@ const routes: Routes = [
             {path: 'managers', component: ManagersComponent},
             {path: 'employees', component: EmployeesComponent},
             {path: 'dashboard', component: DashboardComponent},
-            {path: 'contracts', component: ContractsComponent},
+            {path: 'contracts', component: ContractsComponent, canActivate: [NotClientGuard]},
             {path: 'clients', component: ClientsComponent},
             {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
             {path: 'departments', component: DepartmentsComponent},
