@@ -68,7 +68,6 @@ INSERT INTO Role (name) VALUES ('Employee');
 INSERT INTO Role (name) VALUES ('Manager');
 INSERT INTO Role (name) VALUES ('Sales Associate');
 INSERT INTO Role (name) VALUES ('Client');
-INSERT INTO Role (name) VALUES ('Guest');
 
 INSERT INTO Province (name) VALUES ('Quebec');
 INSERT INTO Province (name) VALUES ('Ontario');
@@ -110,7 +109,7 @@ INSERT INTO User (username, password, is_admin, role) VALUES ('admin', 'admin', 
 INSERT INTO User (username, password, is_admin, role) VALUES ('funnybunny', 'pw12345', FALSE, 'Sales Associate');
 INSERT INTO User (username, password, is_admin, role) VALUES ('carldatank', 'exquizit', FALSE, 'Sales Associate');
 INSERT INTO User (username, password, is_admin, role) VALUES ('anita69', 'pw12345', FALSE, 'Sales Associate');
-INSERT INTO User (username, password, is_admin, role) VALUES ('curious', 'password', FALSE, 'Guest');
+INSERT INTO User (username, password, is_admin, role) VALUES ('curious', 'password', FALSE, 'Admin');
 INSERT INTO User (username, password, is_admin, role) VALUES ('man01', 'pw12345', FALSE, 'Manager');
 INSERT INTO User (username, password, is_admin, role) VALUES ('man02', 'pw12345', FALSE, 'Manager');
 INSERT INTO User (username, password, is_admin, role) VALUES ('man03', 'pw12345', FALSE, 'Manager');
