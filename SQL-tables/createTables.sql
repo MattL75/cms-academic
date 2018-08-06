@@ -143,10 +143,8 @@ CREATE TABLE Work_Log
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   date_worked DATE NOT NULL,
   hours_worked TIME NOT NULL,
-  contract_id INT(6) NOT NULL,
-  employee_id INT(6) NOT NULL,
-  FOREIGN KEY (contract_id) REFERENCES Contract(id),
-  FOREIGN KEY (employee_id) REFERENCES Employee(id)
+  assignment_id INT(6) NOT NULL,
+  FOREIGN KEY (assignment_id) REFERENCES Assignment(id)
 );
 
 CREATE TABLE Assignment
@@ -154,10 +152,8 @@ CREATE TABLE Assignment
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   is_active BOOLEAN NOT NULL,
   deliverable_id INT(6) NOT NULL,
-  work_log_id INT(6) NOT NULL,
   employee_id INT(6) NOT NULL,
   FOREIGN KEY (deliverable_id) REFERENCES Deliverable(id),
-  FOREIGN KEY (work_log_id) REFERENCES Work_Log(id),
   FOREIGN KEY (employee_id) REFERENCES Employee(id)
 );
 
