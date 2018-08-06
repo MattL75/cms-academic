@@ -41,7 +41,6 @@ export class ClientProfileComponent implements OnInit {
         this.entityForm.controls['address'].setValue(this.user.address);
         this.entityForm.controls['postal_code'].setValue(this.user.postal_code);
         this.entityForm.controls['username'].setValue(this.user.username);
-        this.entityForm.controls['password'].setValue(this.user.password);
         this.entityForm.controls['role'].setValue(this.user.role);
         this.entityForm.controls['role'].disable();
         this.entityForm.controls['is_admin'].setValue(this.user.is_admin);

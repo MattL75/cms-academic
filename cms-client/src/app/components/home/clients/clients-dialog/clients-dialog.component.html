@@ -11,7 +11,7 @@
             <mat-form-field class="dialog-field">
                 <input matInput formControlName="username" placeholder="Username">
             </mat-form-field>
-            <mat-form-field class="dialog-field">
+            <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">
                 <input matInput type="password" formControlName="password" placeholder="Password">
             </mat-form-field>
             <mat-form-field class="dialog-field">

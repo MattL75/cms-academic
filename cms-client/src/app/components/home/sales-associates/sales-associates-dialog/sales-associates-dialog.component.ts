@@ -16,13 +16,13 @@ export class SalesAssociatesDialogComponent implements OnInit {
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
+        password: new FormControl(''),
         role: new FormControl(Role.SALES_ASSOCIATE),
         is_admin: new FormControl('')
     });
 
     constructor(public dialogRef: MatDialogRef<SalesAssociatesDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: {entity: SalesAssociate, title: string, action: string}) {
+                @Inject(MAT_DIALOG_DATA) public data: {entity: SalesAssociate, title: string, action: string, mode: string}) {
     }
 
     ngOnInit() {

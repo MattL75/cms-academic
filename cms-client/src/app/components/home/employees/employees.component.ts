@@ -39,7 +39,8 @@ export class EmployeesComponent implements OnInit {
             data: {
                 employee: {},
                 title: 'Add an Employee',
-                action: 'Add'
+                action: 'Add',
+                mode: 'add'
             }
         });
 
@@ -63,7 +64,8 @@ export class EmployeesComponent implements OnInit {
             data: {
                 manager: Object.assign({}, employee),
                 title: 'Edit an Employee',
-                action: 'Save'
+                action: 'Save',
+                mode: 'edit'
             }
         });
 

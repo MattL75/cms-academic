@@ -28,7 +28,7 @@ export class ManagersDialogComponent implements OnInit {
         insurance: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
+        password: new FormControl(''),
         role: new FormControl(Role.MANAGER),
         is_admin: new FormControl(false),
     });
@@ -38,7 +38,7 @@ export class ManagersDialogComponent implements OnInit {
     provinces = Object.keys(Province);
 
     constructor(public dialogRef: MatDialogRef<ManagersDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: {manager: Manager, title: string, action: string},
+                @Inject(MAT_DIALOG_DATA) public data: {manager: Manager, title: string, action: string, mode: string},
                 private depts: DepartmentsService) {
     }
 

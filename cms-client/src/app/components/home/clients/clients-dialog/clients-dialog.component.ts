@@ -20,7 +20,7 @@ export class ClientsDialogComponent implements OnInit {
         address: new FormControl('', [Validators.required]),
         postal_code: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
+        password: new FormControl(''),
         role: new FormControl(Role.CLIENT),
         is_admin: new FormControl(false)
     });
@@ -28,7 +28,7 @@ export class ClientsDialogComponent implements OnInit {
     provinces = Object.keys(Province);
 
     constructor(public dialogRef: MatDialogRef<ClientsDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: {entity: Client, title: string, action: string}) {
+                @Inject(MAT_DIALOG_DATA) public data: {entity: Client, title: string, action: string, mode: string}) {
     }
 
     ngOnInit() {

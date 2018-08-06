@@ -26,7 +26,6 @@ export class EmployeeProfileComponent implements OnInit {
         province: new FormControl('', [Validators.required]),
         insurance: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
         role: new FormControl(Role.EMPLOYEE, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required]),
         department_id: new FormControl('', [Validators.required])
@@ -53,7 +52,6 @@ export class EmployeeProfileComponent implements OnInit {
         this.entityForm.controls['province'].setValue(this.user.province);
         this.entityForm.controls['insurance'].setValue(this.user.insurance);
         this.entityForm.controls['username'].setValue(this.user.username);
-        this.entityForm.controls['password'].setValue(this.user.password);
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;

@@ -39,7 +39,8 @@ export class ClientsComponent implements OnInit {
             data: {
                 entity: {},
                 title: 'Add a Client',
-                action: 'Add'
+                action: 'Add',
+                mode: 'add'
             }
         });
 
@@ -63,7 +64,8 @@ export class ClientsComponent implements OnInit {
             data: {
                 manager: Object.assign({}, client),
                 title: 'Edit a Client',
-                action: 'Save'
+                action: 'Save',
+                mode: 'edit'
             }
         });
 
