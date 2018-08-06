@@ -12,7 +12,7 @@ export class AuthService {
 
     // TODO set to false
     private loggedIn = true;
-    private currentUser;
+    private currentUser: any;
     private baseUrl = '/api/login';
     private suffix = '.php';
 
@@ -68,7 +68,8 @@ export class AuthService {
     }
 
     public getCurrentUser(): any {
-        return this.currentUser;
+        // TODO simplify when API works
+        return (this.currentUser ? this.currentUser : {});
     }
 
     public getUserRole(): string {
