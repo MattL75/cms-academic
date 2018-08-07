@@ -4,49 +4,47 @@ import { expandX } from '../../../../animations/expand';
 import { SnackbarService } from '../../../../services/snackbar.service';
 import { AuthService } from '../../../../services/auth.service';
 import { WorkLog } from '../../../../models/work-log.model';
-import { WorkLogService } from '../../../../services/entity/work-log.service';
 import { ConfirmDialogComponent } from '../../../utils/confirm-dialog/confirm-dialog.component';
-import { WorkLogDialogComponent } from './work-log-dialog/work-log-dialog.component';
 import { Role } from '../../../../models/enums/role.enum';
+import { Assignment } from '../../../../models/assignment.model';
+import { AssignmentService } from '../../../../services/entity/assignment.service';
+import { AssignmentDialogComponent } from './assignment-dialog/assignment-dialog.component';
 
 @Component({
-    selector: 'cms-work-log',
-    templateUrl: './work-log.component.html',
-    styleUrls: ['./work-log.component.scss', '../../../home/home.component.scss'],
+    selector: 'cms-assignment',
+    templateUrl: './assignment.component.html',
+    styleUrls: ['./assignment.component.scss', '../../../home/home.component.scss'],
     animations: [
         expandX({time: 200})
     ]
 })
-export class WorkLogComponent implements OnInit {
+export class AssignmentComponent implements OnInit {
 
-    dataSource: MatTableDataSource<WorkLog>;
-    displayedColumns: string[] = ['date_worked', 'hours_worked', 'assignment_id', 'actions'];
+    dataSource: MatTableDataSource<Assignment>;
+    displayedColumns: string[] = ['employee_id', 'contract_id', 'assignment_id', 'active', 'actions'];
     querying = false;
     openFilter = false;
     user;
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private workService: WorkLogService, private auth: AuthService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private assignmentService: AssignmentService, private auth: AuthService) {
     }
 
     ngOnInit() {
         this.user = this.auth.getCurrentUser();
-        if (this.user === Role.MANAGER) {
-            this.displayedColumns.push('employee_id');
-        }
 
-        this.dataSource = new MatTableDataSource<WorkLog>();
+        this.dataSource = new MatTableDataSource<Assignment>();
         this.dataSource.sort = this.sort;
         this.populate();
     }
 
     public add(): void {
-        const dialogRef = this.dialog.open(WorkLogDialogComponent, {
+        const dialogRef = this.dialog.open(AssignmentDialogComponent, {
             width: '450px',
             data: {
                 entity: {},
-                title: 'Add a Work Log',
+                title: 'Add an Assignment',
                 action: 'Add'
             }
         });
@@ -54,9 +52,9 @@ export class WorkLogComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.querying = true;
-                this.workService.addWorkLog(result).subscribe(() => {
+                this.assignmentService.addAssignment(result).subscribe(() => {
                     this.populate();
-                    this.snackbar.open('Work log added.', 'Success!');
+                    this.snackbar.open('Assignment added.', 'Success!');
                 }, () => {
                     this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
@@ -65,12 +63,12 @@ export class WorkLogComponent implements OnInit {
         });
     }
 
-    public edit(worklog: WorkLog): void {
-        const dialogRef = this.dialog.open(WorkLogDialogComponent, {
+    public edit(assignment: Assignment): void {
+        const dialogRef = this.dialog.open(AssignmentDialogComponent, {
             width: '450px',
             data: {
-                entity: Object.assign({}, worklog),
-                title: 'Edit a Work Log',
+                entity: Object.assign({}, assignment),
+                title: 'Edit an Assignment',
                 action: 'Save'
             }
         });
@@ -78,9 +76,9 @@ export class WorkLogComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.querying = true;
-                this.workService.updateWorkLog(result).subscribe(() => {
+                this.assignmentService.updateAssignment(result).subscribe(() => {
                     this.populate();
-                    this.snackbar.open('Work log modified.', 'Success!');
+                    this.snackbar.open('Assignment modified.', 'Success!');
                 }, () => {
                     this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
@@ -96,16 +94,16 @@ export class WorkLogComponent implements OnInit {
                 title: 'Warning',
                 icon: 'warning',
                 action: 'Delete',
-                content: 'Are you sure you want to delete this work log?'
+                content: 'Are you sure you want to delete this assignment?'
             }
         });
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.querying = true;
-                this.workService.deleteWorkLog(element.id).subscribe(() => {
+                this.assignmentService.deleteAssignment(element.id).subscribe(() => {
                     this.populate();
-                    this.snackbar.open('Work log deleted.', 'Success!');
+                    this.snackbar.open('Assignment deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
@@ -121,24 +119,24 @@ export class WorkLogComponent implements OnInit {
     populate(): void {
         this.querying = true;
         if (this.user.role === Role.EMPLOYEE) {
-            this.workService.getWorkLogsForEmployee(this.auth.getCurrentUser().id).subscribe(worklogs => {
-                this.dataSource.data = worklogs;
+            this.assignmentService.getAssignmentsForEmployee(this.auth.getCurrentUser().id).subscribe(assignments => {
+                this.dataSource.data = assignments;
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
             });
         } else if (this.user.role === Role.MANAGER) {
-            this.workService.getWorkLogsForManager(this.auth.getCurrentUser().id).subscribe(worklogs => {
-                this.dataSource.data = worklogs;
+            this.assignmentService.getAssignmentsForManager(this.auth.getCurrentUser().id).subscribe(assignments => {
+                this.dataSource.data = assignments;
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
             });
         } else if (this.user.is_admin) {
-            this.workService.getWorkLogs().subscribe(worklogs => {
-                this.dataSource.data = worklogs;
+            this.assignmentService.getAssignments().subscribe(assignments => {
+                this.dataSource.data = assignments;
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');

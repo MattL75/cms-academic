@@ -22,6 +22,7 @@ import { EmployeeGuard } from './guards/employee.guard';
 import { NotClientGuard } from './guards/not-client.guard';
 import { SupervisedComponent } from './components/role-pages/manager/supervised/supervised.component';
 import { ManagerGuard } from './guards/manager.guard';
+import { AssignmentComponent } from './components/role-pages/employee/assignment/assignment.component';
 
 const routes: Routes = [
     {
@@ -38,6 +39,7 @@ const routes: Routes = [
             {path: 'my-contracts', component: ClientContractsComponent, canActivate: [ClientGuard]},
             {path: 'supervised', component: SupervisedComponent, canActivate: [ManagerGuard]},
             {path: 'worklog', component: WorkLogComponent, canActivate: [EmployeeGuard]},
+            {path: 'assignments', component: AssignmentComponent, canActivate: [EmployeeGuard]},
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
         ]
     },
