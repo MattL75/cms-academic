@@ -3,7 +3,11 @@
 
   function get() {
     $provinces = QueryBuilder::select("Province", ["name"])->execute();
-
-    return json_encode($provinces);
+    $filtered = [];
+    foreach ($provinces as $province) {
+      array_push($filtered, filter(["name"], $province));
+    }
+    
+    return json_encode($filtered);
   }
 ?>

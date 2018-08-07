@@ -6,7 +6,7 @@ function restricted(Array $roles) {
   if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
     $userRole = $user->role;
-    if ($userRole == 'Admin') {
+    if ($user->is_admin) {
       return;
     }
     foreach ($roles as $role) {
