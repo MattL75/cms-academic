@@ -32,10 +32,20 @@
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
-            <mat-form-field class="dialog-field full-width">
+            <mat-form-field class="dialog-field">
                 <mat-select placeholder="Type" [formControl]="entityForm.controls['contract_type']">
                     <mat-option *ngFor="let contractType of contractTypes" [value]="contractType">
                         {{contractType | normalize}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="Type" [formControl]="entityForm.controls['active']">
+                    <mat-option [value]="true">
+                        Active
+                    </mat-option>
+                    <mat-option [value]="false">
+                        Expired
                     </mat-option>
                 </mat-select>
             </mat-form-field>

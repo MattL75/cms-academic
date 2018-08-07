@@ -17,8 +17,10 @@ export class ClientsDialogComponent implements OnInit {
         email_domain: new FormControl('', [Validators.required]),
         name: new FormControl('', [Validators.required]),
         province: new FormControl('', [Validators.required]),
+        address: new FormControl('', [Validators.required]),
+        postal_code: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
+        password: new FormControl(''),
         role: new FormControl(Role.CLIENT),
         is_admin: new FormControl(false)
     });
@@ -26,7 +28,7 @@ export class ClientsDialogComponent implements OnInit {
     provinces = Object.keys(Province);
 
     constructor(public dialogRef: MatDialogRef<ClientsDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: {entity: Client, title: string, action: string}) {
+                @Inject(MAT_DIALOG_DATA) public data: {entity: Client, title: string, action: string, mode: string}) {
     }
 
     ngOnInit() {
@@ -34,6 +36,8 @@ export class ClientsDialogComponent implements OnInit {
         this.entityForm.controls['email_domain'].setValue(this.data.entity.email_domain);
         this.entityForm.controls['name'].setValue(this.data.entity.name);
         this.entityForm.controls['province'].setValue(this.data.entity.province);
+        this.entityForm.controls['address'].setValue(this.data.entity.address);
+        this.entityForm.controls['postal_code'].setValue(this.data.entity.postal_code);
         this.entityForm.controls['username'].setValue(this.data.entity.username);
         this.entityForm.controls['password'].setValue(this.data.entity.password);
     }

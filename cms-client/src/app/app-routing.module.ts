@@ -16,11 +16,12 @@ import { SalesAssociatesComponent } from './components/home/sales-associates/sal
 import { BaseProfileComponent } from './components/profiles/base-profile/base-profile.component';
 import { ClientContractsComponent } from './components/role-pages/client/client-contracts/client-contracts.component';
 import { ClientGuard } from './guards/client.guard';
-import { ManagedComponent } from './components/role-pages/manager/managed/managed.component';
-import { ManagerGuard } from './guards/manager.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { WorkLogComponent } from './components/role-pages/employee/work-log/work-log.component';
 import { EmployeeGuard } from './guards/employee.guard';
+import { NotClientGuard } from './guards/not-client.guard';
+import { SupervisedComponent } from './components/role-pages/manager/supervised/supervised.component';
+import { ManagerGuard } from './guards/manager.guard';
 
 const routes: Routes = [
     {
@@ -28,14 +29,14 @@ const routes: Routes = [
             {path: 'managers', component: ManagersComponent},
             {path: 'employees', component: EmployeesComponent},
             {path: 'dashboard', component: DashboardComponent},
-            {path: 'contracts', component: ContractsComponent},
+            {path: 'contracts', component: ContractsComponent, canActivate: [NotClientGuard]},
             {path: 'clients', component: ClientsComponent},
             {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
             {path: 'departments', component: DepartmentsComponent},
             {path: 'associates', component: SalesAssociatesComponent},
             {path: 'profile', component: BaseProfileComponent},
             {path: 'my-contracts', component: ClientContractsComponent, canActivate: [ClientGuard]},
-            {path: 'managed-contracts', component: ManagedComponent, canActivate: [ManagerGuard]},
+            {path: 'supervised', component: SupervisedComponent, canActivate: [ManagerGuard]},
             {path: 'worklog', component: WorkLogComponent, canActivate: [EmployeeGuard]},
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
         ]

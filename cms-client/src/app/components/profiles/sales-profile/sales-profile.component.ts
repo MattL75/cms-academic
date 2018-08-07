@@ -18,7 +18,6 @@ export class SalesProfileComponent implements OnInit {
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
         role: new FormControl(Role.SALES_ASSOCIATE, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required])
     });
@@ -33,7 +32,6 @@ export class SalesProfileComponent implements OnInit {
         this.entityForm.controls['first_name'].setValue(this.user.first_name);
         this.entityForm.controls['last_name'].setValue(this.user.last_name);
         this.entityForm.controls['username'].setValue(this.user.username);
-        this.entityForm.controls['password'].setValue(this.user.password);
         this.entityForm.controls['role'].setValue(this.user.role);
         this.entityForm.controls['role'].disable();
         this.entityForm.controls['is_admin'].setValue(this.user.is_admin);

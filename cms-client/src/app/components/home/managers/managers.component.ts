@@ -39,7 +39,8 @@ export class ManagersComponent implements OnInit {
             data: {
                 manager: {},
                 title: 'Add a Manager',
-                action: 'Add'
+                action: 'Add',
+                mode: 'add'
             }
         });
 
@@ -63,7 +64,8 @@ export class ManagersComponent implements OnInit {
             data: {
                 manager: Object.assign({}, manager),
                 title: 'Edit a Manager',
-                action: 'Save'
+                action: 'Save',
+                mode: 'edit'
             }
         });
 

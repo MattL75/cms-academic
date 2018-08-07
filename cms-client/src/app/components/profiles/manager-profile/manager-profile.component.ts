@@ -30,7 +30,6 @@ export class ManagerProfileComponent implements OnInit {
         insurance: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
         role: new FormControl(Role.MANAGER, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required]),
     });
@@ -56,7 +55,6 @@ export class ManagerProfileComponent implements OnInit {
         this.entityForm.controls['province'].setValue(this.user.province);
         this.entityForm.controls['insurance'].setValue(this.user.insurance);
         this.entityForm.controls['username'].setValue(this.user.username);
-        this.entityForm.controls['password'].setValue(this.user.password);
         this.entityForm.controls['email'].setValue(this.user.email);
         this.entityForm.controls['phone_number'].setValue(this.user.phone_number);
         this.entityForm.controls['middle_initials'].setValue(this.user.middle_initial);
