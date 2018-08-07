@@ -20,12 +20,13 @@ export class RegisterComponent implements OnInit {
         address: new FormControl('', [Validators.required]),
         province: new FormControl('', [Validators.required]),
         name: new FormControl('', [Validators.required]),
+        email_domain: new FormControl('', [Validators.required]),
         role: new FormControl(Role.CLIENT),
         id: new FormControl(null),
         is_admin: new FormControl(false),
     });
 
-    constructor(protected auth: AuthService) {
+    constructor(public auth: AuthService) {
     }
 
     ngOnInit() {

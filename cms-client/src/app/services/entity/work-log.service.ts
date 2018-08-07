@@ -15,12 +15,21 @@ export class WorkLogService {
     constructor(private http: HttpClient) {
     }
 
+    // Use for an admin viewing work_log page
     public getWorkLogs(): Observable<WorkLog[]> {
         return this.http.get<WorkLog[]>(this.baseUrl + this.suffix).pipe(
             catchError(this.handleError)
         );
     }
 
+    // Use for a manager viewing work_log page
+    public getWorkLogsForManager(id: number): Observable<WorkLog[]> {
+        return this.http.get<WorkLog[]>(this.baseUrl + this.suffix + `?manager_id= ${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    // Use for an employee viewing work_log page
     public getWorkLogsForEmployee(id: number): Observable<WorkLog[]> {
         return this.http.get<WorkLog[]>(this.baseUrl + this.suffix + `?employee_id= ${id}`).pipe(
             catchError(this.handleError)
