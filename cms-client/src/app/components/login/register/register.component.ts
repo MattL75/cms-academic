@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
         is_admin: new FormControl(false),
     });
 
-    constructor(protected auth: AuthService) {
+    constructor(public auth: AuthService) {
     }
 
     ngOnInit() {

@@ -144,7 +144,7 @@ export class ContractsComponent implements OnInit {
         });
     }
 
-    private populate(): void {
+    populate(): void {
         this.querying = true;
         this.contractService.getContracts().subscribe(contracts => {
             this.dataSource.data = contracts;

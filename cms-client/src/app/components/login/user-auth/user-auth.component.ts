@@ -16,7 +16,7 @@ export class UserAuthComponent implements OnInit {
         password: new FormControl('', [Validators.required]),
     });
 
-    constructor(protected auth: AuthService) {
+    constructor(public auth: AuthService) {
     }
 
     ngOnInit() {
