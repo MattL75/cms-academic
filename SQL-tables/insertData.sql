@@ -513,26 +513,46 @@ INSERT INTO Manager (id, email, phone_number) VALUES (23, 'a@a.a', '514-555-5555
 INSERT INTO Manager (id, email, phone_number) VALUES (24, 'a@a.a', '514-555-5555');
 INSERT INTO Manager (id, email, phone_number) VALUES (25, 'a@a.a', '514-555-5555');
 
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1345678.75, 123478, 4, FALSE, '2017-1-04', 10, 1, 21, 46, 'Contracts', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1234678.75, 123678, 4, FALSE, '2017-2-04', 8, 2, 22, 47, 'Repairs', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (2345678.75, 125678.75, 4, FALSE, '2017-3-04', 10, 3, 23, 48, 'Hiring', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (12345678.75, 123678.50, 4, FALSE, '2017-4-04', 8, 4, 24, 49, 'Education', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type) VALUES (1234568.75, 234678.25, 4, FALSE, '2017-5-04', 5, 25, 50,'Shipping', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (12345678.75, 134578.75, 4, FALSE, '2017-6-04', 6, 6, 6, 51, 'Contracts', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1234578.75, 123458, 4, FALSE, '2017-7-04', 7, 7, 7, 52, 'Repairs', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1235678.75, 125678, 2, FALSE, '2017-7-04', 8, 8, 8, 53, 'Hiring', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1234678.75, 125678, 2, FALSE, '2017-7-04', 10, 9, 9, 54, 'Education', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type) VALUES (1234568.75, 123478, 2, FALSE, '2017-7-04', 10, 10, 55, 'Shipping', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1245678.75, 123456, 2, FALSE, '2017-7-04', 10, 11, 11 ,56, 'Contracts', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1235678.75, 145678, 2, FALSE, '2017-7-04', 10, 12, 12 ,57, 'Repairs', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1234678.75, 125678, 2, FALSE, '2017-7-04', 10, 13, 13 ,58, 'Hiring', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1345678.75, 123458, 3, FALSE, '2017-7-04', 10, 14, 14 ,59, 'Education', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type) VALUES (1235678.75, 123678.75, 3, FALSE, '2017-7-04', 15, 15 ,60, 'Shipping', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1234568.75, 145678.75, 3, FALSE, '2017-8-04', 10, 16, 16 ,61, 'Contracts', 'Silver');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1234578.75, 145678.75, 3, FALSE, '2017-9-04', 5, 17, 17 ,62, 'Repairs', 'Silver');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1245678.75, 345678.75, 3, FALSE, '2017-10-04', 7, 18, 18 ,63, 'Hiring', 'Silver');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type) VALUES (1235678.75, 123478.75, 3, FALSE, '2017-11-04', 10, 19, 19 ,64, 'Education', 'Silver');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type) VALUES (2345678.75, 123467.75, 3, FALSE, '2017-12-04', 20, 20 ,65, 'Shipping', 'Silver');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1345678.75, 123478, 4, FALSE, '2017-1-04', 10, 1, 21, 46, 'Contracts', 'Premium');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1234678.75, 123678, 4, FALSE, '2017-2-04', 8, 2, 22, 47, 'Repairs', 'Premium');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (2345678.75, 125678.75, 4, FALSE, '2017-3-04', 10, 3, 23, 48, 'Hiring', 'Premium');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (12345678.75, 123678.50, 4, FALSE, '2017-4-04', 8, 4, 24, 49, 'Education', 'Premium');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1234568.75, 234678.25, 4, FALSE, '2017-5-04', 5, 25, 50,'Shipping', 'Premium');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (12345678.75, 134578.75, 4, FALSE, '2017-6-04', 6, 6, 6, 51, 'Contracts', 'Diamond');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1234578.75, 123458, 4, FALSE, '2017-7-04', 7, 7, 7, 52, 'Repairs', 'Diamond');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1235678.75, 125678, 2, FALSE, '2017-7-04', 8, 8, 8, 53, 'Hiring', 'Diamond');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1234678.75, 125678, 2, FALSE, '2017-7-04', 10, 9, 9, 54, 'Education', 'Diamond');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1234568.75, 123478, 2, FALSE, '2017-7-04', 10, 10, 55, 'Shipping', 'Diamond');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1245678.75, 123456, 2, FALSE, '2017-7-04', 10, 11, 11 ,56, 'Contracts', 'Gold');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1235678.75, 145678, 2, FALSE, '2017-7-04', 10, 12, 12 ,57, 'Repairs', 'Gold');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1234678.75, 125678, 2, FALSE, '2017-7-04', 10, 13, 13 ,58, 'Hiring', 'Gold');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1345678.75, 123458, 3, FALSE, '2017-7-04', 10, 14, 14 ,59, 'Education', 'Gold');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1235678.75, 123678.75, 3, FALSE, '2017-7-04', 15, 15 ,60, 'Shipping', 'Gold');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1234568.75, 145678.75, 3, FALSE, '2017-8-04', 10, 16, 16 ,61, 'Contracts', 'Silver');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1234578.75, 145678.75, 3, FALSE, '2017-9-04', 5, 17, 17 ,62, 'Repairs', 'Silver');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1245678.75, 345678.75, 3, FALSE, '2017-10-04', 7, 18, 18 ,63, 'Hiring', 'Silver');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (1235678.75, 123478.75, 3, FALSE, '2017-11-04', 10, 19, 19 ,64, 'Education', 'Silver');
+INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES (2345678.75, 123467.75, 3, FALSE, '2017-12-04', 20, 20 ,65, 'Shipping', 'Silver');
 
 INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 3 , 3, FALSE,1);
 INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 5 , 5, FALSE,1);
