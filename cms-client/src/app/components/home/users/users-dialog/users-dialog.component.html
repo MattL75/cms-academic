@@ -6,9 +6,6 @@
                 <input matInput formControlName="username" placeholder="Username">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="password" matInput formControlName="password" placeholder="Password">
-            </mat-form-field>
-            <mat-form-field class="dialog-field">
                 <mat-select placeholder="User role" [formControl]="entityForm.controls['role']">
                     <mat-option *ngFor="let role of roles" [value]="role">
                         {{role | normalize}}

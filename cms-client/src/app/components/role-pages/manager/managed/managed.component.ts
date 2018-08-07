@@ -17,8 +17,12 @@ import { ContractType } from '../../../../models/enums/contract-type.enum';
 })
 export class ManagedComponent implements OnInit {
 
+    // ********************************
+    // NOT USED - KEEPING IT IN FOR NOW
+    // ********************************
+
     dataSource: MatTableDataSource<Contract>;
-    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type'];
+    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type', 'active'];
     querying = false;
     openFilter = false;
     activeCategory = 'all';
@@ -40,25 +44,25 @@ export class ManagedComponent implements OnInit {
     }
 
     populate(): void {
-        this.querying = true;
-        this.managerService.getManagedContracts(this.auth.getCurrentUser().id).subscribe(contracts => {
-            this.dataSource.data = contracts;
-            this.querying = false;
-        }, () => {
-            this.snackbar.open('Population query failed.', 'Dismiss');
-            this.querying = false;
-        });
+        // this.querying = true;
+        // this.managerService.getManagedContracts(this.auth.getCurrentUser().id).subscribe(contracts => {
+        //     this.dataSource.data = contracts;
+        //     this.querying = false;
+        // }, () => {
+        //     this.snackbar.open('Population query failed.', 'Dismiss');
+        //     this.querying = false;
+        // });
     }
 
     selectCategory(category: string): void {
-        this.querying = true;
-        this.managerService.getManagedContractsByCategory(this.auth.getCurrentUser().id, category).subscribe(contracts => {
-            this.dataSource.data = contracts;
-            this.activeCategory = category;
-            this.querying = false;
-        }, () => {
-            this.snackbar.open('Category change failed.', 'Dismiss');
-            this.querying = false;
-        });
+        // this.querying = true;
+        // this.managerService.getManagedContractsByCategory(this.auth.getCurrentUser().id, category).subscribe(contracts => {
+        //     this.dataSource.data = contracts;
+        //     this.activeCategory = category;
+        //     this.querying = false;
+        // }, () => {
+        //     this.snackbar.open('Category change failed.', 'Dismiss');
+        //     this.querying = false;
+        // });
     }
 }

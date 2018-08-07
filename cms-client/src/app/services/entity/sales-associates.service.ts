@@ -9,7 +9,7 @@ import { SalesAssociate } from '../../models/sales-associate.model';
 })
 export class SalesAssociatesService {
 
-    baseUrl = '/api/sales';
+    baseUrl = '/api/sale';
     suffix = '.php';
 
     constructor(private http: HttpClient) {

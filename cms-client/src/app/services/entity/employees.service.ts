@@ -9,7 +9,7 @@ import { Employee } from '../../models/employee.model';
 })
 export class EmployeesService {
 
-    baseUrl = '/api/employees';
+    baseUrl = '/api/employee';
     suffix = '.php';
 
     constructor(private http: HttpClient) {

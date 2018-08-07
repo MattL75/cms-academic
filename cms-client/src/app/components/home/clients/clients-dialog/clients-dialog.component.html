@@ -11,8 +11,14 @@
             <mat-form-field class="dialog-field">
                 <input matInput formControlName="username" placeholder="Username">
             </mat-form-field>
-            <mat-form-field class="dialog-field">
+            <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">
                 <input matInput type="password" formControlName="password" placeholder="Password">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input matInput type="text" formControlName="address" placeholder="Address">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input matInput type="text" formControlName="postal_code" placeholder="Postal code">
             </mat-form-field>
             <mat-form-field class="dialog-field full-width">
                 <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">

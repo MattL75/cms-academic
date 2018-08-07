@@ -1,11 +1,24 @@
 <?php
-// TODO abstract filtering functionality to reduce code duplication
+// all or nothing filtering at the moment
+function filter(Array $fields, Array $tupples, bool $strict = FALSE) {
+  $filtered = [];
+  foreach($fields as $field) {
+    if (isset($tupples[$field])) {
+      $filtered[$field] = $tupples[$field];
+    } else if($strict) {
+      throw new Exception("{$field} required");
+    }
+  }
+
+  return $filtered;
+}
+
 class QueryBuilder {
   private static $conn;
 
   public static function init() { // allow db params to be args
-    $servername = "mysql_comp353"; // name of container on docker network
-    $username = "root";
+    $servername = "test_db2"; // name of container on docker network
+    $username = "php";
     $password = "1234";
     $dbname = "project_db"; // name of database
     QueryBuilder::$conn = new PDO("mysql:host={$servername};dbname={$dbname};charset=utf8", $username, $password);
@@ -147,7 +160,7 @@ class InsertBuilder {
     if ($stmnt->execute($this->data)) {
       return $this->connection->lastInsertId();
     } else {
-      throw new Exception($stmnt->errorInfo());
+      throw new Exception($stmnt->errorInfo()[2]);
     }
   }
 }
@@ -229,7 +242,7 @@ class DeleteBuilder {
   }
   public function and(string $condition) {
     if (isset($this->filter_string)) {
-      $this->filter_string .= "\nAND {$condition}";
+      $this->filter_string .= "\n AND {$condition}";
     } else {
       // error
     }
@@ -242,6 +255,7 @@ class DeleteBuilder {
   }
   
   public function execute() {
+    // echo $this->getQuery();
     $result =  $this->connection->query($this->getQuery());
     if (!$result) {
       throw new Exception("delete failed");

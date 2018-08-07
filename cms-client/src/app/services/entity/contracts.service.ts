@@ -9,7 +9,7 @@ import { Contract } from '../../models/contract.model';
 })
 export class ContractsService {
 
-    baseUrl = '/api/contracts';
+    baseUrl = '/api/contract';
     suffix = '.php';
 
     constructor(private http: HttpClient) {
@@ -23,6 +23,12 @@ export class ContractsService {
 
     public getClientContracts(id: number): Observable<Contract[]> {
         return this.http.get<Contract[]>(this.baseUrl + this.suffix + `?client_id= ${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    public getContractsByCategory(type: string): Observable<Contract[]> {
+        return this.http.get<Contract[]>(this.baseUrl + this.suffix + `?contract_type=${type}`).pipe(
             catchError(this.handleError)
         );
     }

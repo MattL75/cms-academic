@@ -6,10 +6,11 @@ class Users {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(User::TABLE_FIELDS, $params);
     // query builder must be included in another file
     $qb = QueryBuilder::select(User::TABLE_NAME, User::TABLE_FIELDS);
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
         $qb->where(User::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;
@@ -59,14 +60,14 @@ class User {
   ];
   public $id;
   public $username;
-  public $password;
+  // public $password;
   public $is_admin;
   public $role;
 
   function __construct(array $data) {
     $this->id = $data['id'];
     $this->username = $data['username'];
-    $this->password = $data['password'];
+    // $this->password = $data['password'];
     $this->is_admin = $data['is_admin'];
     $this->role = $data['role']; // eager load?
   }
@@ -81,14 +82,14 @@ class User {
     if (isset($data['username'])) {
       $this->username = $data['username'];
     }
-    if (isset($data['password'])) {
-      $this->city = $data['password'];
-    }
+    // if (isset($data['password'])) {
+    //   $this->city = $data['password'];
+    // }
     if (isset($data['is_admin'])) {
-      $this->postal_code = $data['is_admin'];
+      $this->is_admin = $data['is_admin'];
     }
     if (isset($data['role'])) {
-      $this->address = $data['role'];
+      $this->role = $data['role'];
     }
     $this->save();
 
@@ -125,7 +126,7 @@ class User {
     }
     $this->id = $data['id'];
     $this->username = $data['username'];
-    $this->password = $data['password'];
+    // $this->password = $data['password'];
     $this->is_admin = $data['is_admin'];
     $this->role = $data['role']; // eager load?
 

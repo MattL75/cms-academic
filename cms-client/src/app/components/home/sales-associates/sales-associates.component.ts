@@ -39,7 +39,8 @@ export class SalesAssociatesComponent implements OnInit {
             data: {
                 entity: {},
                 title: 'Add an Associate',
-                action: 'Add'
+                action: 'Add',
+                mode: 'add'
             }
         });
 
@@ -62,7 +63,8 @@ export class SalesAssociatesComponent implements OnInit {
             data: {
                 manager: Object.assign({}, associate),
                 title: 'Edit an Associate',
-                action: 'Save'
+                action: 'Save',
+                mode: 'edit'
             }
         });
 

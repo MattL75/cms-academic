@@ -6,10 +6,11 @@ class Employees {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(Employee::TABLE_FIELDS, $params);
     // query builder must be included in another file
-    $qb = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS);
+    $qb = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS)->join("Insurance_Plan", ["rate"], "type", "insurance_type");
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
         $qb->where(Employee::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;
@@ -22,7 +23,7 @@ class Employees {
   }
   
   static function find(array $params) {
-    $result_data = Employees::fullFind($params)[0];
+    $result_data = Employees::fullFind($filtered)[0];
 
     return new Employee($result_data);
   }
@@ -57,16 +58,15 @@ class Employee {
     'last_name',
     'department_id',
     'insurance_type',
-    'province_name',
-    'user_id'
+    'province_name'
   ];
   public $id;
   public $first_name;
   public $last_name;
   public $department_id;
   public $insurance_type;
+  public $insurance_rate;
   public $province_name;
-  public $user_id;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -74,8 +74,8 @@ class Employee {
     $this->last_name = $data['last_name'];
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
+    $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
-    $this->user_id = $data['user_id'];
   }
 
   /**
@@ -99,9 +99,6 @@ class Employee {
     }
     if (isset($data['province_name'])) {
       $this->province = $data['province_name'];
-    }
-    if (isset($data['user_id'])) {
-      $this->email_id = $data['user_id'];
     }
     $this->save();
 
@@ -130,6 +127,7 @@ class Employee {
    */
   public function sync(): Employee {
     $data = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS)
+              ->join("Insurance_Plan", ["rate"], "type", "insurance_type")
               ->where("id = \"{$this->id}\"")
               ->execute()[0];
     if (!isset($data)) {
@@ -141,8 +139,8 @@ class Employee {
     $this->last_name = $data['last_name'];
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
+    $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
-    $this->user_id = $data['user_id'];
 
     return $this;
   }
@@ -153,9 +151,26 @@ class Employee {
       ->execute();
   }
 
+  function getContracts() {
+    $results = QueryBuilder::select(Contract::TABLE_NAME, Contract::TABLE_FIELDS)
+                ->join("Assignment", [], "contract_id", "Contract.id")
+                ->where("employee_id = \"{$this->id}\"")->execute();
+    $contracts = [];
+    foreach ($results as $con) {
+      array_push($contracts, new Contract($con));
+    }
+
+    return $contracts;
+  }
+
+    // TODO add hours
+  
+  function addContract(string $contract_id) {
+    QueryBuilder::insert("Assignment", ["employee_id" => $this->id, "contract_id" => $contract_id]);
+  }
+
   function toJson(): string {
     return json_encode($this);
   }
 }
-
 ?>

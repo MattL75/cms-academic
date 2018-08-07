@@ -9,7 +9,7 @@ import { Client } from '../../models/client.model';
 })
 export class ClientsService {
 
-    baseUrl = '/api/clients';
+    baseUrl = '/api/client';
     suffix = '.php';
 
     constructor(private http: HttpClient) {

@@ -28,6 +28,7 @@ export class ContractsDialogComponent implements OnInit {
         client_id: new FormControl('', [Validators.required]),
         business_line: new FormControl('', [Validators.required]),
         contract_type: new FormControl('', [Validators.required]),
+        active: new FormControl('', [Validators.required])
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
@@ -49,6 +50,7 @@ export class ContractsDialogComponent implements OnInit {
         this.entityForm.controls['client_id'].setValue(this.data.entity.client_id);
         this.entityForm.controls['business_line'].setValue(this.data.entity.business_line);
         this.entityForm.controls['contract_type'].setValue(this.data.entity.contract_type);
+        this.entityForm.controls['active'].setValue(this.data.entity.active);
         this.entityForm.controls['recorded_by'].setValue(this.authService.getCurrentUser().id);
 
         this.depts.getDepartments().subscribe(depts => {

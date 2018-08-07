@@ -6,6 +6,9 @@ import { expandX } from '../../../animations/expand';
 import { Contract } from '../../../models/contract.model';
 import { ContractsService } from '../../../services/entity/contracts.service';
 import { ContractsDialogComponent } from './contracts-dialog/contracts-dialog.component';
+import { AuthService } from '../../../services/auth.service';
+import { Role } from '../../../models/enums/role.enum';
+import { ContractType } from '../../../models/enums/contract-type.enum';
 
 @Component({
     selector: 'cms-contracts',
@@ -18,22 +21,33 @@ import { ContractsDialogComponent } from './contracts-dialog/contracts-dialog.co
 export class ContractsComponent implements OnInit {
 
     dataSource: MatTableDataSource<Contract>;
-    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type', 'actions'];
+    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type', 'active', 'actions'];
     querying = false;
     openFilter = false;
+    activeCategory = 'all';
+    userRole = '';
+    is_admin = false;
+    Roles = Role;
+    types = Object.keys(ContractType);
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private contractService: ContractsService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private contractService: ContractsService, private auth: AuthService) {
     }
 
     ngOnInit() {
+        this.userRole = this.auth.getUserRole();
+        this.is_admin = this.auth.getCurrentUser().is_admin;
         this.dataSource = new MatTableDataSource<Contract>();
         this.dataSource.sort = this.sort;
         this.populate();
     }
 
     public add(): void {
+        if (this.userRole !== this.Roles.SALES_ASSOCIATE && !this.is_admin) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         const dialogRef = this.dialog.open(ContractsDialogComponent, {
             width: '450px',
             data: {
@@ -58,6 +72,10 @@ export class ContractsComponent implements OnInit {
     }
 
     public edit(contract: Contract): void {
+        if (this.userRole !== this.Roles.SALES_ASSOCIATE && !this.is_admin) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         const dialogRef = this.dialog.open(ContractsDialogComponent, {
             width: '450px',
             data: {
@@ -82,6 +100,10 @@ export class ContractsComponent implements OnInit {
     }
 
     public delete(element: Contract): void {
+        if (this.userRole !== this.Roles.SALES_ASSOCIATE && !this.is_admin) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             width: '350px',
             data: {
@@ -110,10 +132,23 @@ export class ContractsComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
+    selectCategory(category: string): void {
+        this.querying = true;
+        this.contractService.getContractsByCategory(category).subscribe(contracts => {
+            this.dataSource.data = contracts;
+            this.activeCategory = category;
+            this.querying = false;
+        }, () => {
+            this.snackbar.open('Category change failed.', 'Dismiss');
+            this.querying = false;
+        });
+    }
+
     private populate(): void {
         this.querying = true;
         this.contractService.getContracts().subscribe(contracts => {
             this.dataSource.data = contracts;
+            this.activeCategory = 'all';
             this.querying = false;
         }, () => {
             this.snackbar.open('Population query failed.', 'Dismiss');

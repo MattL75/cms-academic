@@ -10,6 +10,7 @@ export class Manager {
                 public middle_initial: string = 'M',
                 public insurance?: InsuranceType,
                 public province?: Province,
+                public contract_type_preference?: string,
                 public department_id?: number,
                 public username?: string,
                 public password?: string,

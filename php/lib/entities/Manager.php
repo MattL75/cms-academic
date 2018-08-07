@@ -6,16 +6,18 @@ class Managers {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(Manager::TABLE_FIELDS, $params);
     // query builder must be included in another file
     $qb = QueryBuilder::select(Manager::TABLE_NAME, Manager::TABLE_FIELDS)
-          ->join(Employee::TABLE_NAME, Employee::TABLE_FIELDS, 'Employee.id', 'Manager.id');//think of a way to make this work
+          ->join(Employee::TABLE_NAME, Employee::TABLE_FIELDS, 'Employee.id', 'Manager.id')
+          ->join('Insurance_Plan', ["rate"], 'insurance_type', 'type');
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
-        $qb->where(Manager::TABLE_NAME."{$field} = \"{$value}\"");
+        $qb->where(Manager::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;
       } else {
-        $qb->and(Manager::TABLE_NAME."{$field} = \"{$value}\"");
+        $qb->and(Manager::TABLE_NAME.".{$field} = \"{$value}\"");
       }
     }
 
@@ -64,10 +66,10 @@ class Manager {
   public $last_name;
   public $department_id;
   public $insurance_type;
+  public $insurance_rate;
   public $province_name;
   public $phone_number;
   public $email;
-  public $user_id;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -76,10 +78,10 @@ class Manager {
     $this->last_name = $data['last_name'];
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
+    $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];
-    $this->user_id = $data['user_id'];
   }
 
   /**
@@ -113,9 +115,6 @@ class Manager {
     if (isset($data['phone_number'])) {
       $this->phone_number = $data['phone_number'];
     }
-    if (isset($data['user_id'])) {
-      $this->user_id = $data['user_id'];
-    }
     $this->save();
 
     return $this;
@@ -145,8 +144,36 @@ class Manager {
     return $this;
   }
 
-  public function getEmployees(Array $query) {
-    // fetch using manages table
+  public function getEmployees() {
+    $results = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS)
+                ->join("Supervises", [], "employee_id", "Employee.id")
+                ->join("Insurance_Plan", ["rate"], "type", "insurance_type")
+                ->where("manager_id = \"{$this->id}\"")->execute();
+    $employees = [];
+    foreach ($results as $emp) {
+      array_push($employees, new Employee($emp));
+    }
+
+    return $employees;
+  }
+
+  public function addEmployee(string $employee_id) {
+    QueryBuilder::insert("Supervises", ["manager_id"=>"{$this->id}", "employee_id" => "{$employee_id}"])->execute();
+  }
+
+  public function removeEmployee(string $employee_id) {
+    QueryBuilder::delete("Supervises")
+    ->where("manager_id = \"{$this->id}\"")
+    ->and("employee_id = \"{$employee_id}\"")
+    ->execute();
+  }
+
+  public function getContracts() {
+    return Contracts::findAll(["manager_id" => $this->id]);
+  }
+
+  public function addContract(string $contract_id) {
+    Contracts::find(["id" => $contract_id])->update(["manager_id" => $this->id]);
   }
 
   /**
@@ -167,10 +194,10 @@ class Manager {
     $this->last_name = $data['last_name'];
     $this->department_id = $data['department_id'];
     $this->insurance_type = $data['insurance_type'];
+    $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];
-    $this->user_id = $data['user_id'];
 
     return $this;
   }

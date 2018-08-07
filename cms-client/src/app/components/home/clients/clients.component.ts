@@ -18,7 +18,7 @@ import { ClientsDialogComponent } from './clients-dialog/clients-dialog.componen
 export class ClientsComponent implements OnInit {
 
     dataSource: MatTableDataSource<Client>;
-    displayedColumns: string[] = ['id', 'name', 'province', 'email_domain', 'actions'];
+    displayedColumns: string[] = ['id', 'name', 'province', 'address', 'postal_code', 'email_domain', 'actions'];
     querying = false;
     openFilter = false;
 
@@ -39,7 +39,8 @@ export class ClientsComponent implements OnInit {
             data: {
                 entity: {},
                 title: 'Add a Client',
-                action: 'Add'
+                action: 'Add',
+                mode: 'add'
             }
         });
 
@@ -63,7 +64,8 @@ export class ClientsComponent implements OnInit {
             data: {
                 manager: Object.assign({}, client),
                 title: 'Edit a Client',
-                action: 'Save'
+                action: 'Save',
+                mode: 'edit'
             }
         });
 

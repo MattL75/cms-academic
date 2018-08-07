@@ -7,6 +7,7 @@ export class Employee {
                 public last_name: string = 'Doe',
                 public insurance: InsuranceType,
                 public province: Province,
+                public contract_type_preference?: string,
                 public username?: string,
                 public password?: string,
                 public role?: Role,
