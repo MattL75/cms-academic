@@ -6,10 +6,11 @@ class Clients {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(Client::TABLE_FIELDS, $params);
     // query builder must be included in another file
     $qb = QueryBuilder::select(Client::TABLE_NAME, Client::TABLE_FIELDS);
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
         $qb->where(Client::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;

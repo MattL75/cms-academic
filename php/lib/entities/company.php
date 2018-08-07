@@ -6,10 +6,11 @@ class Companies {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
+    $filtered = filter(Company::TABLE_FIELDS, $params);
     // query builder must be included in another file
     $qb = QueryBuilder::select(Company::TABLE_NAME, Company::TABLE_FIELDS);
     $first = true;
-    foreach ($params as $field => $value) {
+    foreach ($filtered as $field => $value) {
       if ($first) {
         $qb->where(Company::TABLE_NAME.".{$field} = \"{$value}\"");
         $first = false;
@@ -156,5 +157,4 @@ class Company {
     return json_encode($this);
   }
 }
-
 ?>
