@@ -163,7 +163,23 @@ class Employee {
     return $contracts;
   }
 
-    // TODO add hours
+  
+  function getHours() {
+    $results = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS)
+      ->join("Assignment", "Assignment.id", "assignment_id")
+      ->where("employee_id = {$this->id}")
+      ->execute();
+  }
+
+  function addHours(string $assignment_id, string $hours, string $date) {
+    QueryBuilder::insert(WorkLog::TABLE_NAME, [
+      "assignment_id" => $assignment_id, 
+      "hours_worked" => $hours, 
+      "date_worked" => $date
+    ]);
+  }
+  
+  // TODO add hours
   
   function addContract(string $contract_id) {
     QueryBuilder::insert("Assignment", ["employee_id" => $this->id, "contract_id" => $contract_id]);
