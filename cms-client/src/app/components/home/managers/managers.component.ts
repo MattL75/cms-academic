@@ -115,7 +115,6 @@ export class ManagersComponent implements OnInit {
     private populate(): void {
         this.querying = true;
         this.managersService.getManagers().subscribe(managers => {
-            console.log(managers);
             this.dataSource.data = managers;
             this.querying = false;
         }, () => {

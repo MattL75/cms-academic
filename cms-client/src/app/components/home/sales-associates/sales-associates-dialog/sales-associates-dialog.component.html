@@ -8,7 +8,7 @@
             <mat-form-field class="dialog-field">
                 <input matInput formControlName="last_name" placeholder="Last name">
             </mat-form-field>
-            <mat-form-field class="dialog-field">
+            <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">
                 <input matInput formControlName="username" placeholder="Username">
             </mat-form-field>
             <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">

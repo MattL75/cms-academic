@@ -18,7 +18,7 @@ export class ClientProfileComponent implements OnInit {
         id: new FormControl(null, [Validators.required]),
         email_domain: new FormControl('', [Validators.required]),
         name: new FormControl('', [Validators.required]),
-        province: new FormControl('', [Validators.required]),
+        province_name: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
         postal_code: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
@@ -37,7 +37,7 @@ export class ClientProfileComponent implements OnInit {
         this.entityForm.controls['id'].setValue(this.user.id);
         this.entityForm.controls['email_domain'].setValue(this.user.email_domain);
         this.entityForm.controls['name'].setValue(this.user.name);
-        this.entityForm.controls['province'].setValue(this.user.province);
+        this.entityForm.controls['province_name'].setValue(this.user.province_name);
         this.entityForm.controls['address'].setValue(this.user.address);
         this.entityForm.controls['postal_code'].setValue(this.user.postal_code);
         this.entityForm.controls['username'].setValue(this.user.username);

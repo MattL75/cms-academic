@@ -8,7 +8,7 @@
             <mat-form-field class="dialog-field">
                 <input matInput formControlName="last_name" placeholder="Last name">
             </mat-form-field>
-            <mat-form-field class="dialog-field">
+            <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">
                 <input matInput formControlName="username" placeholder="Username">
             </mat-form-field>
             <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">
@@ -23,14 +23,14 @@
                 </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">
+                <mat-select placeholder="Province" [formControl]="entityForm.controls['province_name']">
                     <mat-option *ngFor="let province of provinces" [value]="province">
                         {{province | normalize}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <mat-select placeholder="Insurance" [formControl]="entityForm.controls['insurance']">
+                <mat-select placeholder="Insurance" [formControl]="entityForm.controls['insurance_type']">
                     <mat-option *ngFor="let insurance of insuranceTypes" [value]="insurance">
                         {{insurance | normalize}}
                     </mat-option>
