@@ -25,7 +25,7 @@ export class ClientsDialogComponent implements OnInit {
         is_admin: new FormControl(false)
     });
 
-    provinces = Object.keys(Province);
+    provinces = Object.values(Province);
 
     constructor(public dialogRef: MatDialogRef<ClientsDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: {entity: Client, title: string, action: string, mode: string}) {
@@ -40,9 +40,6 @@ export class ClientsDialogComponent implements OnInit {
         this.entityForm.controls['postal_code'].setValue(this.data.entity.postal_code);
         this.entityForm.controls['username'].setValue(this.data.entity.username);
         this.entityForm.controls['password'].setValue(this.data.entity.password);
-
-        this.entityForm.controls['province_name'].setValue('ontario');
-        console.log(this.entityForm.controls['province_name'].value);
 
         if (this.data.mode === 'add') {
             this.entityForm.controls['username'].setValidators(Validators.required);

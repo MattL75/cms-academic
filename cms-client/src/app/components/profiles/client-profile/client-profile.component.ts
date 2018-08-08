@@ -26,7 +26,7 @@ export class ClientProfileComponent implements OnInit {
         role: new FormControl(Role.CLIENT, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required])
     });
-    provinces = Object.keys(Province);
+    provinces = Object.values(Province);
     user: Client;
 
     constructor(private authService: AuthService, private clientsService: ClientsService, private snackbar: SnackbarService) {

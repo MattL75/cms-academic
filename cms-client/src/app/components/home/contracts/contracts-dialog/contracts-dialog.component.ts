@@ -50,8 +50,10 @@ export class ContractsDialogComponent implements OnInit {
         this.entityForm.controls['client_id'].setValue(this.data.entity.client_id);
         this.entityForm.controls['business_line'].setValue(this.data.entity.business_line);
         this.entityForm.controls['contract_type'].setValue(this.data.entity.contract_type);
-        this.entityForm.controls['active'].setValue(this.data.entity.active);
         this.entityForm.controls['recorded_by'].setValue(this.authService.getCurrentUser().id);
+
+        // TODO check if php fucks up this boolean
+        this.entityForm.controls['active'].setValue(this.data.entity.active);
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;

@@ -35,8 +35,8 @@ export class ManagerProfileComponent implements OnInit {
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
-    insuranceTypes = Object.keys(InsuranceType);
-    provinces = Object.keys(Province);
+    insuranceTypes = Object.values(InsuranceType);
+    provinces = Object.values(Province);
     user: Manager;
 
     constructor(private authService: AuthService, private depts: DepartmentsService, private managerService: ManagersService, private snackbar: SnackbarService) {

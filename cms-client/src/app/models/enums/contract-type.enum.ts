@@ -1,6 +1,6 @@
 export enum ContractType {
-    PREMIUM = 'premium',
-    GOLD = 'gold',
-    DIAMOND = 'diamond',
-    SILVER = 'silver'
+    PREMIUM = 'Premium',
+    GOLD = 'Gold',
+    DIAMOND = 'Diamond',
+    SILVER = 'Silver'
 }

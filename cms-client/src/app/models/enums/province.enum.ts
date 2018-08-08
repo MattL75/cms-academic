@@ -1,15 +1,15 @@
 export enum Province {
-    QUEBEC = 'quebec',
-    ONTARIO = 'ontario',
-    MANITOBA = 'manitoba',
-    BRITISH_COLOMBIA = 'british_colombia',
-    NEWFOUNDLAND = 'newfoundland',
-    NEW_BRUNSWICK = 'new_brunswick',
-    NOVA_SCOTIA = 'nova_scotia',
-    PRINCE_EDWARD_ISLAND = 'prince_edward_island',
-    SASKATCHEWAN = 'saskatchewan',
-    ALBERTA = 'alberta',
-    NORTHWEST_TERRITORIES = 'northwest_territories',
-    YUKON = 'yukon',
-    NUNAVUT = 'nunavut'
+    QUEBEC = 'Quebec',
+    ONTARIO = 'Ontario',
+    MANITOBA = 'Manitoba',
+    BRITISH_COLOMBIA = 'British Colombia',
+    NEWFOUNDLAND = 'Newfoundland and Labrador',
+    NEW_BRUNSWICK = 'New Brunswick',
+    NOVA_SCOTIA = 'Nova Scotia',
+    PRINCE_EDWARD_ISLAND = 'Prince Edward Island',
+    SASKATCHEWAN = 'Saskatchewan',
+    ALBERTA = 'Alberta',
+    NORTHWEST_TERRITORIES = 'Northwest Territories',
+    YUKON = 'Yukon',
+    NUNAVUT = 'Nunavut'
 }

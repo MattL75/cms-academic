@@ -11,7 +11,7 @@ import { Role } from '../../../models/enums/role.enum';
 })
 export class RegisterComponent implements OnInit {
 
-    provinces = Object.keys(Province);
+    provinces = Object.values(Province);
 
     registerForm = new FormGroup({
         username: new FormControl('', [Validators.required]),
