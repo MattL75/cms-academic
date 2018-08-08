@@ -13,10 +13,14 @@ export class AdminGuard implements CanActivate {
         if (!this.auth.isAuthenticated()) {
             this.router.navigate(['auth']);
             return false;
-        } else if (!this.auth.getCurrentUser().is_admin) {
-            this.snackbar.open('Access denied.', 'Dismiss');
-            return false;
+        } else if (this.phpBoolean(this.auth.getCurrentUser().is_admin)) {
+            return true;
         }
-        return true;
+        this.snackbar.open('Access denied.', 'Dismiss');
+        return false;
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

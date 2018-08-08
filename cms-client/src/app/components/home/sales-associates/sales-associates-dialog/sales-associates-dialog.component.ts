@@ -15,7 +15,7 @@ export class SalesAssociatesDialogComponent implements OnInit {
         id: new FormControl(null),
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
-        username: new FormControl('', [Validators.required]),
+        username: new FormControl(''),
         password: new FormControl(''),
         role: new FormControl(Role.SALES_ASSOCIATE),
         is_admin: new FormControl('')
@@ -32,6 +32,11 @@ export class SalesAssociatesDialogComponent implements OnInit {
         this.entityForm.controls['username'].setValue(this.data.entity.username);
         this.entityForm.controls['password'].setValue(this.data.entity.password);
         this.entityForm.controls['is_admin'].setValue(this.data.entity.is_admin);
+
+        if (this.data.mode === 'add') {
+            this.entityForm.controls['username'].setValidators(Validators.required);
+            this.entityForm.controls['password'].setValidators(Validators.required);
+        }
     }
 
     public close(): void {

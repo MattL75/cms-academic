@@ -8,7 +8,7 @@
             <mat-form-field class="dialog-field">
                 <input matInput formControlName="email_domain" placeholder="Email domain">
             </mat-form-field>
-            <mat-form-field class="dialog-field">
+            <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">
                 <input matInput formControlName="username" placeholder="Username">
             </mat-form-field>
             <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">
@@ -21,7 +21,7 @@
                 <input matInput type="text" formControlName="postal_code" placeholder="Postal code">
             </mat-form-field>
             <mat-form-field class="dialog-field full-width">
-                <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">
+                <mat-select placeholder="Province" [formControl]="entityForm.controls['province_name']">
                     <mat-option *ngFor="let province of provinces" [value]="province">
                         {{province | normalize}}
                     </mat-option>

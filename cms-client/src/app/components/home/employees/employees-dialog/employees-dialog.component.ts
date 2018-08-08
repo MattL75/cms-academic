@@ -23,9 +23,9 @@ export class EmployeesDialogComponent implements OnInit {
         id: new FormControl(null),
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
-        province: new FormControl('', [Validators.required]),
-        insurance: new FormControl('', [Validators.required]),
-        username: new FormControl('', [Validators.required]),
+        province_name: new FormControl('', [Validators.required]),
+        insurance_type: new FormControl('', [Validators.required]),
+        username: new FormControl(''),
         password: new FormControl(''),
         role: new FormControl(Role.EMPLOYEE),
         is_admin: new FormControl(false),
@@ -45,11 +45,16 @@ export class EmployeesDialogComponent implements OnInit {
         this.entityForm.controls['id'].setValue(this.data.employee.id);
         this.entityForm.controls['first_name'].setValue(this.data.employee.first_name);
         this.entityForm.controls['last_name'].setValue(this.data.employee.last_name);
-        this.entityForm.controls['province'].setValue(this.data.employee.province);
-        this.entityForm.controls['insurance'].setValue(this.data.employee.insurance);
+        this.entityForm.controls['province_name'].setValue(this.data.employee.province_name);
+        this.entityForm.controls['insurance_type'].setValue(this.data.employee.insurance_type);
         this.entityForm.controls['username'].setValue(this.data.employee.username);
         this.entityForm.controls['password'].setValue(this.data.employee.password);
         this.entityForm.controls['department_id'].setValue(this.data.employee.department_id);
+
+        if (this.data.mode === 'add') {
+            this.entityForm.controls['username'].setValidators(Validators.required);
+            this.entityForm.controls['password'].setValidators(Validators.required);
+        }
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;

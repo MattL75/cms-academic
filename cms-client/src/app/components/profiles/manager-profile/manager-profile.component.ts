@@ -26,8 +26,8 @@ export class ManagerProfileComponent implements OnInit {
         email: new FormControl('', [Validators.compose([Validators.email, Validators.required])]),
         phone_number: new FormControl('', [Validators.required]),
         middle_initial: new FormControl(''),
-        province: new FormControl('', [Validators.required]),
-        insurance: new FormControl('', [Validators.required]),
+        province_name: new FormControl('', [Validators.required]),
+        insurance_type: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
         role: new FormControl(Role.MANAGER, [Validators.required]),
@@ -52,8 +52,8 @@ export class ManagerProfileComponent implements OnInit {
         this.entityForm.controls['is_admin'].disable();
         this.entityForm.controls['first_name'].setValue(this.user.first_name);
         this.entityForm.controls['last_name'].setValue(this.user.last_name);
-        this.entityForm.controls['province'].setValue(this.user.province);
-        this.entityForm.controls['insurance'].setValue(this.user.insurance);
+        this.entityForm.controls['province_name'].setValue(this.user.province_name);
+        this.entityForm.controls['insurance_type'].setValue(this.user.insurance_type);
         this.entityForm.controls['username'].setValue(this.user.username);
         this.entityForm.controls['email'].setValue(this.user.email);
         this.entityForm.controls['phone_number'].setValue(this.user.phone_number);
