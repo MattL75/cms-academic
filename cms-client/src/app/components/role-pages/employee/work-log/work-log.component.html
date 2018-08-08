@@ -2,7 +2,7 @@
     <div class="card-barrier-div">
         <mat-card class="flex-column data-card">
             <mat-card-header class="flex-row center data-card-header">
-                <span class="data-card-title">Managed Contracts</span>
+                <span class="data-card-title">Work Logs</span>
                 <div class="flex-row grow action-container">
                     <div class="search-bar-container">
                         <div class="search-bar">
@@ -12,19 +12,9 @@
                             <input autofocus *ngIf="openFilter" [@expandX] class="search-bar-field" type="text" placeholder="Search here" (keyup)="applyFilter($event.target.value)" />
                         </div>
                     </div>
-                    <button mat-icon-button [matMenuTriggerFor]="menu">
-                        <mat-icon>category</mat-icon>
+                    <button mat-icon-button (click)="add()">
+                        <mat-icon>add</mat-icon>
                     </button>
-                    <mat-menu #menu="matMenu">
-                        <button class="vert-menu-item" mat-menu-item (click)="populate()">
-                            <mat-icon *ngIf="'all' === activeCategory">check</mat-icon>
-                            <span>All</span>
-                        </button>
-                        <button class="vert-menu-item" *ngFor="let type of types" mat-menu-item (click)="selectCategory(type)">
-                            <mat-icon *ngIf="type === activeCategory">check</mat-icon>
-                            <span>{{type | normalize}}</span>
-                        </button>
-                    </mat-menu>
                 </div>
             </mat-card-header>
             <mat-divider style="position: static"></mat-divider>
@@ -33,6 +23,13 @@
             </div>
             <mat-card-content class="data-card-content">
                 <table class="material-table" mat-table matSort [dataSource]="dataSource">
+
+                    <!-- TODO Make sure Jesse's API supports this -->
+                    <!-- Employee Column -->
+                    <ng-container matColumnDef="employee_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Employee</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.employee_id | date:'shortDate' }} </td>
+                    </ng-container>
 
                     <!-- Date Column -->
                     <ng-container matColumnDef="date_worked">
@@ -76,7 +73,7 @@
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
-                <div class="empty-message flex-row center" *ngIf="dataSource.data.length === 0 || this.dataSource.filteredData.length === 0">No contracts found.</div>
+                <div class="empty-message flex-row center" *ngIf="dataSource.data.length === 0 || this.dataSource.filteredData.length === 0">No work logs found.</div>
             </mat-card-content>
         </mat-card>
     </div>

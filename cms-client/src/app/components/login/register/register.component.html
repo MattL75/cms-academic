@@ -21,6 +21,12 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="register-field">
+                <input matInput placeholder="Email domain" formControlName="email_domain"/>
+                <mat-error *ngIf="!registerForm.controls['email_domain'].valid">
+                    Domain is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="register-field">
                 <input matInput placeholder="Address" formControlName="address"/>
                 <mat-error *ngIf="!registerForm.controls['address'].valid">
                     Address is required.
@@ -32,13 +38,13 @@
                     Address is required.
                 </mat-error>
             </mat-form-field>
-            <mat-form-field class="register-field">
-                <mat-select placeholder="Province" [formControl]="registerForm.controls['province']">
+            <mat-form-field class="register-field full-length">
+                <mat-select placeholder="Province" [formControl]="registerForm.controls['province_name']">
                     <mat-option *ngFor="let province of provinces" [value]="province">
                         {{province | normalize}}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="!registerForm.controls['province'].valid">
+                <mat-error *ngIf="!registerForm.controls['province_name'].valid">
                     Province is required.
                 </mat-error>
             </mat-form-field>

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
         event.target.innerWidth <= 800 ? this.sideMode = 'over' : this.sideMode = 'side';
     }
 
-    constructor(protected auth: AuthService) {
+    constructor(public auth: AuthService) {
     }
 
     ngOnInit() {
@@ -31,5 +31,9 @@ export class HomeComponent implements OnInit {
         } else {
             this.sideMode = 'side';
         }
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

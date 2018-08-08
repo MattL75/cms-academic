@@ -22,22 +22,24 @@ import { EmployeeGuard } from './guards/employee.guard';
 import { NotClientGuard } from './guards/not-client.guard';
 import { SupervisedComponent } from './components/role-pages/manager/supervised/supervised.component';
 import { ManagerGuard } from './guards/manager.guard';
+import { AssignmentComponent } from './components/role-pages/employee/assignment/assignment.component';
 
 const routes: Routes = [
     {
         path: '', component: HomeComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
             {path: 'managers', component: ManagersComponent},
-            {path: 'employees', component: EmployeesComponent},
+            {path: 'employees', component: EmployeesComponent, canActivate: [NotClientGuard]},
             {path: 'dashboard', component: DashboardComponent},
             {path: 'contracts', component: ContractsComponent, canActivate: [NotClientGuard]},
-            {path: 'clients', component: ClientsComponent},
+            {path: 'clients', component: ClientsComponent, canActivate: [NotClientGuard]},
             {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
-            {path: 'departments', component: DepartmentsComponent},
-            {path: 'associates', component: SalesAssociatesComponent},
+            {path: 'departments', component: DepartmentsComponent, canActivate: [NotClientGuard]},
+            {path: 'associates', component: SalesAssociatesComponent, canActivate: [NotClientGuard]},
             {path: 'profile', component: BaseProfileComponent},
             {path: 'my-contracts', component: ClientContractsComponent, canActivate: [ClientGuard]},
             {path: 'supervised', component: SupervisedComponent, canActivate: [ManagerGuard]},
             {path: 'worklog', component: WorkLogComponent, canActivate: [EmployeeGuard]},
+            {path: 'assignments', component: AssignmentComponent, canActivate: [EmployeeGuard]},
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
         ]
     },

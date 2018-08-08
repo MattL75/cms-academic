@@ -15,10 +15,14 @@ export class ClientGuard implements CanActivate {
         if (!this.auth.isAuthenticated()) {
             this.router.navigate(['auth']);
             return false;
-        } else if (this.auth.getUserRole() !== Role.CLIENT && this.auth.getCurrentUser().is_admin === false) {
+        } else if (this.auth.getUserRole() !== Role.CLIENT && !this.phpBoolean(this.auth.getCurrentUser().is_admin)) {
             this.snackbar.open('Access denied.', 'Dismiss');
             return false;
         }
         return true;
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

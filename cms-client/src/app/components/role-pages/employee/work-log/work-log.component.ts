@@ -5,9 +5,9 @@ import { SnackbarService } from '../../../../services/snackbar.service';
 import { AuthService } from '../../../../services/auth.service';
 import { WorkLog } from '../../../../models/work-log.model';
 import { WorkLogService } from '../../../../services/entity/work-log.service';
-import { ManagersDialogComponent } from '../../../home/managers/managers-dialog/managers-dialog.component';
 import { ConfirmDialogComponent } from '../../../utils/confirm-dialog/confirm-dialog.component';
 import { WorkLogDialogComponent } from './work-log-dialog/work-log-dialog.component';
+import { Role } from '../../../../models/enums/role.enum';
 
 @Component({
     selector: 'cms-work-log',
@@ -23,6 +23,7 @@ export class WorkLogComponent implements OnInit {
     displayedColumns: string[] = ['date_worked', 'hours_worked', 'assignment_id', 'actions'];
     querying = false;
     openFilter = false;
+    user;
 
     @ViewChild(MatSort) sort: MatSort;
 
@@ -30,6 +31,11 @@ export class WorkLogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.user = this.auth.getCurrentUser();
+        if (this.user === Role.MANAGER) {
+            this.displayedColumns.push('employee_id');
+        }
+
         this.dataSource = new MatTableDataSource<WorkLog>();
         this.dataSource.sort = this.sort;
         this.populate();
@@ -60,7 +66,7 @@ export class WorkLogComponent implements OnInit {
     }
 
     public edit(worklog: WorkLog): void {
-        const dialogRef = this.dialog.open(ManagersDialogComponent, {
+        const dialogRef = this.dialog.open(WorkLogDialogComponent, {
             width: '450px',
             data: {
                 entity: Object.assign({}, worklog),
@@ -114,12 +120,33 @@ export class WorkLogComponent implements OnInit {
 
     populate(): void {
         this.querying = true;
-        this.workService.getWorkLogsForEmployee(this.auth.getCurrentUser().id).subscribe(worklogs => {
-            this.dataSource.data = worklogs;
-            this.querying = false;
-        }, () => {
+        if (this.user.role === Role.EMPLOYEE) {
+            this.workService.getWorkLogsForEmployee(this.auth.getCurrentUser().id).subscribe(worklogs => {
+                this.dataSource.data = worklogs;
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else if (this.user.role === Role.MANAGER) {
+            this.workService.getWorkLogsForManager(this.auth.getCurrentUser().id).subscribe(worklogs => {
+                this.dataSource.data = worklogs;
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else if (this.user.is_admin) {
+            this.workService.getWorkLogs().subscribe(worklogs => {
+                this.dataSource.data = worklogs;
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else {
             this.snackbar.open('Population query failed.', 'Dismiss');
             this.querying = false;
-        });
+        }
     }
 }

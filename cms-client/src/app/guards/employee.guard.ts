@@ -15,10 +15,14 @@ export class EmployeeGuard implements CanActivate {
         if (!this.auth.isAuthenticated()) {
             this.router.navigate(['auth']);
             return false;
-        } else if (this.auth.getCurrentUser().role !== Role.EMPLOYEE && this.auth.getCurrentUser().role !== Role.MANAGER && this.auth.getCurrentUser().is_admin === false) {
-            this.snackbar.open('Access denied.', 'Dismiss');
-            return false;
+        } else if (this.auth.getCurrentUser().role === Role.EMPLOYEE || this.auth.getCurrentUser().role === Role.MANAGER || this.phpBoolean(this.auth.getCurrentUser().is_admin)) {
+            return true;
         }
-        return true;
+        this.snackbar.open('Access denied.', 'Dismiss');
+        return false;
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

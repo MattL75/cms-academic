@@ -79,7 +79,7 @@ export class ContractsComponent implements OnInit {
         const dialogRef = this.dialog.open(ContractsDialogComponent, {
             width: '450px',
             data: {
-                manager: Object.assign({}, contract),
+                entity: Object.assign({}, contract),
                 title: 'Edit a Contract',
                 action: 'Save'
             }
@@ -144,7 +144,7 @@ export class ContractsComponent implements OnInit {
         });
     }
 
-    private populate(): void {
+    populate(): void {
         this.querying = true;
         this.contractService.getContracts().subscribe(contracts => {
             this.dataSource.data = contracts;
