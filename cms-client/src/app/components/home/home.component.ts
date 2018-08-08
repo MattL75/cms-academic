@@ -32,4 +32,8 @@ export class HomeComponent implements OnInit {
             this.sideMode = 'side';
         }
     }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
+    }
 }

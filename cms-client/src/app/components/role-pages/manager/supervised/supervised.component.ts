@@ -92,22 +92,12 @@ export class SupervisedComponent implements OnInit {
 
     private populate(): void {
         this.querying = true;
-        if (this.user.is_admin) {
-            this.managerService.getSupervisedEmployees().subscribe(employees => {
-                this.dataSource.data = employees;
-                this.querying = false;
-            }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
-                this.querying = false;
-            });
-        } else {
-            this.managerService.getSupervisedEmployees(this.user.id).subscribe(employees => {
-                this.dataSource.data = employees;
-                this.querying = false;
-            }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
-                this.querying = false;
-            });
-        }
+        this.managerService.getSupervisedEmployees(this.user.id).subscribe(employees => {
+            this.dataSource.data = employees;
+            this.querying = false;
+        }, () => {
+            this.snackbar.open('Population query failed.', 'Dismiss');
+            this.querying = false;
+        });
     }
 }

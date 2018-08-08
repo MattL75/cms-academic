@@ -35,18 +35,15 @@ export class ManagersService {
     }
 
     public deleteManager(id: number): Observable<{}> {
+        console.log(id);
         return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
             catchError(this.handleError)
         );
     }
 
-    public getSupervisedEmployees(id?: number): Observable<Employee[]> {
+    public getSupervisedEmployees(id: number): Observable<Employee[]> {
         if (id) {
             return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix + `?manager_id=${id}`).pipe(
-                catchError(this.handleError)
-            );
-        } else {
-            return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix).pipe(
                 catchError(this.handleError)
             );
         }

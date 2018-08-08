@@ -15,10 +15,14 @@ export class ManagerGuard implements CanActivate {
         if (!this.auth.isAuthenticated()) {
             this.router.navigate(['auth']);
             return false;
-        } else if (this.auth.getUserRole() !== Role.MANAGER && this.auth.getCurrentUser().is_admin === false) {
+        } else if (this.auth.getUserRole() !== Role.MANAGER && !this.phpBoolean(this.auth.getCurrentUser().is_admin)) {
             this.snackbar.open('Access denied.', 'Dismiss');
             return false;
         }
         return true;
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }
