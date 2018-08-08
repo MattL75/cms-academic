@@ -26,7 +26,7 @@ function put() {
   $put_body = json_decode(file_get_contents('php://input'));
 
   return Users::find(['id' => $put_body->id])
-          ->update(get_object_vars($put_body->data))
+          ->update(get_object_vars($put_body))
           ->toJson();
 }
 

@@ -3,7 +3,7 @@ include "../../lib/api.php"; // script to initialize api
 
 // get request handler
 function get() {
-  restricted(["Manager", "Employee"]);
+  restricted(["Manager", "Employee", "Sales Associate"]);
   // TODO add data sanitation
   $json_rows = [];
   $companies = Departments::findAll($_GET);
@@ -25,7 +25,7 @@ function put() {
   $put_body = json_decode(file_get_contents('php://input'));
 
   return Departments::find(['id' => $put_body->id])
-          ->update(get_object_vars($put_body->data))
+          ->update(get_object_vars($put_body))
           ->toJson();
 }
 

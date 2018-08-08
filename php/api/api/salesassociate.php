@@ -5,23 +5,23 @@ include "../../lib/api.php"; // script to initialize api
 function get() {
   // TODO add data sanitation
   $json_rows = [];
-  $companies = Companies::findAll($_GET);
+  $SalesAssociates = SalesAssociates::findAll($_GET);
 
-  return json_encode($companies);
+  return json_encode($SalesAssociates);
 }
 
 // post request handler
 function post() {
   $post_body = get_object_vars(json_decode(file_get_contents('php://input')));
 
-  return Companies::create($post_body)->toJson();
+  return SalesAssociates::create($post_body)->toJson();
 }
 
 // put request handler
 function put() {
   $put_body = json_decode(file_get_contents('php://input'));
 
-  return Companies::find(['id' => $put_body->id])
+  return SalesAssociates::find(['id' => $put_body->id])
           ->update(get_object_vars($put_body))
           ->toJson();
 }
@@ -30,7 +30,7 @@ function put() {
 function delete() {
   $delete_body = json_decode(file_get_contents('php://input'));
 
-  Companies::find(['id' => $delete_body->id])->delete(); // TODO find a good way to ensure deleted entities are not used
+  SalesAssociates::find(['id' => $delete_body->id])->delete(); // TODO find a good way to ensure deleted entities are not used
 
   return '{"deleted": true}';
 }
