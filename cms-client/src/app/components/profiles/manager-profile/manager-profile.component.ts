@@ -57,7 +57,7 @@ export class ManagerProfileComponent implements OnInit {
         this.entityForm.controls['username'].setValue(this.user.username);
         this.entityForm.controls['email'].setValue(this.user.email);
         this.entityForm.controls['phone_number'].setValue(this.user.phone_number);
-        this.entityForm.controls['middle_initials'].setValue(this.user.middle_initial);
+        this.entityForm.controls['middle_initial'].setValue(this.user.middle_initial);
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;
