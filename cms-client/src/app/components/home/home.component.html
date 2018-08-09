@@ -85,7 +85,7 @@
             <div class="flex-column grow" *ngIf="this.userRole === Roles.MANAGER || phpBoolean(this.is_admin)">
                 <div class="flex-row nav-item" mat-ripple routerLink="/supervised" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">assignment_ind</mat-icon>
-                    <span class="nav-text">My Employees</span>
+                    <span class="nav-text">Subordinates</span>
                 </div>
             </div>
             <div class="flex-column grow" *ngIf="this.userRole === Roles.MANAGER || this.userRole === Roles.EMPLOYEE || phpBoolean(this.is_admin)">
