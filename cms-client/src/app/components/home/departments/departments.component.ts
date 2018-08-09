@@ -61,7 +61,7 @@ export class DepartmentsComponent implements OnInit {
         const dialogRef = this.dialog.open(DepartmentsDialogComponent, {
             width: '450px',
             data: {
-                manager: Object.assign({}, department),
+                entity: Object.assign({}, department),
                 title: 'Edit a Department',
                 action: 'Save'
             }

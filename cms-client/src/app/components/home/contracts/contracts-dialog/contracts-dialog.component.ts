@@ -34,7 +34,7 @@ export class ContractsDialogComponent implements OnInit {
     filteredDepartments: Observable<Department[]>;
     clients: Client[];
     filteredClients: Observable<Client[]>;
-    contractTypes = Object.keys(ContractType);
+    contractTypes = Object.values(ContractType);
 
     constructor(public dialogRef: MatDialogRef<ContractsDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: {entity: Contract, title: string, action: string},

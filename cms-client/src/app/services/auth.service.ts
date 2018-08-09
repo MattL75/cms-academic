@@ -11,7 +11,7 @@ export class AuthService {
 
     public querying = false;
 
-    private loggedIn = true;
+    private loggedIn = false;
     private currentUser: any;
     private baseUrl = '/api/login';
     private suffix = '.php';

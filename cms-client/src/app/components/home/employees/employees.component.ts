@@ -62,7 +62,7 @@ export class EmployeesComponent implements OnInit {
         const dialogRef = this.dialog.open(EmployeesDialogComponent, {
             width: '450px',
             data: {
-                manager: Object.assign({}, employee),
+                employee: Object.assign({}, employee),
                 title: 'Edit an Employee',
                 action: 'Save',
                 mode: 'edit'

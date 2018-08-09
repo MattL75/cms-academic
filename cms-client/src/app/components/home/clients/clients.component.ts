@@ -62,7 +62,7 @@ export class ClientsComponent implements OnInit {
         const dialogRef = this.dialog.open(ClientsDialogComponent, {
             width: '450px',
             data: {
-                manager: Object.assign({}, client),
+                entity: Object.assign({}, client),
                 title: 'Edit a Client',
                 action: 'Save',
                 mode: 'edit'

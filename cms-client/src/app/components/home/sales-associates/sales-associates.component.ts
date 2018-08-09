@@ -61,7 +61,7 @@ export class SalesAssociatesComponent implements OnInit {
         const dialogRef = this.dialog.open(SalesAssociatesDialogComponent, {
             width: '450px',
             data: {
-                manager: Object.assign({}, associate),
+                entity: Object.assign({}, associate),
                 title: 'Edit an Associate',
                 action: 'Save',
                 mode: 'edit'
