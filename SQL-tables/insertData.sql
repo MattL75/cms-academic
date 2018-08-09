@@ -339,7 +339,7 @@ INSERT INTO City (name, province_name) VALUES ('Naujaat', 'Nunavut');
 INSERT INTO City (name, province_name) VALUES ('Pangnirtung', 'Nunavut');
 
 INSERT INTO User (username, password, is_admin, role) VALUES ('admin', 'admin', TRUE, 'Manager');
-INSERT INTO User (username, password, is_admin, role) VALUES ('funnybunny', 'pw12345', FALSE, 'Sales Associate');
+INSERT INTO User (username, password, is_admin, role) VALUES ('sales_associate', 'sales_associate', FALSE, 'Sales Associate');
 INSERT INTO User (username, password, is_admin, role) VALUES ('carldatank', 'exquizit', FALSE, 'Sales Associate');
 INSERT INTO User (username, password, is_admin, role) VALUES ('anita69', 'pw12345', FALSE, 'Sales Associate');
 INSERT INTO User (username, password, is_admin, role) VALUES ('curious', 'password', TRUE, 'Manager');
