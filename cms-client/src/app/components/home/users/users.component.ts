@@ -94,4 +94,8 @@ export class UsersComponent implements OnInit {
             this.querying = false;
         });
     }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
+    }
 }
