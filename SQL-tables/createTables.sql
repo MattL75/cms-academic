@@ -82,11 +82,9 @@ CREATE TABLE Client
   id INT(6) NOT NULL PRIMARY KEY,
   name VARCHAR(30) NOT NULL,
   email_domain VARCHAR(255) NOT NULL,
-  province_name VARCHAR(30) NOT NULL,
   city VARCHAR(30) NOT NULL,
   address VARCHAR(60) NOT NULL,
   postal_code CHAR(6) NOT NULL,
-  FOREIGN KEY (province_name) REFERENCES City(province_name),
   FOREIGN KEY (city) REFERENCES City(name),
   FOREIGN KEY (id) REFERENCES User(id)
 );
