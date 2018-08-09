@@ -96,4 +96,11 @@ export class EmployeeProfileComponent implements OnInit {
         return this.departments.filter(option => option.name.toLowerCase().includes(filterValue));
     }
 
+    displayDeptInputFn(department: number, input: HTMLInputElement): string {
+        if (!this.departments) {
+            return this.entityForm.controls['department_id'].value;
+        }
+        const result = this.departments.find(x => x.id === department);
+        return result ? result.name : input.value;
+    }
 }

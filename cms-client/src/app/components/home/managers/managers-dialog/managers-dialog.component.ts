@@ -62,6 +62,7 @@ export class ManagersDialogComponent implements OnInit {
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;
+            console.log(this.managersForm.controls['department_id'].value);
         });
 
         this.filteredDepartments = this.managersForm.controls['department_id'].valueChanges
@@ -72,10 +73,12 @@ export class ManagersDialogComponent implements OnInit {
     }
 
     public close(): void {
+        console.log(this.managersForm.controls['department_id'].value);
         this.dialogRef.close();
     }
 
     public closeSubmit(): void {
+        console.log(this.managersForm.controls['department_id'].value);
         this.dialogRef.close(this.managersForm.value);
     }
 
@@ -91,6 +94,14 @@ export class ManagersDialogComponent implements OnInit {
         }
         const result = this.departments.find(x => x.id === department);
         return result ? result.name : undefined;
+    }
+
+    displayDeptInputFn(department: number, input: HTMLInputElement): string {
+        if (!this.departments) {
+            return this.managersForm.controls['department_id'].value;
+        }
+        const result = this.departments.find(x => x.id === department);
+        return result ? result.name : input.value;
     }
 
     private departmentFilter(value: string): Department[] {

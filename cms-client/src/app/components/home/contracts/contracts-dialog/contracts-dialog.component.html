@@ -17,7 +17,7 @@
                 <input type="text" matInput formControlName="business_line" placeholder="Business Line">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="dept">
+                <input type="text" placeholder="Department" matInput formControlName="department_id" #deptInput [value]="this.displayDeptInputFn(this.entityForm.controls['department_id'].value, deptInput)" [matAutocomplete]="dept">
                 <mat-autocomplete #dept="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
                     <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
                         {{option.name}}
@@ -25,7 +25,7 @@
                 </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Client" matInput formControlName="client_id" [matAutocomplete]="client">
+                <input type="text" placeholder="Client" matInput formControlName="client_id" #clientInput [value]="this.displayClientInputFn(this.entityForm.controls['client_id'].value, clientInput)" [matAutocomplete]="client">
                 <mat-autocomplete #client="matAutocomplete" [displayWith]="getClientLinkFn()">
                     <mat-option *ngFor="let option of filteredClients | async" [value]="option.id">
                         {{option.name}}
@@ -33,7 +33,7 @@
                 </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Manager" matInput formControlName="manager_id" [matAutocomplete]="manager">
+                <input type="text" placeholder="Manager" matInput formControlName="manager_id" #manInput [value]="this.displayManInputFn(this.entityForm.controls['manager_id'].value, manInput)" [matAutocomplete]="manager">
                 <mat-autocomplete #manager="matAutocomplete" [displayWith]="getManagerLinkFn()">
                     <mat-option *ngFor="let option of filteredManagers | async" [value]="option.id">
                         {{option.first_name | normalize}}&nbsp;{{option.last_name | normalize}}

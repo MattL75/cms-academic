@@ -115,4 +115,20 @@ export class AssignmentDialogComponent implements OnInit {
         return this.employees.filter(option => (option.first_name.concat('.', option.last_name)).toLowerCase().includes(filterValue));
     }
 
+    displayEmpInputFn(employee: number, input: HTMLInputElement): string {
+        if (!this.employees) {
+            return this.entityForm.controls['employee_id'].value;
+        }
+        const result = this.employees.find(x => x.id === employee);
+        return result ? (result.first_name + ' ' + result.last_name) : input.value;
+    }
+
+    displayContInputFn(contract: number, input: HTMLInputElement): string {
+        if (!this.contracts) {
+            return this.entityForm.controls['contract_id'].value;
+        }
+        const result = this.contracts.find(x => x.id === contract);
+        return result ? result.name : input.value;
+    }
+
 }
