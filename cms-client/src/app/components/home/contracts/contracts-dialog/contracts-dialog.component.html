@@ -17,18 +17,26 @@
                 <input type="text" matInput formControlName="business_line" placeholder="Business Line">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
+                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="dept">
+                <mat-autocomplete #dept="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
                     <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
                         {{option.name}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Client" matInput formControlName="client_id" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getClientLinkFn()">
+                <input type="text" placeholder="Client" matInput formControlName="client_id" [matAutocomplete]="client">
+                <mat-autocomplete #client="matAutocomplete" [displayWith]="getClientLinkFn()">
                     <mat-option *ngFor="let option of filteredClients | async" [value]="option.id">
                         {{option.name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="Manager" matInput formControlName="manager_id" [matAutocomplete]="manager">
+                <mat-autocomplete #manager="matAutocomplete" [displayWith]="getManagerLinkFn()">
+                    <mat-option *ngFor="let option of filteredManagers | async" [value]="option.id">
+                        {{option.first_name | normalize}}&nbsp;{{option.last_name | normalize}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>

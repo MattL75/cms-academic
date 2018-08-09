@@ -81,7 +81,7 @@ export class SupervisedDialogComponent implements OnInit {
             return null;
         }
         const filterValue = value.toLowerCase();
-        return this.managers.filter(option => (option.first_name).toLowerCase().includes(filterValue));
+        return this.managers.filter(option => (option.first_name.concat('.', option.last_name)).toLowerCase().includes(filterValue));
     }
 
     getEmployeeLinkFn() {
@@ -101,7 +101,7 @@ export class SupervisedDialogComponent implements OnInit {
             return null;
         }
         const filterValue = value.toLowerCase();
-        return this.employees.filter(option => (option.first_name).toLowerCase().includes(filterValue));
+        return this.employees.filter(option => (option.first_name.concat('.', option.last_name)).toLowerCase().includes(filterValue));
     }
 
 }
