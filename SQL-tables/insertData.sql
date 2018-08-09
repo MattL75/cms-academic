@@ -673,22 +673,22 @@ VALUES ('Cricket steroids', 1235678.75, 123478.75, 3, FALSE, '2017-11-04', 9, 19
 INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
 VALUES ('Unisock', 2345678.75, 123467.75, 3, FALSE, '2017-12-04', 20, 20 ,50, 'Shipping', 'Silver');
 
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 3 , 3, FALSE,1);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 5 , 5, FALSE,1);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (3, TRUE , 10, 11, FALSE,1);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 3 , 3, FALSE,2);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 5 , 5, FALSE,2);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (3, TRUE , 10, 10, FALSE,2);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 6 , 5, FALSE,6);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 11, 10, FALSE,6);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (3, TRUE , 18, 16, FALSE,6);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 8 , 9, FALSE,11);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 14, 18, FALSE,11);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (3, TRUE , 20, 25, FALSE,11);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 5 , 5, FALSE,16);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 15, 15, FALSE,16);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (3, FALSE, 20, 20, FALSE,16);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (4, TRUE , 28, 28, FALSE,16);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'January', 'January', FALSE,1);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'January', 'January', FALSE,1);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'January', 'February',  FALSE,1);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'April', 'April', FALSE,2);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'May', 'May', FALSE,2);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 10, 'May', 'May',  FALSE,2);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 6 , 5,  'July', 'August', FALSE,6);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 11, 10, 'August', 'August',  FALSE,6);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 18, 16, 'August', 'August',  FALSE,6);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 8 , 9,  'September', 'September', FALSE,11);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 14, 18, 'September', 'September',  FALSE,11);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 20, 25, 'September', 'October',  FALSE,11);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 5 , 5,  'November', 'November', FALSE,16);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 15, 15, 'November', 'December',  FALSE,16);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, FALSE, 20, 20, 'December', 'December',  FALSE,16);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (4, TRUE , 28, 28, 'December', 'December',  FALSE,16);
 
 INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 21);
 INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 2, 22);
