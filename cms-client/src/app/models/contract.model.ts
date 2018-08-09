@@ -9,6 +9,7 @@ export class Contract {
                 public client_id: number,
                 public business_line: string,
                 public contract_type: string,
+                public name?: string,
                 public manager_id?: string,
                 public id?: number) {}
 }

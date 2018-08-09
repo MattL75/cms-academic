@@ -6,6 +6,8 @@ import { expandX } from '../../../animations/expand';
 import { Department } from '../../../models/department.model';
 import { DepartmentsService } from '../../../services/entity/departments.service';
 import { DepartmentsDialogComponent } from './departments-dialog/departments-dialog.component';
+import { Role } from '../../../models/enums/role.enum';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
     selector: 'cms-departments',
@@ -18,16 +20,23 @@ import { DepartmentsDialogComponent } from './departments-dialog/departments-dia
 export class DepartmentsComponent implements OnInit {
 
     dataSource: MatTableDataSource<Department>;
-    displayedColumns: string[] = ['id', 'name', 'service_type', 'actions'];
+    displayedColumns: string[] = ['id', 'name', 'service_type'];
     querying = false;
     openFilter = false;
+    Roles = Role;
+    user;
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private departmentService: DepartmentsService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private departmentService: DepartmentsService, private auth: AuthService) {
     }
 
     ngOnInit() {
+        this.user = this.auth.getCurrentUser();
+        if (this.user.role === Role.MANAGER || this.phpBoolean(this.user.is_admin)) {
+            this.displayedColumns.push('actions');
+        }
+
         this.dataSource = new MatTableDataSource<Department>();
         this.dataSource.sort = this.sort;
         this.populate();
@@ -119,5 +128,9 @@ export class DepartmentsComponent implements OnInit {
             this.snackbar.open('Population query failed.', 'Dismiss');
             this.querying = false;
         });
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

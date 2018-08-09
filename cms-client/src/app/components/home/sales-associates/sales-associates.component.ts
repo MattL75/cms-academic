@@ -6,6 +6,8 @@ import { expandX } from '../../../animations/expand';
 import { SalesAssociate } from '../../../models/sales-associate.model';
 import { SalesAssociatesService } from '../../../services/entity/sales-associates.service';
 import { SalesAssociatesDialogComponent } from './sales-associates-dialog/sales-associates-dialog.component';
+import { Role } from '../../../models/enums/role.enum';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
     selector: 'cms-sales-associates',
@@ -18,16 +20,23 @@ import { SalesAssociatesDialogComponent } from './sales-associates-dialog/sales-
 export class SalesAssociatesComponent implements OnInit {
 
     dataSource: MatTableDataSource<SalesAssociate>;
-    displayedColumns: string[] = ['id', 'first_name', 'last_name', 'actions'];
+    displayedColumns: string[] = ['id', 'first_name', 'last_name'];
     querying = false;
     openFilter = false;
+    Roles = Role;
+    user;
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private salesService: SalesAssociatesService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private salesService: SalesAssociatesService, private auth: AuthService) {
     }
 
     ngOnInit() {
+        this.user = this.auth.getCurrentUser();
+        if (this.user.role === Role.MANAGER || this.phpBoolean(this.user.is_admin)) {
+            this.displayedColumns.push('actions');
+        }
+
         this.dataSource = new MatTableDataSource<SalesAssociate>();
         this.dataSource.sort = this.sort;
         this.populate();
@@ -118,5 +127,9 @@ export class SalesAssociatesComponent implements OnInit {
             this.snackbar.open('Population query failed.', 'Dismiss');
             this.querying = false;
         });
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

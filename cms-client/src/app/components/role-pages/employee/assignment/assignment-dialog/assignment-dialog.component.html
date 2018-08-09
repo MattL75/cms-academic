@@ -3,14 +3,22 @@
     <form [formGroup]="entityForm">
         <div class="dialog-field-row center">
 
-            <!-- TODO Should be an autocomplete -->
             <mat-form-field class="dialog-field">
-                <input type="number" matInput formControlName="employee_id" placeholder="Hours worked">
+                <input type="text" placeholder="Employee" matInput formControlName="employee_id" [matAutocomplete]="employee">
+                <mat-autocomplete #employee="matAutocomplete" [displayWith]="getEmployeeLinkFn()">
+                    <mat-option *ngFor="let option of filteredEmployees | async" [value]="option.id">
+                        {{option.first_name | normalize}}&nbsp;{{option.last_name | normalize}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
-            <!-- TODO Should be an autocomplete or something. Problem is, nothing to autocomplete on, really. -->
             <mat-form-field class="dialog-field">
-                <input type="number" matInput formControlName="contract_id" placeholder="Assignment">
+                <input type="text" placeholder="Contract" matInput formControlName="contract_id" [matAutocomplete]="contract">
+                <mat-autocomplete #contract="matAutocomplete" [displayWith]="getContractLinkFn()">
+                    <mat-option *ngFor="let option of filteredContracts | async" [value]="option.id">
+                        {{option.name}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
             <mat-form-field class="dialog-field">

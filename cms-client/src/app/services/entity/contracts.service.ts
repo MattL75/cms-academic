@@ -27,6 +27,12 @@ export class ContractsService {
         );
     }
 
+    public getManagerContracts(id: number): Observable<Contract[]> {
+        return this.http.get<Contract[]>(this.baseUrl + this.suffix + `?manager_id=${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     public getContractsByCategory(type: string): Observable<Contract[]> {
         return this.http.get<Contract[]>(this.baseUrl + this.suffix + `?contract_type=${type}`).pipe(
             catchError(this.handleError)

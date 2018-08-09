@@ -25,7 +25,7 @@
                             <mat-icon class="backend-filter-icon" *ngIf="type === activeCategory">check</mat-icon>
                         </button>
                     </mat-menu>
-                    <button mat-icon-button *ngIf="this.userRole === Roles.SALES_ASSOCIATE || phpBoolean(this.is_admin)" (click)="add()">
+                    <button mat-icon-button *ngIf="this.userRole === Roles.SALES_ASSOCIATE || this.is_admin" (click)="add()">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
