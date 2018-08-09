@@ -157,6 +157,8 @@ CREATE TABLE Deliverable
   is_final BOOLEAN NOT NULL,
   days_to_delivery INT(3) NOT NULL,
   days_taken INT(3) NOT NULL,
+  month_scheduled VARCHAR(20) NOT NULL,
+  month_delivered VARCHAR(20),
   is_active BOOLEAN NOT NULL,
   contract_id INT(6) NOT NULL,
   FOREIGN KEY (contract_id) REFERENCES Contract(id)
