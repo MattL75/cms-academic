@@ -40,19 +40,19 @@
                     <span class="nav-text">Managers</span>
                 </div>
             </div>
-            <div class="flex-column grow">
+            <div class="flex-column grow" *ngIf="this.userRole !== Roles.CLIENT">
                 <div class="flex-row nav-item" mat-ripple routerLink="/employees" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">person</mat-icon>
                     <span class="nav-text">Employees</span>
                 </div>
             </div>
-            <div class="flex-column grow">
+            <div class="flex-column grow" *ngIf="this.userRole !== Roles.CLIENT">
                 <div class="flex-row nav-item" mat-ripple routerLink="/contracts" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">receipt</mat-icon>
                     <span class="nav-text">Contracts</span>
                 </div>
             </div>
-            <div class="flex-column grow">
+            <div class="flex-column grow" *ngIf="this.userRole !== Roles.CLIENT">
                 <div class="flex-row nav-item" mat-ripple routerLink="/clients" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">shopping_cart</mat-icon>
                     <span class="nav-text">Clients</span>
@@ -64,13 +64,13 @@
                     <span class="nav-text">Users</span>
                 </div>
             </div>
-            <div class="flex-column grow">
+            <div class="flex-column grow" *ngIf="this.userRole !== Roles.CLIENT">
                 <div class="flex-row nav-item" mat-ripple routerLink="/departments" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">business</mat-icon>
                     <span class="nav-text">Departments</span>
                 </div>
             </div>
-            <div class="flex-column grow">
+            <div class="flex-column grow" *ngIf="this.userRole !== Roles.CLIENT">
                 <div class="flex-row nav-item" mat-ripple routerLink="/associates" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">work</mat-icon>
                     <span class="nav-text">Associates</span>
@@ -85,7 +85,7 @@
             <div class="flex-column grow" *ngIf="this.userRole === Roles.MANAGER || phpBoolean(this.is_admin)">
                 <div class="flex-row nav-item" mat-ripple routerLink="/supervised" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">assignment_ind</mat-icon>
-                    <span class="nav-text">My Employees</span>
+                    <span class="nav-text">Subordinates</span>
                 </div>
             </div>
             <div class="flex-column grow" *ngIf="this.userRole === Roles.MANAGER || this.userRole === Roles.EMPLOYEE || phpBoolean(this.is_admin)">

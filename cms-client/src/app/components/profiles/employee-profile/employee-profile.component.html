@@ -11,7 +11,7 @@
         </mat-form-field>
         <mat-form-field class="profile-field">
             <input type="text" placeholder="Department" matInput formControlName="department_id"
-                   [matAutocomplete]="auto">
+                   [matAutocomplete]="auto" #deptInput [value]="this.displayDeptInputFn(this.entityForm.controls['department_id'].value, deptInput)">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
                 <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
                     {{option.name}}

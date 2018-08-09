@@ -118,15 +118,7 @@ export class AssignmentComponent implements OnInit {
 
     populate(): void {
         this.querying = true;
-        if (this.user.role === Role.EMPLOYEE) {
-            this.assignmentService.getAssignmentsForEmployee(this.auth.getCurrentUser().id).subscribe(assignments => {
-                this.dataSource.data = assignments;
-                this.querying = false;
-            }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
-                this.querying = false;
-            });
-        } else if (this.user.role === Role.MANAGER) {
+        if (this.user.role === Role.MANAGER) {
             this.assignmentService.getAssignmentsForManager(this.auth.getCurrentUser().id).subscribe(assignments => {
                 this.dataSource.data = assignments;
                 this.querying = false;
@@ -134,17 +126,14 @@ export class AssignmentComponent implements OnInit {
                 this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
             });
-        } else if (this.user.is_admin) {
-            this.assignmentService.getAssignments().subscribe(assignments => {
+        } else {
+            this.assignmentService.getAssignmentsForEmployee(this.auth.getCurrentUser().id).subscribe(assignments => {
                 this.dataSource.data = assignments;
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
             });
-        } else {
-            this.snackbar.open('Population query failed.', 'Dismiss');
-            this.querying = false;
         }
     }
 }

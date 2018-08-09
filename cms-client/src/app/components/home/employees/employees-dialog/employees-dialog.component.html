@@ -15,7 +15,7 @@
                 <input matInput type="password" formControlName="password" placeholder="Password">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
+                <input type="text" placeholder="Department" matInput formControlName="department_id" #deptInput [value]="this.displayDeptInputFn(this.entityForm.controls['department_id'].value, deptInput)" [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
                     <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
                         {{option.name}}
@@ -41,5 +41,5 @@
 </div>
 <div class="flex-row dialog-actions" mat-dialog-actions>
     <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid || !entityForm.dirty" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
 </div>

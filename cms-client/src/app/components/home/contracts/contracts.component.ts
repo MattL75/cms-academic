@@ -37,9 +37,9 @@ export class ContractsComponent implements OnInit {
 
     ngOnInit() {
         this.userRole = this.auth.getUserRole();
-        this.is_admin = this.auth.getCurrentUser().is_admin;
+        this.is_admin = this.phpBoolean(this.auth.getCurrentUser().is_admin);
 
-        if (this.userRole === Role.SALES_ASSOCIATE || this.phpBoolean(this.is_admin)) {
+        if (this.userRole === Role.SALES_ASSOCIATE || this.is_admin) {
             this.displayedColumns.push('actions');
         }
 

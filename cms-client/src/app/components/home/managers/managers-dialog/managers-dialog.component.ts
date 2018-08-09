@@ -93,6 +93,14 @@ export class ManagersDialogComponent implements OnInit {
         return result ? result.name : undefined;
     }
 
+    displayDeptInputFn(department: number, input: HTMLInputElement): string {
+        if (!this.departments) {
+            return this.managersForm.controls['department_id'].value;
+        }
+        const result = this.departments.find(x => x.id === department);
+        return result ? result.name : input.value;
+    }
+
     private departmentFilter(value: string): Department[] {
         if (typeof value !== 'string' || !this.departments) {
             return null;

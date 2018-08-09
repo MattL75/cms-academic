@@ -157,4 +157,28 @@ export class ContractsDialogComponent implements OnInit {
         return this.managers.filter(option => (option.first_name.concat('.', option.last_name)).toLowerCase().includes(filterValue));
     }
 
+    displayDeptInputFn(department: number, input: HTMLInputElement): string {
+        if (!this.departments) {
+            return this.entityForm.controls['department_id'].value;
+        }
+        const result = this.departments.find(x => x.id === department);
+        return result ? result.name : input.value;
+    }
+
+    displayClientInputFn(client: number, input: HTMLInputElement): string {
+        if (!this.clients) {
+            return this.entityForm.controls['client_id'].value;
+        }
+        const result = this.clients.find(x => x.id === client);
+        return result ? result.name : input.value;
+    }
+
+    displayManInputFn(manager: number, input: HTMLInputElement): string {
+        if (!this.managers) {
+            return this.entityForm.controls['manager_id'].value;
+        }
+        const result = this.managers.find(x => x.id === manager);
+        return result ? (result.first_name + ' ' + result.last_name) : input.value;
+    }
+
 }
