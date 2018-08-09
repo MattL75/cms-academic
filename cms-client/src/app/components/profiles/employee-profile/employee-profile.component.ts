@@ -32,8 +32,8 @@ export class EmployeeProfileComponent implements OnInit {
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
-    insuranceTypes = Object.keys(InsuranceType);
-    provinces = Object.keys(Province);
+    insuranceTypes = Object.values(InsuranceType);
+    provinces = Object.values(Province);
     user: Employee;
 
     constructor(private authService: AuthService, private depts: DepartmentsService, private employeesService: EmployeesService, private snackbar: SnackbarService) {

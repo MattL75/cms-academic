@@ -21,7 +21,7 @@ import { ContractType } from '../../../models/enums/contract-type.enum';
 export class ContractsComponent implements OnInit {
 
     dataSource: MatTableDataSource<Contract>;
-    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type', 'active', 'actions'];
+    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type'];
     querying = false;
     openFilter = false;
     activeCategory = 'all';
@@ -38,6 +38,11 @@ export class ContractsComponent implements OnInit {
     ngOnInit() {
         this.userRole = this.auth.getUserRole();
         this.is_admin = this.auth.getCurrentUser().is_admin;
+
+        if (this.userRole === Role.SALES_ASSOCIATE || this.phpBoolean(this.is_admin)) {
+            this.displayedColumns.push('actions');
+        }
+
         this.dataSource = new MatTableDataSource<Contract>();
         this.dataSource.sort = this.sort;
         this.populate();
@@ -154,5 +159,9 @@ export class ContractsComponent implements OnInit {
             this.snackbar.open('Population query failed.', 'Dismiss');
             this.querying = false;
         });
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

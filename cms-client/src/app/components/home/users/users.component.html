@@ -43,7 +43,7 @@
                     <ng-container matColumnDef="admin">
                         <th mat-header-cell *matHeaderCellDef> <strong>Admin</strong> </th>
                         <td mat-cell *matCellDef="let element">
-                            <mat-icon>{{element.is_admin ? 'check' : 'clear'}} </mat-icon>
+                            <mat-icon>{{phpBoolean(element.is_admin) ? 'check' : 'clear'}} </mat-icon>
                         </td>
                     </ng-container>
 

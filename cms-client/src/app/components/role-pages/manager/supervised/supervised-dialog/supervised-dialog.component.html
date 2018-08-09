@@ -3,8 +3,8 @@
     <form class="" [formGroup]="entityForm">
         <div class="dialog-field-row">
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Manager" matInput formControlName="manager_id" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getManagerLinkFn()">
+                <input type="text" placeholder="Manager" matInput formControlName="manager_id" [matAutocomplete]="manager">
+                <mat-autocomplete #manager="matAutocomplete" [displayWith]="getManagerLinkFn()">
                     <mat-option *ngFor="let option of filteredManagers | async" [value]="option.id">
                         {{option.first_name | normalize}}&nbsp;{{option.last_name | normalize}}
                     </mat-option>
@@ -12,8 +12,8 @@
             </mat-form-field>
             <mat-icon class="separation-icon">forward</mat-icon>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Employee" matInput formControlName="employee_id" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getEmployeeLinkFn()">
+                <input type="text" placeholder="Employee" matInput formControlName="employee_id" [matAutocomplete]="employee">
+                <mat-autocomplete #employee="matAutocomplete" [displayWith]="getEmployeeLinkFn()">
                     <mat-option *ngFor="let option of filteredEmployees | async" [value]="option.id">
                         {{option.first_name | normalize}}&nbsp;{{option.last_name | normalize}}
                     </mat-option>

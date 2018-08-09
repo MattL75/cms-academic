@@ -77,7 +77,7 @@ export class SupervisedComponent implements OnInit {
                 this.querying = true;
                 this.managerService.deleteSupervisedEmployee({man_id: this.user.id, emp_id: element.id}).subscribe(() => {
                     this.populate();
-                    this.snackbar.open('Employee deleted.', 'Success!');
+                    this.snackbar.open('Relationship deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');

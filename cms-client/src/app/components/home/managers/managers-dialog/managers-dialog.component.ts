@@ -34,8 +34,8 @@ export class ManagersDialogComponent implements OnInit {
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
-    insuranceTypes = Object.keys(InsuranceType);
-    provinces = Object.keys(Province);
+    insuranceTypes = Object.values(InsuranceType);
+    provinces = Object.values(Province);
 
     constructor(public dialogRef: MatDialogRef<ManagersDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: {manager: Manager, title: string, action: string, mode: string},

@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
         const dialogRef = this.dialog.open(UsersDialogComponent, {
             width: '450px',
             data: {
-                manager: Object.assign({}, user),
+                entity: Object.assign({}, user),
                 title: 'Edit a User',
                 action: 'Save'
             }
@@ -93,5 +93,9 @@ export class UsersComponent implements OnInit {
             this.snackbar.open('Population query failed.', 'Dismiss');
             this.querying = false;
         });
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

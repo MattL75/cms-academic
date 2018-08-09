@@ -33,8 +33,8 @@ export class EmployeesDialogComponent implements OnInit {
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
-    insuranceTypes = Object.keys(InsuranceType);
-    provinces = Object.keys(Province);
+    insuranceTypes = Object.values(InsuranceType);
+    provinces = Object.values(Province);
 
     constructor(public dialogRef: MatDialogRef<EmployeesDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: {employee: Employee, title: string, action: string, mode: string},

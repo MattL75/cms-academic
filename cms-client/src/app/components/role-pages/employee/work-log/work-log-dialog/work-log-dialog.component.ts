@@ -25,7 +25,7 @@ export class WorkLogDialogComponent implements OnInit {
     ngOnInit() {
         this.entityForm.controls['date_worked'].setValue(this.data.entity.date_worked);
         this.entityForm.controls['hours_worked'].setValue(this.data.entity.hours_worked);
-        this.entityForm.controls['contract_id'].setValue(this.data.entity.assignment_id);
+        this.entityForm.controls['assignment_id'].setValue(this.data.entity.assignment_id);
         this.entityForm.controls['employee_id'].setValue((this.auth.getCurrentUser().id));
     }
 

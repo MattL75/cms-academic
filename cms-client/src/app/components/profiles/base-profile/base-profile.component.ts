@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { Role } from '../../../models/enums/role.enum';
 
 @Component({
     selector: 'cms-base-profile',
@@ -9,6 +10,7 @@ import { AuthService } from '../../../services/auth.service';
 export class BaseProfileComponent implements OnInit {
 
     role: string;
+    Roles = Role;
 
     constructor(private auth: AuthService) {
     }
