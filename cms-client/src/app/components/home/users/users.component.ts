@@ -50,6 +50,7 @@ export class UsersComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('User modified.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }
@@ -74,6 +75,7 @@ export class UsersComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('User deleted.', 'Success!');
                 }, () => {
+                    this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
                 });
             }
