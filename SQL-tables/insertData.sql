@@ -338,7 +338,6 @@ INSERT INTO City (name, province_name) VALUES ('Nanisivik', 'Nunavut');
 INSERT INTO City (name, province_name) VALUES ('Naujaat', 'Nunavut');
 INSERT INTO City (name, province_name) VALUES ('Pangnirtung', 'Nunavut');
 
-
 INSERT INTO User (username, password, is_admin, role) VALUES ('admin', 'admin', TRUE, 'Manager');
 INSERT INTO User (username, password, is_admin, role) VALUES ('funnybunny', 'pw12345', FALSE, 'Sales Associate');
 INSERT INTO User (username, password, is_admin, role) VALUES ('carldatank', 'exquizit', FALSE, 'Sales Associate');
@@ -404,31 +403,71 @@ INSERT INTO User (username, password, is_admin, role) VALUES ('client17', 'pw123
 INSERT INTO User (username, password, is_admin, role) VALUES ('client18', 'pw12345', FALSE, 'Client');
 INSERT INTO User (username, password, is_admin, role) VALUES ('client19', 'pw12345', FALSE, 'Client');
 INSERT INTO User (username, password, is_admin, role) VALUES ('client20', 'pw12345', FALSE, 'Client');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp01', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp02', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp03', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp04', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp05', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp06', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp07', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp08', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp09', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp10', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp11', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp12', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp13', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp14', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp15', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp16', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp17', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp18', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp19', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp20', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp21', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp22', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp23', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp24', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp25', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp26', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp27', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp28', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp29', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp30', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp31', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp32', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp33', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp34', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp35', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp36', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp37', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp38', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp39', 'pw12345', FALSE, 'Employee');
+INSERT INTO User (username, password, is_admin, role) VALUES ('silveremp40', 'pw12345', FALSE, 'Employee');
 
 INSERT INTO Sales_Associate (first_name, last_name, id) VALUES ('Rebecca', 'Styles', 2);
 INSERT INTO Sales_Associate (first_name, last_name, id) VALUES ('Carl', 'Chance', 3);
 INSERT INTO Sales_Associate (first_name, last_name, id) VALUES ('Anita', 'Lachance', 4);
 
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('GSC Corporation', 'gsc.ca', 'Quebec', '123 Maisonneuve O.', 'H0H0H0', 46);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Nike', 'nike.ca', 'Ontario', '123 Maisonneuve O.', 'H0H0H0', 47);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Adidas', 'fakeemail.ca', 'Nova Scotia', '123 Maisonneuve O.', 'H0H0H0', 48);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Jell-O', 'fakeemail.ca', 'New Brunswick', '123 Maisonneuve O.', 'H0H0H0', 49);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('WWE', 'fakeemail.ca', 'Manitoba', '123 Maisonneuve O.', 'H0H0H0', 50);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Honda', 'fakeemail.ca', 'British Columbia', '123 Maisonneuve O.', 'H0H0H0', 51);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('BMW', 'fakeemail.ca', 'Prince Edward Island', '123 Maisonneuve O.', 'H0H0H0', 52);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Logitech', 'fakeemail.ca', 'Saskatchewan', '123 Maisonneuve O.', 'H0H0H0', 53);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Dell', 'fakeemail.ca', 'Alberta', '123 Maisonneuve O.', 'H0H0H0', 54);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Apple', 'fakeemail.ca', 'Newfoundland and Labrador', '123 Maisonneuve O.', 'H0H0H0', 55);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Zimbabwe Wool', 'fakeemail.ca', 'Yukon', '123 Maisonneuve O.', 'H0H0H0', 56);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Rustech', 'fakeemail.ca', 'Northwest Territories', '123 Maisonneuve O.', 'H0H0H0', 57);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Nintendo', 'fakeemail.ca', 'Nunavut', '123 Maisonneuve O.', 'H0H0H0', 58);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('D-Link', 'fakeemail.ca', 'Quebec', '123 Maisonneuve O.', 'H0H0H0', 59);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('C-Link', 'fakeemail.ca', 'Quebec', '123 Maisonneuve O.', 'H0H0H0', 60);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('G-Link', 'fakeemail.ca', 'Quebec', '123 Maisonneuve O.', 'H0H0H0', 61);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Z-Link', 'fakeemail.ca', 'Quebec', '123 Maisonneuve O.', 'H0H0H0', 62);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Motorola', 'fakeemail.ca', 'Ontario', '123 Maisonneuve O.', 'H0H0H0', 63);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Steeringwheelola', 'fakeemail.ca', 'Ontario', '123 Maisonneuve O.', 'H0H0H0', 64);
-INSERT INTO Client (name, email_domain, province_name, address, postal_code, id) VALUES ('Leatherseatola', 'fakeemail.ca','Ontario', '123 Maisonneuve O.', 'H0H0H0', 65);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('GSC Corporation', 'gsc.ca', 'Quebec', 'Montreal', '123 Maisonneuve O.', 'H0H0H0', 46);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Nike', 'nike.ca', 'Ontario', 'Ottawa', '123 Maisonneuve O.', 'H0H0H0', 47);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Adidas', 'fakeemail.ca', 'Quebec', 'Montreal', '123 Maisonneuve O.', 'H0H0H0', 48);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Jell-O', 'fakeemail.ca', 'New Brunswick', 'Moncton', '123 Maisonneuve O.', 'H0H0H0', 49);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('WWE', 'fakeemail.ca', 'Manitoba', 'Winnipeg', '123 Maisonneuve O.', 'H0H0H0', 50);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Honda', 'fakeemail.ca', 'British Columbia', 'Victoria', '123 Maisonneuve O.', 'H0H0H0', 51);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('BMW', 'fakeemail.ca', 'Prince Edward Island', 'Charlottetown', '123 Maisonneuve O.', 'H0H0H0', 52);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Logitech', 'fakeemail.ca', 'Saskatchewan', 'Regina', '123 Maisonneuve O.', 'H0H0H0', 53);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Dell', 'fakeemail.ca', 'Alberta', 'Edmonton', '123 Maisonneuve O.', 'H0H0H0', 54);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Apple', 'fakeemail.ca', 'Newfoundland and Labrador', 'St. Johns', '123 Maisonneuve O.', 'H0H0H0', 55);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Zimbabwe Wool', 'fakeemail.ca', 'Yukon', 'Whitehorse', '123 Maisonneuve O.', 'H0H0H0', 56);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Rustech', 'fakeemail.ca', 'Northwest Territories', 'Yellowknife', '123 Maisonneuve O.', 'H0H0H0', 57);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Nintendo', 'fakeemail.ca', 'Nunavut', 'Iqaluit', '123 Maisonneuve O.', 'H0H0H0', 58);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('D-Link', 'fakeemail.ca', 'Quebec', 'Montreal', '123 Maisonneuve O.', 'H0H0H0', 59);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('C-Link', 'fakeemail.ca', 'Quebec', 'Montreal', '123 Maisonneuve O.', 'H0H0H0', 60);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('G-Link', 'fakeemail.ca', 'Quebec', 'Montreal', '123 Maisonneuve O.', 'H0H0H0', 61);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Z-Link', 'fakeemail.ca', 'Quebec', 'Montreal', '123 Maisonneuve O.', 'H0H0H0', 62);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Motorola', 'fakeemail.ca', 'Ontario', 'Ottawa', '123 Maisonneuve O.', 'H0H0H0', 63);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Steeringwheelola', 'fakeemail.ca', 'Ontario', 'Ottawa', '123 Maisonneuve O.', 'H0H0H0', 64);
+INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Leatherseatola', 'fakeemail.ca','Nova Scotia', 'Halifax', '123 Maisonneuve O.', 'H0H0H0', 65);
 
 INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Dave', 'Gold', 1, 'Premium', 'Quebec', 6, 'Premium');
 INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Dan', 'Goldi', 2, 'Premium', 'Quebec', 7, 'Premium');
@@ -470,6 +509,46 @@ INSERT INTO Employee (first_name, last_name, department_id, province_name, id, c
 INSERT INTO Employee (first_name, last_name, department_id, province_name, id, contract_type_preference) VALUES ('Steeeeveeee', 'Gold', 18, 'Ontario', 43, 'Silver');
 INSERT INTO Employee (first_name, last_name, department_id, province_name, id, contract_type_preference) VALUES ('Steven', 'Gold', 19, 'Ontario', 44, 'Silver');
 INSERT INTO Employee (first_name, last_name, department_id, province_name, id, contract_type_preference) VALUES ('Stephen', 'Gold', 20, 'Ontario', 45, 'Silver');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname01', 'Lname01', 1, 'Silver', 'Quebec', 66, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname02', 'Lname02', 1, 'Silver', 'Quebec', 67, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname03', 'Lname03', 1, 'Silver', 'Quebec', 68, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname04', 'Lname04', 1, 'Silver', 'Quebec', 69, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname05', 'Lname05', 1, 'Silver', 'Quebec', 70, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname06', 'Lname06', 1, 'Silver', 'Quebec', 71, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname07', 'Lname07', 1, 'Silver', 'Quebec', 72, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname08', 'Lname08', 1, 'Silver', 'Quebec', 73, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname09', 'Lname09', 1, 'Silver', 'Quebec', 74, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname10', 'Lname10', 1, 'Silver', 'Quebec', 75, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname11', 'Lname11', 1, 'Silver', 'Quebec', 76, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname12', 'Lname12', 1, 'Silver', 'Quebec', 77, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname13', 'Lname13', 1, 'Silver', 'Quebec', 78, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname14', 'Lname14', 1, 'Silver', 'Quebec', 79, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname15', 'Lname15', 1, 'Silver', 'Quebec', 80, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname16', 'Lname16', 1, 'Silver', 'Quebec', 81, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname17', 'Lname17', 1, 'Silver', 'Quebec', 82, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname18', 'Lname18', 1, 'Silver', 'Quebec', 83, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname19', 'Lname19', 1, 'Silver', 'Quebec', 84, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname20', 'Lname20', 1, 'Silver', 'Quebec', 85, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname21', 'Lname21', 1, 'Silver', 'Quebec', 86, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname22', 'Lname22', 1, 'Silver', 'Quebec', 87, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname23', 'Lname23', 1, 'Silver', 'Quebec', 88, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname24', 'Lname24', 1, 'Silver', 'Quebec', 89, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname25', 'Lname25', 1, 'Silver', 'Quebec', 90, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname26', 'Lname26', 1, 'Silver', 'Quebec', 91, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname27', 'Lname27', 1, 'Silver', 'Quebec', 92, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname28', 'Lname28', 1, 'Silver', 'Quebec', 93, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname29', 'Lname29', 1, 'Silver', 'Quebec', 94, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname30', 'Lname30', 1, 'Silver', 'Quebec', 95, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname31', 'Lname31', 1, 'Silver', 'Quebec', 96, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname32', 'Lname32', 1, 'Silver', 'Quebec', 97, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname33', 'Lname33', 1, 'Silver', 'Quebec', 98, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname34', 'Lname34', 1, 'Silver', 'Quebec', 99, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname35', 'Lname35', 1, 'Silver', 'Quebec', 100, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname36', 'Lname36', 1, 'Silver', 'Quebec', 101, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname37', 'Lname37', 1, 'Silver', 'Quebec', 102, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname38', 'Lname38', 1, 'Silver', 'Quebec', 103, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname39', 'Lname39', 1, 'Silver', 'Quebec', 104, 'Premium');
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname40', 'Lname40', 1, 'Silver', 'Quebec', 105, 'Premium');
 
 INSERT INTO Works_In (client_id, business_line) VALUES (46, 'Contracts');
 INSERT INTO Works_In (client_id, business_line) VALUES (47, 'Repairs');
@@ -513,81 +592,164 @@ INSERT INTO Manager (id, email, phone_number) VALUES (23, 'a@a.a', '514-555-5555
 INSERT INTO Manager (id, email, phone_number) VALUES (24, 'a@a.a', '514-555-5555');
 INSERT INTO Manager (id, email, phone_number) VALUES (25, 'a@a.a', '514-555-5555');
 
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1345678.75, 123478, 4, FALSE, '2017-1-04', 10, 1, 21, 46, 'Contracts', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1234678.75, 123678, 4, FALSE, '2017-2-04', 8, 2, 22, 47, 'Repairs', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (2345678.75, 125678.75, 4, FALSE, '2017-3-04', 10, 3, 23, 48, 'Hiring', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (12345678.75, 123678.50, 4, FALSE, '2017-4-04', 8, 4, 24, 49, 'Education', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1234568.75, 234678.25, 4, FALSE, '2017-5-04', 5, 25, 50,'Shipping', 'Premium');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (12345678.75, 134578.75, 4, FALSE, '2017-6-04', 6, 6, 6, 51, 'Contracts', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1234578.75, 123458, 4, FALSE, '2017-7-04', 7, 7, 7, 52, 'Repairs', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1235678.75, 125678, 2, FALSE, '2017-7-04', 8, 8, 8, 53, 'Hiring', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1234678.75, 125678, 2, FALSE, '2017-7-04', 10, 9, 9, 54, 'Education', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1234568.75, 123478, 2, FALSE, '2017-7-04', 10, 10, 55, 'Shipping', 'Diamond');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1245678.75, 123456, 2, FALSE, '2017-7-04', 10, 11, 11 ,56, 'Contracts', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1235678.75, 145678, 2, FALSE, '2017-7-04', 10, 12, 12 ,57, 'Repairs', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1234678.75, 125678, 2, FALSE, '2017-7-04', 10, 13, 13 ,58, 'Hiring', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1345678.75, 123458, 3, FALSE, '2017-7-04', 10, 14, 14 ,59, 'Education', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1235678.75, 123678.75, 3, FALSE, '2017-7-04', 15, 15 ,60, 'Shipping', 'Gold');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1234568.75, 145678.75, 3, FALSE, '2017-8-04', 10, 16, 16 ,61, 'Contracts', 'Silver');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1234578.75, 145678.75, 3, FALSE, '2017-9-04', 5, 17, 17 ,62, 'Repairs', 'Silver');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1245678.75, 345678.75, 3, FALSE, '2017-10-04', 7, 18, 18 ,63, 'Hiring', 'Silver');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (1235678.75, 123478.75, 3, FALSE, '2017-11-04', 10, 19, 19 ,64, 'Education', 'Silver');
-INSERT INTO Contract (acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
-VALUES (2345678.75, 123467.75, 3, FALSE, '2017-12-04', 20, 20 ,65, 'Shipping', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Mankini Swimsuit', 1345678.75, 123478, 4, FALSE, '2017-1-04', 10, 1, 21, 46, 'Contracts', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Concordia CMS', 1234678.75, 123678, 4, FALSE, '2017-2-04', 8, 2, 22, 47, 'Repairs', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Concordia other thing', 2345678.75, 125678.75, 4, FALSE, '2017-3-04', 10, 3, 23, 48, 'Hiring', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Contracto', 12345678.75, 123678.50, 4, FALSE, '2017-4-04', 8, 4, 24, 49, 'Education', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Graduation project', 1234568.75, 234678.25, 4, FALSE, '2017-5-04', 5, 25, 50,'Shipping', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Hello kitty doll', 12345678.75, 134578.75, 4, FALSE, '2017-6-04', 6, 6, 6, 51, 'Contracts', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Bubblegum plans', 1234578.75, 123458, 4, FALSE, '2017-7-04', 7, 7, 7, 52, 'Repairs', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Microsoft hacking plot', 1235678.75, 125678, 2, FALSE, '2017-7-04', 8, 8, 8, 53, 'Hiring', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Modem theft', 1234678.75, 125678, 2, FALSE, '2017-7-04', 10, 9, 9, 54, 'Education', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Fake moon landing video shoot', 1234568.75, 123478, 2, FALSE, '2017-7-04', 10, 10, 55, 'Shipping', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Lens-free camera', 1245678.75, 123456, 2, FALSE, '2017-7-04', 10, 11, 11 ,56, 'Contracts', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Loose tights', 1235678.75, 145678, 2, FALSE, '2017-7-04', 10, 12, 12 ,57, 'Repairs', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Faux fauxhawk', 1234678.75, 125678, 2, FALSE, '2017-7-04', 10, 13, 13 ,58, 'Hiring', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Screen-less laptop', 1345678.75, 123458, 3, FALSE, '2017-7-04', 10, 14, 14 ,59, 'Education', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Keyboard-less laptop', 1235678.75, 123678.75, 3, FALSE, '2017-7-04', 15, 15 ,60, 'Shipping', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Trackpad-less laptop', 1234568.75, 145678.75, 3, FALSE, '2017-8-04', 9, 16, 16 ,61, 'Contracts', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Battery-less laptop', 1234578.75, 145678.75, 3, FALSE, '2017-9-04', 5, 17, 17 ,62, 'Repairs', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Non-portable laptop', 1245678.75, 345678.75, 3, FALSE, '2017-10-04', 7, 18, 18 ,63, 'Hiring', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Batteries for slingshot', 1235678.75, 123478.75, 3, FALSE, '2017-11-04', 10, 19, 19 ,64, 'Education', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Unlockable lock', 2345678.75, 123467.75, 3, FALSE, '2017-12-04', 20, 20 ,65, 'Shipping', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Gorilla skin Swimsuit', 1345678.75, 123478, 4, FALSE, '2017-1-04', 10, 1, 21, 46, 'Contracts', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('McGill CMS', 1234678.75, 123678, 4, FALSE, '2017-2-04', 8, 2, 22, 46, 'Contracts', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('McGill other thing', 2345678.75, 125678.75, 4, FALSE, '2017-3-04', 10, 3, 23, 47, 'Repairs', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Contractos', 12345678.75, 123678.50, 4, FALSE, '2017-4-04', 8, 4, 24, 47, 'Repairs', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Demotion project', 1234568.75, 234678.25, 4, FALSE, '2017-5-04', 5, 25, 47,'Repairs', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Hello chicken doll', 12345678.75, 134578.75, 4, FALSE, '2017-6-04', 6, 6, 6, 48, 'Hiring', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Bazooka Joe videogame', 1234578.75, 123458, 4, FALSE, '2017-7-04', 7, 7, 7, 48, 'Hiring', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Apple hacking plot', 1235678.75, 125678, 2, FALSE, '2017-7-04', 8, 8, 8, 48, 'Hiring', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Router theft', 1234678.75, 125678, 2, FALSE, '2017-7-04', 10, 9, 9, 48, 'Hiring', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Fake sun landing video shoot', 1234568.75, 123478, 2, FALSE, '2017-7-04', 4, 10, 49, 'Education', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Cardboard window project', 1245678.75, 123456, 2, FALSE, '2017-7-04', 10, 11, 11 ,49, 'Education', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Zipper tightener', 1235678.75, 145678, 2, FALSE, '2017-7-04', 7, 12, 12 ,49, 'Education', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Real fauxhawk', 1234678.75, 125678, 2, FALSE, '2017-7-04', 3, 13, 13 ,49, 'Education', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Ikea in a box', 1345678.75, 123458, 3, FALSE, '2017-7-04', 10, 14, 14 ,49, 'Education', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Brothless soup', 1235678.75, 123678.75, 3, FALSE, '2017-7-04', 15, 15 ,50, 'Shipping', 'Gold');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Pre-filled Agenda', 1234568.75, 145678.75, 3, FALSE, '2017-8-04', 8, 16, 16 ,50, 'Shipping', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Sane glue', 1234578.75, 145678.75, 3, FALSE, '2017-9-04', 5, 17, 17 ,50, 'Shipping', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Electric shovel', 1245678.75, 345678.75, 3, FALSE, '2017-10-04', 7, 18, 18 ,50, 'Shipping', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Cricket steroids', 1235678.75, 123478.75, 3, FALSE, '2017-11-04', 9, 19, 19 ,50, 'Shipping', 'Silver');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Unisock', 2345678.75, 123467.75, 3, FALSE, '2017-12-04', 20, 20 ,50, 'Shipping', 'Silver');
 
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 3 , 3, FALSE,1);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 5 , 5, FALSE,1);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (3, TRUE , 10, 10, FALSE,1);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 6 , 5, FALSE,6);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 11, 10, FALSE,6);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (3, TRUE , 18, 16, FALSE,6);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 8 , 9, FALSE,11);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 14, 18, FALSE,11);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (3, TRUE , 20, 25, FALSE,11);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (1, FALSE, 5 , 5, FALSE,16);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (2, FALSE, 15, 15, FALSE,16);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (3, FALSE, 20, 20, FALSE,16);
-INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, is_active, contract_id) VALUES (4, TRUE , 28, 28, FALSE,16);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'January', 'January', FALSE,1);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'January', 'January', FALSE,1);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'January', 'February',  FALSE,1);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'April', 'April', FALSE,2);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'May', 'May', FALSE,2);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 10, 'May', 'May',  FALSE,2);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 6 , 5,  'July', 'August', FALSE,6);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 11, 10, 'August', 'August',  FALSE,6);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 18, 16, 'August', 'August',  FALSE,6);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 8 , 9,  'September', 'September', FALSE,11);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 14, 18, 'September', 'September',  FALSE,11);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 20, 25, 'September', 'October',  FALSE,11);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 5 , 5,  'November', 'November', FALSE,16);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 15, 15, 'November', 'December',  FALSE,16);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, FALSE, 20, 20, 'December', 'December',  FALSE,16);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (4, TRUE , 28, 28, 'December', 'December',  FALSE,16);
 
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 1 ,21);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 2 ,22);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 3 ,23);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 4 ,24);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 5 ,25);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 6 ,26);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 7 ,27);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 8 ,28);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 9 ,29);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 10 ,31);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 11 ,32);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 12 ,33);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 1 ,34);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 2 ,35);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 3 ,36);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 4 ,37);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 5 ,38);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 6 ,39);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 7 ,39);
-INSERT INTO Assignment (is_active, deliverable_id, employee_id) VALUES (FALSE, 7 ,40);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 21);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 2, 22);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 3, 23);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 4, 24);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 5, 25);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 6, 26);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 7, 27);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 8, 28);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 9, 29);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 10, 31);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 11, 32);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 12, 33);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 13, 34);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 14, 35);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 15, 36);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 16, 37);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 17, 38);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 18, 39);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 19, 39);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 20, 40);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 66);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 67);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 68);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 69);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 70);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 71);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 72);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 73);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 74);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 75);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 76);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 77);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 78);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 79);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 80);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 81);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 82);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 83);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 84);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 85);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 86);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 87);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 88);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 89);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 90);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 91);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 92);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 93);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 94);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 95);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 96);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 97);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 98);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 99);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 100);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 101);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 102);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 103);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 104);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 105);
 
 INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2017-1-05', 073000, 1);
 INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2017-1-05', 080000, 2);
