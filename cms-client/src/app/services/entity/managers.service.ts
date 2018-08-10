@@ -46,6 +46,12 @@ export class ManagersService {
         );
     }
 
+    public getSupervisedAll(): Observable<Employee[]> {
+        return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     public getSupervisedEmployees(id: number): Observable<Employee[]> {
         if (id) {
             return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix + `?manager_id=${id}`).pipe(

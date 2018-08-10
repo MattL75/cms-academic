@@ -148,7 +148,15 @@ export class WorkLogComponent implements OnInit {
 
     populate(): void {
         this.querying = true;
-        if (this.user.role === Role.EMPLOYEE) {
+        if (this.phpBoolean(this.user.is_admin)) {
+            this.workService.getWorkLogs().subscribe(worklogs => {
+                this.dataSource.data = worklogs;
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else if (this.user.role === Role.EMPLOYEE) {
             this.workService.getWorkLogsForEmployee(this.auth.getCurrentUser().id).subscribe(worklogs => {
                 this.dataSource.data = worklogs;
                 this.currentContent = 'employee';
@@ -166,17 +174,13 @@ export class WorkLogComponent implements OnInit {
                 this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
             });
-        } else if (this.user.is_admin) {
-            this.workService.getWorkLogs().subscribe(worklogs => {
-                this.dataSource.data = worklogs;
-                this.querying = false;
-            }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
-                this.querying = false;
-            });
         } else {
             this.snackbar.open('Population query failed.', 'Dismiss');
             this.querying = false;
         }
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }
