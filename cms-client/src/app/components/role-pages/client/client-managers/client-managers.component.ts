@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
-import { Contract } from '../../../../models/contract.model';
 import { SnackbarService } from '../../../../services/snackbar.service';
 import { expandX } from '../../../../animations/expand';
 import { AuthService } from '../../../../services/auth.service';
