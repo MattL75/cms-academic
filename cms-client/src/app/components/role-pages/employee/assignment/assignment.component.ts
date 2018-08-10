@@ -21,7 +21,7 @@ import { AssignmentDialogComponent } from './assignment-dialog/assignment-dialog
 export class AssignmentComponent implements OnInit {
 
     dataSource: MatTableDataSource<Assignment>;
-    displayedColumns: string[] = ['employee_id', 'contract_id', 'assignment_id', 'active', 'actions'];
+    displayedColumns: string[] = ['employee_id', 'contract_id', 'assignment_id', 'active'];
     querying = false;
     openFilter = false;
     currentContent = 'manager';
@@ -34,6 +34,9 @@ export class AssignmentComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.auth.getCurrentUser();
+        if (this.user.role === Role.MANAGER || this.phpBoolean(this.user.is_admin)) {
+            this.displayedColumns.push('actions');
+        }
 
         this.dataSource = new MatTableDataSource<Assignment>();
         this.dataSource.sort = this.sort;
@@ -167,5 +170,9 @@ export class AssignmentComponent implements OnInit {
                 this.querying = false;
             });
         }
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }
