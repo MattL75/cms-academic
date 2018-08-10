@@ -23,23 +23,25 @@ import { NotClientGuard } from './guards/not-client.guard';
 import { SupervisedComponent } from './components/role-pages/manager/supervised/supervised.component';
 import { ManagerGuard } from './guards/manager.guard';
 import { AssignmentComponent } from './components/role-pages/employee/assignment/assignment.component';
+import { ClientManagersComponent } from './components/role-pages/client/client-managers/client-managers.component';
 
 const routes: Routes = [
     {
         path: '', component: HomeComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
-            {path: 'managers', component: ManagersComponent},
-            {path: 'employees', component: EmployeesComponent, canActivate: [NotClientGuard]},
             {path: 'dashboard', component: DashboardComponent},
+            {path: 'profile', component: BaseProfileComponent},
+            {path: 'my-managers', component: ClientManagersComponent, canActivate: [ClientGuard]},
+            {path: 'my-contracts', component: ClientContractsComponent, canActivate: [ClientGuard]},
+            {path: 'managers', component: ManagersComponent, canActivate: [NotClientGuard]},
+            {path: 'employees', component: EmployeesComponent, canActivate: [NotClientGuard]},
             {path: 'contracts', component: ContractsComponent, canActivate: [NotClientGuard]},
             {path: 'clients', component: ClientsComponent, canActivate: [NotClientGuard]},
-            {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
             {path: 'departments', component: DepartmentsComponent, canActivate: [NotClientGuard]},
             {path: 'associates', component: SalesAssociatesComponent, canActivate: [NotClientGuard]},
-            {path: 'profile', component: BaseProfileComponent},
-            {path: 'my-contracts', component: ClientContractsComponent, canActivate: [ClientGuard]},
-            {path: 'supervised', component: SupervisedComponent, canActivate: [ManagerGuard]},
             {path: 'worklog', component: WorkLogComponent, canActivate: [EmployeeGuard]},
             {path: 'assignments', component: AssignmentComponent, canActivate: [EmployeeGuard]},
+            {path: 'supervised', component: SupervisedComponent, canActivate: [ManagerGuard]},
+            {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
         ]
     },

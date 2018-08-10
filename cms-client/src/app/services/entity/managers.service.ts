@@ -40,6 +40,12 @@ export class ManagersService {
         );
     }
 
+    public getClientManagers(id: number): Observable<{first_name: string, last_name: string, average: number}[]> {
+        return this.http.get<{first_name: string, last_name: string, average: number}[]>(this.baseUrl + '/client/manager' + this.suffix + `?client_id=${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     public getSupervisedEmployees(id: number): Observable<Employee[]> {
         if (id) {
             return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix + `?manager_id=${id}`).pipe(

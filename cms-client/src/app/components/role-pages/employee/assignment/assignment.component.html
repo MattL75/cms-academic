@@ -17,11 +17,11 @@
                     </button>
                     <mat-menu #menu="matMenu">
                         <button class="vert-menu-item" mat-menu-item (click)="switchContent('manager')">
-                            <span>Manager Mode</span>
+                            <span>Manager mode</span>
                             <mat-icon class="backend-filter-icon" *ngIf="'manager' === currentContent">check</mat-icon>
                         </button>
                         <button class="vert-menu-item" mat-menu-item (click)="switchContent('employee')">
-                            <span>Employee Mode</span>
+                            <span>Employee mode</span>
                             <mat-icon class="backend-filter-icon" *ngIf="'employee' === currentContent">check</mat-icon>
                         </button>
                     </mat-menu>

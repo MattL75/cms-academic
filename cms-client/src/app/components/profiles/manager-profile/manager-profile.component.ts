@@ -11,6 +11,7 @@ import { Role } from '../../../models/enums/role.enum';
 import { ManagersService } from '../../../services/entity/managers.service';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { Manager } from '../../../models/manager.model';
+import { ContractType } from '../../../models/enums/contract-type.enum';
 
 @Component({
     selector: 'cms-manager-profile',
@@ -26,6 +27,7 @@ export class ManagerProfileComponent implements OnInit {
         email: new FormControl('', [Validators.compose([Validators.email, Validators.required])]),
         phone_number: new FormControl('', [Validators.required]),
         middle_initial: new FormControl(''),
+        contract_type_preference: new FormControl(''),
         province_name: new FormControl('', [Validators.required]),
         insurance_type: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
@@ -37,6 +39,7 @@ export class ManagerProfileComponent implements OnInit {
     filteredDepartments: Observable<Department[]>;
     insuranceTypes = Object.values(InsuranceType);
     provinces = Object.values(Province);
+    types = Object.values(ContractType);
     user: Manager;
 
     constructor(private authService: AuthService, private depts: DepartmentsService, private managerService: ManagersService, private snackbar: SnackbarService) {
@@ -53,6 +56,7 @@ export class ManagerProfileComponent implements OnInit {
         this.entityForm.controls['first_name'].setValue(this.user.first_name);
         this.entityForm.controls['last_name'].setValue(this.user.last_name);
         this.entityForm.controls['province_name'].setValue(this.user.province_name);
+        this.entityForm.controls['contract_type_preference'].setValue(this.user.contract_type_preference);
         this.entityForm.controls['insurance_type'].setValue(this.user.insurance_type);
         this.entityForm.controls['username'].setValue(this.user.username);
         this.entityForm.controls['email'].setValue(this.user.email);

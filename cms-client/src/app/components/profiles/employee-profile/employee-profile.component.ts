@@ -25,6 +25,7 @@ export class EmployeeProfileComponent implements OnInit {
         last_name: new FormControl('', [Validators.required]),
         province_name: new FormControl('', [Validators.required]),
         insurance_type: new FormControl('', [Validators.required]),
+        contract_type_preference: new FormControl(''),
         username: new FormControl('', [Validators.required]),
         role: new FormControl(Role.EMPLOYEE, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required]),
@@ -49,6 +50,7 @@ export class EmployeeProfileComponent implements OnInit {
         this.entityForm.controls['is_admin'].disable();
         this.entityForm.controls['first_name'].setValue(this.user.first_name);
         this.entityForm.controls['last_name'].setValue(this.user.last_name);
+        this.entityForm.controls['contract_type_preference'].setValue(this.user.contract_type_preference);
         this.entityForm.controls['province_name'].setValue(this.user.province_name);
         this.entityForm.controls['insurance_type'].setValue(this.user.insurance_type);
         this.entityForm.controls['username'].setValue(this.user.username);
