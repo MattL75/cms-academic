@@ -24,6 +24,7 @@ export class AssignmentComponent implements OnInit {
     displayedColumns: string[] = ['employee_id', 'contract_id', 'assignment_id', 'active', 'actions'];
     querying = false;
     openFilter = false;
+    currentContent = 'manager';
     user;
 
     @ViewChild(MatSort) sort: MatSort;
@@ -116,11 +117,41 @@ export class AssignmentComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
+    switchContent(role: string): void {
+        if (this.user.role !== Role.MANAGER) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
+        this.querying = true;
+        if (role === 'manager') {
+            this.assignmentService.getAssignmentsForManager(this.user.id).subscribe(assignments => {
+                this.dataSource.data = assignments;
+                this.currentContent = 'manager';
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else if (role === 'employee') {
+            this.assignmentService.getAssignmentsForEmployee(this.user.id).subscribe(assignments => {
+                this.dataSource.data = assignments;
+                this.currentContent = 'employee';
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else {
+            this.snackbar.open('An error occurred.', 'Dismiss');
+        }
+    }
+
     populate(): void {
         this.querying = true;
         if (this.user.role === Role.MANAGER) {
             this.assignmentService.getAssignmentsForManager(this.auth.getCurrentUser().id).subscribe(assignments => {
                 this.dataSource.data = assignments;
+                this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
@@ -129,6 +160,7 @@ export class AssignmentComponent implements OnInit {
         } else {
             this.assignmentService.getAssignmentsForEmployee(this.auth.getCurrentUser().id).subscribe(assignments => {
                 this.dataSource.data = assignments;
+                this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');

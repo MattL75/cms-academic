@@ -20,7 +20,7 @@ import { Role } from '../../../../models/enums/role.enum';
 export class WorkLogComponent implements OnInit {
 
     dataSource: MatTableDataSource<WorkLog>;
-    displayedColumns: string[] = ['date_worked', 'hours_worked', 'assignment_id', 'actions'];
+    displayedColumns: string[] = ['employee_id', 'date_worked', 'hours_worked', 'assignment_id', 'actions'];
     querying = false;
     openFilter = false;
     currentContent = 'manager';
@@ -34,9 +34,6 @@ export class WorkLogComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.auth.getCurrentUser();
-        if (this.user === Role.MANAGER) {
-            this.displayedColumns.push('employee_id');
-        }
 
         this.dataSource = new MatTableDataSource<WorkLog>();
         this.dataSource.sort = this.sort;
@@ -154,6 +151,7 @@ export class WorkLogComponent implements OnInit {
         if (this.user.role === Role.EMPLOYEE) {
             this.workService.getWorkLogsForEmployee(this.auth.getCurrentUser().id).subscribe(worklogs => {
                 this.dataSource.data = worklogs;
+                this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
