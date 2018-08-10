@@ -59,9 +59,7 @@ export class ContractsDialogComponent implements OnInit {
         this.entityForm.controls['contract_type'].setValue(this.data.entity.contract_type);
         this.entityForm.controls['manager_id'].setValue(this.data.entity.manager_id);
         this.entityForm.controls['recorded_by'].setValue(this.authService.getCurrentUser().id);
-
-        // TODO check if php fucks up this boolean
-        this.entityForm.controls['active'].setValue(this.data.entity.active);
+        this.entityForm.controls['active'].setValue(this.phpBooleanInner(this.data.entity.active));
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;
@@ -181,6 +179,17 @@ export class ContractsDialogComponent implements OnInit {
         }
         const result = this.managers.find(x => x.id === manager);
         return result ? (result.first_name + ' ' + result.last_name) : input.value;
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
+    }
+
+    phpBooleanInner(value: boolean): boolean {
+        if (value === null || value === undefined) {
+            return null;
+        }
+        return !!Number(value);
     }
 
 }

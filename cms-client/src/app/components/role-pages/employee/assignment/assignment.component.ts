@@ -25,6 +25,7 @@ export class AssignmentComponent implements OnInit {
     querying = false;
     openFilter = false;
     currentContent = 'manager';
+    Roles = Role;
     user;
 
     @ViewChild(MatSort) sort: MatSort;

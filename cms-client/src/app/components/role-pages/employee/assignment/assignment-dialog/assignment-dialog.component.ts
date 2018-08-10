@@ -42,9 +42,7 @@ export class AssignmentDialogComponent implements OnInit {
         this.entityForm.controls['id'].setValue(this.data.entity.id);
         this.entityForm.controls['employee_id'].setValue(this.data.entity.employee_id);
         this.entityForm.controls['contract_id'].setValue(this.data.entity.contract_id);
-
-        // TODO check if PHP fucks up this boolean
-        this.entityForm.controls['is_active'].setValue(this.data.entity.is_active);
+        this.entityForm.controls['is_active'].setValue(this.phpBoolean(this.data.entity.is_active));
 
         this.contractService.getManagerContracts(this.user.id).subscribe(contArray => {
             this.contracts = contArray;
@@ -131,4 +129,10 @@ export class AssignmentDialogComponent implements OnInit {
         return result ? result.name : input.value;
     }
 
+    phpBoolean(value: boolean): boolean {
+        if (value === null || value === undefined) {
+            return null;
+        }
+        return !!Number(value);
+    }
 }

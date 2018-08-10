@@ -16,10 +16,8 @@
                     <mat-option *ngFor="let assign of assignments" [value]="assign.id">
                         {{getContractNameFromAssignId(assign.contract_id)}}
                     </mat-option>
+                    <mat-option *ngIf="!assignments || assignments.length === 0" [value]="null">No assignments found.</mat-option>
                 </mat-select>
-            </mat-form-field>
-            <mat-form-field class="dialog-field">
-                <input type="number" matInput formControlName="assignment_id" placeholder="Assignment">
             </mat-form-field>
         </div>
     </form>
