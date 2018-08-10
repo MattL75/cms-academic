@@ -21,7 +21,7 @@ import { ContractType } from '../../../models/enums/contract-type.enum';
 export class ContractsComponent implements OnInit {
 
     dataSource: MatTableDataSource<Contract>;
-    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'manager_id', 'business_line', 'contract_type'];
+    displayedColumns: string[] = ['id', 'name', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'manager_id', 'business_line', 'contract_type', 'active'];
     querying = false;
     openFilter = false;
     activeCategory = 'all';

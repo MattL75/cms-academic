@@ -28,6 +28,12 @@
     }
 }
 
+.main-content-div {
+    @media screen and (max-width: 600px) {
+        width: 100% !important;
+    }
+}
+
 .main-sidebar {
     width: 226px;
     padding: 12px 0;

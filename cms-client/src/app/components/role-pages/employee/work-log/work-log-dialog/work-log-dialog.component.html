@@ -11,8 +11,13 @@
                 <input type="number" matInput formControlName="hours_worked" placeholder="Hours worked">
             </mat-form-field>
 
-            <!-- TODO Should be an autocomplete or something. Problem is, nothing to autocomplete on, really. -->
-            <!-- TODO Autocomplete on contract name from contract id, but pass assignment_id -->
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="Contract" [formControl]="entityForm.controls['assignment_id']">
+                    <mat-option *ngFor="let assign of assignments" [value]="assign.id">
+                        {{getContractNameFromAssignId(assign.contract_id)}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             <mat-form-field class="dialog-field">
                 <input type="number" matInput formControlName="assignment_id" placeholder="Assignment">
             </mat-form-field>
