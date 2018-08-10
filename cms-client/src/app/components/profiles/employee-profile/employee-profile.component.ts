@@ -11,6 +11,7 @@ import { Role } from '../../../models/enums/role.enum';
 import { Employee } from '../../../models/employee.model';
 import { EmployeesService } from '../../../services/entity/employees.service';
 import { SnackbarService } from '../../../services/snackbar.service';
+import { ContractType } from '../../../models/enums/contract-type.enum';
 
 @Component({
     selector: 'cms-employee-profile',
@@ -35,6 +36,7 @@ export class EmployeeProfileComponent implements OnInit {
     filteredDepartments: Observable<Department[]>;
     insuranceTypes = Object.values(InsuranceType);
     provinces = Object.values(Province);
+    types = Object.values(ContractType);
     user: Employee;
 
     constructor(private authService: AuthService, private depts: DepartmentsService, private employeesService: EmployeesService, private snackbar: SnackbarService) {
