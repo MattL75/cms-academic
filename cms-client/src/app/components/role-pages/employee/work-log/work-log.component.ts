@@ -23,7 +23,9 @@ export class WorkLogComponent implements OnInit {
     displayedColumns: string[] = ['date_worked', 'hours_worked', 'assignment_id', 'actions'];
     querying = false;
     openFilter = false;
+    currentContent = 'manager';
     user;
+    Roles = Role;
 
     @ViewChild(MatSort) sort: MatSort;
 
@@ -118,6 +120,35 @@ export class WorkLogComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
+    switchContent(role: string): void {
+        if (this.user.role !== Role.MANAGER) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
+        this.querying = true;
+        if (role === 'manager') {
+            this.workService.getWorkLogsForManager(this.auth.getCurrentUser().id).subscribe(worklogs => {
+                this.dataSource.data = worklogs;
+                this.currentContent = 'manager';
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Content switch failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else if (role === 'employee') {
+            this.workService.getWorkLogsForEmployee(this.auth.getCurrentUser().id).subscribe(worklogs => {
+                this.dataSource.data = worklogs;
+                this.currentContent = 'employee';
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Content switch failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else {
+            this.snackbar.open('An error occurred.', 'Dismiss');
+        }
+    }
+
     populate(): void {
         this.querying = true;
         if (this.user.role === Role.EMPLOYEE) {
@@ -131,6 +162,7 @@ export class WorkLogComponent implements OnInit {
         } else if (this.user.role === Role.MANAGER) {
             this.workService.getWorkLogsForManager(this.auth.getCurrentUser().id).subscribe(worklogs => {
                 this.dataSource.data = worklogs;
+                this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
