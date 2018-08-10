@@ -38,7 +38,7 @@
 
                     <!-- Email Column -->
                     <ng-container matColumnDef="email">
-                        <th mat-header-cell *matHeaderCellDef> <strong>Email</strong> </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Email</strong> </th>
                         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
                     </ng-container>
 
@@ -56,19 +56,19 @@
 
                     <!-- Insurance Column -->
                     <ng-container matColumnDef="insurance">
-                        <th mat-header-cell *matHeaderCellDef> <strong>Insurance</strong> </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Insurance</strong> </th>
                         <td mat-cell *matCellDef="let element"> {{element.insurance_type | normalize}} </td>
                     </ng-container>
 
                     <!-- Province Column -->
                     <ng-container matColumnDef="province">
-                        <th mat-header-cell *matHeaderCellDef> <strong>Province</strong> </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Province</strong> </th>
                         <td mat-cell *matCellDef="let element"> {{element.province_name | normalize}} </td>
                     </ng-container>
 
                     <!-- Department Column -->
                     <ng-container matColumnDef="department_id">
-                        <th mat-header-cell *matHeaderCellDef> <strong>Dept. Id</strong> </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Dept. Id</strong> </th>
                         <td mat-cell *matCellDef="let element"> {{element.department_id}} </td>
                     </ng-container>
 

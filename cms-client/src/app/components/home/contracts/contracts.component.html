@@ -106,7 +106,7 @@
                     <!-- Satisfaction Column -->
                     <ng-container matColumnDef="client_satisfaction">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Rating</strong> </th>
-                        <td mat-cell *matCellDef="let element"> {{element.client_satisfaction}}/10 </td>
+                        <td mat-cell *matCellDef="let element"> {{element.client_satisfaction ? element.client_satisfaction + '/10' : 'N/A'}} </td>
                     </ng-container>
 
                     <!-- Active Column -->
