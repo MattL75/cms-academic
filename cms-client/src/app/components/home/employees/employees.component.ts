@@ -20,7 +20,7 @@ import { AuthService } from '../../../services/auth.service';
 export class EmployeesComponent implements OnInit {
 
     dataSource: MatTableDataSource<Employee>;
-    displayedColumns: string[] = ['id', 'first_name', 'insurance', 'province', 'department_id'];
+    displayedColumns: string[] = ['id', 'first_name', 'insurance', 'province', 'department_id', 'contract_type_preference'];
     querying = false;
     openFilter = false;
     Roles = Role;

@@ -36,6 +36,13 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="Contract Pref" [formControl]="entityForm.controls['contract_type_preference']">
+                    <mat-option *ngFor="let type of types" [value]="type">
+                        {{type | normalize}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </form>
 </div>

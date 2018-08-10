@@ -1,4 +1,4 @@
-<div class="flex-row grow">
+<div class="flex-row grow main-content-div">
     <div class="card-barrier-div">
         <mat-card class="flex-column data-card">
             <mat-card-header class="flex-row center data-card-header">
@@ -12,6 +12,19 @@
                             <input autofocus *ngIf="openFilter" [@expandX] class="search-bar-field" type="text" placeholder="Search here" (keyup)="applyFilter($event.target.value)" />
                         </div>
                     </div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="this.user.role === Roles.MANAGER">
+                        <mat-icon>category</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button class="vert-menu-item" mat-menu-item (click)="switchContent('manager')">
+                            <span>Manager mode</span>
+                            <mat-icon class="backend-filter-icon" *ngIf="'manager' === currentContent">check</mat-icon>
+                        </button>
+                        <button class="vert-menu-item" mat-menu-item (click)="switchContent('employee')">
+                            <span>Employee mode</span>
+                            <mat-icon class="backend-filter-icon" *ngIf="'employee' === currentContent">check</mat-icon>
+                        </button>
+                    </mat-menu>
                     <button mat-icon-button (click)="add()">
                         <mat-icon>add</mat-icon>
                     </button>
@@ -24,7 +37,6 @@
             <mat-card-content class="data-card-content">
                 <table class="material-table" mat-table matSort [dataSource]="dataSource">
 
-                    <!-- TODO Make sure Jesse's API supports this -->
                     <!-- Employee Column -->
                     <ng-container matColumnDef="employee_id">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Employee</strong> </th>
