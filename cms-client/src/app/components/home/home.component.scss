@@ -198,5 +198,6 @@
 }
 
 .option-container {
-    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
