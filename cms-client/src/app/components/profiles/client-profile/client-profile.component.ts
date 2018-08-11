@@ -18,13 +18,15 @@ export class ClientProfileComponent implements OnInit {
         id: new FormControl(null, [Validators.required]),
         email_domain: new FormControl('', [Validators.required]),
         name: new FormControl('', [Validators.required]),
-        province: new FormControl('', [Validators.required]),
+        province_name: new FormControl('', [Validators.required]),
+        address: new FormControl('', [Validators.required]),
+        postal_code: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required]),
         role: new FormControl(Role.CLIENT, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required])
     });
-    provinces = Object.keys(Province);
+    provinces = Object.values(Province);
     user: Client;
 
     constructor(private authService: AuthService, private clientsService: ClientsService, private snackbar: SnackbarService) {
@@ -35,9 +37,10 @@ export class ClientProfileComponent implements OnInit {
         this.entityForm.controls['id'].setValue(this.user.id);
         this.entityForm.controls['email_domain'].setValue(this.user.email_domain);
         this.entityForm.controls['name'].setValue(this.user.name);
-        this.entityForm.controls['province'].setValue(this.user.province);
+        this.entityForm.controls['province_name'].setValue(this.user.province_name);
+        this.entityForm.controls['address'].setValue(this.user.address);
+        this.entityForm.controls['postal_code'].setValue(this.user.postal_code);
         this.entityForm.controls['username'].setValue(this.user.username);
-        this.entityForm.controls['password'].setValue(this.user.password);
         this.entityForm.controls['role'].setValue(this.user.role);
         this.entityForm.controls['role'].disable();
         this.entityForm.controls['is_admin'].setValue(this.user.is_admin);

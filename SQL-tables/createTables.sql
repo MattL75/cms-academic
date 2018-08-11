@@ -88,9 +88,11 @@ CREATE TABLE Client
   name VARCHAR(30) NOT NULL,
   email_domain VARCHAR(255) NOT NULL,
   province_name VARCHAR(30) NOT NULL,
+  city VARCHAR(30) NOT NULL,
   address VARCHAR(60) NOT NULL,
   postal_code CHAR(6) NOT NULL,
-  FOREIGN KEY (province_name) REFERENCES Province(name),
+  FOREIGN KEY (province_name) REFERENCES City(province_name),
+  FOREIGN KEY (city) REFERENCES City(name),
   FOREIGN KEY (id) REFERENCES User(id)
 );
 
@@ -132,8 +134,9 @@ CREATE TABLE Manager
 CREATE TABLE Contract
 (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  acv DECIMAL(10,2) NOT NULL,
-  initial_amount DECIMAL(10,2) NOT NULL,
+  name VARCHAR(30) NOT NULL,
+  acv DECIMAL(12,2) NOT NULL,
+  initial_amount DECIMAL(12,2) NOT NULL,
   recorded_by INT(6) NOT NULL,
   is_active BOOLEAN NOT NULL,
   start_date DATE NOT NULL,
@@ -143,7 +146,7 @@ CREATE TABLE Contract
   client_id INT(6) NOT NULL,
   business_line VARCHAR(30) NOT NULL,
   contract_type VARCHAR(30) NOT NULL,
-  FOREIGN KEY (recorded_by) REFERENCES Sales_Associate(id),
+  FOREIGN KEY (recorded_by) REFERENCES User(id),
   FOREIGN KEY (department_id) REFERENCES Department(id),
   FOREIGN KEY (client_id) REFERENCES Client(id),
   FOREIGN KEY (business_line) REFERENCES Business_Line(name),
@@ -159,6 +162,8 @@ CREATE TABLE Deliverable
   is_final BOOLEAN NOT NULL,
   days_to_delivery INT(3) NOT NULL,
   days_taken INT(3) NOT NULL,
+  month_scheduled VARCHAR(20) NOT NULL,
+  month_delivered VARCHAR(20),
   is_active BOOLEAN NOT NULL,
   contract_id INT(6) NOT NULL,
   FOREIGN KEY (contract_id) REFERENCES Contract(id)
@@ -168,9 +173,9 @@ CREATE TABLE Assignment
 (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   is_active BOOLEAN NOT NULL,
-  deliverable_id INT(6) NOT NULL,
+  contract_id INT(6) NOT NULL,
   employee_id INT(6) NOT NULL,
-  FOREIGN KEY (deliverable_id) REFERENCES Deliverable(id),
+  FOREIGN KEY (contract_id) REFERENCES Contract(id),
   FOREIGN KEY (employee_id) REFERENCES Employee(id)
 );
 

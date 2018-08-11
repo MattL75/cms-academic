@@ -9,7 +9,7 @@ import { SalesAssociate } from '../../models/sales-associate.model';
 })
 export class SalesAssociatesService {
 
-    baseUrl = '/api/sales';
+    baseUrl = '/api/sale';
     suffix = '.php';
 
     constructor(private http: HttpClient) {
@@ -34,7 +34,7 @@ export class SalesAssociatesService {
     }
 
     public deleteSalesAssociate(id: number): Observable<{}> {
-        return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
+        return this.http.delete(this.baseUrl + this.suffix + `?id=${id}`).pipe(
             catchError(this.handleError)
         );
     }

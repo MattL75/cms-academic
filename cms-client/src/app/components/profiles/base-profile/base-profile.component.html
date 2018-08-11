@@ -8,10 +8,10 @@
             <mat-divider style="position: static"></mat-divider>
             <div class="profile-tab-content">
                 <ng-container [ngSwitch]="role">
-                    <cms-employee-profile *ngSwitchCase="'employee'"></cms-employee-profile>
-                    <cms-manager-profile *ngSwitchCase="'manager'"></cms-manager-profile>
-                    <cms-client-profile *ngSwitchCase="'client'"></cms-client-profile>
-                    <cms-sales-profile *ngSwitchCase="'sales_associate'"></cms-sales-profile>
+                    <cms-employee-profile *ngSwitchCase="Roles.EMPLOYEE"></cms-employee-profile>
+                    <cms-manager-profile *ngSwitchCase="Roles.MANAGER"></cms-manager-profile>
+                    <cms-client-profile *ngSwitchCase="Roles.CLIENT"></cms-client-profile>
+                    <cms-sales-profile *ngSwitchCase="Roles.SALES_ASSOCIATE"></cms-sales-profile>
                     <div *ngSwitchDefault>An error occurred. No role detected.</div>
                 </ng-container>
             </div>

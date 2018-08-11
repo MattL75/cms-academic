@@ -9,7 +9,7 @@ import { Client } from '../../models/client.model';
 })
 export class ClientsService {
 
-    baseUrl = '/api/clients';
+    baseUrl = '/api/client';
     suffix = '.php';
 
     constructor(private http: HttpClient) {
@@ -34,7 +34,7 @@ export class ClientsService {
     }
 
     public deleteClient(id: number): Observable<{}> {
-        return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
+        return this.http.delete(this.baseUrl + this.suffix + `?id=${id}`).pipe(
             catchError(this.handleError)
         );
     }

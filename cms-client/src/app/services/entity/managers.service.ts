@@ -4,14 +4,13 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Manager } from '../../models/manager.model';
 import { Employee } from '../../models/employee.model';
-import { Contract } from '../../models/contract.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ManagersService {
 
-    baseUrl = '/api/managers';
+    baseUrl = '/api/manager';
     suffix = '.php';
 
     constructor(private http: HttpClient) {
@@ -19,24 +18,6 @@ export class ManagersService {
 
     public getManagers(): Observable<Manager[]> {
         return this.http.get<Manager[]>(this.baseUrl + this.suffix).pipe(
-            catchError(this.handleError)
-        );
-    }
-
-    public getSupervisedEmployees(id: number): Observable<Employee> {
-        return this.http.get<any>(this.baseUrl + '/employee' + this.suffix + `?manager_id= ${id}`).pipe(
-            catchError(this.handleError)
-        );
-    }
-
-    public getManagedContracts(id: number): Observable<Contract[]> {
-        return this.http.get<Contract[]>(this.baseUrl + '/contract' + this.suffix + `?manager_id= ${id}`).pipe(
-            catchError(this.handleError)
-        );
-    }
-
-    public getManagedContractsByCategory(id: number, type: string): Observable<Contract[]> {
-        return this.http.get<Contract[]>(this.baseUrl + '/contract' + this.suffix + `?manager_id= ${id}&type=${type}`).pipe(
             catchError(this.handleError)
         );
     }
@@ -54,7 +35,39 @@ export class ManagersService {
     }
 
     public deleteManager(id: number): Observable<{}> {
-        return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
+        return this.http.delete(this.baseUrl + this.suffix + `?id=${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    public getClientManagers(id: number): Observable<{first_name: string, last_name: string, average: number}[]> {
+        return this.http.get<{first_name: string, last_name: string, average: number}[]>(this.baseUrl + '/client/manager' + this.suffix + `?client_id=${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    public getSupervisedAll(): Observable<Employee[]> {
+        return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    public getSupervisedEmployees(id: number): Observable<Employee[]> {
+        if (id) {
+            return this.http.get<Employee[]>(this.baseUrl + '/employee' + this.suffix + `?manager_id=${id}`).pipe(
+                catchError(this.handleError)
+            );
+        }
+    }
+
+    public addSupervisedEmployee(supervises: {man_id: number, emp_id: number}): Observable<any> {
+        return this.http.post<any>(this.baseUrl + '/employee' + this.suffix, {manager_id: supervises.man_id, employee_id: supervises.emp_id}).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    public deleteSupervisedEmployee(supervises: {man_id: number, emp_id: number}): Observable<any> {
+        return this.http.delete<any>(this.baseUrl + '/employee' + this.suffix + `?manager_id=${supervises.man_id}&employee_id=${supervises.emp_id}`).pipe(
             catchError(this.handleError)
         );
     }

@@ -9,20 +9,29 @@ import { WorkLog } from '../../models/work-log.model';
 })
 export class WorkLogService {
 
-    baseUrl = '/api/hours';
+    baseUrl = '/api/work_log';
     suffix = '.php';
 
     constructor(private http: HttpClient) {
     }
 
+    // Use for an admin viewing work_log page
     public getWorkLogs(): Observable<WorkLog[]> {
         return this.http.get<WorkLog[]>(this.baseUrl + this.suffix).pipe(
             catchError(this.handleError)
         );
     }
 
+    // Use for a manager viewing work_log page
+    public getWorkLogsForManager(id: number): Observable<WorkLog[]> {
+        return this.http.get<WorkLog[]>(this.baseUrl + this.suffix + `?manager_id=${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    // Use for an employee viewing work_log page
     public getWorkLogsForEmployee(id: number): Observable<WorkLog[]> {
-        return this.http.get<WorkLog[]>(this.baseUrl + this.suffix + `?employee_id= ${id}`).pipe(
+        return this.http.get<WorkLog[]>(this.baseUrl + this.suffix + `?employee_id=${id}`).pipe(
             catchError(this.handleError)
         );
     }
@@ -39,12 +48,11 @@ export class WorkLogService {
         );
     }
 
-    // TODO find way to delete these, composite id. Need to send all primary attributes.
-    // public deleteWorkLog(id: number): Observable<{}> {
-    //     return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
-    //         catchError(this.handleError)
-    //     );
-    // }
+    public deleteWorkLog(id: number): Observable<{}> {
+        return this.http.delete(this.baseUrl + this.suffix + `?id=${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

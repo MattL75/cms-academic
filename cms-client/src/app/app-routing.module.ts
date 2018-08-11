@@ -16,27 +16,32 @@ import { SalesAssociatesComponent } from './components/home/sales-associates/sal
 import { BaseProfileComponent } from './components/profiles/base-profile/base-profile.component';
 import { ClientContractsComponent } from './components/role-pages/client/client-contracts/client-contracts.component';
 import { ClientGuard } from './guards/client.guard';
-import { ManagedComponent } from './components/role-pages/manager/managed/managed.component';
-import { ManagerGuard } from './guards/manager.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { WorkLogComponent } from './components/role-pages/employee/work-log/work-log.component';
 import { EmployeeGuard } from './guards/employee.guard';
+import { NotClientGuard } from './guards/not-client.guard';
+import { SupervisedComponent } from './components/role-pages/manager/supervised/supervised.component';
+import { ManagerGuard } from './guards/manager.guard';
+import { AssignmentComponent } from './components/role-pages/employee/assignment/assignment.component';
+import { ClientManagersComponent } from './components/role-pages/client/client-managers/client-managers.component';
 
 const routes: Routes = [
     {
         path: '', component: HomeComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
-            {path: 'managers', component: ManagersComponent},
-            {path: 'employees', component: EmployeesComponent},
             {path: 'dashboard', component: DashboardComponent},
-            {path: 'contracts', component: ContractsComponent},
-            {path: 'clients', component: ClientsComponent},
-            {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
-            {path: 'departments', component: DepartmentsComponent},
-            {path: 'associates', component: SalesAssociatesComponent},
             {path: 'profile', component: BaseProfileComponent},
+            {path: 'my-managers', component: ClientManagersComponent, canActivate: [ClientGuard]},
             {path: 'my-contracts', component: ClientContractsComponent, canActivate: [ClientGuard]},
-            {path: 'managed-contracts', component: ManagedComponent, canActivate: [ManagerGuard]},
+            {path: 'managers', component: ManagersComponent, canActivate: [NotClientGuard]},
+            {path: 'employees', component: EmployeesComponent, canActivate: [NotClientGuard]},
+            {path: 'contracts', component: ContractsComponent, canActivate: [NotClientGuard]},
+            {path: 'clients', component: ClientsComponent, canActivate: [NotClientGuard]},
+            {path: 'departments', component: DepartmentsComponent, canActivate: [NotClientGuard]},
+            {path: 'associates', component: SalesAssociatesComponent, canActivate: [NotClientGuard]},
             {path: 'worklog', component: WorkLogComponent, canActivate: [EmployeeGuard]},
+            {path: 'assignments', component: AssignmentComponent, canActivate: [EmployeeGuard]},
+            {path: 'supervised', component: SupervisedComponent, canActivate: [ManagerGuard]},
+            {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
         ]
     },

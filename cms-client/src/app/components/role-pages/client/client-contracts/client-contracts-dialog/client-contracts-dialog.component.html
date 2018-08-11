@@ -1,9 +1,9 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
     <form [formGroup]="entityForm">
-        <div class="dialog-field-row center">
+        <div style="justify-content: center !important;" class="dialog-field-row center">
             <mat-form-field class="dialog-field">
-                <input type="number" matInput formControlName="rating" placeholder="Rating">
+                <input type="number" matInput formControlName="rating" placeholder="Rating" max="10" min="0">
             </mat-form-field>
         </div>
     </form>

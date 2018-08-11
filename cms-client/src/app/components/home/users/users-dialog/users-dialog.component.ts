@@ -14,12 +14,11 @@ export class UsersDialogComponent implements OnInit {
     entityForm = new FormGroup({
         id: new FormControl(null),
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
         role: new FormControl('', [Validators.required]),
         is_admin: new FormControl('', [Validators.required]),
     });
 
-    roles = Object.keys(Role);
+    roles = Object.values(Role);
 
     constructor(public dialogRef: MatDialogRef<UsersDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: {entity: User, title: string, action: string}) {
@@ -28,8 +27,9 @@ export class UsersDialogComponent implements OnInit {
     ngOnInit() {
         this.entityForm.controls['id'].setValue(this.data.entity.id);
         this.entityForm.controls['username'].setValue(this.data.entity.username);
-        this.entityForm.controls['password'].setValue(this.data.entity.password);
         this.entityForm.controls['role'].setValue(this.data.entity.role);
+
+        // TODO check if PHP fucks up this boolean
         this.entityForm.controls['is_admin'].setValue(this.data.entity.is_admin);
     }
 

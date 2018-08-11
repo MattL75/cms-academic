@@ -1,0 +1,93 @@
+<div class="flex-row grow main-content-div">
+    <div class="card-barrier-div">
+        <mat-card class="flex-column data-card">
+            <mat-card-header class="flex-row center data-card-header">
+                <span class="data-card-title">Assignments</span>
+                <div class="flex-row grow action-container">
+                    <div class="search-bar-container">
+                        <div class="search-bar">
+                            <button mat-icon-button (click)="openFilter = !openFilter">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                            <input autofocus *ngIf="openFilter" [@expandX] class="search-bar-field" type="text" placeholder="Search here" (keyup)="applyFilter($event.target.value)" />
+                        </div>
+                    </div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="this.user.role === Roles.MANAGER">
+                        <mat-icon>category</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button class="vert-menu-item" mat-menu-item (click)="switchContent('manager')">
+                            <span>Manager mode</span>
+                            <mat-icon class="backend-filter-icon" *ngIf="'manager' === currentContent">check</mat-icon>
+                        </button>
+                        <button class="vert-menu-item" mat-menu-item (click)="switchContent('employee')">
+                            <span>Employee mode</span>
+                            <mat-icon class="backend-filter-icon" *ngIf="'employee' === currentContent">check</mat-icon>
+                        </button>
+                    </mat-menu>
+                    <button mat-icon-button (click)="add()" *ngIf="user.role === Roles.MANAGER || phpBoolean(this.user.is_admin)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </mat-card-header>
+            <mat-divider style="position: static"></mat-divider>
+            <div class="querying-shade" *ngIf="querying">
+                <mat-spinner *ngIf="querying"></mat-spinner>
+            </div>
+            <mat-card-content class="data-card-content">
+                <table class="material-table" mat-table matSort [dataSource]="dataSource">
+
+                    <!-- Assignment id Column -->
+                    <ng-container matColumnDef="assignment_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Id</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+
+                    <!-- Employee Column -->
+                    <ng-container matColumnDef="employee_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Employee</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.employee_id}} </td>
+                    </ng-container>
+
+                    <!-- TODO Make sure Jesse's API supports this -->
+                    <!-- Contract Column -->
+                    <ng-container matColumnDef="contract_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Contract</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.contract_id}} </td>
+                    </ng-container>
+
+                    <!-- Hours Column -->
+                    <ng-container matColumnDef="active">
+                        <th mat-header-cell *matHeaderCellDef> <strong>Active</strong> </th>
+                        <td mat-cell *matCellDef="let element"> {{element.active | normalize}} </td>
+                    </ng-container>
+
+                    <!-- Actions Column -->
+                    <ng-container matColumnDef="actions" stickyEnd>
+                        <th mat-header-cell class="actions-header" *matHeaderCellDef>
+                            <div class="flex-row center">
+                                <strong>
+                                    Actions
+                                </strong>
+                            </div>
+                        </th>
+                        <td mat-cell class="actions-column" *matCellDef="let element">
+                            <div class="flex-row center">
+                                <button mat-icon-button (click)="edit(element)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button (click)="delete(element)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <div class="empty-message flex-row center" *ngIf="dataSource.data.length === 0 || this.dataSource.filteredData.length === 0">No assignments found.</div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

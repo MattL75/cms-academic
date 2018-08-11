@@ -19,6 +19,6 @@ You can use the Angular CLI to generate all sorts of useful files and folders. F
 
 ## Building the Application
 
-Run `ng build` to build the project. The build artifacts are stored in the `dist/` directory. For a production build, use the `--prod` flag.
+Run `ng build --prod` to build the application. The artifacts are stored in `/php/api/client`. You will need to copy all elements inside that folder and paste them to `/php/api`, which is the root of the application.
 
 *Note: E2E and unit testing have been removed to lighten the package.*

@@ -4,15 +4,15 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { SnackbarService } from './snackbar.service';
+import { Client } from '../models/client.model';
 
 @Injectable()
 export class AuthService {
 
     public querying = false;
 
-    // TODO set to false
-    private loggedIn = true;
-    private currentUser;
+    private loggedIn = false;
+    private currentUser: any;
     private baseUrl = '/api/login';
     private suffix = '.php';
 
@@ -52,9 +52,9 @@ export class AuthService {
         return this.loggedIn;
     }
 
-    public register(username: string, password: string): void {
+    public register(client: Client): void {
         this.querying = true;
-        this.http.post('/api/register' + this.suffix, {username: username, password: password}).pipe(
+        this.http.post('/api/register' + this.suffix, client).pipe(
             catchError(this.handleError)
         ).subscribe((user: any) => {
             this.currentUser = user;
@@ -68,7 +68,8 @@ export class AuthService {
     }
 
     public getCurrentUser(): any {
-        return this.currentUser;
+        // TODO simplify when API works
+        return (this.currentUser ? this.currentUser : {});
     }
 
     public getUserRole(): string {

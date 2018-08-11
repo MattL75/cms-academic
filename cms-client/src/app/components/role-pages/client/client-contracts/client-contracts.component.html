@@ -1,4 +1,4 @@
-<div class="flex-row grow">
+<div class="flex-row grow main-content-div">
     <div class="card-barrier-div">
         <mat-card class="flex-column data-card">
             <mat-card-header class="flex-row center data-card-header">
@@ -73,9 +73,9 @@
                             </div>
                         </th>
                         <td mat-cell class="actions-column" *matCellDef="let element">
-                            <div class="flex-row center">
+                            <div class="flex-row center hide-overflow-lol">
                                 <button mat-icon-button (click)="rate(element)">
-                                    <mat-icon>edit</mat-icon>
+                                    <mat-icon>star_rate</mat-icon>
                                 </button>
                                 <span>Rate</span>
                             </div>

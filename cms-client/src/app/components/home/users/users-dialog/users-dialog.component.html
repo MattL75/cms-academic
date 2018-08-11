@@ -6,9 +6,6 @@
                 <input matInput formControlName="username" placeholder="Username">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="password" matInput formControlName="password" placeholder="Password">
-            </mat-form-field>
-            <mat-form-field class="dialog-field">
                 <mat-select placeholder="User role" [formControl]="entityForm.controls['role']">
                     <mat-option *ngFor="let role of roles" [value]="role">
                         {{role | normalize}}
@@ -26,5 +23,5 @@
 </div>
 <div class="flex-row dialog-actions" mat-dialog-actions>
     <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid || !entityForm.dirty" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
 </div>

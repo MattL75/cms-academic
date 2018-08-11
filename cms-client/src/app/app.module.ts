@@ -65,6 +65,10 @@ import { ManagedComponent } from './components/role-pages/manager/managed/manage
 import { ClientContractsDialogComponent } from './components/role-pages/client/client-contracts/client-contracts-dialog/client-contracts-dialog.component';
 import { WorkLogComponent } from './components/role-pages/employee/work-log/work-log.component';
 import { WorkLogDialogComponent } from './components/role-pages/employee/work-log/work-log-dialog/work-log-dialog.component';
+import { SupervisedDialogComponent } from './components/role-pages/manager/supervised/supervised-dialog/supervised-dialog.component';
+import { AssignmentComponent } from './components/role-pages/employee/assignment/assignment.component';
+import { AssignmentDialogComponent } from './components/role-pages/employee/assignment/assignment-dialog/assignment-dialog.component';
+import { ClientManagersComponent } from './components/role-pages/client/client-managers/client-managers.component';
 
 @NgModule({
     declarations: [
@@ -101,6 +105,10 @@ import { WorkLogDialogComponent } from './components/role-pages/employee/work-lo
         ClientContractsDialogComponent,
         WorkLogComponent,
         WorkLogDialogComponent,
+        SupervisedDialogComponent,
+        AssignmentComponent,
+        AssignmentDialogComponent,
+        ClientManagersComponent,
     ],
     imports: [
         BrowserModule,
@@ -154,6 +162,8 @@ import { WorkLogDialogComponent } from './components/role-pages/employee/work-lo
         SalesAssociatesDialogComponent,
         ClientContractsDialogComponent,
         WorkLogDialogComponent,
+        SupervisedDialogComponent,
+        AssignmentDialogComponent
     ],
     bootstrap: [AppComponent]
 })

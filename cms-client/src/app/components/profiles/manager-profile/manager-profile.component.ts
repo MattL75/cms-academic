@@ -11,6 +11,7 @@ import { Role } from '../../../models/enums/role.enum';
 import { ManagersService } from '../../../services/entity/managers.service';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { Manager } from '../../../models/manager.model';
+import { ContractType } from '../../../models/enums/contract-type.enum';
 
 @Component({
     selector: 'cms-manager-profile',
@@ -26,18 +27,19 @@ export class ManagerProfileComponent implements OnInit {
         email: new FormControl('', [Validators.compose([Validators.email, Validators.required])]),
         phone_number: new FormControl('', [Validators.required]),
         middle_initial: new FormControl(''),
-        province: new FormControl('', [Validators.required]),
-        insurance: new FormControl('', [Validators.required]),
+        contract_type_preference: new FormControl(''),
+        province_name: new FormControl('', [Validators.required]),
+        insurance_type: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
         role: new FormControl(Role.MANAGER, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required]),
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
-    insuranceTypes = Object.keys(InsuranceType);
-    provinces = Object.keys(Province);
+    insuranceTypes = Object.values(InsuranceType);
+    provinces = Object.values(Province);
+    types = Object.values(ContractType);
     user: Manager;
 
     constructor(private authService: AuthService, private depts: DepartmentsService, private managerService: ManagersService, private snackbar: SnackbarService) {
@@ -53,13 +55,13 @@ export class ManagerProfileComponent implements OnInit {
         this.entityForm.controls['is_admin'].disable();
         this.entityForm.controls['first_name'].setValue(this.user.first_name);
         this.entityForm.controls['last_name'].setValue(this.user.last_name);
-        this.entityForm.controls['province'].setValue(this.user.province);
-        this.entityForm.controls['insurance'].setValue(this.user.insurance);
+        this.entityForm.controls['province_name'].setValue(this.user.province_name);
+        this.entityForm.controls['contract_type_preference'].setValue(this.user.contract_type_preference);
+        this.entityForm.controls['insurance_type'].setValue(this.user.insurance_type);
         this.entityForm.controls['username'].setValue(this.user.username);
-        this.entityForm.controls['password'].setValue(this.user.password);
         this.entityForm.controls['email'].setValue(this.user.email);
         this.entityForm.controls['phone_number'].setValue(this.user.phone_number);
-        this.entityForm.controls['middle_initials'].setValue(this.user.middle_initial);
+        this.entityForm.controls['middle_initial'].setValue(this.user.middle_initial);
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;
@@ -102,5 +104,13 @@ export class ManagerProfileComponent implements OnInit {
         }
         const filterValue = value.toLowerCase();
         return this.departments.filter(option => option.name.toLowerCase().includes(filterValue));
+    }
+
+    displayDeptInputFn(department: number, input: HTMLInputElement): string {
+        if (!this.departments) {
+            return this.entityForm.controls['department_id'].value;
+        }
+        const result = this.departments.find(x => x.id === department);
+        return result ? result.name : input.value;
     }
 }

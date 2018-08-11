@@ -8,14 +8,14 @@
             <mat-form-field class="dialog-field">
                 <input matInput formControlName="last_name" placeholder="Last name">
             </mat-form-field>
-            <mat-form-field class="dialog-field">
+            <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">
                 <input matInput formControlName="username" placeholder="Username">
             </mat-form-field>
-            <mat-form-field class="dialog-field">
+            <mat-form-field class="dialog-field" *ngIf="this.data.mode === 'add'">
                 <input matInput type="password" formControlName="password" placeholder="Password">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
+                <input type="text" placeholder="Department" matInput formControlName="department_id" #deptInput [value]="this.displayDeptInputFn(this.entityForm.controls['department_id'].value, deptInput)" [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
                     <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
                         {{option.name}}
@@ -23,16 +23,23 @@
                 </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <mat-select placeholder="Province" [formControl]="entityForm.controls['province']">
+                <mat-select placeholder="Province" [formControl]="entityForm.controls['province_name']">
                     <mat-option *ngFor="let province of provinces" [value]="province">
                         {{province | normalize}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <mat-select placeholder="Insurance" [formControl]="entityForm.controls['insurance']">
+                <mat-select placeholder="Insurance" [formControl]="entityForm.controls['insurance_type']">
                     <mat-option *ngFor="let insurance of insuranceTypes" [value]="insurance">
                         {{insurance | normalize}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="Contract Pref" [formControl]="entityForm.controls['contract_type_preference']">
+                    <mat-option *ngFor="let type of types" [value]="type">
+                        {{type | normalize}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -41,5 +48,5 @@
 </div>
 <div class="flex-row dialog-actions" mat-dialog-actions>
     <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid || !entityForm.dirty" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
 </div>

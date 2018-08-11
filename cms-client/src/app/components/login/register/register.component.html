@@ -1,18 +1,54 @@
 <div class="flex-column grow center">
     <span class="auth-page-title">Register</span>
     <form class="flex-column grow center login-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <mat-form-field class="full-width">
-            <input matInput type="text" placeholder="Username" formControlName="username"/>
-            <mat-error *ngIf="!registerForm.controls['username'].valid">
-                Username is required.
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field class="full-width">
-            <input matInput type="password" placeholder="Password" formControlName="password"/>
-            <mat-error *ngIf="!registerForm.controls['password'].valid">
-                Must be at least 5 characters long.
-            </mat-error>
-        </mat-form-field>
+        <div class="register-form-fields">
+            <mat-form-field class="register-field">
+                <input matInput type="text" placeholder="Username" formControlName="username"/>
+                <mat-error *ngIf="!registerForm.controls['username'].valid">
+                    Username is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="register-field">
+                <input matInput type="password" placeholder="Password" formControlName="password"/>
+                <mat-error *ngIf="!registerForm.controls['password'].valid">
+                    Must be at least 5 characters.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="register-field">
+                <input matInput type="text" placeholder="Name" formControlName="name"/>
+                <mat-error *ngIf="!registerForm.controls['name'].valid">
+                    Name is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="register-field">
+                <input matInput placeholder="Email domain" formControlName="email_domain"/>
+                <mat-error *ngIf="!registerForm.controls['email_domain'].valid">
+                    Domain is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="register-field">
+                <input matInput placeholder="Address" formControlName="address"/>
+                <mat-error *ngIf="!registerForm.controls['address'].valid">
+                    Address is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="register-field">
+                <input matInput placeholder="Postal code" formControlName="postal_code"/>
+                <mat-error *ngIf="!registerForm.controls['postal_code'].valid">
+                    Address is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="register-field full-length">
+                <mat-select placeholder="Province" [formControl]="registerForm.controls['province_name']">
+                    <mat-option *ngFor="let province of provinces" [value]="province">
+                        {{province | normalize}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="!registerForm.controls['province_name'].valid">
+                    Province is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
         <div class="flex-row submit-space">
             <span class="bottom-text">
                 <span>Already have an account?&nbsp;</span>

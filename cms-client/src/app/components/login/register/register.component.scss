@@ -1,3 +1,19 @@
 :host {
     width: 100%;
 }
+
+.register-form-fields {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+}
+
+.register-field {
+    width: 47%;
+}
+
+.full-length {
+    width: 100%;
+}

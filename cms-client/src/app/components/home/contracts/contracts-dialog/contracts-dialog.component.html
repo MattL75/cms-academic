@@ -3,6 +3,9 @@
     <form class="" [formGroup]="entityForm">
         <div class="dialog-field-row">
             <mat-form-field class="dialog-field">
+                <input type="text" matInput formControlName="name" placeholder="Name">
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
                 <input type="number" matInput formControlName="acv" placeholder="Annual value">
             </mat-form-field>
             <mat-form-field class="dialog-field">
@@ -17,25 +20,43 @@
                 <input type="text" matInput formControlName="business_line" placeholder="Business Line">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
+                <input type="text" placeholder="Department" matInput formControlName="department_id" #deptInput [value]="this.displayDeptInputFn(this.entityForm.controls['department_id'].value, deptInput)" [matAutocomplete]="dept">
+                <mat-autocomplete #dept="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
                     <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
                         {{option.name}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Client" matInput formControlName="client_id" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getClientLinkFn()">
+                <input type="text" placeholder="Client" matInput formControlName="client_id" #clientInput [value]="this.displayClientInputFn(this.entityForm.controls['client_id'].value, clientInput)" [matAutocomplete]="client">
+                <mat-autocomplete #client="matAutocomplete" [displayWith]="getClientLinkFn()">
                     <mat-option *ngFor="let option of filteredClients | async" [value]="option.id">
                         {{option.name}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
-            <mat-form-field class="dialog-field full-width">
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="Manager" matInput formControlName="manager_id" #manInput [value]="this.displayManInputFn(this.entityForm.controls['manager_id'].value, manInput)" [matAutocomplete]="manager">
+                <mat-autocomplete #manager="matAutocomplete" [displayWith]="getManagerLinkFn()">
+                    <mat-option *ngFor="let option of filteredManagers | async" [value]="option.id">
+                        {{option.first_name | normalize}}&nbsp;{{option.last_name | normalize}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
                 <mat-select placeholder="Type" [formControl]="entityForm.controls['contract_type']">
                     <mat-option *ngFor="let contractType of contractTypes" [value]="contractType">
                         {{contractType | normalize}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="Activity" [formControl]="entityForm.controls['active']">
+                    <mat-option [value]="true">
+                        Active
+                    </mat-option>
+                    <mat-option [value]="false">
+                        Expired
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -44,5 +65,5 @@
 </div>
 <div class="flex-row dialog-actions" mat-dialog-actions>
     <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid || !entityForm.dirty" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
 </div>

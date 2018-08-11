@@ -6,6 +6,9 @@ import { expandX } from '../../../animations/expand';
 import { Contract } from '../../../models/contract.model';
 import { ContractsService } from '../../../services/entity/contracts.service';
 import { ContractsDialogComponent } from './contracts-dialog/contracts-dialog.component';
+import { AuthService } from '../../../services/auth.service';
+import { Role } from '../../../models/enums/role.enum';
+import { ContractType } from '../../../models/enums/contract-type.enum';
 
 @Component({
     selector: 'cms-contracts',
@@ -18,22 +21,38 @@ import { ContractsDialogComponent } from './contracts-dialog/contracts-dialog.co
 export class ContractsComponent implements OnInit {
 
     dataSource: MatTableDataSource<Contract>;
-    displayedColumns: string[] = ['id', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'business_line', 'contract_type', 'actions'];
+    displayedColumns: string[] = ['id', 'name', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'manager_id', 'business_line', 'contract_type', 'active'];
     querying = false;
     openFilter = false;
+    activeCategory = 'all';
+    userRole = '';
+    is_admin = false;
+    Roles = Role;
+    types = Object.keys(ContractType);
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private contractService: ContractsService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private contractService: ContractsService, private auth: AuthService) {
     }
 
     ngOnInit() {
+        this.userRole = this.auth.getUserRole();
+        this.is_admin = this.phpBoolean(this.auth.getCurrentUser().is_admin);
+
+        if (this.userRole === Role.SALES_ASSOCIATE || this.is_admin) {
+            this.displayedColumns.push('actions');
+        }
+
         this.dataSource = new MatTableDataSource<Contract>();
         this.dataSource.sort = this.sort;
         this.populate();
     }
 
     public add(): void {
+        if (this.userRole !== this.Roles.SALES_ASSOCIATE && !this.is_admin) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         const dialogRef = this.dialog.open(ContractsDialogComponent, {
             width: '450px',
             data: {
@@ -58,10 +77,14 @@ export class ContractsComponent implements OnInit {
     }
 
     public edit(contract: Contract): void {
+        if (this.userRole !== this.Roles.SALES_ASSOCIATE && !this.is_admin) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         const dialogRef = this.dialog.open(ContractsDialogComponent, {
             width: '450px',
             data: {
-                manager: Object.assign({}, contract),
+                entity: Object.assign({}, contract),
                 title: 'Edit a Contract',
                 action: 'Save'
             }
@@ -82,6 +105,10 @@ export class ContractsComponent implements OnInit {
     }
 
     public delete(element: Contract): void {
+        if (this.userRole !== this.Roles.SALES_ASSOCIATE && !this.is_admin) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             width: '350px',
             data: {
@@ -110,14 +137,31 @@ export class ContractsComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
-    private populate(): void {
+    selectCategory(category: string): void {
+        this.querying = true;
+        this.contractService.getContractsByCategory(category).subscribe(contracts => {
+            this.dataSource.data = contracts;
+            this.activeCategory = category;
+            this.querying = false;
+        }, () => {
+            this.snackbar.open('Category change failed.', 'Dismiss');
+            this.querying = false;
+        });
+    }
+
+    populate(): void {
         this.querying = true;
         this.contractService.getContracts().subscribe(contracts => {
             this.dataSource.data = contracts;
+            this.activeCategory = 'all';
             this.querying = false;
         }, () => {
             this.snackbar.open('Population query failed.', 'Dismiss');
             this.querying = false;
         });
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }
