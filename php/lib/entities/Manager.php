@@ -70,6 +70,7 @@ class Manager {
   public $province_name;
   public $phone_number;
   public $email;
+  public $rating;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -82,6 +83,7 @@ class Manager {
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];
+    $this->rating = $this->getRating();
   }
 
   /**
@@ -176,6 +178,15 @@ class Manager {
     Contracts::find(["id" => $contract_id])->update(["manager_id" => $this->id]);
   }
 
+  public function getRating() {
+    $result = QueryBuilder::select(Contract::TABLE_NAME, ["AVG(client_satisfaction)"])
+      ->where("manager_id = {$this->id}")
+      ->groupBy("manager_id")
+      ->execute();
+      
+    return $result["0"]["0"];
+  }
+
   /**
    * function to fetch data from DB and update memebers
    */
@@ -198,6 +209,7 @@ class Manager {
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];
+    $this->rating = $this->getRating();
 
     return $this;
   }

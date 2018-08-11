@@ -17,8 +17,8 @@ class QueryBuilder {
   private static $conn;
 
   public static function init() { // allow db params to be args
-    $servername = "test_db2"; // name of container on docker network
-    $username = "php";
+    $servername = "mysql_comp353"; // name of container on docker network
+    $username = "root";
     $password = "1234";
     $dbname = "project_db"; // name of database
     QueryBuilder::$conn = new PDO("mysql:host={$servername};dbname={$dbname};charset=utf8", $username, $password);
@@ -62,6 +62,7 @@ class SelectBuilder {
   private $from_string;
   private $join_string;
   private $where_string;
+  private $group_string;
   private $tokens; // store key value pair
   
   public function __construct(PDO $connection, string $table, array $columns) {
@@ -71,7 +72,12 @@ class SelectBuilder {
     $this->select_string = "SELECT ";
     $comma = '';
     foreach ($columns as $column) {
-      $this->select_string .= "{$comma}{$table}.{$column}";
+      // hack for injecting aggregation function
+      if (strpos($column, "AVG") !== false) {
+        $this->select_string .= "{$comma}{$column}";
+      } else {
+        $this->select_string .= "{$comma}{$table}.{$column}";
+      }
       $comma = ', ';
     }
     $this->from_string = "FROM {$table}";
@@ -117,8 +123,19 @@ class SelectBuilder {
     return $this;
   }
 
+  public function groupBy(string $column) {
+    $this->group_string  ="GROUP BY {$column}";
+
+    return $this;
+  }
+
   public function getQuery() {
-    return "{$this->select_string}\n{$this->from_string}\n{$this->join_string}{$this->where_string};";
+    return "{$this->select_string}\n{$this->from_string}\n{$this->join_string}{$this->where_string}\n{$this->group_string};";
+  }
+
+  public function debug() {
+    echo $this->getQuery();
+    return $this;
   }
 
   public function execute() {
@@ -152,6 +169,11 @@ class InsertBuilder {
 
   public function getQuery() {
     return "{$this->insert_string} ({$this->key_strings}) VALUES ({$this->value_strings});";
+  }
+
+  public function debug() {
+    echo $this->getQuery();
+    return $this;
   }
 
   public function execute() {
@@ -213,6 +235,11 @@ class UpdateBuilder {
   public function getQuery() {
     return "{$this->update_string} {$this->set_string} {$this->filter_string};";
   }
+
+  public function debug() {
+    echo $this->getQuery();
+    return $this;
+  }
   
   public function execute() {
     // echo $this->getQuery();
@@ -254,6 +281,11 @@ class DeleteBuilder {
     return "{$this->delete_string} {$this->filter_string};";
   }
   
+  public function debug() {
+    echo $this->getQuery();
+    return $this;
+  }
+
   public function execute() {
     // echo $this->getQuery();
     $result =  $this->connection->query($this->getQuery());

@@ -8,7 +8,7 @@ class WorkLogs {
   private static function fullFind(array $params) {
     $filtered = filter(WorkLogs::TABLE_FIELDS, $params);
     // query builder must be included in another file
-    $qb = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS);
+  $qb = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS);
     $first = true;
     foreach ($filtered as $field => $value) {
       if ($first) {
@@ -105,6 +105,11 @@ class WorkLog {
     $this->sync();
 
     return $this;
+  }
+
+  function getContract() {
+    QueryBuilder::select(Contract::TABLE_NAME, Contract::TABLE_FIELDS)
+      ->join("Assignment", [], "");
   }
 
   /**

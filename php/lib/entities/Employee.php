@@ -23,7 +23,7 @@ class Employees {
   }
   
   static function find(array $params) {
-    $result_data = Employees::fullFind($filtered)[0];
+    $result_data = Employees::fullFind($params)[0];
 
     return new Employee($result_data);
   }
@@ -164,11 +164,18 @@ class Employee {
   }
 
   
-  function getHours() {
+  function getHours() {    
     $results = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS)
-      ->join("Assignment", "Assignment.id", "assignment_id")
+      ->join("Assignment", [], "Assignment.id", "assignment_id")
       ->where("employee_id = {$this->id}")
       ->execute();
+
+    $worklogs = [];
+    foreach ($results as $worklog) {
+      array_push($worklogs, new WorkLog($worklog));
+    }
+
+    return $worklogs;
   }
 
   function addHours(string $assignment_id, string $hours, string $date) {
