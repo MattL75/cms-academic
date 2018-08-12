@@ -32,7 +32,7 @@ export class DashboardService {
     }
 
     reportFive(type: string): Observable<{city: string, name: string, client_satisfaction: number}> {
-        return this.http.get<{city: string, name: string, client_satisfaction: number}>(this.baseUrl + '/five' + this.suffix + '?contract_type=' + type);
+        return this.http.get<{city: string, name: string, client_satisfaction: number}>(this.baseUrl + '/five' + this.suffix + '?type=' + type);
     }
 
     reportSix(): Observable<{employees: string}> {

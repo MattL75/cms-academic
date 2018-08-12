@@ -1,6 +1,6 @@
 <div class="flex-row grow">
     <div class="card-barrier-div">
-        <div class="flex-column grow">
+        <div class="flex-column grow important-css">
             <span class="dashboard-title">Reports</span>
             <mat-accordion class="dashboard-accordion">
                 <mat-expansion-panel>
@@ -32,7 +32,7 @@
                             <td mat-cell *matCellDef="let element"> {{element.contracts}}</td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="reportOneColumns; sticky: true"></tr>
+                        <tr mat-header-row *matHeaderRowDef="reportOneColumns;"></tr>
                         <tr mat-row *matRowDef="let row; columns: reportOneColumns;"></tr>
                     </table>
                 </mat-expansion-panel>
@@ -104,11 +104,11 @@
                         <!-- Active Column -->
                         <ng-container matColumnDef="active">
                             <th mat-header-cell *matHeaderCellDef><strong>Active</strong></th>
-                            <td mat-cell *matCellDef="let element"> {{this.phpBoolean(element.is_active) | normalize}}
+                            <td mat-cell *matCellDef="let element"> {{this.phpBoolean(element.is_active)}}
                             </td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="reportTwoColumns; sticky: true"></tr>
+                        <tr mat-header-row *matHeaderRowDef="reportTwoColumns;"></tr>
                         <tr mat-row *matRowDef="let row; columns: reportTwoColumns;"></tr>
                     </table>
                 </mat-expansion-panel>
@@ -160,7 +160,7 @@
                             <td mat-cell *matCellDef="let element"> {{element.contract_type_preference}}</td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="reportThreeColumns; sticky: true"></tr>
+                        <tr mat-header-row *matHeaderRowDef="reportThreeColumns;"></tr>
                         <tr mat-row *matRowDef="let row; columns: reportThreeColumns;"></tr>
                     </table>
                 </mat-expansion-panel>
@@ -232,11 +232,11 @@
                         <!-- Active Column -->
                         <ng-container matColumnDef="active">
                             <th mat-header-cell *matHeaderCellDef><strong>Active</strong></th>
-                            <td mat-cell *matCellDef="let element"> {{this.phpBoolean(element.is_active) | normalize}}
+                            <td mat-cell *matCellDef="let element"> {{this.phpBoolean(element.is_active)}}
                             </td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="reportFourColumns; sticky: true"></tr>
+                        <tr mat-header-row *matHeaderRowDef="reportFourColumns;"></tr>
                         <tr mat-row *matRowDef="let row; columns: reportFourColumns;"></tr>
                     </table>
                 </mat-expansion-panel>
@@ -275,7 +275,7 @@
                             <td mat-cell *matCellDef="let element"> {{element.details.client_satisfaction}}</td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="reportFiveColumns; sticky: true"></tr>
+                        <tr mat-header-row *matHeaderRowDef="reportFiveColumns;"></tr>
                         <tr mat-row *matRowDef="let row; columns: reportFiveColumns;"></tr>
                     </table>
                 </mat-expansion-panel>
@@ -330,7 +330,7 @@
                             <td mat-cell *matCellDef="let element"> {{element.month_delivered}}</td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="reportEightColumns; sticky: true"></tr>
+                        <tr mat-header-row *matHeaderRowDef="reportEightColumns;"></tr>
                         <tr mat-row *matRowDef="let row; columns: reportEightColumns;"></tr>
                     </table>
                 </mat-expansion-panel>

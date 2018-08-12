@@ -82,4 +82,8 @@ export class DashboardComponent implements OnInit {
         });
     }
 
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
+    }
+
 }
