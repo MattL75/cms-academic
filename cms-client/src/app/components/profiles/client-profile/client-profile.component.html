@@ -16,14 +16,20 @@
             <input matInput type="text" formControlName="postal_code" placeholder="Postal code">
         </mat-form-field>
         <mat-form-field class="profile-field">
-            <input matInput type="text" formControlName="city" placeholder="City">
-        </mat-form-field>
-        <mat-form-field class="profile-field">
             <mat-select placeholder="Province" [formControl]="entityForm.controls['province_name']">
                 <mat-option *ngFor="let province of provinces" [value]="province">
                     {{province | normalize}}
                 </mat-option>
             </mat-select>
+        </mat-form-field>
+        <mat-form-field class="profile-field">
+            <input type="text" placeholder="City" matInput formControlName="city"
+                   [matAutocomplete]="auto"/>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredCities | async" [value]="option.name">
+                    {{option.name | normalize}}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 </form>

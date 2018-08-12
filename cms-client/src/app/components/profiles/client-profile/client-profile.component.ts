@@ -6,6 +6,11 @@ import { Role } from '../../../models/enums/role.enum';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { Client } from '../../../models/client.model';
 import { ClientsService } from '../../../services/entity/clients.service';
+import { Department } from '../../../models/department.model';
+import { Observable } from 'rxjs';
+import { City } from '../../../models/city.model';
+import { map, startWith } from 'rxjs/operators';
+import { CityService } from '../../../services/entity/city.service';
 
 @Component({
     selector: 'cms-client-profile',
@@ -28,9 +33,11 @@ export class ClientProfileComponent implements OnInit {
         is_admin: new FormControl(false, [Validators.required])
     });
     provinces = Object.values(Province);
+    cities: City[];
+    filteredCities: Observable<City[]>;
     user: Client;
 
-    constructor(private authService: AuthService, private clientsService: ClientsService, private snackbar: SnackbarService) {
+    constructor(private authService: AuthService, private clientsService: ClientsService, private cityService: CityService, private snackbar: SnackbarService) {
     }
 
     ngOnInit() {
@@ -47,6 +54,16 @@ export class ClientProfileComponent implements OnInit {
         this.entityForm.controls['role'].disable();
         this.entityForm.controls['is_admin'].setValue(this.user.is_admin);
         this.entityForm.controls['is_admin'].disable();
+
+        this.cityService.getCities().subscribe(cityArray => {
+            this.cities = cityArray;
+        });
+
+        this.filteredCities = this.entityForm.controls['city'].valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this.cityFilter(value))
+            );
     }
 
     save(): void {
@@ -57,5 +74,13 @@ export class ClientProfileComponent implements OnInit {
         }, () => {
             this.snackbar.open('Failed to save details.', 'Dismiss');
         });
+    }
+
+    private cityFilter(value: string): City[] {
+        if (typeof value !== 'string' || !this.cities) {
+            return null;
+        }
+        const filterValue = value.toLowerCase();
+        return this.cities.filter(option => option.name.toLowerCase().includes(filterValue));
     }
 }
