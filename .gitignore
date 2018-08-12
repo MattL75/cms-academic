@@ -1,1 +1,6 @@
 assignments
+**/api/**/*.js*
+**/api/**/*.html*
+**/api/**/*.ico*
+**/api/**/*.png*
+**/api/**/*.txt*

@@ -30,7 +30,8 @@ class Users {
 
   static function create(array $data) {
     // todo validate data
-    $record_id = QueryBuilder::insert(User::TABLE_NAME, $data)->execute();
+    $filtered = filter(User::TABLE_FIELDS, $data);
+    $record_id = QueryBuilder::insert(User::TABLE_NAME, $filtered)->execute();
     return Users::find(['id' => $record_id]);
   }
 
@@ -46,7 +47,7 @@ class Users {
 }
 
 /**
- * Object representation of a Company entity (will become client)
+ * Object representation of a User entity (will become client)
  */
 class User {
   const  TABLE_NAME = 'User';
@@ -77,7 +78,7 @@ class User {
    * 
    * this function automatically saves the changes to the database
    */
-  public function update(array $data): Company {
+  public function update(array $data): User {
     // check which fields are sent by the request
     if (isset($data['username'])) {
       $this->username = $data['username'];
@@ -101,7 +102,7 @@ class User {
    * 
    * TODO(QOL) only update "dirty fields"
    */
-  public function save(): Company {
+  public function save(): User {
     $updata = get_object_vars($this);
     unset($updata['id']); // don't attempt to update id
     
@@ -134,7 +135,7 @@ class User {
   }
 
   function delete() {
-    QueryBuilder::delete(Company::TABLE_NAME)
+    QueryBuilder::delete(User::TABLE_NAME)
       ->where("id = {$this->id}")
       ->execute();
   }

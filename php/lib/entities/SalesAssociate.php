@@ -30,8 +30,10 @@ class SalesAssociates {
 
   static function create(array $data) {
     // todo validate data
-    $record_id = QueryBuilder::insert(SalesAssociate::TABLE_NAME, $data)->execute();
-    return SalesAssociates::find(['id' => $record_id]);
+    $filtered = filter(SalesAssociate::TABLE_FIELDS, $data);
+    
+    $record_id = QueryBuilder::insert(SalesAssociate::TABLE_NAME, $filtered)->execute();
+    return SalesAssociates::find(['id' => $data['id']]);
   }
 
   static function findAll(array $params) {

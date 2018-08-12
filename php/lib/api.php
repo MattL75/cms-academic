@@ -11,6 +11,7 @@ include __DIR__."/entities/Client.php";
 include __DIR__."/entities/Contract.php";
 include __DIR__."/entities/SalesAssociate.php";
 include __DIR__."/entities/WorkLog.php";
+include __DIR__."/entities/Assignment.php";
 
 QueryBuilder::init();
 // send JSON response not HTML

@@ -84,8 +84,8 @@ class SelectBuilder {
     $this->join_string = '';
   }
 
-  public function join(string $table, array $columns, string $left_field, string $right_field) {
-    $this->join_string .= "INNER JOIN {$table} ON {$left_field} = {$right_field}\n";
+  public function join(string $table, array $columns, string $left_field, string $right_field, string $join_type = "INNER") {
+    $this->join_string .= "{$join_type} JOIN {$table} ON {$left_field} = {$right_field} ";
     // TODO add column list as argument
     foreach ($columns as $column) {
       $this->select_string .= ",{$table}.{$column}";
@@ -104,7 +104,7 @@ class SelectBuilder {
    // make this work with prepared statements to protect from injection
   public function or(string $condition) {
     if (isset($this->where_string)) {
-      $this->where_string .= "\nOR {$condition}";
+      $this->where_string .= "OR {$condition}";
     } else {
       // error
     }
@@ -115,7 +115,7 @@ class SelectBuilder {
    // make this work with prepared statements to protect from injection
   public function and(string $condition) {
     if (isset($this->where_string)) {
-      $this->where_string .= "\nAND {$condition}";
+      $this->where_string .= " AND {$condition}";
     } else {
       // error
     }
@@ -130,7 +130,7 @@ class SelectBuilder {
   }
 
   public function getQuery() {
-    return "{$this->select_string}\n{$this->from_string}\n{$this->join_string}{$this->where_string}\n{$this->group_string};";
+    return "{$this->select_string} {$this->from_string} {$this->join_string} {$this->where_string} {$this->group_string};";
   }
 
   public function debug() {
@@ -269,7 +269,7 @@ class DeleteBuilder {
   }
   public function and(string $condition) {
     if (isset($this->filter_string)) {
-      $this->filter_string .= "\n AND {$condition}";
+      $this->filter_string .= "  AND {$condition}";
     } else {
       // error
     }

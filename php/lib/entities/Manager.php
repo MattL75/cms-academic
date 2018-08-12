@@ -32,9 +32,9 @@ class Managers {
 
   // should have an employee record already created
   static function create(array $data) {
-    // todo validate data
-    $record_id = QueryBuilder::insert(Manager::TABLE_NAME, $data)->execute(); // data must include employee id
-    return Managers::find(['id' => $record_id]);
+    $filtered = filter(Manager::TABLE_FIELDS, $data);
+    $record_id = QueryBuilder::insert(Manager::TABLE_NAME, $filtered)->execute(); // data must include employee id
+    return Managers::find(['id' => $data["id"]]);
   }
 
   static function findAll(array $params) {
@@ -134,6 +134,8 @@ class Manager {
     unset($employee_updata['email']); // don't attempt to update id
     unset($employee_updata['phone_number']); // don't attempt to update id
     unset($employee_updata['middle_initial']); // don't attempt to update id
+    unset($employee_updata['insurance_rate']); // don't attempt to update id
+    unset($employee_updata['rating']); // don't attempt to update id
     // update manager and employee record
     QueryBuilder::update(Manager::TABLE_NAME, $manager_updata)
       ->where("id = \"{$this->id}\"")
