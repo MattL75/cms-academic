@@ -90,19 +90,19 @@ class Employee {
   public function update(array $data): Employee {
     // check which fields are sent by the request
     if (isset($data['first_name'])) {
-      $this->name = $data['first_name'];
+      $this->first_name = $data['first_name'];
     }
     if (isset($data['last_name'])) {
-      $this->city = $data['last_name'];
+      $this->last_name = $data['last_name'];
     }
     if (isset($data['department_id'])) {
-      $this->postal_code = $data['department_id'];
+      $this->department_id = $data['department_id'];
     }
     if (isset($data['insurance_type'])) {
-      $this->address = $data['insurance_type'];
+      $this->insurance_type = $data['insurance_type'];
     }
     if (isset($data['province_name'])) {
-      $this->province = $data['province_name'];
+      $this->province_name = $data['province_name'];
     }
     if (isset($data['contract_type_preference'])) {
       $this->contract_type_preference = $data['contract_type_preference'];
@@ -120,9 +120,10 @@ class Employee {
   public function save(): Employee {
     $updata = get_object_vars($this);
     unset($updata['id']); // don't attempt to update id
+    unset($updata['insurance_rate']);
     
     QueryBuilder::update(Employee::TABLE_NAME, $updata)
-      ->where("id = \"{$this->id}\"")
+      ->where("id = \"{$this->id}\"")//->debug()
       ->execute();
     $this->sync();
 

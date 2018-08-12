@@ -17,8 +17,8 @@ class QueryBuilder {
   private static $conn;
 
   public static function init() { // allow db params to be args
-    $servername = "mysql_comp353"; // name of container on docker network
-    $username = "root";
+    $servername = "test_db2"; // name of container on docker network
+    $username = "php";
     $password = "1234";
     $dbname = "project_db"; // name of database
     QueryBuilder::$conn = new PDO("mysql:host={$servername};dbname={$dbname};charset=utf8", $username, $password);
