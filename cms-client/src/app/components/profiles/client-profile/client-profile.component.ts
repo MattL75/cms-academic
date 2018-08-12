@@ -47,10 +47,6 @@ export class ClientProfileComponent implements OnInit {
             this.entityForm.controls['address'].setValue(user.address);
             this.entityForm.controls['postal_code'].setValue(user.postal_code);
             this.entityForm.controls['city'].setValue(user.city);
-            this.entityForm.controls['role'].setValue(user.role);
-            this.entityForm.controls['role'].disable();
-            this.entityForm.controls['is_admin'].setValue(this.phpBoolean(user.is_admin));
-            this.entityForm.controls['is_admin'].disable();
         });
 
         this.cityService.getCities().subscribe(cityArray => {
