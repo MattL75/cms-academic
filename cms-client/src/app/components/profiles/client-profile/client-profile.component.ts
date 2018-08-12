@@ -39,20 +39,18 @@ export class ClientProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.user = this.authService.getCurrentUser();
         this.clientsService.getSpecificClient(this.authService.getCurrentUser().id).subscribe(user => {
-            this.user = user;
-            this.entityForm.controls['id'].setValue(this.user.id);
-            this.entityForm.controls['email_domain'].setValue(this.user.email_domain);
-            this.entityForm.controls['name'].setValue(this.user.name);
-            this.entityForm.controls['province_name'].setValue(this.user.province_name);
-            this.entityForm.controls['address'].setValue(this.user.address);
-            this.entityForm.controls['postal_code'].setValue(this.user.postal_code);
-            this.entityForm.controls['username'].setValue(this.user.username);
-            this.entityForm.controls['city'].setValue(this.user.city);
-            this.entityForm.controls['role'].setValue(this.user.role);
+            this.entityForm.controls['id'].setValue(user.id);
+            this.entityForm.controls['email_domain'].setValue(user.email_domain);
+            this.entityForm.controls['name'].setValue(user.name);
+            this.entityForm.controls['province_name'].setValue(user.province_name);
+            this.entityForm.controls['address'].setValue(user.address);
+            this.entityForm.controls['postal_code'].setValue(user.postal_code);
+            this.entityForm.controls['username'].setValue(user.username);
+            this.entityForm.controls['city'].setValue(user.city);
+            this.entityForm.controls['role'].setValue(user.role);
             this.entityForm.controls['role'].disable();
-            this.entityForm.controls['is_admin'].setValue(this.user.is_admin);
+            this.entityForm.controls['is_admin'].setValue(this.phpBoolean(user.is_admin));
             this.entityForm.controls['is_admin'].disable();
         });
 
@@ -82,5 +80,9 @@ export class ClientProfileComponent implements OnInit {
         }
         const filterValue = value.toLowerCase();
         return this.cities.filter(option => option.name.toLowerCase().includes(filterValue));
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

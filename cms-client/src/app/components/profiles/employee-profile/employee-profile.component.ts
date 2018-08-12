@@ -36,25 +36,23 @@ export class EmployeeProfileComponent implements OnInit {
     insuranceTypes = Object.values(InsuranceType);
     provinces = Object.values(Province);
     types = Object.values(ContractType);
-    user: Employee;
 
     constructor(private authService: AuthService, private depts: DepartmentsService, private employeesService: EmployeesService, private snackbar: SnackbarService) {
     }
 
     ngOnInit() {
         this.employeesService.getSpecificEmployee(this.authService.getCurrentUser().id).subscribe(user => {
-            this.user = user;
-            this.entityForm.controls['id'].setValue(this.user.id);
-            this.entityForm.controls['department_id'].setValue(this.user.department_id);
-            this.entityForm.controls['role'].setValue(this.user.role);
+            this.entityForm.controls['id'].setValue(user.id);
+            this.entityForm.controls['department_id'].setValue(user.department_id);
+            this.entityForm.controls['role'].setValue(user.role);
             this.entityForm.controls['role'].disable();
-            this.entityForm.controls['is_admin'].setValue(this.user.is_admin);
+            this.entityForm.controls['is_admin'].setValue(this.phpBoolean(user.is_admin));
             this.entityForm.controls['is_admin'].disable();
-            this.entityForm.controls['first_name'].setValue(this.user.first_name);
-            this.entityForm.controls['last_name'].setValue(this.user.last_name);
-            this.entityForm.controls['contract_type_preference'].setValue(this.user.contract_type_preference);
-            this.entityForm.controls['province_name'].setValue(this.user.province_name);
-            this.entityForm.controls['insurance_type'].setValue(this.user.insurance_type);
+            this.entityForm.controls['first_name'].setValue(user.first_name);
+            this.entityForm.controls['last_name'].setValue(user.last_name);
+            this.entityForm.controls['contract_type_preference'].setValue(user.contract_type_preference);
+            this.entityForm.controls['province_name'].setValue(user.province_name);
+            this.entityForm.controls['insurance_type'].setValue(user.insurance_type);
         });
 
         this.depts.getDepartments().subscribe(depts => {
@@ -105,5 +103,9 @@ export class EmployeeProfileComponent implements OnInit {
         }
         const result = this.departments.find(x => x.id === department);
         return result ? result.name : input.value;
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

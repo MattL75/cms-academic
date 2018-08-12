@@ -39,29 +39,26 @@ export class ManagerProfileComponent implements OnInit {
     insuranceTypes = Object.values(InsuranceType);
     provinces = Object.values(Province);
     types = Object.values(ContractType);
-    user: Manager;
 
     constructor(private authService: AuthService, private depts: DepartmentsService, private managerService: ManagersService, private snackbar: SnackbarService) {
     }
 
     ngOnInit() {
-        this.user = this.authService.getCurrentUser();
         this.managerService.getSpecificManager(this.authService.getCurrentUser().id).subscribe(user => {
-            this.user = user;
-            this.entityForm.controls['id'].setValue(this.user.id);
-            this.entityForm.controls['department_id'].setValue(this.user.department_id);
-            this.entityForm.controls['role'].setValue(this.user.role);
+            this.entityForm.controls['id'].setValue(user.id);
+            this.entityForm.controls['department_id'].setValue(user.department_id);
+            this.entityForm.controls['role'].setValue(user.role);
             this.entityForm.controls['role'].disable();
-            this.entityForm.controls['is_admin'].setValue(this.user.is_admin);
+            this.entityForm.controls['is_admin'].setValue(this.phpBoolean(user.is_admin));
             this.entityForm.controls['is_admin'].disable();
-            this.entityForm.controls['first_name'].setValue(this.user.first_name);
-            this.entityForm.controls['last_name'].setValue(this.user.last_name);
-            this.entityForm.controls['province_name'].setValue(this.user.province_name);
-            this.entityForm.controls['contract_type_preference'].setValue(this.user.contract_type_preference);
-            this.entityForm.controls['insurance_type'].setValue(this.user.insurance_type);
-            this.entityForm.controls['email'].setValue(this.user.email);
-            this.entityForm.controls['phone_number'].setValue(this.user.phone_number);
-            this.entityForm.controls['middle_initial'].setValue(this.user.middle_initial);
+            this.entityForm.controls['first_name'].setValue(user.first_name);
+            this.entityForm.controls['last_name'].setValue(user.last_name);
+            this.entityForm.controls['province_name'].setValue(user.province_name);
+            this.entityForm.controls['contract_type_preference'].setValue(user.contract_type_preference);
+            this.entityForm.controls['insurance_type'].setValue(user.insurance_type);
+            this.entityForm.controls['email'].setValue(user.email);
+            this.entityForm.controls['phone_number'].setValue(user.phone_number);
+            this.entityForm.controls['middle_initial'].setValue(user.middle_initial);
         });
 
         this.depts.getDepartments().subscribe(depts => {
@@ -112,5 +109,9 @@ export class ManagerProfileComponent implements OnInit {
         }
         const result = this.departments.find(x => x.id === department);
         return result ? result.name : input.value;
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }
