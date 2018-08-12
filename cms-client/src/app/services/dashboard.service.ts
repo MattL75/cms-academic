@@ -31,8 +31,8 @@ export class DashboardService {
         return this.http.get<Contract[]>(this.baseUrl + '/four' + this.suffix);
     }
 
-    reportFive(type: string): Observable<{city: string, name: string, client_satisfaction: number}> {
-        return this.http.get<{city: string, name: string, client_satisfaction: number}>(this.baseUrl + '/five' + this.suffix + '?type=' + type);
+    reportFive(type: string): Observable<{city: string, name: string, client_satisfaction: number}[]> {
+        return this.http.get<{city: string, name: string, client_satisfaction: number}[]>(this.baseUrl + '/five' + this.suffix + '?type=' + type);
     }
 
     reportSix(): Observable<{employees: string}> {

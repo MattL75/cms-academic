@@ -65,7 +65,10 @@ export class DashboardComponent implements OnInit {
 
         this.types.forEach(cType => {
             this.dashboardService.reportFive(cType).subscribe(five => {
-                this.reportFiveSource.data.push({contract_type: cType, details: five});
+                five.forEach(element => {
+                    this.reportFiveSource.data.push({contract_type: cType, details: element});
+                });
+                this.reportFiveSource.data = this.reportFiveSource.data;
             });
         });
 
