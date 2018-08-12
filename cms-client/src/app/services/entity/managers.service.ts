@@ -46,8 +46,8 @@ export class ManagersService {
         );
     }
 
-    public getClientManagers(id: number): Observable<{first_name: string, last_name: string, average: number}[]> {
-        return this.http.get<{first_name: string, last_name: string, average: number}[]>( `/api/client/manager.php?client_id=${id}`).pipe(
+    public getClientManagers(id: number): Observable<{first_name: string, last_name: string, rating: number}[]> {
+        return this.http.get<{first_name: string, last_name: string, rating: number}[]>( `/api/client/manager.php?client_id=${id}`).pipe(
             catchError(this.handleError)
         );
     }

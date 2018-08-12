@@ -15,7 +15,7 @@ import { ManagersService } from '../../../../services/entity/managers.service';
 })
 export class ClientManagersComponent implements OnInit {
 
-    dataSource: MatTableDataSource<{first_name: string, last_name: string, average: number}>;
+    dataSource: MatTableDataSource<{first_name: string, last_name: string, rating: number}>;
     displayedColumns: string[] = ['first_name', 'average'];
     querying = false;
     openFilter = false;
@@ -26,7 +26,7 @@ export class ClientManagersComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.dataSource = new MatTableDataSource<{first_name: string, last_name: string, average: number}>();
+        this.dataSource = new MatTableDataSource<{first_name: string, last_name: string, rating: number}>();
         this.dataSource.sort = this.sort;
         this.populate();
     }
