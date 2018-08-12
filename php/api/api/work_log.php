@@ -15,6 +15,8 @@ function get() {
 function post() {
   restricted(["Manager", "Employee"]);
   $post_body = get_object_vars(json_decode(file_get_contents('php://input')));
+  $post_body["date_worked"] = explode("T", $post_body["date_worked"])[0];
+  $post_body["hours_worked"] = $post_body["hours_worked"] . ':00:00';
 
   return WorkLogs::create($post_body)->toJson();
 }
@@ -23,6 +25,7 @@ function post() {
 function put() {
   restricted(["Manager", "Employee"]);
   $put_body = json_decode(file_get_contents('php://input'));
+  $put_body["date_worked"] = explode("T", $post_body["date_worked"])[0];
 
   return WorkLogs::find(['id' => $put_body->id])
           ->update(get_object_vars($put_body))

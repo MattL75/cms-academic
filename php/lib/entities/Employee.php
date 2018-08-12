@@ -171,6 +171,9 @@ class Employee {
     return $contracts;
   }
 
+  function getAssignments() {
+    return Assignments::findAll(["employee_id" => $this->id]);
+  }
   
   function getHours() {    
     $results = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS)
