@@ -17,34 +17,36 @@ export class SalesProfileComponent implements OnInit {
         id: new FormControl(null, [Validators.required]),
         first_name: new FormControl('', [Validators.required]),
         last_name: new FormControl('', [Validators.required]),
-        username: new FormControl('', [Validators.required]),
         role: new FormControl(Role.SALES_ASSOCIATE, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required])
     });
-    user: SalesAssociate;
 
     constructor(private authService: AuthService, private salesService: SalesAssociatesService, private snackbar: SnackbarService) {
     }
 
     ngOnInit() {
-        this.user = this.authService.getCurrentUser();
-        this.entityForm.controls['id'].setValue(this.user.id);
-        this.entityForm.controls['first_name'].setValue(this.user.first_name);
-        this.entityForm.controls['last_name'].setValue(this.user.last_name);
-        this.entityForm.controls['username'].setValue(this.user.username);
-        this.entityForm.controls['role'].setValue(this.user.role);
-        this.entityForm.controls['role'].disable();
-        this.entityForm.controls['is_admin'].setValue(this.user.is_admin);
-        this.entityForm.controls['is_admin'].disable();
+        this.salesService.getSpecificSalesAssociate(this.authService.getCurrentUser().id).subscribe(userArray => {
+            const user = userArray[0];
+            this.entityForm.controls['id'].setValue(user.id);
+            this.entityForm.controls['first_name'].setValue(user.first_name);
+            this.entityForm.controls['last_name'].setValue(user.last_name);
+            this.entityForm.controls['role'].setValue(user.role);
+            this.entityForm.controls['role'].disable();
+            this.entityForm.controls['is_admin'].setValue(this.phpBoolean(user.is_admin));
+            this.entityForm.controls['is_admin'].disable();
+        });
     }
 
     save(): void {
         this.salesService.updateSalesAssociate(this.entityForm.value).subscribe((newUser) => {
-            //  TODO Refresh session? Login then logout? Check if works.
             this.authService.setUser(newUser);
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {
             this.snackbar.open('Failed to save details.', 'Dismiss');
         });
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

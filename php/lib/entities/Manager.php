@@ -10,7 +10,7 @@ class Managers {
     // query builder must be included in another file
     $qb = QueryBuilder::select(Manager::TABLE_NAME, Manager::TABLE_FIELDS)
           ->join(Employee::TABLE_NAME, Employee::TABLE_FIELDS, 'Employee.id', 'Manager.id')
-          ->join('Insurance_Plan', ["rate"], 'insurance_type', 'type');
+          ->join('Insurance_Plan', ["rate"], 'insurance_type', 'type', 'LEFT OUTER');
     $first = true;
     foreach ($filtered as $field => $value) {
       if ($first) {
@@ -32,9 +32,9 @@ class Managers {
 
   // should have an employee record already created
   static function create(array $data) {
-    // todo validate data
-    $record_id = QueryBuilder::insert(Manager::TABLE_NAME, $data)->execute(); // data must include employee id
-    return Managers::find(['id' => $record_id]);
+    $filtered = filter(Manager::TABLE_FIELDS, $data);
+    $record_id = QueryBuilder::insert(Manager::TABLE_NAME, $filtered)->execute(); // data must include employee id
+    return Managers::find(['id' => $data["id"]]);
   }
 
   static function findAll(array $params) {
@@ -70,6 +70,7 @@ class Manager {
   public $province_name;
   public $phone_number;
   public $email;
+  public $rating;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -82,6 +83,7 @@ class Manager {
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];
+    $this->rating = $this->getRating();
   }
 
   /**
@@ -132,6 +134,8 @@ class Manager {
     unset($employee_updata['email']); // don't attempt to update id
     unset($employee_updata['phone_number']); // don't attempt to update id
     unset($employee_updata['middle_initial']); // don't attempt to update id
+    unset($employee_updata['insurance_rate']); // don't attempt to update id
+    unset($employee_updata['rating']); // don't attempt to update id
     // update manager and employee record
     QueryBuilder::update(Manager::TABLE_NAME, $manager_updata)
       ->where("id = \"{$this->id}\"")
@@ -176,6 +180,20 @@ class Manager {
     Contracts::find(["id" => $contract_id])->update(["manager_id" => $this->id]);
   }
 
+  public function getRating() {
+    try {
+      $result = QueryBuilder::select(Contract::TABLE_NAME, ["AVG(client_satisfaction)"])
+        ->where("manager_id = {$this->id}")
+        ->groupBy("manager_id")
+        ->execute();
+        
+
+        return $result["0"]["0"];
+    } catch (Exception $e) {
+      return '-';
+    }
+  }
+
   /**
    * function to fetch data from DB and update memebers
    */
@@ -198,6 +216,7 @@ class Manager {
     $this->province_name = $data['province_name'];
     $this->phone_number = $data['phone_number'];
     $this->email = $data['email'];
+    $this->rating = $this->getRating();
 
     return $this;
   }

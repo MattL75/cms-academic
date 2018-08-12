@@ -20,7 +20,16 @@
             <mat-form-field class="dialog-field">
                 <input matInput type="text" formControlName="postal_code" placeholder="Postal code">
             </mat-form-field>
-            <mat-form-field class="dialog-field full-width">
+            <mat-form-field class="dialog-field">
+                <input type="text" placeholder="City" matInput formControlName="city"
+                       [matAutocomplete]="auto"/>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredCities | async" [value]="option.name">
+                        {{option.name | normalize}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="dialog-field">
                 <mat-select placeholder="Province" [formControl]="entityForm.controls['province_name']">
                     <mat-option *ngFor="let province of provinces" [value]="province">
                         {{province | normalize}}
@@ -32,5 +41,5 @@
 </div>
 <div class="flex-row dialog-actions" mat-dialog-actions>
     <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" [disabled]="!entityForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+    <button mat-flat-button color="primary" [disabled]="!entityForm.valid || !entityForm.dirty" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
 </div>

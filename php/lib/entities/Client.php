@@ -30,9 +30,9 @@ class Clients {
 
   // TODO create user before creating client
   static function create(array $data) {
-    // todo validate data
-    $record_id = QueryBuilder::insert(Client::TABLE_NAME, $data)->execute();
-    return Clients::find(['id' => $record_id]);
+    $filtered = filter(Client::TABLE_FIELDS, $data);
+    $record_id = QueryBuilder::insert(Client::TABLE_NAME, $filtered)->execute();
+    return Clients::find(['id' => $filtered["id"]]);
   }
 
   static function findAll(array $params) {
@@ -56,7 +56,10 @@ class Client {
     'id',
     'name',
     'email_domain',
-    'user_id'
+    'province_name',
+    'city',
+    'address',
+    'postal_code',
   ];
   public $id;
   public $name;
@@ -67,7 +70,10 @@ class Client {
     $this->id = $data['id'];
     $this->name = $data['name'];
     $this->email_domain = $data['email_domain'];
-    $this->user_id = $data['user_id'];
+    $this->province_name = $data['province_name'];
+    $this->city = $data['city'];
+    $this->address = $data['address'];
+    $this->postal_code = $data['postal_code'];
   }
 
   /**
@@ -83,8 +89,17 @@ class Client {
     if (isset($data['email_domain'])) {
       $this->email_domain = $data['email_domain'];
     }
-    if (isset($data['user_id'])) {
-      $this->user_id = $data['user_id'];
+    if (isset($data['province_name'])) {
+      $this->province_name = $data['province_name'];
+    }
+    if (isset($data['city'])) {
+      $this->city = $data['city'];
+    }
+    if (isset($data['address'])) {
+      $this->address = $data['address'];
+    }
+    if (isset($data['postal_code'])) {
+      $this->postal_code = $data['postal_code'];
     }
     $this->save();
 
@@ -122,7 +137,10 @@ class Client {
     $this->id = $data['id'];
     $this->name = $data['name'];
     $this->email_domain = $data['email_domain'];
-    $this->user_id = $data['user_id'];
+    $this->province_name = $data['province_name'];
+    $this->city = $data['city'];
+    $this->address = $data['address'];
+    $this->postal_code = $data['postal_code'];
 
     return $this;
   }

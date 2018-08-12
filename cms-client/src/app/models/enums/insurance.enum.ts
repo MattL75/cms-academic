@@ -1,5 +1,5 @@
 export enum InsuranceType {
-    PREMIUM = 'premium',
-    SILVER = 'silver',
-    NORMAL = 'normal',
+    PREMIUM = 'Premium',
+    SILVER = 'Silver',
+    NORMAL = 'Normal',
 }

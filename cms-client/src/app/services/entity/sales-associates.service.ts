@@ -21,6 +21,12 @@ export class SalesAssociatesService {
         );
     }
 
+    public getSpecificSalesAssociate(id: number): Observable<SalesAssociate[]> {
+        return this.http.get<SalesAssociate[]>(this.baseUrl + this.suffix + '?id=' + id).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     public addSalesAssociate(sales: SalesAssociate): Observable<SalesAssociate> {
         return this.http.post<SalesAssociate>(this.baseUrl + this.suffix, sales).pipe(
             catchError(this.handleError)
@@ -34,7 +40,7 @@ export class SalesAssociatesService {
     }
 
     public deleteSalesAssociate(id: number): Observable<{}> {
-        return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
+        return this.http.delete(this.baseUrl + this.suffix + `?id=${id}`).pipe(
             catchError(this.handleError)
         );
     }

@@ -20,10 +20,12 @@ import { Role } from '../../../../models/enums/role.enum';
 export class WorkLogComponent implements OnInit {
 
     dataSource: MatTableDataSource<WorkLog>;
-    displayedColumns: string[] = ['date_worked', 'hours_worked', 'assignment_id', 'actions'];
+    displayedColumns: string[] = ['employee_id', 'date_worked', 'hours_worked', 'assignment_id', 'actions'];
     querying = false;
     openFilter = false;
+    currentContent = 'manager';
     user;
+    Roles = Role;
 
     @ViewChild(MatSort) sort: MatSort;
 
@@ -32,9 +34,6 @@ export class WorkLogComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.auth.getCurrentUser();
-        if (this.user === Role.MANAGER) {
-            this.displayedColumns.push('employee_id');
-        }
 
         this.dataSource = new MatTableDataSource<WorkLog>();
         this.dataSource.sort = this.sort;
@@ -118,11 +117,49 @@ export class WorkLogComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
-    populate(): void {
+    switchContent(role: string): void {
+        if (this.user.role !== Role.MANAGER) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         this.querying = true;
-        if (this.user.role === Role.EMPLOYEE) {
+        if (role === 'manager') {
+            this.workService.getWorkLogsForManager(this.auth.getCurrentUser().id).subscribe(worklogs => {
+                this.dataSource.data = worklogs;
+                this.currentContent = 'manager';
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Content switch failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else if (role === 'employee') {
             this.workService.getWorkLogsForEmployee(this.auth.getCurrentUser().id).subscribe(worklogs => {
                 this.dataSource.data = worklogs;
+                this.currentContent = 'employee';
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Content switch failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else {
+            this.snackbar.open('An error occurred.', 'Dismiss');
+        }
+    }
+
+    populate(): void {
+        this.querying = true;
+        if (this.phpBoolean(this.user.is_admin)) {
+            this.workService.getWorkLogs().subscribe(worklogs => {
+                this.dataSource.data = worklogs;
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else if (this.user.role === Role.EMPLOYEE) {
+            this.workService.getWorkLogsForEmployee(this.auth.getCurrentUser().id).subscribe(worklogs => {
+                this.dataSource.data = worklogs;
+                this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
@@ -131,14 +168,7 @@ export class WorkLogComponent implements OnInit {
         } else if (this.user.role === Role.MANAGER) {
             this.workService.getWorkLogsForManager(this.auth.getCurrentUser().id).subscribe(worklogs => {
                 this.dataSource.data = worklogs;
-                this.querying = false;
-            }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
-                this.querying = false;
-            });
-        } else if (this.user.is_admin) {
-            this.workService.getWorkLogs().subscribe(worklogs => {
-                this.dataSource.data = worklogs;
+                this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
@@ -148,5 +178,9 @@ export class WorkLogComponent implements OnInit {
             this.snackbar.open('Population query failed.', 'Dismiss');
             this.querying = false;
         }
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

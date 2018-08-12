@@ -9,6 +9,7 @@ import { Role } from '../../../../models/enums/role.enum';
 import { Department } from '../../../../models/department.model';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ContractType } from '../../../../models/enums/contract-type.enum';
 
 @Component({
     selector: 'cms-employees-dialog',
@@ -25,6 +26,7 @@ export class EmployeesDialogComponent implements OnInit {
         last_name: new FormControl('', [Validators.required]),
         province_name: new FormControl('', [Validators.required]),
         insurance_type: new FormControl('', [Validators.required]),
+        contract_type_preference: new FormControl(''),
         username: new FormControl(''),
         password: new FormControl(''),
         role: new FormControl(Role.EMPLOYEE),
@@ -33,8 +35,9 @@ export class EmployeesDialogComponent implements OnInit {
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
-    insuranceTypes = Object.keys(InsuranceType);
-    provinces = Object.keys(Province);
+    insuranceTypes = Object.values(InsuranceType);
+    provinces = Object.values(Province);
+    types = Object.values(ContractType);
 
     constructor(public dialogRef: MatDialogRef<EmployeesDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: {employee: Employee, title: string, action: string, mode: string},
@@ -47,6 +50,7 @@ export class EmployeesDialogComponent implements OnInit {
         this.entityForm.controls['last_name'].setValue(this.data.employee.last_name);
         this.entityForm.controls['province_name'].setValue(this.data.employee.province_name);
         this.entityForm.controls['insurance_type'].setValue(this.data.employee.insurance_type);
+        this.entityForm.controls['contract_type_preference'].setValue(this.data.employee.contract_type_preference);
         this.entityForm.controls['username'].setValue(this.data.employee.username);
         this.entityForm.controls['password'].setValue(this.data.employee.password);
         this.entityForm.controls['department_id'].setValue(this.data.employee.department_id);
@@ -87,6 +91,14 @@ export class EmployeesDialogComponent implements OnInit {
         }
         const result = this.departments.find(x => x.id === department);
         return result ? result.name : undefined;
+    }
+
+    displayDeptInputFn(department: number, input: HTMLInputElement): string {
+        if (!this.departments) {
+            return this.entityForm.controls['department_id'].value;
+        }
+        const result = this.departments.find(x => x.id === department);
+        return result ? result.name : input.value;
     }
 
     private departmentFilter(value: string): Department[] {

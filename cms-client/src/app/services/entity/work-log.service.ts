@@ -24,14 +24,14 @@ export class WorkLogService {
 
     // Use for a manager viewing work_log page
     public getWorkLogsForManager(id: number): Observable<WorkLog[]> {
-        return this.http.get<WorkLog[]>(this.baseUrl + this.suffix + `?manager_id= ${id}`).pipe(
+        return this.http.get<WorkLog[]>(`/api/manager/hours.php?manager_id=${id}`).pipe(
             catchError(this.handleError)
         );
     }
 
     // Use for an employee viewing work_log page
     public getWorkLogsForEmployee(id: number): Observable<WorkLog[]> {
-        return this.http.get<WorkLog[]>(this.baseUrl + this.suffix + `?employee_id= ${id}`).pipe(
+        return this.http.get<WorkLog[]>(`/api/employee/hours.php?employee_id=${id}`).pipe(
             catchError(this.handleError)
         );
     }
@@ -49,7 +49,7 @@ export class WorkLogService {
     }
 
     public deleteWorkLog(id: number): Observable<{}> {
-        return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
+        return this.http.delete(this.baseUrl + this.suffix + `?id=${id}`).pipe(
             catchError(this.handleError)
         );
     }

@@ -17,10 +17,10 @@ class QueryBuilder {
   private static $conn;
 
   public static function init() { // allow db params to be args
-    $servername = "localhost"; // name of container on docker network
+    $servername = "mysql_comp353"; // name of container on docker network
     $username = "root";
-    $password = "";
-    $dbname = "testdb"; // name of database
+    $password = "1234";
+    $dbname = "project_db"; // name of database
     QueryBuilder::$conn = new PDO("mysql:host={$servername};dbname={$dbname};charset=utf8", $username, $password);
   }
   
@@ -54,6 +54,21 @@ class QueryBuilder {
 
     return new DeleteBuilder(QueryBuilder::$conn, $table);
   }
+
+  public static function raw(string $query, array $filter) {
+    $result =  QueryBuilder::$conn->query($query);
+    if (!$result || $result->rowCount() == 0) {
+      throw new Exception("No results found");
+    }
+
+    $filtered = [];
+    
+    foreach ($result->fetchAll() as $row) {
+      array_push($filtered, filter($filter, $row));
+    }
+
+    return $filtered;
+  }
 }
 
 class SelectBuilder {
@@ -62,6 +77,7 @@ class SelectBuilder {
   private $from_string;
   private $join_string;
   private $where_string;
+  private $group_string;
   private $tokens; // store key value pair
   
   public function __construct(PDO $connection, string $table, array $columns) {
@@ -71,15 +87,20 @@ class SelectBuilder {
     $this->select_string = "SELECT ";
     $comma = '';
     foreach ($columns as $column) {
-      $this->select_string .= "{$comma}{$table}.{$column}";
+      // hack for injecting aggregation function
+      if (strpos($column, "AVG") !== false) {
+        $this->select_string .= "{$comma}{$column}";
+      } else {
+        $this->select_string .= "{$comma}{$table}.{$column}";
+      }
       $comma = ', ';
     }
     $this->from_string = "FROM {$table}";
     $this->join_string = '';
   }
 
-  public function join(string $table, array $columns, string $left_field, string $right_field) {
-    $this->join_string .= "INNER JOIN {$table} ON {$left_field} = {$right_field}\n";
+  public function join(string $table, array $columns, string $left_field, string $right_field, string $join_type = "INNER") {
+    $this->join_string .= "{$join_type} JOIN {$table} ON {$left_field} = {$right_field} ";
     // TODO add column list as argument
     foreach ($columns as $column) {
       $this->select_string .= ",{$table}.{$column}";
@@ -98,7 +119,7 @@ class SelectBuilder {
    // make this work with prepared statements to protect from injection
   public function or(string $condition) {
     if (isset($this->where_string)) {
-      $this->where_string .= "\nOR {$condition}";
+      $this->where_string .= "OR {$condition}";
     } else {
       // error
     }
@@ -109,7 +130,7 @@ class SelectBuilder {
    // make this work with prepared statements to protect from injection
   public function and(string $condition) {
     if (isset($this->where_string)) {
-      $this->where_string .= "\nAND {$condition}";
+      $this->where_string .= " AND {$condition}";
     } else {
       // error
     }
@@ -117,8 +138,19 @@ class SelectBuilder {
     return $this;
   }
 
+  public function groupBy(string $column) {
+    $this->group_string  ="GROUP BY {$column}";
+
+    return $this;
+  }
+
   public function getQuery() {
-    return "{$this->select_string}\n{$this->from_string}\n{$this->join_string}{$this->where_string};";
+    return "{$this->select_string} {$this->from_string} {$this->join_string} {$this->where_string} {$this->group_string};";
+  }
+
+  public function debug() {
+    echo $this->getQuery();
+    return $this;
   }
 
   public function execute() {
@@ -152,6 +184,11 @@ class InsertBuilder {
 
   public function getQuery() {
     return "{$this->insert_string} ({$this->key_strings}) VALUES ({$this->value_strings});";
+  }
+
+  public function debug() {
+    echo $this->getQuery();
+    return $this;
   }
 
   public function execute() {
@@ -213,6 +250,11 @@ class UpdateBuilder {
   public function getQuery() {
     return "{$this->update_string} {$this->set_string} {$this->filter_string};";
   }
+
+  public function debug() {
+    echo $this->getQuery();
+    return $this;
+  }
   
   public function execute() {
     // echo $this->getQuery();
@@ -242,7 +284,7 @@ class DeleteBuilder {
   }
   public function and(string $condition) {
     if (isset($this->filter_string)) {
-      $this->filter_string .= "\n AND {$condition}";
+      $this->filter_string .= "  AND {$condition}";
     } else {
       // error
     }
@@ -254,6 +296,11 @@ class DeleteBuilder {
     return "{$this->delete_string} {$this->filter_string};";
   }
   
+  public function debug() {
+    echo $this->getQuery();
+    return $this;
+  }
+
   public function execute() {
     // echo $this->getQuery();
     $result =  $this->connection->query($this->getQuery());

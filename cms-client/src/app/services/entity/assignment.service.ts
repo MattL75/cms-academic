@@ -24,14 +24,14 @@ export class AssignmentService {
 
     // Use for a manager viewing assignment page
     public getAssignmentsForManager(id: number): Observable<Assignment[]> {
-        return this.http.get<Assignment[]>(this.baseUrl + this.suffix + `?manager_id= ${id}`).pipe(
+        return this.http.get<Assignment[]>('/api/manager/assignment' + this.suffix + `?manager_id=${id}`).pipe(
             catchError(this.handleError)
         );
     }
 
     // Use for an employee viewing assignment page
     public getAssignmentsForEmployee(id: number): Observable<Assignment[]> {
-        return this.http.get<Assignment[]>(this.baseUrl + this.suffix + `?employee_id= ${id}`).pipe(
+        return this.http.get<Assignment[]>('/api/employee/assignment' + this.suffix + `?employee_id=${id}`).pipe(
             catchError(this.handleError)
         );
     }
@@ -49,7 +49,7 @@ export class AssignmentService {
     }
 
     public deleteAssignment(id: number): Observable<{}> {
-        return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
+        return this.http.delete(this.baseUrl + this.suffix + `?id=${id}`).pipe(
             catchError(this.handleError)
         );
     }

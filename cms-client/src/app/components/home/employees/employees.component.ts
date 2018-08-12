@@ -6,6 +6,8 @@ import { expandX } from '../../../animations/expand';
 import { EmployeesService } from '../../../services/entity/employees.service';
 import { EmployeesDialogComponent } from './employees-dialog/employees-dialog.component';
 import { Employee } from '../../../models/employee.model';
+import { Role } from '../../../models/enums/role.enum';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
     selector: 'cms-employees',
@@ -18,16 +20,23 @@ import { Employee } from '../../../models/employee.model';
 export class EmployeesComponent implements OnInit {
 
     dataSource: MatTableDataSource<Employee>;
-    displayedColumns: string[] = ['id', 'first_name', 'insurance', 'province', 'department_id', 'actions'];
+    displayedColumns: string[] = ['id', 'first_name', 'insurance', 'province', 'department_id', 'contract_type_preference'];
     querying = false;
     openFilter = false;
+    Roles = Role;
+    user;
 
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private employeesService: EmployeesService) {
+    constructor(private snackbar: SnackbarService, public dialog: MatDialog, private employeesService: EmployeesService, private auth: AuthService) {
     }
 
     ngOnInit() {
+        this.user = this.auth.getCurrentUser();
+        if (this.user.role === Role.MANAGER || this.phpBoolean(this.user.is_admin)) {
+            this.displayedColumns.push('actions');
+        }
+
         this.dataSource = new MatTableDataSource<Employee>();
         this.dataSource.sort = this.sort;
         this.populate();
@@ -62,7 +71,7 @@ export class EmployeesComponent implements OnInit {
         const dialogRef = this.dialog.open(EmployeesDialogComponent, {
             width: '450px',
             data: {
-                manager: Object.assign({}, employee),
+                employee: Object.assign({}, employee),
                 title: 'Edit an Employee',
                 action: 'Save',
                 mode: 'edit'
@@ -121,5 +130,9 @@ export class EmployeesComponent implements OnInit {
             this.snackbar.open('Population query failed.', 'Dismiss');
             this.querying = false;
         });
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

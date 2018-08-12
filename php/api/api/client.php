@@ -16,7 +16,9 @@ function get() {
 function post() {
   restricted(["Sales Associate"]);
   $post_body = get_object_vars(json_decode(file_get_contents('php://input')));
-
+  $post_body["is_admin"] = $post_body["is_admin"] === "true" ? 1 : 0;
+  $post_body["id"] = Users::create($post_body)->id;
+  
   return Clients::create($post_body)->toJson();
 }
 
@@ -33,9 +35,11 @@ function put() {
 // delete request handler
 function delete() {
   restricted(["Sales Associate"]);
-  $delete_body = json_decode(file_get_contents('php://input'));
+  if (!isset($_GET["id"])) {
+    throw new Exception("requires id");
+  }
 
-  Clients::find(['id' => $delete_body->id])->delete(); // TODO find a good way to ensure deleted entities are not used
+  Clients::find(['id' =>  $_GET["id"]])->delete(); // TODO find a good way to ensure deleted entities are not used
 
   return '{"deleted": true}';
 }

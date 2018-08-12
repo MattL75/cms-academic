@@ -61,7 +61,7 @@ export class SupervisedDialogComponent implements OnInit {
     }
 
     public closeSubmit(): void {
-        this.dialogRef.close(this.entityForm.value);
+        this.dialogRef.close({man_id: this.entityForm.controls['manager_id'].value, emp_id: this.entityForm.controls['employee_id'].value});
     }
 
     getManagerLinkFn() {
@@ -81,7 +81,7 @@ export class SupervisedDialogComponent implements OnInit {
             return null;
         }
         const filterValue = value.toLowerCase();
-        return this.managers.filter(option => option.first_name.toLowerCase().includes(filterValue)) || this.managers.filter(option => option.last_name.toLowerCase().includes(filterValue));
+        return this.managers.filter(option => (option.first_name.concat('.', option.last_name)).toLowerCase().includes(filterValue));
     }
 
     getEmployeeLinkFn() {
@@ -101,7 +101,23 @@ export class SupervisedDialogComponent implements OnInit {
             return null;
         }
         const filterValue = value.toLowerCase();
-        return this.employees.filter(option => option.first_name.toLowerCase().includes(filterValue)) || this.employees.filter(option => option.last_name.toLowerCase().includes(filterValue));
+        return this.employees.filter(option => (option.first_name.concat('.', option.last_name)).toLowerCase().includes(filterValue));
+    }
+
+    displayEmpInputFn(employee: number, input: HTMLInputElement): string {
+        if (!this.employees) {
+            return this.entityForm.controls['employee_id'].value;
+        }
+        const result = this.employees.find(x => x.id === employee);
+        return result ? (result.first_name + ' ' + result.last_name) : input.value;
+    }
+
+    displayManInputFn(manager: number, input: HTMLInputElement): string {
+        if (!this.managers) {
+            return this.entityForm.controls['manager_id'].value;
+        }
+        const result = this.managers.find(x => x.id === manager);
+        return result ? (result.first_name + ' ' + result.last_name) : input.value;
     }
 
 }

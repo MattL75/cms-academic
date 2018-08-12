@@ -18,7 +18,7 @@ export class UsersDialogComponent implements OnInit {
         is_admin: new FormControl('', [Validators.required]),
     });
 
-    roles = Object.keys(Role);
+    roles = Object.values(Role);
 
     constructor(public dialogRef: MatDialogRef<UsersDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: {entity: User, title: string, action: string}) {
@@ -28,6 +28,8 @@ export class UsersDialogComponent implements OnInit {
         this.entityForm.controls['id'].setValue(this.data.entity.id);
         this.entityForm.controls['username'].setValue(this.data.entity.username);
         this.entityForm.controls['role'].setValue(this.data.entity.role);
+
+        // TODO check if PHP fucks up this boolean
         this.entityForm.controls['is_admin'].setValue(this.data.entity.is_admin);
     }
 

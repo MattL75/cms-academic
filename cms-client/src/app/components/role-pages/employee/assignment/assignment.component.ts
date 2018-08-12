@@ -21,9 +21,11 @@ import { AssignmentDialogComponent } from './assignment-dialog/assignment-dialog
 export class AssignmentComponent implements OnInit {
 
     dataSource: MatTableDataSource<Assignment>;
-    displayedColumns: string[] = ['employee_id', 'contract_id', 'assignment_id', 'active', 'actions'];
+    displayedColumns: string[] = ['employee_id', 'contract_id', 'assignment_id', 'active'];
     querying = false;
     openFilter = false;
+    currentContent = 'manager';
+    Roles = Role;
     user;
 
     @ViewChild(MatSort) sort: MatSort;
@@ -33,6 +35,9 @@ export class AssignmentComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.auth.getCurrentUser();
+        if (this.user.role === Role.MANAGER || this.phpBoolean(this.user.is_admin)) {
+            this.displayedColumns.push('actions');
+        }
 
         this.dataSource = new MatTableDataSource<Assignment>();
         this.dataSource.sort = this.sort;
@@ -116,35 +121,59 @@ export class AssignmentComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
-    populate(): void {
+    switchContent(role: string): void {
+        if (this.user.role !== Role.MANAGER) {
+            this.snackbar.open('Access denied.', 'Dismiss');
+            return;
+        }
         this.querying = true;
-        if (this.user.role === Role.EMPLOYEE) {
-            this.assignmentService.getAssignmentsForEmployee(this.auth.getCurrentUser().id).subscribe(assignments => {
+        if (role === 'manager') {
+            this.assignmentService.getAssignmentsForManager(this.user.id).subscribe(assignments => {
                 this.dataSource.data = assignments;
+                this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
             });
-        } else if (this.user.role === Role.MANAGER) {
-            this.assignmentService.getAssignmentsForManager(this.auth.getCurrentUser().id).subscribe(assignments => {
+        } else if (role === 'employee') {
+            this.assignmentService.getAssignmentsForEmployee(this.user.id).subscribe(assignments => {
                 this.dataSource.data = assignments;
-                this.querying = false;
-            }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
-                this.querying = false;
-            });
-        } else if (this.user.is_admin) {
-            this.assignmentService.getAssignments().subscribe(assignments => {
-                this.dataSource.data = assignments;
+                this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
                 this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
             });
         } else {
-            this.snackbar.open('Population query failed.', 'Dismiss');
-            this.querying = false;
+            this.snackbar.open('An error occurred.', 'Dismiss');
         }
+    }
+
+    populate(): void {
+        this.querying = true;
+        if (this.user.role === Role.MANAGER) {
+            this.assignmentService.getAssignmentsForManager(this.auth.getCurrentUser().id).subscribe(assignments => {
+                this.dataSource.data = assignments;
+                this.currentContent = 'manager';
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else {
+            this.assignmentService.getAssignmentsForEmployee(this.auth.getCurrentUser().id).subscribe(assignments => {
+                this.dataSource.data = assignments;
+                this.currentContent = 'employee';
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        }
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

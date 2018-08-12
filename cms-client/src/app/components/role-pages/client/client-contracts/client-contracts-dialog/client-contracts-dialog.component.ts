@@ -10,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ClientContractsDialogComponent implements OnInit {
 
     entityForm = new FormGroup({
-        rating: new FormControl('', [Validators.required]),
+        rating: new FormControl('', [Validators.required, Validators.max(10), Validators.min(0)]),
     });
 
     constructor(public dialogRef: MatDialogRef<ClientContractsDialogComponent>,

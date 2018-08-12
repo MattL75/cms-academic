@@ -11,7 +11,7 @@
             <mat-form-field class="register-field">
                 <input matInput type="password" placeholder="Password" formControlName="password"/>
                 <mat-error *ngIf="!registerForm.controls['password'].valid">
-                    Must be at least 5 characters long.
+                    Must be at least 5 characters.
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="register-field">
@@ -38,7 +38,16 @@
                     Address is required.
                 </mat-error>
             </mat-form-field>
-            <mat-form-field class="register-field full-length">
+            <mat-form-field class="register-field">
+                <input type="text" placeholder="City" matInput formControlName="city"
+                       [matAutocomplete]="auto"/>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredCities | async" [value]="option.name">
+                        {{option.name | normalize}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="register-field">
                 <mat-select placeholder="Province" [formControl]="registerForm.controls['province_name']">
                     <mat-option *ngFor="let province of provinces" [value]="province">
                         {{province | normalize}}

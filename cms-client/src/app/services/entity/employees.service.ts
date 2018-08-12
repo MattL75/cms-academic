@@ -21,6 +21,12 @@ export class EmployeesService {
         );
     }
 
+    public getSpecificEmployee(id: number): Observable<Employee[]> {
+        return this.http.get<Employee[]>(this.baseUrl + this.suffix + '?id=' + id).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     public addEmployee(employee: Employee): Observable<Employee> {
         return this.http.post<Employee>(this.baseUrl + this.suffix, employee).pipe(
             catchError(this.handleError)
@@ -34,7 +40,7 @@ export class EmployeesService {
     }
 
     public deleteEmployee(id: number): Observable<{}> {
-        return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
+        return this.http.delete(this.baseUrl + this.suffix + `?id=${id}`).pipe(
             catchError(this.handleError)
         );
     }

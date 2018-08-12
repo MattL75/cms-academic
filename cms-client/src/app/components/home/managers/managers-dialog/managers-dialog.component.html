@@ -24,8 +24,8 @@
                 <input matInput type="password" formControlName="password" placeholder="Password">
             </mat-form-field>
             <mat-form-field class="dialog-field">
-                <input type="text" placeholder="Department" matInput formControlName="department_id" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
+                <input type="text" placeholder="Department" matInput formControlName="department_id" #deptInput [value]="this.displayDeptInputFn(this.managersForm.controls['department_id'].value, deptInput)" [matAutocomplete]="dept">
+                <mat-autocomplete #dept="matAutocomplete" [displayWith]="getDepartmentLinkFn()">
                     <mat-option *ngFor="let option of filteredDepartments | async" [value]="option.id">
                         {{option.name}}
                     </mat-option>
@@ -45,10 +45,17 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field class="dialog-field">
+                <mat-select placeholder="Contract Pref" [formControl]="managersForm.controls['contract_type_preference']">
+                    <mat-option *ngFor="let type of types" [value]="type">
+                        {{type | normalize}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </form>
 </div>
 <div class="flex-row dialog-actions" mat-dialog-actions>
     <button mat-button style="margin-right: 10px" (click)="close()">Cancel</button>
-    <button mat-flat-button color="primary" [disabled]="!managersForm.valid" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
+    <button mat-flat-button color="primary" [disabled]="!managersForm.valid || !managersForm.dirty" (click)="closeSubmit()" cdkFocusInitial>{{data.action}}</button>
 </div>

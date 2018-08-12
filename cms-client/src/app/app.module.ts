@@ -68,6 +68,7 @@ import { WorkLogDialogComponent } from './components/role-pages/employee/work-lo
 import { SupervisedDialogComponent } from './components/role-pages/manager/supervised/supervised-dialog/supervised-dialog.component';
 import { AssignmentComponent } from './components/role-pages/employee/assignment/assignment.component';
 import { AssignmentDialogComponent } from './components/role-pages/employee/assignment/assignment-dialog/assignment-dialog.component';
+import { ClientManagersComponent } from './components/role-pages/client/client-managers/client-managers.component';
 
 @NgModule({
     declarations: [
@@ -107,6 +108,7 @@ import { AssignmentDialogComponent } from './components/role-pages/employee/assi
         SupervisedDialogComponent,
         AssignmentComponent,
         AssignmentDialogComponent,
+        ClientManagersComponent,
     ],
     imports: [
         BrowserModule,

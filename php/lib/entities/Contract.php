@@ -53,6 +53,7 @@ class Contract {
   const  TABLE_FIELDS = 
   [
     'id',
+    'name',
     'acv',
     'initial_amount',
     'recorded_by',
@@ -62,9 +63,11 @@ class Contract {
     'client_id',
     'business_line',
     'contract_type',
+    'is_active',
     'manager_id'
   ];
   public $id;
+  public $name;
   public $acv;
   public $initial_amount;
   public $recorded_by;
@@ -75,9 +78,11 @@ class Contract {
   public $business_line;
   public $contract_type;
   public $manager_id;
+  public $is_active;
 
   function __construct(array $data) {
     $this->id = $data['id'];
+    $this->name = $data['name'];
     $this->acv = $data['acv'];
     $this->initial_amount = $data['initial_amount'];
     $this->recorded_by = $data['recorded_by'];
@@ -88,6 +93,7 @@ class Contract {
     $this->business_line = $data['business_line'];
     $this->contract_type = $data['contract_type'];
     $this->manager_id = $data['manager_id'];
+    $this->is_active = $data['is_active'];
   }
 
   /**
@@ -99,6 +105,9 @@ class Contract {
     // check which fields are sent by the request
     if (isset($data['acv'])) {
       $this->acv = $data['acv'];
+    }
+    if (isset($data['name'])) {
+      $this->name = $data['name'];
     }
     if (isset($data['initial_amount'])) {
       $this->initial_amount = $data['initial_amount'];
@@ -126,6 +135,9 @@ class Contract {
     }
     if (isset($data['manager_id'])) {
       $this->manager_id = $data['manager_id'];
+    }
+    if (isset($data['is_active'])) {
+      $this->is_active = $data['is_active'];
     }
     $this->save();
 
@@ -161,6 +173,7 @@ class Contract {
       return $this;
     }
     $this->id = $data['id'];
+    $this->name = $data['name'];
     $this->acv = $data['acv'];
     $this->initial_amount = $data['initial_amount'];
     $this->recorded_by = $data['recorded_by'];
@@ -171,6 +184,7 @@ class Contract {
     $this->business_line = $data['business_line'];
     $this->contract_type = $data['contract_type'];
     $this->manager_id = $data['manager_id'];
+    $this->is_active = $data['is_active'];
 
     return $this;
   }

@@ -9,6 +9,7 @@ import { Role } from '../../../../models/enums/role.enum';
 import { Department } from '../../../../models/department.model';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ContractType } from '../../../../models/enums/contract-type.enum';
 
 @Component({
     selector: 'cms-managers-dialog',
@@ -27,6 +28,7 @@ export class ManagersDialogComponent implements OnInit {
         province_name: new FormControl('', [Validators.required]),
         insurance_type: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
+        contract_type_preference: new FormControl(''),
         username: new FormControl(''),
         password: new FormControl(''),
         role: new FormControl(Role.MANAGER),
@@ -34,8 +36,9 @@ export class ManagersDialogComponent implements OnInit {
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
-    insuranceTypes = Object.keys(InsuranceType);
-    provinces = Object.keys(Province);
+    insuranceTypes = Object.values(InsuranceType);
+    provinces = Object.values(Province);
+    types = Object.values(ContractType);
 
     constructor(public dialogRef: MatDialogRef<ManagersDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: {manager: Manager, title: string, action: string, mode: string},
@@ -51,6 +54,7 @@ export class ManagersDialogComponent implements OnInit {
         this.managersForm.controls['middle_initial'].setValue(this.data.manager.middle_initial);
         this.managersForm.controls['province_name'].setValue(this.data.manager.province_name);
         this.managersForm.controls['insurance_type'].setValue(this.data.manager.insurance_type);
+        this.managersForm.controls['contract_type_preference'].setValue(this.data.manager.contract_type_preference);
         this.managersForm.controls['department_id'].setValue(this.data.manager.department_id);
         this.managersForm.controls['username'].setValue(this.data.manager.username);
         this.managersForm.controls['password'].setValue(this.data.manager.password);
@@ -91,6 +95,14 @@ export class ManagersDialogComponent implements OnInit {
         }
         const result = this.departments.find(x => x.id === department);
         return result ? result.name : undefined;
+    }
+
+    displayDeptInputFn(department: number, input: HTMLInputElement): string {
+        if (!this.departments) {
+            return this.managersForm.controls['department_id'].value;
+        }
+        const result = this.departments.find(x => x.id === department);
+        return result ? result.name : input.value;
     }
 
     private departmentFilter(value: string): Department[] {

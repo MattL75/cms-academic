@@ -7,6 +7,7 @@ import { ManagersService } from '../../../../services/entity/managers.service';
 import { SupervisedDialogComponent } from './supervised-dialog/supervised-dialog.component';
 import { ConfirmDialogComponent } from '../../../utils/confirm-dialog/confirm-dialog.component';
 import { AuthService } from '../../../../services/auth.service';
+import { Role } from '../../../../models/enums/role.enum';
 
 @Component({
     selector: 'cms-supervised',
@@ -77,7 +78,7 @@ export class SupervisedComponent implements OnInit {
                 this.querying = true;
                 this.managerService.deleteSupervisedEmployee({man_id: this.user.id, emp_id: element.id}).subscribe(() => {
                     this.populate();
-                    this.snackbar.open('Employee deleted.', 'Success!');
+                    this.snackbar.open('Relationship deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
                     this.snackbar.open('Operation failed.', 'Dismiss');
@@ -92,12 +93,26 @@ export class SupervisedComponent implements OnInit {
 
     private populate(): void {
         this.querying = true;
-        this.managerService.getSupervisedEmployees(this.user.id).subscribe(employees => {
-            this.dataSource.data = employees;
-            this.querying = false;
-        }, () => {
-            this.snackbar.open('Population query failed.', 'Dismiss');
-            this.querying = false;
-        });
+        if (this.phpBoolean(this.user.is_admin)) {
+            this.managerService.getSupervisedAll().subscribe(employees => {
+                this.dataSource.data = employees;
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        } else if (this.user.role === Role.MANAGER) {
+            this.managerService.getSupervisedEmployees(this.user.id).subscribe(employees => {
+                this.dataSource.data = employees;
+                this.querying = false;
+            }, () => {
+                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.querying = false;
+            });
+        }
+    }
+
+    phpBoolean(value: boolean): boolean {
+        return !!Number(value);
     }
 }

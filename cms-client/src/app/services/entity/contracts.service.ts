@@ -22,7 +22,13 @@ export class ContractsService {
     }
 
     public getClientContracts(id: number): Observable<Contract[]> {
-        return this.http.get<Contract[]>(this.baseUrl + this.suffix + `?client_id= ${id}`).pipe(
+        return this.http.get<Contract[]>(this.baseUrl + this.suffix + `?client_id=${id}`).pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    public getManagerContracts(id: number): Observable<Contract[]> {
+        return this.http.get<Contract[]>(this.baseUrl + this.suffix + `?manager_id=${id}`).pipe(
             catchError(this.handleError)
         );
     }
@@ -46,7 +52,7 @@ export class ContractsService {
     }
 
     public deleteContract(id: number): Observable<{}> {
-        return this.http.delete(this.baseUrl + this.suffix + `?id= ${id}`).pipe(
+        return this.http.delete(this.baseUrl + this.suffix + `?id=${id}`).pipe(
             catchError(this.handleError)
         );
     }

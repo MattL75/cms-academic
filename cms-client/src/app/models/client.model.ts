@@ -5,6 +5,7 @@ export class Client {
                 public name: string,
                 public postal_code: string,
                 public address: string,
+                public city: string,
                 public province_name: string,
                 public username?: string,
                 public password?: string,
