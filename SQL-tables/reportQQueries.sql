@@ -96,16 +96,15 @@ UPDATE Contract SET whatever WHERE condition;
 --BROWSER1 Number of employees with Premium Employee plan with working hours less than 60 hrs/month.
 
 ------change 30daysago to correct date (ie. 2017-7-04)------
-SELECT COUNT(*)
+SELECT COUNT(*) as employees
 FROM Employee e1
 WHERE e1.insurance_type='Premium'
 AND (600000 > (SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(hours_worked)))
             FROM Work_Log, Assignment
-            WHERE Work_Log.assignment_id=Assignment.id AND Assignment.employee_id=e1.id AND Work_Log.date_worked>'30daysago'));
-
+            WHERE Work_Log.assignment_id=Assignment.id AND Assignment.employee_id=e1.id AND Work_Log.date_worked>NOW() - INTERVAL 30 DAY));
 --BROWSER2 Number of Premium contracts delivered in more than 10 business days having more than 35 employees with “Silver Employee Plan”.
 
-SELECT COUNT(*)
+SELECT COUNT(*) as contracts
 FROM Contract c1, Deliverable
 WHERE c1.contract_type='Premium' AND c1.id=Deliverable.contract_id AND Deliverable.is_final=TRUE AND Deliverable.days_taken>10 
 AND 35<(SELECT COUNT(*)
@@ -115,7 +114,8 @@ AND 35<(SELECT COUNT(*)
 --BROWSER3 Make a report to compare the delivery schedule of "First deliverable" of all type of contracts (Premium/Diamond etc.) in each month of year 2017.
 
 SELECT Contract.name, month_scheduled, month_delivered
-FROM Deliverable, Contract
+FROM Deliverable
+INNER JOIN Contract on Contract.id = contract_id
 WHERE Deliverable.deliv_number=1 AND Contract.start_date>'2016-12-31' AND Contract.start_date<'2018-1-01'
 ORDER BY
 	CASE  month_scheduled
@@ -166,7 +166,7 @@ HAVING COUNT(Contract.client_id)+1 > ALL (SELECT COUNT(c1.client_id)
 ------change 10daysago to correct date (ie. 2017-7-04)------
 SELECT *
 FROM Contract
-WHERE start_date>'10daysago'
+WHERE start_date > NOW() - INTERVAL 10 DAY
 ORDER BY recorded_by;
 
 --INTERFACE3 Fetch all the details of the employees from the “Quebec” province.
@@ -180,7 +180,7 @@ WHERE province_name="Quebec";
 ------Change type to wanted type------
 SELECT name
 FROM Contract
-WHERE contract_type="type";
+WHERE contract_type="Gold";
 
 --INTERFACE5 Generate one report for each category that indicates the clients whose contracts have the highest satisfaction scores in that category, grouped by the cities of clients.
 

@@ -17,10 +17,10 @@ class QueryBuilder {
   private static $conn;
 
   public static function init() { // allow db params to be args
-    $servername = "localhost"; // name of container on docker network
+    $servername = "mysql_comp353"; // name of container on docker network
     $username = "root";
-    $password = "";
-    $dbname = "testdb"; // name of database
+    $password = "1234";
+    $dbname = "project_db"; // name of database
     QueryBuilder::$conn = new PDO("mysql:host={$servername};dbname={$dbname};charset=utf8", $username, $password);
   }
   
@@ -53,6 +53,21 @@ class QueryBuilder {
     }
 
     return new DeleteBuilder(QueryBuilder::$conn, $table);
+  }
+
+  public static function raw(string $query, array $filter) {
+    $result =  QueryBuilder::$conn->query($query);
+    if (!$result || $result->rowCount() == 0) {
+      throw new Exception("No results found");
+    }
+
+    $filtered = [];
+    
+    foreach ($result->fetchAll() as $row) {
+      array_push($filtered, filter($filter, $row));
+    }
+
+    return $filtered;
   }
 }
 

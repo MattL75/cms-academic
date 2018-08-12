@@ -181,12 +181,17 @@ class Manager {
   }
 
   public function getRating() {
-    $result = QueryBuilder::select(Contract::TABLE_NAME, ["AVG(client_satisfaction)"])
-      ->where("manager_id = {$this->id}")
-      ->groupBy("manager_id")
-      ->execute();
-      
-    return $result["0"]["0"];
+    try {
+      $result = QueryBuilder::select(Contract::TABLE_NAME, ["AVG(client_satisfaction)"])
+        ->where("manager_id = {$this->id}")
+        ->groupBy("manager_id")
+        ->execute();
+        
+
+        return $result["0"]["0"];
+    } catch (Exception $e) {
+      return '-';
+    }
   }
 
   /**

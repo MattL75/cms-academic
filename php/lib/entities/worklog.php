@@ -8,8 +8,8 @@ class WorkLogs {
   private static function fullFind(array $params) {
     $filtered = filter(WorkLog::TABLE_FIELDS, $params);
     // query builder must be included in another file
-  $qb = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS)
-  ->join(Assignment::TABLE_NAME, ["employee_id"], "Assignment.id", "assignment_id");
+    $qb = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS)
+      ->join(Assignment::TABLE_NAME, ["employee_id"], "Assignment.id", "assignment_id");
     $first = true;
     foreach ($filtered as $field => $value) {
       if ($first) {
@@ -30,8 +30,9 @@ class WorkLogs {
   }
 
   static function create(array $data) {
+    $filtered = filter(WorkLog::TABLE_FIELDS, $data);
     // todo validate data
-    $record_id = QueryBuilder::insert(WorkLog::TABLE_NAME, $data)->execute();
+    $record_id = QueryBuilder::insert(WorkLog::TABLE_NAME, $filtered)->execute();
     return WorkLogs::find(['id' => $record_id]);
   }
 
