@@ -53,6 +53,7 @@ class Contract {
   const  TABLE_FIELDS = 
   [
     'id',
+    'name',
     'acv',
     'initial_amount',
     'recorded_by',
@@ -65,6 +66,7 @@ class Contract {
     'manager_id'
   ];
   public $id;
+  public $name;
   public $acv;
   public $initial_amount;
   public $recorded_by;
@@ -78,6 +80,7 @@ class Contract {
 
   function __construct(array $data) {
     $this->id = $data['id'];
+    $this->name = $data['name'];
     $this->acv = $data['acv'];
     $this->initial_amount = $data['initial_amount'];
     $this->recorded_by = $data['recorded_by'];
@@ -99,6 +102,9 @@ class Contract {
     // check which fields are sent by the request
     if (isset($data['acv'])) {
       $this->acv = $data['acv'];
+    }
+    if (isset($data['name'])) {
+      $this->name = $data['name'];
     }
     if (isset($data['initial_amount'])) {
       $this->initial_amount = $data['initial_amount'];
@@ -161,6 +167,7 @@ class Contract {
       return $this;
     }
     $this->id = $data['id'];
+    $this->name = $data['name'];
     $this->acv = $data['acv'];
     $this->initial_amount = $data['initial_amount'];
     $this->recorded_by = $data['recorded_by'];

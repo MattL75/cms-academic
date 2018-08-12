@@ -6,9 +6,10 @@ class WorkLogs {
   
   // generic enough to be usable by all entities
   private static function fullFind(array $params) {
-    $filtered = filter(WorkLogs::TABLE_FIELDS, $params);
+    $filtered = filter(WorkLog::TABLE_FIELDS, $params);
     // query builder must be included in another file
-    $qb = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS);
+  $qb = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS)
+  ->join(Assignment::TABLE_NAME, ["employee_id"], "Assignment.id", "assignment_id");
     $first = true;
     foreach ($filtered as $field => $value) {
       if ($first) {
@@ -67,6 +68,7 @@ class WorkLog {
     $this->date_worked = $data['date_worked'];
     $this->hours_worked = $data['hours_worked'];
     $this->assignment_id = $data['assignment_id'];
+    $this->employee_id = $data['employee_id'];
   }
 
   /**
@@ -98,6 +100,7 @@ class WorkLog {
   public function save(): WorkLog {
     $updata = get_object_vars($this);
     unset($updata['id']); // don't attempt to update id
+    unset($updata['employee_id']); // don't attempt to update id
     
     QueryBuilder::update(WorkLog::TABLE_NAME, $updata)
       ->where("id = \"{$this->id}\"")
@@ -105,6 +108,11 @@ class WorkLog {
     $this->sync();
 
     return $this;
+  }
+
+  function getContract() {
+    QueryBuilder::select(Contract::TABLE_NAME, Contract::TABLE_FIELDS)
+      ->join("Assignment", [], "Contract.id", "contract_id");
   }
 
   /**
@@ -119,6 +127,7 @@ class WorkLog {
       return $this;
     }
     $this->id = $data['id'];
+    $this->employee_id = $data['employee_id'];
     $this->date_worked = $data['date_worked'];
     $this->hours_worked = $data['hours_worked'];
     $this->assignment_id = $data['assignment_id'];
