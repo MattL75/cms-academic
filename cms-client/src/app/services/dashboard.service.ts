@@ -16,22 +16,34 @@ export class DashboardService {
     }
 
     reportOne(): Observable<{business_line: string, name: string, count: number}[]> {
-        return this.http.get<{business_line: string, name: string, count: number}[]>(this.baseUrl + this.suffix + '?num=1');
+        return this.http.get<{business_line: string, name: string, count: number}[]>(this.baseUrl + '/one' + this.suffix);
     }
 
     reportTwo(): Observable<Contract[]> {
-        return this.http.get<Contract[]>(this.baseUrl + this.suffix + '?num=2');
+        return this.http.get<Contract[]>(this.baseUrl + '/two' + this.suffix);
     }
 
     reportThree(): Observable<Employee[]> {
-        return this.http.get<Employee[]>(this.baseUrl + this.suffix + '?num=3');
+        return this.http.get<Employee[]>(this.baseUrl + '/three' + this.suffix);
     }
 
     reportFour(): Observable<Contract[]> {
-        return this.http.get<Contract[]>(this.baseUrl + this.suffix + '?num=4');
+        return this.http.get<Contract[]>(this.baseUrl + '/four' + this.suffix);
     }
 
     reportFive(): Observable<{city: string, name: string, client_satisfaction: number}[]> {
-        return this.http.get<{city: string, name: string, client_satisfaction: number}[]>(this.baseUrl + this.suffix + '?num=5');
+        return this.http.get<{city: string, name: string, client_satisfaction: number}[]>(this.baseUrl + '/five' + this.suffix);
+    }
+
+    reportSix(): Observable<any> {
+        return this.http.get<any>(this.baseUrl + '/six' + this.suffix);
+    }
+
+    reportSeven(): Observable<any> {
+        return this.http.get<any>(this.baseUrl + '/seven' + this.suffix);
+    }
+
+    reportEight(): Observable<any> {
+        return this.http.get<any>(this.baseUrl + '/eight' + this.suffix);
     }
 }

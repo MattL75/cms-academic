@@ -15,13 +15,13 @@ export class DashboardComponent implements OnInit {
     reportOneColumns: string[] = ['business_line', 'name', 'count'];
 
     reportTwoSource: MatTableDataSource<Contract>;
-    reportTwoColumns: string[] = ['id', 'name', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'manager_id', 'business_line', 'contract_type', 'active'];
+    reportTwoColumns: string[] = ['id', 'name', 'start_date', 'recorded_by', 'department_id', 'client_id', 'manager_id', 'business_line', 'contract_type', 'active'];
 
     reportThreeSource: MatTableDataSource<Employee>;
     reportThreeColumns: string[] = ['id', 'first_name', 'insurance', 'province', 'department_id', 'contract_type_preference'];
 
     reportFourSource: MatTableDataSource<Contract>;
-    reportFourColumns: string[] = ['id', 'name', 'acv', 'start_date', 'initial_amount', 'client_satisfaction', 'recorded_by', 'department_id', 'client_id', 'manager_id', 'business_line', 'contract_type', 'active'];
+    reportFourColumns: string[] = ['id', 'name', 'start_date', 'recorded_by', 'department_id', 'client_id', 'manager_id', 'business_line', 'contract_type', 'active'];
 
     reportFiveSource: MatTableDataSource<{city: string, name: string, client_satisfaction: number}>;
     reportFiveColumns: string[] = ['city', 'name', 'client_satisfaction'];
