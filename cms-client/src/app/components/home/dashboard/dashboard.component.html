@@ -27,9 +27,9 @@
                         </ng-container>
 
                         <!-- Count Column -->
-                        <ng-container matColumnDef="count">
+                        <ng-container matColumnDef="contracts">
                             <th mat-header-cell *matHeaderCellDef><strong>Contract Count</strong></th>
-                            <td mat-cell *matCellDef="let element"> {{element.count}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.contracts}}</td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="reportOneColumns; sticky: true"></tr>
@@ -251,26 +251,93 @@
                     </mat-expansion-panel-header>
                     <table class="material-table" mat-table matSort [dataSource]="reportFiveSource">
 
+                        <!-- Type Column -->
+                        <ng-container matColumnDef="type">
+                            <th mat-header-cell *matHeaderCellDef><strong>Type</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.contract_type}}</td>
+                        </ng-container>
+
                         <!-- City Column -->
                         <ng-container matColumnDef="city">
                             <th mat-header-cell *matHeaderCellDef><strong>City</strong></th>
-                            <td mat-cell *matCellDef="let element"> {{element.city}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.details.city}}</td>
                         </ng-container>
 
                         <!-- Name Column -->
                         <ng-container matColumnDef="name">
                             <th mat-header-cell *matHeaderCellDef><strong>Client Name</strong></th>
-                            <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.details.name}}</td>
                         </ng-container>
 
                         <!-- Rating Column -->
                         <ng-container matColumnDef="client_satisfaction">
                             <th mat-header-cell *matHeaderCellDef><strong>Rating</strong></th>
-                            <td mat-cell *matCellDef="let element"> {{element.client_satisfaction}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.details.client_satisfaction}}</td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="reportFiveColumns; sticky: true"></tr>
                         <tr mat-row *matRowDef="let row; columns: reportFiveColumns;"></tr>
+                    </table>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Report #6
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Number of employees with Silver plan and 60 hours worked.
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    There are {{reportSixCount}} employees that have the Silver Insurance plan and 60 hours worked.
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Report #7
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Number of Premium contracts delivered in more than 10 business days with more than 35 Silver employees.
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    There are {{reportSevenCount}} premium contracts that were delivered in more than 10 business days with more than 35 employees with the Silver insurance plan.
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Report #8
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Comparison of "First deliverable" of all types of contracts in each month of year 2017.
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <table class="material-table" mat-table matSort [dataSource]="reportEightSource">
+
+                        <!-- Type Column -->
+                        <ng-container matColumnDef="type">
+                            <th mat-header-cell *matHeaderCellDef><strong>Type</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.contract_type}}</td>
+                        </ng-container>
+
+                        <!-- City Column -->
+                        <ng-container matColumnDef="city">
+                            <th mat-header-cell *matHeaderCellDef><strong>City</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.details.city}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef><strong>Client Name</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.details.name}}</td>
+                        </ng-container>
+
+                        <!-- Rating Column -->
+                        <ng-container matColumnDef="client_satisfaction">
+                            <th mat-header-cell *matHeaderCellDef><strong>Rating</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.details.client_satisfaction}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="reportEightColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: reportEightColumns;"></tr>
                     </table>
                 </mat-expansion-panel>
             </mat-accordion>

@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 import { Contract } from '../../../models/contract.model';
 import { Employee } from '../../../models/employee.model';
 import { DashboardService } from '../../../services/dashboard.service';
+import { ContractType } from '../../../models/enums/contract-type.enum';
 
 @Component({
     selector: 'cms-dashboard',
@@ -11,8 +12,8 @@ import { DashboardService } from '../../../services/dashboard.service';
 })
 export class DashboardComponent implements OnInit {
 
-    reportOneSource: MatTableDataSource<{business_line: string, name: string, count: number}>;
-    reportOneColumns: string[] = ['business_line', 'name', 'count'];
+    reportOneSource: MatTableDataSource<{business_line: string, name: string, contracts: number}>;
+    reportOneColumns: string[] = ['business_line', 'name', 'contracts'];
 
     reportTwoSource: MatTableDataSource<Contract>;
     reportTwoColumns: string[] = ['id', 'name', 'start_date', 'recorded_by', 'department_id', 'client_id', 'manager_id', 'business_line', 'contract_type', 'active'];
@@ -23,18 +24,28 @@ export class DashboardComponent implements OnInit {
     reportFourSource: MatTableDataSource<Contract>;
     reportFourColumns: string[] = ['id', 'name', 'start_date', 'recorded_by', 'department_id', 'client_id', 'manager_id', 'business_line', 'contract_type', 'active'];
 
-    reportFiveSource: MatTableDataSource<{city: string, name: string, client_satisfaction: number}>;
-    reportFiveColumns: string[] = ['city', 'name', 'client_satisfaction'];
+    reportFiveSource: MatTableDataSource<{contract_type: string, details: {city: string, name: string, client_satisfaction: number}}>;
+    reportFiveColumns: string[] = ['type', 'city', 'name', 'client_satisfaction'];
+
+    reportSixCount: string;
+
+    reportSevenCount: string;
+
+    reportEightSource: MatTableDataSource<any>;
+    reportEightColumns: string[] = [];
+
+    types = Object.values(ContractType);
 
     constructor(private dashboardService: DashboardService) {
     }
 
     ngOnInit() {
-        this.reportOneSource = new MatTableDataSource<{business_line: string, name: string, count: number}>();
+        this.reportOneSource = new MatTableDataSource<{business_line: string, name: string, contracts: number}>();
         this.reportTwoSource = new MatTableDataSource<Contract>();
         this.reportThreeSource = new MatTableDataSource<Employee>();
         this.reportFourSource = new MatTableDataSource<Contract>();
-        this.reportFiveSource = new MatTableDataSource<{city: string, name: string, client_satisfaction: number}>();
+        this.reportFiveSource = new MatTableDataSource<{contract_type: string, details: {city: string, name: string, client_satisfaction: number}}>();
+        this.reportEightSource = new MatTableDataSource<any>();
 
         this.dashboardService.reportOne().subscribe(one => {
             this.reportOneSource.data = one;
@@ -52,8 +63,22 @@ export class DashboardComponent implements OnInit {
             this.reportFourSource.data = four;
         });
 
-        this.dashboardService.reportFive().subscribe(five => {
-            this.reportFiveSource.data = five;
+        this.types.forEach(cType => {
+            this.dashboardService.reportFive(cType).subscribe(five => {
+                this.reportFiveSource.data.push({contract_type: cType, details: five});
+            });
+        });
+
+        this.dashboardService.reportSix().subscribe(six => {
+            this.reportSixCount = six.employees;
+        });
+
+        this.dashboardService.reportSeven().subscribe(seven => {
+            this.reportSevenCount = seven.contracts;
+        });
+
+        this.dashboardService.reportEight().subscribe(eight => {
+            this.reportEightSource.data = eight;
         });
     }
 

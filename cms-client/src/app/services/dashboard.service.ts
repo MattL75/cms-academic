@@ -15,8 +15,8 @@ export class DashboardService {
     constructor(private http: HttpClient) {
     }
 
-    reportOne(): Observable<{business_line: string, name: string, count: number}[]> {
-        return this.http.get<{business_line: string, name: string, count: number}[]>(this.baseUrl + '/one' + this.suffix);
+    reportOne(): Observable<{business_line: string, name: string, contracts: number}[]> {
+        return this.http.get<{business_line: string, name: string, contracts: number}[]>(this.baseUrl + '/one' + this.suffix);
     }
 
     reportTwo(): Observable<Contract[]> {
@@ -31,16 +31,16 @@ export class DashboardService {
         return this.http.get<Contract[]>(this.baseUrl + '/four' + this.suffix);
     }
 
-    reportFive(): Observable<{city: string, name: string, client_satisfaction: number}[]> {
-        return this.http.get<{city: string, name: string, client_satisfaction: number}[]>(this.baseUrl + '/five' + this.suffix);
+    reportFive(type: string): Observable<{city: string, name: string, client_satisfaction: number}> {
+        return this.http.get<{city: string, name: string, client_satisfaction: number}>(this.baseUrl + '/five' + this.suffix + '?contract_type=' + type);
     }
 
-    reportSix(): Observable<any> {
-        return this.http.get<any>(this.baseUrl + '/six' + this.suffix);
+    reportSix(): Observable<{employees: string}> {
+        return this.http.get<{employees: string}>(this.baseUrl + '/six' + this.suffix);
     }
 
-    reportSeven(): Observable<any> {
-        return this.http.get<any>(this.baseUrl + '/seven' + this.suffix);
+    reportSeven(): Observable<{contracts: string}> {
+        return this.http.get<{contracts: string}>(this.baseUrl + '/seven' + this.suffix);
     }
 
     reportEight(): Observable<any> {
