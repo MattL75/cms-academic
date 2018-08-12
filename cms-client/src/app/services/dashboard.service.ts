@@ -43,7 +43,7 @@ export class DashboardService {
         return this.http.get<{contracts: string}>(this.baseUrl + '/seven' + this.suffix);
     }
 
-    reportEight(): Observable<any> {
-        return this.http.get<any>(this.baseUrl + '/eight' + this.suffix);
+    reportEight(): Observable<{name: string, month_scheduled: string, month_delivered: string}[]> {
+        return this.http.get<{name: string, month_scheduled: string, month_delivered: string}[]>(this.baseUrl + '/eight' + this.suffix);
     }
 }

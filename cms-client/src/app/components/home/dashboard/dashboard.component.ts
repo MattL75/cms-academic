@@ -31,8 +31,8 @@ export class DashboardComponent implements OnInit {
 
     reportSevenCount: string;
 
-    reportEightSource: MatTableDataSource<any>;
-    reportEightColumns: string[] = [];
+    reportEightSource: MatTableDataSource<{name: string, month_scheduled: string, month_delivered: string}>;
+    reportEightColumns: string[] = ['name', 'month_scheduled', 'month_delivered'];
 
     types = Object.values(ContractType);
 
