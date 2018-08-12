@@ -59,7 +59,7 @@ export class ContractsDialogComponent implements OnInit {
         this.entityForm.controls['contract_type'].setValue(this.data.entity.contract_type);
         this.entityForm.controls['manager_id'].setValue(this.data.entity.manager_id);
         this.entityForm.controls['recorded_by'].setValue(this.authService.getCurrentUser().id);
-        this.entityForm.controls['is_active'].setValue(this.phpBooleanInner(this.data.entity.active));
+        this.entityForm.controls['is_active'].setValue(this.phpBooleanInner(this.data.entity.is_active));
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;
