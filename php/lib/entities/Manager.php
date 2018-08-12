@@ -10,7 +10,7 @@ class Managers {
     // query builder must be included in another file
     $qb = QueryBuilder::select(Manager::TABLE_NAME, Manager::TABLE_FIELDS)
           ->join(Employee::TABLE_NAME, Employee::TABLE_FIELDS, 'Employee.id', 'Manager.id')
-          ->join('Insurance_Plan', ["rate"], 'insurance_type', 'type');
+          ->join('Insurance_Plan', ["rate"], 'insurance_type', 'type', 'LEFT OUTER');
     $first = true;
     foreach ($filtered as $field => $value) {
       if ($first) {
