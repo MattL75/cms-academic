@@ -8,7 +8,7 @@ class Employees {
   private static function fullFind(array $params) {
     $filtered = filter(Employee::TABLE_FIELDS, $params);
     // query builder must be included in another file
-    $qb = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS)->join("Insurance_Plan", ["rate"], "type", "insurance_type");
+    $qb = QueryBuilder::select(Employee::TABLE_NAME, Employee::TABLE_FIELDS)->join("Insurance_Plan", ["rate"], "type", "insurance_type", "LEFT OUTER");
     $first = true;
     foreach ($filtered as $field => $value) {
       if ($first) {
@@ -23,7 +23,7 @@ class Employees {
   }
   
   static function find(array $params) {
-    $result_data = Employees::fullFind($filtered)[0];
+    $result_data = Employees::fullFind($params)[0];
 
     return new Employee($result_data);
   }
@@ -31,8 +31,9 @@ class Employees {
   // TODO create user before creating client
   static function create(array $data) {
     // todo validate data
-    $record_id = QueryBuilder::insert(Employee::TABLE_NAME, $data)->execute();
-    return Employees::find(['id' => $record_id]);
+    $filtered = filter(Employee::TABLE_FIELDS, $data);
+    $record_id = QueryBuilder::insert(Employee::TABLE_NAME, $filtered)->execute();
+    return Employees::find(['id' => $filtered["id"]]);
   }
 
   static function findAll(array $params) {
@@ -58,7 +59,8 @@ class Employee {
     'last_name',
     'department_id',
     'insurance_type',
-    'province_name'
+    'province_name',
+    'contract_type_preference'
   ];
   public $id;
   public $first_name;
@@ -67,6 +69,7 @@ class Employee {
   public $insurance_type;
   public $insurance_rate;
   public $province_name;
+  public $contract_type_preference;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -76,6 +79,7 @@ class Employee {
     $this->insurance_type = $data['insurance_type'];
     $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
+    $this->contract_type_preference = $data['contract_type_preference'];
   }
 
   /**
@@ -99,6 +103,9 @@ class Employee {
     }
     if (isset($data['province_name'])) {
       $this->province = $data['province_name'];
+    }
+    if (isset($data['contract_type_preference'])) {
+      $this->contract_type_preference = $data['contract_type_preference'];
     }
     $this->save();
 
@@ -141,6 +148,7 @@ class Employee {
     $this->insurance_type = $data['insurance_type'];
     $this->insurance_rate = $data['rate'];
     $this->province_name = $data['province_name'];
+    $this->contract_type_preference = $data['contract_type_preference'];
 
     return $this;
   }
@@ -164,11 +172,18 @@ class Employee {
   }
 
   
-  function getHours() {
+  function getHours() {    
     $results = QueryBuilder::select(WorkLog::TABLE_NAME, WorkLog::TABLE_FIELDS)
-      ->join("Assignment", "Assignment.id", "assignment_id")
+      ->join(Assignment::TABLE_NAME, ["employee_id"], "Assignment.id", "assignment_id")
       ->where("employee_id = {$this->id}")
       ->execute();
+
+    $worklogs = [];
+    foreach ($results as $worklog) {
+      array_push($worklogs, new WorkLog($worklog));
+    }
+
+    return $worklogs;
   }
 
   function addHours(string $assignment_id, string $hours, string $date) {

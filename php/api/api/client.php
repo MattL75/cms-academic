@@ -16,7 +16,9 @@ function get() {
 function post() {
   restricted(["Sales Associate"]);
   $post_body = get_object_vars(json_decode(file_get_contents('php://input')));
-
+  $post_body["is_admin"] = $post_body["is_admin"] === "true" ? 1 : 0;
+  $post_body["id"] = Users::create($post_body)->id;
+  
   return Clients::create($post_body)->toJson();
 }
 
