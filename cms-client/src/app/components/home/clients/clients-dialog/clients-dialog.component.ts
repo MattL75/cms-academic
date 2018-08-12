@@ -19,6 +19,7 @@ export class ClientsDialogComponent implements OnInit {
         province_name: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
         postal_code: new FormControl('', [Validators.required]),
+        city: new FormControl('', [Validators.required]),
         username: new FormControl(''),
         password: new FormControl(''),
         role: new FormControl(Role.CLIENT),
@@ -38,6 +39,7 @@ export class ClientsDialogComponent implements OnInit {
         this.entityForm.controls['province_name'].setValue(this.data.entity.province_name);
         this.entityForm.controls['address'].setValue(this.data.entity.address);
         this.entityForm.controls['postal_code'].setValue(this.data.entity.postal_code);
+        this.entityForm.controls['city'].setValue(this.data.entity.city);
         this.entityForm.controls['username'].setValue(this.data.entity.username);
         this.entityForm.controls['password'].setValue(this.data.entity.password);
 

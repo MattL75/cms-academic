@@ -24,6 +24,7 @@ export class ClientProfileComponent implements OnInit {
         username: new FormControl('', [Validators.required]),
         password: new FormControl('', [Validators.required]),
         role: new FormControl(Role.CLIENT, [Validators.required]),
+        city: new FormControl('', [Validators.required]),
         is_admin: new FormControl(false, [Validators.required])
     });
     provinces = Object.values(Province);
@@ -41,6 +42,7 @@ export class ClientProfileComponent implements OnInit {
         this.entityForm.controls['address'].setValue(this.user.address);
         this.entityForm.controls['postal_code'].setValue(this.user.postal_code);
         this.entityForm.controls['username'].setValue(this.user.username);
+        this.entityForm.controls['city'].setValue(this.user.city);
         this.entityForm.controls['role'].setValue(this.user.role);
         this.entityForm.controls['role'].disable();
         this.entityForm.controls['is_admin'].setValue(this.user.is_admin);

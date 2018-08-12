@@ -15,7 +15,10 @@
         <mat-form-field class="profile-field">
             <input matInput type="text" formControlName="postal_code" placeholder="Postal code">
         </mat-form-field>
-        <mat-form-field class="profile-field full-width">
+        <mat-form-field class="profile-field">
+            <input matInput type="text" formControlName="city" placeholder="City">
+        </mat-form-field>
+        <mat-form-field class="profile-field">
             <mat-select placeholder="Province" [formControl]="entityForm.controls['province_name']">
                 <mat-option *ngFor="let province of provinces" [value]="province">
                     {{province | normalize}}

@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
         province_name: new FormControl('', [Validators.required]),
         name: new FormControl('', [Validators.required]),
         email_domain: new FormControl('', [Validators.required]),
+        city: new FormControl('', [Validators.required]),
         role: new FormControl(Role.CLIENT),
         id: new FormControl(null),
         is_admin: new FormControl(false),
