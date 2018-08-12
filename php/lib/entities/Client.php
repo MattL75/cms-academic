@@ -64,7 +64,6 @@ class Client {
   public $id;
   public $name;
   public $email_domain;
-  public $user_id;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -116,7 +115,7 @@ class Client {
     unset($updata['id']); // don't attempt to update id
     
     QueryBuilder::update(Client::TABLE_NAME, $updata)
-      ->where("id = \"{$this->id}\"")
+      ->where("id = \"{$this->id}\"")//->debug()
       ->execute();
     $this->sync();
 
