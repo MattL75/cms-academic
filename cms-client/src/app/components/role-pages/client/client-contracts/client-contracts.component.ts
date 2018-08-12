@@ -48,7 +48,7 @@ export class ClientContractsComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 localContract.client_satisfaction = result;
-                this.contractService.updateContract(result).subscribe(() => {
+                this.contractService.updateContract(localContract).subscribe(() => {
                     this.populate();
                     this.snackbar.open('Contract rated.', 'Success!');
                 }, () => {
