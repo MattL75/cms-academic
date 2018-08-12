@@ -12,7 +12,33 @@
                             Clients who have the highest number of contracts in each line of business.
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    More details on report #1!
+                    <table class="material-table" mat-table matSort [dataSource]="reportOneSource">
+
+                        <!-- Business Line Column -->
+                        <ng-container matColumnDef="business_line">
+                            <th mat-header-cell *matHeaderCellDef><strong>Business Line</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.business_line}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef><strong>Client Name</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+                        </ng-container>
+
+                        <!-- Count Column -->
+                        <ng-container matColumnDef="count">
+                            <th mat-header-cell *matHeaderCellDef><strong>Contract Count</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.count}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="reportOneColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: reportOneColumns;"></tr>
+                    </table>
+                    <div class="empty-message flex-row center"
+                         *ngIf="reportOneSource.data.length === 0 || this.reportOneSource.filteredData.length === 0">No
+                        results found.
+                    </div>
                 </mat-expansion-panel>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -23,7 +49,96 @@
                             Details of the contracts recorded in the last 10 days by sales associates.
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    More details on report #2!
+                    <table class="material-table" mat-table matSort [dataSource]="reportTwoSource">
+
+                        <!-- Id Column -->
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Id</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef><strong>Name</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+                        </ng-container>
+
+                        <!-- ACV Column -->
+                        <ng-container matColumnDef="acv">
+                            <th mat-header-cell *matHeaderCellDef><strong>ACV</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.acv | currency}}</td>
+                        </ng-container>
+
+                        <!-- Start Date Column -->
+                        <ng-container matColumnDef="start_date">
+                            <th mat-header-cell *matHeaderCellDef><strong>Start</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{ element.start_date | date:'shortDate' }}</td>
+                        </ng-container>
+
+                        <!-- Initial Amount Column -->
+                        <ng-container matColumnDef="initial_amount">
+                            <th mat-header-cell *matHeaderCellDef><strong>Initial</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.initial_amount | currency}}</td>
+                        </ng-container>
+
+                        <!-- Recorded By Column -->
+                        <ng-container matColumnDef="recorded_by">
+                            <th mat-header-cell *matHeaderCellDef><strong>Recorder</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.recorded_by}}</td>
+                        </ng-container>
+
+                        <!-- Department Column -->
+                        <ng-container matColumnDef="department_id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Department</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.department_id}}</td>
+                        </ng-container>
+
+                        <!-- Client Column -->
+                        <ng-container matColumnDef="manager_id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Manager</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.manager_id}}</td>
+                        </ng-container>
+
+                        <!-- Client Column -->
+                        <ng-container matColumnDef="client_id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Client</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.client_id}}</td>
+                        </ng-container>
+
+                        <!-- Business Line Column -->
+                        <ng-container matColumnDef="business_line">
+                            <th mat-header-cell *matHeaderCellDef><strong>Business</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.business_line}}</td>
+                        </ng-container>
+
+                        <!-- Contract Type Column -->
+                        <ng-container matColumnDef="contract_type">
+                            <th mat-header-cell *matHeaderCellDef><strong>Type</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.contract_type | normalize}}</td>
+                        </ng-container>
+
+                        <!-- Satisfaction Column -->
+                        <ng-container matColumnDef="client_satisfaction">
+                            <th mat-header-cell *matHeaderCellDef><strong>Rating</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.client_satisfaction ?
+                                element.client_satisfaction + '/10' : 'N/A'}}
+                            </td>
+                        </ng-container>
+
+                        <!-- Active Column -->
+                        <ng-container matColumnDef="active">
+                            <th mat-header-cell *matHeaderCellDef><strong>Active</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{this.phpBoolean(element.is_active) | normalize}}
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="reportTwoColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: reportTwoColumns;"></tr>
+                    </table>
+                    <div class="empty-message flex-row center"
+                         *ngIf="reportTwoSource.data.length === 0 || this.reportTwoSource.filteredData.length === 0">No
+                        results found.
+                    </div>
                 </mat-expansion-panel>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -34,7 +149,52 @@
                             Details of the employees from the province of Quebec.
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    More details on report #3!
+                    <table class="material-table" mat-table matSort [dataSource]="reportThreeSource">
+
+                        <!-- Id Column -->
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Id</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="first_name">
+                            <th mat-header-cell *matHeaderCellDef><strong>Name</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.first_name + ' ' + element.last_name}}
+                            </td>
+                        </ng-container>
+
+                        <!-- Insurance Column -->
+                        <ng-container matColumnDef="insurance">
+                            <th mat-header-cell *matHeaderCellDef><strong>Insurance</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.insurance_type | normalize}}</td>
+                        </ng-container>
+
+                        <!-- Province Column -->
+                        <ng-container matColumnDef="province">
+                            <th mat-header-cell *matHeaderCellDef><strong>Province</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.province_name | normalize}}</td>
+                        </ng-container>
+
+                        <!-- Department Column -->
+                        <ng-container matColumnDef="department_id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Dept. Id</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.department_id}}</td>
+                        </ng-container>
+
+                        <!-- Type Column -->
+                        <ng-container matColumnDef="contract_type_preference">
+                            <th mat-header-cell *matHeaderCellDef><strong>Type Pref.</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.contract_type_preference}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="reportThreeColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: reportThreeColumns;"></tr>
+                    </table>
+                    <div class="empty-message flex-row center"
+                         *ngIf="reportThreeSource.data.length === 0 || this.reportThreeSource.filteredData.length === 0">
+                        No results found.
+                    </div>
                 </mat-expansion-panel>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -45,7 +205,96 @@
                             List of all the contracts in the Gold category.
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    More details on report #4!
+                    <table class="material-table" mat-table matSort [dataSource]="reportFourSource">
+
+                        <!-- Id Column -->
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Id</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef><strong>Name</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+                        </ng-container>
+
+                        <!-- ACV Column -->
+                        <ng-container matColumnDef="acv">
+                            <th mat-header-cell *matHeaderCellDef><strong>ACV</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.acv | currency}}</td>
+                        </ng-container>
+
+                        <!-- Start Date Column -->
+                        <ng-container matColumnDef="start_date">
+                            <th mat-header-cell *matHeaderCellDef><strong>Start</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{ element.start_date | date:'shortDate' }}</td>
+                        </ng-container>
+
+                        <!-- Initial Amount Column -->
+                        <ng-container matColumnDef="initial_amount">
+                            <th mat-header-cell *matHeaderCellDef><strong>Initial</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.initial_amount | currency}}</td>
+                        </ng-container>
+
+                        <!-- Recorded By Column -->
+                        <ng-container matColumnDef="recorded_by">
+                            <th mat-header-cell *matHeaderCellDef><strong>Recorder</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.recorded_by}}</td>
+                        </ng-container>
+
+                        <!-- Department Column -->
+                        <ng-container matColumnDef="department_id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Department</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.department_id}}</td>
+                        </ng-container>
+
+                        <!-- Client Column -->
+                        <ng-container matColumnDef="manager_id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Manager</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.manager_id}}</td>
+                        </ng-container>
+
+                        <!-- Client Column -->
+                        <ng-container matColumnDef="client_id">
+                            <th mat-header-cell *matHeaderCellDef><strong>Client</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.client_id}}</td>
+                        </ng-container>
+
+                        <!-- Business Line Column -->
+                        <ng-container matColumnDef="business_line">
+                            <th mat-header-cell *matHeaderCellDef><strong>Business</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.business_line}}</td>
+                        </ng-container>
+
+                        <!-- Contract Type Column -->
+                        <ng-container matColumnDef="contract_type">
+                            <th mat-header-cell *matHeaderCellDef><strong>Type</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.contract_type | normalize}}</td>
+                        </ng-container>
+
+                        <!-- Satisfaction Column -->
+                        <ng-container matColumnDef="client_satisfaction">
+                            <th mat-header-cell *matHeaderCellDef><strong>Rating</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.client_satisfaction ?
+                                element.client_satisfaction + '/10' : 'N/A'}}
+                            </td>
+                        </ng-container>
+
+                        <!-- Active Column -->
+                        <ng-container matColumnDef="active">
+                            <th mat-header-cell *matHeaderCellDef><strong>Active</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{this.phpBoolean(element.is_active) | normalize}}
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="reportFourColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: reportFourColumns;"></tr>
+                    </table>
+                    <div class="empty-message flex-row center"
+                         *ngIf="reportFourSource.data.length === 0 || this.reportFourSource.filteredData.length === 0">
+                        No results found.
+                    </div>
                 </mat-expansion-panel>
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
@@ -56,7 +305,33 @@
                             Clients whose contracts have the highest scores in each type, by city.
                         </mat-panel-description>
                     </mat-expansion-panel-header>
-                    More details on report #5!
+                    <table class="material-table" mat-table matSort [dataSource]="reportFiveSource">
+
+                        <!-- City Column -->
+                        <ng-container matColumnDef="city">
+                            <th mat-header-cell *matHeaderCellDef><strong>City</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.city}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef><strong>Client Name</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+                        </ng-container>
+
+                        <!-- Rating Column -->
+                        <ng-container matColumnDef="client_satisfaction">
+                            <th mat-header-cell *matHeaderCellDef><strong>Rating</strong></th>
+                            <td mat-cell *matCellDef="let element"> {{element.client_satisfaction}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="reportFiveColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: reportFiveColumns;"></tr>
+                    </table>
+                    <div class="empty-message flex-row center"
+                         *ngIf="reportFiveSource.data.length === 0 || this.reportFiveSource.filteredData.length === 0">
+                        No results found.
+                    </div>
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
