@@ -571,6 +571,7 @@ INSERT INTO Works_In (client_id, business_line) VALUES (63, 'Hiring');
 INSERT INTO Works_In (client_id, business_line) VALUES (64, 'Education');
 INSERT INTO Works_In (client_id, business_line) VALUES (65, 'Shipping');
 
+INSERT INTO Manager (id, email, phone_number, middle_initial) VALUES (1, 'a@a.a', '514-555-5555', 'G');
 INSERT INTO Manager (id, email, phone_number, middle_initial) VALUES (6, 'a@a.a', '514-555-5555', 'G');
 INSERT INTO Manager (id, email, phone_number, middle_initial) VALUES (7, 'a@a.a', '514-555-5555', 'H');
 INSERT INTO Manager (id, email, phone_number, middle_initial) VALUES (8, 'a@a.a', '514-555-5555', 'G');
