@@ -21,8 +21,8 @@ export class ClientsService {
         );
     }
 
-    public getSpecificClient(id: number): Observable<Client> {
-        return this.http.get<Client>(this.baseUrl + this.suffix + '?id=' + id).pipe(
+    public getSpecificClient(id: number): Observable<Client[]> {
+        return this.http.get<Client[]>(this.baseUrl + this.suffix + '?id=' + id).pipe(
             catchError(this.handleError)
         );
     }

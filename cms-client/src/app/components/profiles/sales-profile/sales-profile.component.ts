@@ -25,7 +25,8 @@ export class SalesProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.salesService.getSpecificSalesAssociate(this.authService.getCurrentUser().id).subscribe(user => {
+        this.salesService.getSpecificSalesAssociate(this.authService.getCurrentUser().id).subscribe(userArray => {
+            const user = userArray[0];
             this.entityForm.controls['id'].setValue(user.id);
             this.entityForm.controls['first_name'].setValue(user.first_name);
             this.entityForm.controls['last_name'].setValue(user.last_name);

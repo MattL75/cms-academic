@@ -21,8 +21,8 @@ export class SalesAssociatesService {
         );
     }
 
-    public getSpecificSalesAssociate(id: number): Observable<SalesAssociate> {
-        return this.http.get<SalesAssociate>(this.baseUrl + this.suffix + '?id=' + id).pipe(
+    public getSpecificSalesAssociate(id: number): Observable<SalesAssociate[]> {
+        return this.http.get<SalesAssociate[]>(this.baseUrl + this.suffix + '?id=' + id).pipe(
             catchError(this.handleError)
         );
     }

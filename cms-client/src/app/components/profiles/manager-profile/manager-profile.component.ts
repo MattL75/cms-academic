@@ -44,7 +44,8 @@ export class ManagerProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.managerService.getSpecificManager(this.authService.getCurrentUser().id).subscribe(user => {
+        this.managerService.getSpecificManager(this.authService.getCurrentUser().id).subscribe(userArray => {
+            const user = userArray[0];
             this.entityForm.controls['id'].setValue(user.id);
             this.entityForm.controls['department_id'].setValue(user.department_id);
             this.entityForm.controls['role'].setValue(user.role);

@@ -33,20 +33,19 @@ export class ClientProfileComponent implements OnInit {
     provinces = Object.values(Province);
     cities: City[];
     filteredCities: Observable<City[]>;
-    user: Client;
 
     constructor(private authService: AuthService, private clientsService: ClientsService, private cityService: CityService, private snackbar: SnackbarService) {
     }
 
     ngOnInit() {
-        this.clientsService.getSpecificClient(this.authService.getCurrentUser().id).subscribe(user => {
+        this.clientsService.getSpecificClient(this.authService.getCurrentUser().id).subscribe(userArray => {
+            const user = userArray[0];
             this.entityForm.controls['id'].setValue(user.id);
             this.entityForm.controls['email_domain'].setValue(user.email_domain);
             this.entityForm.controls['name'].setValue(user.name);
             this.entityForm.controls['province_name'].setValue(user.province_name);
             this.entityForm.controls['address'].setValue(user.address);
             this.entityForm.controls['postal_code'].setValue(user.postal_code);
-            this.entityForm.controls['username'].setValue(user.username);
             this.entityForm.controls['city'].setValue(user.city);
             this.entityForm.controls['role'].setValue(user.role);
             this.entityForm.controls['role'].disable();

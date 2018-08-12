@@ -21,8 +21,8 @@ export class EmployeesService {
         );
     }
 
-    public getSpecificEmployee(id: number): Observable<Employee> {
-        return this.http.get<Employee>(this.baseUrl + this.suffix + '?id=' + id).pipe(
+    public getSpecificEmployee(id: number): Observable<Employee[]> {
+        return this.http.get<Employee[]>(this.baseUrl + this.suffix + '?id=' + id).pipe(
             catchError(this.handleError)
         );
     }

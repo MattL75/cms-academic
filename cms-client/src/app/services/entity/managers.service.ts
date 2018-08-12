@@ -22,8 +22,8 @@ export class ManagersService {
         );
     }
 
-    public getSpecificManager(id: number): Observable<Manager> {
-        return this.http.get<Manager>(this.baseUrl + this.suffix + '?id=' + id).pipe(
+    public getSpecificManager(id: number): Observable<Manager[]> {
+        return this.http.get<Manager[]>(this.baseUrl + this.suffix + '?id=' + id).pipe(
             catchError(this.handleError)
         );
     }
@@ -47,7 +47,7 @@ export class ManagersService {
     }
 
     public getClientManagers(id: number): Observable<{first_name: string, last_name: string, average: number}[]> {
-        return this.http.get<{first_name: string, last_name: string, average: number}[]>(this.baseUrl + '/client/manager' + this.suffix + `?client_id=${id}`).pipe(
+        return this.http.get<{first_name: string, last_name: string, average: number}[]>( `/api/client/manager.php?client_id=${id}`).pipe(
             catchError(this.handleError)
         );
     }
