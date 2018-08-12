@@ -469,6 +469,7 @@ INSERT INTO Client (name, email_domain, province_name, city, address, postal_cod
 INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Steeringwheelola', 'fakeemail.ca', 'Ontario', 'Ottawa', '123 Maisonneuve O.', 'H0H0H0', 64);
 INSERT INTO Client (name, email_domain, province_name, city, address, postal_code, id) VALUES ('Leatherseatola', 'fakeemail.ca','Nova Scotia', 'Halifax', '123 Maisonneuve O.', 'H0H0H0', 65);
 
+INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Adminoto', 'Tadminoto', 1, 'Premium', 'Quebec', 1, 'Premium');
 INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Dave', 'Gold', 1, 'Premium', 'Quebec', 6, 'Premium');
 INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Dan', 'Goldi', 2, 'Premium', 'Quebec', 7, 'Premium');
 INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Kevin', 'Goldie', 3, 'Premium', 'Quebec', 8, 'Premium');
@@ -551,6 +552,10 @@ INSERT INTO Employee (first_name, last_name, department_id, insurance_type, prov
 INSERT INTO Employee (first_name, last_name, department_id, insurance_type, province_name, id, contract_type_preference) VALUES ('Fname40', 'Lname40', 1, 'Silver', 'Quebec', 105, 'Premium');
 
 INSERT INTO Works_In (client_id, business_line) VALUES (46, 'Contracts');
+INSERT INTO Works_In (client_id, business_line) VALUES (46, 'Repairs');
+INSERT INTO Works_In (client_id, business_line) VALUES (46, 'Hiring');
+INSERT INTO Works_In (client_id, business_line) VALUES (46, 'Education');
+INSERT INTO Works_In (client_id, business_line) VALUES (46, 'Shipping');
 INSERT INTO Works_In (client_id, business_line) VALUES (47, 'Repairs');
 INSERT INTO Works_In (client_id, business_line) VALUES (48, 'Hiring');
 INSERT INTO Works_In (client_id, business_line) VALUES (49, 'Education');
@@ -674,6 +679,29 @@ VALUES ('Cricket steroids', 1235678.75, 123478.75, 3, FALSE, '2017-11-04', 9, 19
 INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
 VALUES ('Unisock', 2345678.75, 123467.75, 3, FALSE, '2017-12-04', 20, 20 ,50, 'Shipping', 'Silver');
 
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Mankini Swimsuit 2', 134678.75, 12478, 1, TRUE, '2018-8-10', 1, 1, 46, 'Contracts', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Concordia CMS 2', 123478.75, 12378, 1, TRUE, '2018-8-08', 8, 1, 6, 46, 'Repairs', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Concordia other thing 2', 34678.75, 125678.75, 1, FALSE, '2017-3-04', 10, 3, 6, 46, 'Hiring', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Contracto 2', 1234678.75, 12378.50, 1, FALSE, '2017-4-04', 8, 4, 24, 46, 'Education', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Graduation project 2', 123468.75, 23478.25, 4, TRUE, '2018-8-11', 5, 6, 50,'Shipping', 'Premium');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Hello kitty doll 2', 1234567.75, 14578.75, 4, FALSE, '2017-6-04', 6, 6, 6, 46, 'Contracts', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Bubblegum plans 2', 123458.75, 12348, 4, FALSE, '2017-7-04', 7, 7, 1, 46, 'Repairs', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Microsoft hacking plot 2', 13578.75, 125678, 1, FALSE, '2017-7-04', 8, 8, 1, 53, 'Hiring', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Modem theft 2', 123478.75, 12568, 2, FALSE, '2017-7-04', 10, 9, 6, 54, 'Education', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Fake landing video shoot 2', 123468.25, 12478, 2, FALSE, '2017-7-04', 10, 1, 46, 'Shipping', 'Diamond');
+INSERT INTO Contract (name, acv, initial_amount, recorded_by, is_active, start_date, client_satisfaction, department_id, manager_id, client_id, business_line, contract_type)
+VALUES ('Lens-free camera 2', 124578.74, 12456, 2, FALSE, '2017-7-04', 10, 11, 1 ,46, 'Contracts', 'Gold');
+
 INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'January', 'January', FALSE,1);
 INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'January', 'January', FALSE,1);
 INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'January', 'February',  FALSE,1);
@@ -690,6 +718,40 @@ INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, m
 INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 15, 15, 'November', 'December',  FALSE,16);
 INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, FALSE, 20, 20, 'December', 'December',  FALSE,16);
 INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (4, TRUE , 28, 28, 'December', 'December',  FALSE,16);
+
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'August', TRUE,41);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, is_active, contract_id) VALUES (2, FALSE, 5 , 0, 'August', FALSE,41);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, is_active, contract_id) VALUES (3, TRUE , 10, 0, 'August',  FALSE,41);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'August', 'August', FALSE,42);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, is_active, contract_id) VALUES (2, FALSE, 5, 2 , 'August', TRUE,42);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, is_active, contract_id) VALUES (3, TRUE , 10, 0, 'August',  FALSE,42);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'March', 'March', FALSE,  43);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'March', 'March', FALSE,  43);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'March', 'March',  FALSE,43);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'April', 'April', FALSE,  44);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'April', 'April', FALSE,  44);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'April', 'April',  FALSE,44);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, is_active, contract_id) VALUES (1, FALSE, 3 , 2,  'August', TRUE,  45);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, is_active, contract_id) VALUES (2, FALSE, 5 , 0, 'August', FALSE, 45);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, is_active, contract_id) VALUES (3, TRUE , 10, 0, 'August', FALSE, 45);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'June', 'June', FALSE,  46);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'June', 'June', FALSE,  46);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'June', 'June',  FALSE,46);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'July', 'July', FALSE,  47);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'July', 'July', FALSE,  47);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'July', 'July',   FALSE,47);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'July', 'July', FALSE,  48);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'July', 'July', FALSE,  48);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'July', 'July',   FALSE,48);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'July', 'July', FALSE,  49);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'July', 'July', FALSE,  49);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'July', 'July',   FALSE,49);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'July', 'July', FALSE,  50);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'July', 'July', FALSE,  50);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'July', 'July',   FALSE,50);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (1, FALSE, 3 , 3,  'July', 'July', FALSE,  51);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (2, FALSE, 5 , 5,  'July', 'July', FALSE,  51);
+INSERT INTO Deliverable (deliv_number, is_final, days_to_delivery, days_taken, month_scheduled, month_delivered, is_active, contract_id) VALUES (3, TRUE , 10, 11, 'July', 'July',   FALSE,51);
 
 INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 21);
 INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 2, 22);
@@ -752,6 +814,27 @@ INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 1
 INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 104);
 INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (FALSE, 1, 105);
 
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 41, 1);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 41, 26);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 41, 27);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 41, 28);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 41, 29);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 41, 30);
+
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 42, 1);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 42, 26);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 42, 27);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 42, 28);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 42, 29);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 42, 30);
+
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 45, 6);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 45, 26);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 45, 27);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 45, 28);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 45, 29);
+INSERT INTO Assignment (is_active, contract_id, employee_id) VALUES (TRUE, 45, 30);
+
 INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2017-1-05', 073000, 1);
 INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2017-1-05', 080000, 2);
 INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2017-3-05', 073000, 3);
@@ -773,6 +856,25 @@ INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2017-10
 INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2017-11-05', 073000, 19);
 INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2017-12-05', 073000, 20);
 
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 61);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 62);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 63);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 64);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 65);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 66);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 67);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 68);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 69);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 70);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 71);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 72);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 73);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 74);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 75);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 76);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 77);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 78);
+
 INSERT INTO Supervises (manager_id, employee_id) VALUES (21, 41);
 INSERT INTO Supervises (manager_id, employee_id) VALUES (21, 42);
 INSERT INTO Supervises (manager_id, employee_id) VALUES (23, 43);
@@ -793,3 +895,25 @@ INSERT INTO Supervises (manager_id, employee_id) VALUES (17, 37);
 INSERT INTO Supervises (manager_id, employee_id) VALUES (18, 38);
 INSERT INTO Supervises (manager_id, employee_id) VALUES (19, 39);
 INSERT INTO Supervises (manager_id, employee_id) VALUES (20, 40);
+
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 66);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 67);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 68);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 69);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 70);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 71);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 72);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 73);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 74);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (1, 75);
+
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 76);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 77);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 78);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 79);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 80);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 81);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 82);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 83);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 84);
+INSERT INTO Supervises (manager_id, employee_id) VALUES (6, 85);
