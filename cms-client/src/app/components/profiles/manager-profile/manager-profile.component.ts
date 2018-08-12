@@ -31,7 +31,6 @@ export class ManagerProfileComponent implements OnInit {
         province_name: new FormControl('', [Validators.required]),
         insurance_type: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
-        username: new FormControl('', [Validators.required]),
         role: new FormControl(Role.MANAGER, [Validators.required]),
         is_admin: new FormControl(false, [Validators.required]),
     });
@@ -47,21 +46,23 @@ export class ManagerProfileComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.authService.getCurrentUser();
-        this.entityForm.controls['id'].setValue(this.user.id);
-        this.entityForm.controls['department_id'].setValue(this.user.department_id);
-        this.entityForm.controls['role'].setValue(this.user.role);
-        this.entityForm.controls['role'].disable();
-        this.entityForm.controls['is_admin'].setValue(this.user.is_admin);
-        this.entityForm.controls['is_admin'].disable();
-        this.entityForm.controls['first_name'].setValue(this.user.first_name);
-        this.entityForm.controls['last_name'].setValue(this.user.last_name);
-        this.entityForm.controls['province_name'].setValue(this.user.province_name);
-        this.entityForm.controls['contract_type_preference'].setValue(this.user.contract_type_preference);
-        this.entityForm.controls['insurance_type'].setValue(this.user.insurance_type);
-        this.entityForm.controls['username'].setValue(this.user.username);
-        this.entityForm.controls['email'].setValue(this.user.email);
-        this.entityForm.controls['phone_number'].setValue(this.user.phone_number);
-        this.entityForm.controls['middle_initial'].setValue(this.user.middle_initial);
+        this.managerService.getSpecificManager(this.authService.getCurrentUser().id).subscribe(user => {
+            this.user = user;
+            this.entityForm.controls['id'].setValue(this.user.id);
+            this.entityForm.controls['department_id'].setValue(this.user.department_id);
+            this.entityForm.controls['role'].setValue(this.user.role);
+            this.entityForm.controls['role'].disable();
+            this.entityForm.controls['is_admin'].setValue(this.user.is_admin);
+            this.entityForm.controls['is_admin'].disable();
+            this.entityForm.controls['first_name'].setValue(this.user.first_name);
+            this.entityForm.controls['last_name'].setValue(this.user.last_name);
+            this.entityForm.controls['province_name'].setValue(this.user.province_name);
+            this.entityForm.controls['contract_type_preference'].setValue(this.user.contract_type_preference);
+            this.entityForm.controls['insurance_type'].setValue(this.user.insurance_type);
+            this.entityForm.controls['email'].setValue(this.user.email);
+            this.entityForm.controls['phone_number'].setValue(this.user.phone_number);
+            this.entityForm.controls['middle_initial'].setValue(this.user.middle_initial);
+        });
 
         this.depts.getDepartments().subscribe(depts => {
             this.departments = depts;

@@ -26,8 +26,6 @@ export class ClientProfileComponent implements OnInit {
         province_name: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
         postal_code: new FormControl('', [Validators.required]),
-        username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
         role: new FormControl(Role.CLIENT, [Validators.required]),
         city: new FormControl('', [Validators.required]),
         is_admin: new FormControl(false, [Validators.required])
@@ -42,18 +40,21 @@ export class ClientProfileComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.authService.getCurrentUser();
-        this.entityForm.controls['id'].setValue(this.user.id);
-        this.entityForm.controls['email_domain'].setValue(this.user.email_domain);
-        this.entityForm.controls['name'].setValue(this.user.name);
-        this.entityForm.controls['province_name'].setValue(this.user.province_name);
-        this.entityForm.controls['address'].setValue(this.user.address);
-        this.entityForm.controls['postal_code'].setValue(this.user.postal_code);
-        this.entityForm.controls['username'].setValue(this.user.username);
-        this.entityForm.controls['city'].setValue(this.user.city);
-        this.entityForm.controls['role'].setValue(this.user.role);
-        this.entityForm.controls['role'].disable();
-        this.entityForm.controls['is_admin'].setValue(this.user.is_admin);
-        this.entityForm.controls['is_admin'].disable();
+        this.clientsService.getSpecificClient(this.authService.getCurrentUser().id).subscribe(user => {
+            this.user = user;
+            this.entityForm.controls['id'].setValue(this.user.id);
+            this.entityForm.controls['email_domain'].setValue(this.user.email_domain);
+            this.entityForm.controls['name'].setValue(this.user.name);
+            this.entityForm.controls['province_name'].setValue(this.user.province_name);
+            this.entityForm.controls['address'].setValue(this.user.address);
+            this.entityForm.controls['postal_code'].setValue(this.user.postal_code);
+            this.entityForm.controls['username'].setValue(this.user.username);
+            this.entityForm.controls['city'].setValue(this.user.city);
+            this.entityForm.controls['role'].setValue(this.user.role);
+            this.entityForm.controls['role'].disable();
+            this.entityForm.controls['is_admin'].setValue(this.user.is_admin);
+            this.entityForm.controls['is_admin'].disable();
+        });
 
         this.cityService.getCities().subscribe(cityArray => {
             this.cities = cityArray;

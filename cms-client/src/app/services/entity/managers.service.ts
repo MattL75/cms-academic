@@ -22,6 +22,12 @@ export class ManagersService {
         );
     }
 
+    public getSpecificManager(id: number): Observable<Manager> {
+        return this.http.get<Manager>(this.baseUrl + this.suffix + '?id=' + id).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     public addManager(manager: Manager): Observable<Manager> {
         return this.http.post<Manager>(this.baseUrl + this.suffix, manager).pipe(
             catchError(this.handleError)
