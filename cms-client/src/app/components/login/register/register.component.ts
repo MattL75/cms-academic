@@ -3,6 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Province } from '../../../models/enums/province.enum';
 import { Role } from '../../../models/enums/role.enum';
+import { City } from '../../../models/city.model';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { CityService } from '../../../services/entity/city.service';
 
 @Component({
   selector: 'cms-register',
@@ -12,6 +16,8 @@ import { Role } from '../../../models/enums/role.enum';
 export class RegisterComponent implements OnInit {
 
     provinces = Object.values(Province);
+    cities: City[];
+    filteredCities: Observable<City[]>;
 
     registerForm = new FormGroup({
         username: new FormControl('', [Validators.required]),
@@ -27,14 +33,31 @@ export class RegisterComponent implements OnInit {
         is_admin: new FormControl(false),
     });
 
-    constructor(public auth: AuthService) {
+    constructor(public auth: AuthService, private cityService: CityService) {
     }
 
     ngOnInit() {
+        this.cityService.getCities().subscribe(cityArray => {
+            this.cities = cityArray;
+        });
+
+        this.filteredCities = this.registerForm.controls['city'].valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this.cityFilter(value))
+            );
     }
 
     onSubmit() {
         this.auth.register(this.registerForm.value);
+    }
+
+    private cityFilter(value: string): City[] {
+        if (typeof value !== 'string' || !this.cities) {
+            return null;
+        }
+        const filterValue = value.toLowerCase();
+        return this.cities.filter(option => option.name.toLowerCase().includes(filterValue));
     }
 
 }

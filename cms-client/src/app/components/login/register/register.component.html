@@ -39,10 +39,13 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="register-field">
-                <input matInput placeholder="City" formControlName="city"/>
-                <mat-error *ngIf="!registerForm.controls['city'].valid">
-                    City is required.
-                </mat-error>
+                <input type="text" placeholder="City" matInput formControlName="city"
+                       [matAutocomplete]="auto"/>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredCities | async" [value]="option.name">
+                        {{option.name | normalize}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="register-field">
                 <mat-select placeholder="Province" [formControl]="registerForm.controls['province_name']">
