@@ -25,14 +25,14 @@ class Clients {
   static function find(array $params) {
     $result_data = Clients::fullFind($params)[0];
 
-    return new Client($params["id"]);
+    return new Client($result_data);
   }
 
   // TODO create user before creating client
   static function create(array $data) {
     $filtered = filter(Client::TABLE_FIELDS, $data);
     $record_id = QueryBuilder::insert(Client::TABLE_NAME, $filtered)->execute();
-    return Clients::find(['id' => $record_id]);
+    return Clients::find(['id' => $filtered["id"]]);
   }
 
   static function findAll(array $params) {

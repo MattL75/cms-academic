@@ -35,7 +35,7 @@ function delete() {
   restricted([]);
   $delete_body = json_decode(file_get_contents('php://input'));
 
-   SalesAssociates::find(['id' => $delete_body->id])->delete(); // TODO find a good way to ensure deleted entities are not used
+   SalesAssociates::find(['id' =>  $_GET["id"]])->delete(); // TODO find a good way to ensure deleted entities are not used
 
   return '{"deleted": true}';
 }

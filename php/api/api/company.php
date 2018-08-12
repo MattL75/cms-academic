@@ -30,7 +30,7 @@ function put() {
 function delete() {
   $delete_body = json_decode(file_get_contents('php://input'));
 
-  Companies::find(['id' => $delete_body->id])->delete(); // TODO find a good way to ensure deleted entities are not used
+  Companies::find(['id' =>  $_GET["id"]])->delete(); // TODO find a good way to ensure deleted entities are not used
 
   return '{"deleted": true}';
 }

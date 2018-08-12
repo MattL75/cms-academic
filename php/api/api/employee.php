@@ -36,7 +36,7 @@ function delete() {
   restricted(["Manager"]);
   $delete_body = json_decode(file_get_contents('php://input'));
 
-  Employees::find(['id' => $delete_body->id])->delete(); // TODO find a good way to ensure deleted entities are not used
+  Employees::find(['id' =>  $_GET["id"]])->delete(); // TODO find a good way to ensure deleted entities are not used
 
   return '{"deleted": true}';
 }
