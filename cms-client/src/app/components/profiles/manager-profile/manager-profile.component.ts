@@ -76,7 +76,6 @@ export class ManagerProfileComponent implements OnInit {
 
     save(): void {
         this.managerService.updateManager(this.entityForm.value).subscribe((newUser) => {
-            //  TODO Refresh session? Login then logout? Check if works.
             this.authService.setUser(newUser);
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {

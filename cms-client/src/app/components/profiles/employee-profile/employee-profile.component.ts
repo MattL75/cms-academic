@@ -70,7 +70,6 @@ export class EmployeeProfileComponent implements OnInit {
 
     save(): void {
         this.employeesService.updateEmployee(this.entityForm.value).subscribe((newUser) => {
-            //  TODO Refresh session? Login then logout? Check if works.
             this.authService.setUser(newUser);
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {

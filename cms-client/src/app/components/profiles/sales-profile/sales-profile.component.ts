@@ -40,7 +40,6 @@ export class SalesProfileComponent implements OnInit {
 
     save(): void {
         this.salesService.updateSalesAssociate(this.entityForm.value).subscribe((newUser) => {
-            //  TODO Refresh session? Login then logout? Check if works.
             this.authService.setUser(newUser);
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {
