@@ -63,6 +63,7 @@ class Contract {
     'client_id',
     'business_line',
     'contract_type',
+    'is_active',
     'manager_id'
   ];
   public $id;
@@ -77,6 +78,7 @@ class Contract {
   public $business_line;
   public $contract_type;
   public $manager_id;
+  public $is_active;
 
   function __construct(array $data) {
     $this->id = $data['id'];
@@ -91,6 +93,7 @@ class Contract {
     $this->business_line = $data['business_line'];
     $this->contract_type = $data['contract_type'];
     $this->manager_id = $data['manager_id'];
+    $this->is_active = $data['is_active'];
   }
 
   /**
@@ -132,6 +135,9 @@ class Contract {
     }
     if (isset($data['manager_id'])) {
       $this->manager_id = $data['manager_id'];
+    }
+    if (isset($data['is_active'])) {
+      $this->is_active = $data['is_active'];
     }
     $this->save();
 
@@ -178,6 +184,7 @@ class Contract {
     $this->business_line = $data['business_line'];
     $this->contract_type = $data['contract_type'];
     $this->manager_id = $data['manager_id'];
+    $this->is_active = $data['is_active'];
 
     return $this;
   }
