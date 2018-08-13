@@ -20,7 +20,7 @@ import { Role } from '../../../../models/enums/role.enum';
 export class WorkLogComponent implements OnInit {
 
     dataSource: MatTableDataSource<WorkLog>;
-    displayedColumns: string[] = ['employee_id', 'date_worked', 'hours_worked', 'assignment_id', 'actions'];
+    displayedColumns: string[] = ['employee_id', 'date_worked', 'hours_worked', 'assignment_id'];
     querying = false;
     openFilter = false;
     currentContent = 'manager';
@@ -34,6 +34,9 @@ export class WorkLogComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.auth.getCurrentUser();
+        if (this.user.role === Role.MANAGER || this.phpBoolean(this.user.is_admin)) {
+            this.displayedColumns.push('actions');
+        }
 
         this.dataSource = new MatTableDataSource<WorkLog>();
         this.dataSource.sort = this.sort;
