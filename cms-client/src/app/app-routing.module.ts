@@ -24,6 +24,7 @@ import { SupervisedComponent } from './components/role-pages/manager/supervised/
 import { ManagerGuard } from './guards/manager.guard';
 import { AssignmentComponent } from './components/role-pages/employee/assignment/assignment.component';
 import { ClientManagersComponent } from './components/role-pages/client/client-managers/client-managers.component';
+import { DeliverablesComponent } from './components/home/deliverables/deliverables.component';
 
 const routes: Routes = [
     {
@@ -35,6 +36,7 @@ const routes: Routes = [
             {path: 'managers', component: ManagersComponent, canActivate: [NotClientGuard]},
             {path: 'employees', component: EmployeesComponent, canActivate: [NotClientGuard]},
             {path: 'contracts', component: ContractsComponent, canActivate: [NotClientGuard]},
+            {path: 'deliverables', component: DeliverablesComponent, canActivate: [NotClientGuard]},
             {path: 'clients', component: ClientsComponent, canActivate: [NotClientGuard]},
             {path: 'departments', component: DepartmentsComponent, canActivate: [NotClientGuard]},
             {path: 'associates', component: SalesAssociatesComponent, canActivate: [NotClientGuard]},
