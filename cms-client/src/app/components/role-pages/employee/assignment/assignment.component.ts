@@ -58,7 +58,7 @@ export class AssignmentComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.assignmentService.addAssignment(result).subscribe(() => {
-                    this.switchContent(this.currentContent);
+                    this.populate();
                     this.snackbar.open('Assignment added.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -82,7 +82,7 @@ export class AssignmentComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.assignmentService.updateAssignment(result).subscribe(() => {
-                    this.switchContent(this.currentContent);
+                    this.populate();
                     this.snackbar.open('Assignment modified.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -107,7 +107,7 @@ export class AssignmentComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.assignmentService.deleteAssignment(element.id).subscribe(() => {
-                    this.switchContent(this.currentContent);
+                    this.populate();
                     this.snackbar.open('Assignment deleted.', 'Success!');
                 }, () => {
                     this.querying = false;

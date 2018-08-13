@@ -57,8 +57,7 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.addWorkLog(result).subscribe(() => {
-                    this.switchContent(this.currentContent);
-                    this.querying = false;
+                    this.populate();
                     this.snackbar.open('Work log added.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -82,8 +81,7 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.updateWorkLog(result).subscribe(() => {
-                    this.switchContent(this.currentContent);
-                    this.querying = false;
+                    this.populate();
                     this.snackbar.open('Work log modified.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -108,8 +106,7 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.deleteWorkLog(element.id).subscribe(() => {
-                    this.switchContent(this.currentContent);
-                    this.querying = false;
+                    this.populate();
                     this.snackbar.open('Work log deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
