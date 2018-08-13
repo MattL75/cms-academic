@@ -23,7 +23,7 @@ export class WorkLogComponent implements OnInit {
     displayedColumns: string[] = ['employee_id', 'date_worked', 'hours_worked', 'assignment_id'];
     querying = false;
     openFilter = false;
-    currentContent = 'manager';
+    currentContent = 'employee';
     user;
     Roles = Role;
 
@@ -57,7 +57,7 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.addWorkLog(result).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
                     this.snackbar.open('Work log added.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -81,7 +81,7 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.updateWorkLog(result).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
                     this.snackbar.open('Work log modified.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -106,7 +106,7 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.deleteWorkLog(element.id).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
                     this.snackbar.open('Work log deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
