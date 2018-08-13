@@ -62,7 +62,7 @@ export class AssignmentComponent implements OnInit {
                     this.snackbar.open('Assignment added.', 'Success!');
                 }, () => {
                     this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.snackbar.open('Assignment added with warnings.', 'Dismiss');
                 });
             }
         });
@@ -86,7 +86,7 @@ export class AssignmentComponent implements OnInit {
                     this.snackbar.open('Assignment modified.', 'Success!');
                 }, () => {
                     this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.snackbar.open('Assignment modified with warnings.', 'Dismiss');
                 });
             }
         });
@@ -111,7 +111,7 @@ export class AssignmentComponent implements OnInit {
                     this.snackbar.open('Assignment deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.snackbar.open('Assignment deleted with warnings.', 'Success!');
                 });
             }
         });

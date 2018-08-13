@@ -156,7 +156,7 @@ export class WorkLogComponent implements OnInit {
                 this.dataSource.data = worklogs;
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         } else if (this.user.role === Role.EMPLOYEE) {
@@ -165,7 +165,7 @@ export class WorkLogComponent implements OnInit {
                 this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         } else if (this.user.role === Role.MANAGER) {
@@ -174,7 +174,7 @@ export class WorkLogComponent implements OnInit {
                 this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found..', 'Dismiss');
                 this.querying = false;
             });
         } else {

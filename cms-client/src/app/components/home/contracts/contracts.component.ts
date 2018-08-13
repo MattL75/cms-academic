@@ -156,7 +156,7 @@ export class ContractsComponent implements OnInit {
             this.activeCategory = 'all';
             this.querying = false;
         }, () => {
-            this.snackbar.open('Population query failed.', 'Dismiss');
+            this.snackbar.open('No results found.', 'Dismiss');
             this.querying = false;
         });
     }

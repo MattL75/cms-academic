@@ -46,7 +46,7 @@ export class DeliverablesComponent implements OnInit {
             this.dataSource.data = delivs;
             this.querying = false;
         }, () => {
-            this.snackbar.open('Population query failed.', 'Dismiss');
+            this.snackbar.open('No results found.', 'Dismiss');
             this.querying = false;
         });
     }

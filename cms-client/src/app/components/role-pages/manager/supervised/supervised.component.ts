@@ -99,6 +99,7 @@ export class SupervisedComponent implements OnInit {
                 this.querying = false;
             }, () => {
                 this.querying = false;
+                this.snackbar.open('No results found.', 'Dismiss');
             });
         } else if (this.user.role === Role.MANAGER) {
             this.managerService.getSupervisedEmployees(this.user.id).subscribe(employees => {
@@ -106,6 +107,7 @@ export class SupervisedComponent implements OnInit {
                 this.querying = false;
             }, () => {
                 this.querying = false;
+                this.snackbar.open('No results found.', 'Dismiss');
             });
         }
     }
