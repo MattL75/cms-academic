@@ -133,7 +133,7 @@ export class AssignmentComponent implements OnInit {
                 this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         } else if (role === 'employee') {
@@ -142,7 +142,7 @@ export class AssignmentComponent implements OnInit {
                 this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         } else {
