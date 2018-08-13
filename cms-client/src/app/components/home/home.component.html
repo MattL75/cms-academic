@@ -83,6 +83,12 @@
                 </div>
             </div>
             <div class="flex-column grow" *ngIf="this.userRole !== Roles.CLIENT">
+                <div class="flex-row nav-item" mat-ripple routerLink="/deliverables" routerLinkActive="route-active">
+                    <mat-icon class="nav-icon">alarm</mat-icon>
+                    <span class="nav-text">Deliverables</span>
+                </div>
+            </div>
+            <div class="flex-column grow" *ngIf="this.userRole !== Roles.CLIENT">
                 <div class="flex-row nav-item" mat-ripple routerLink="/departments" routerLinkActive="route-active">
                     <mat-icon class="nav-icon">business</mat-icon>
                     <span class="nav-text">Departments</span>
