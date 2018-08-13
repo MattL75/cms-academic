@@ -34,7 +34,7 @@ export class WorkLogComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.auth.getCurrentUser();
-        if (this.user.role === Role.MANAGER || this.phpBoolean(this.user.is_admin)) {
+        if (this.phpBoolean(this.user.is_admin)) {
             this.displayedColumns.push('actions');
         }
 
@@ -58,6 +58,7 @@ export class WorkLogComponent implements OnInit {
                 this.querying = true;
                 this.workService.addWorkLog(result).subscribe(() => {
                     this.switchContent(this.currentContent);
+                    this.querying = false;
                     this.snackbar.open('Work log added.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -82,6 +83,7 @@ export class WorkLogComponent implements OnInit {
                 this.querying = true;
                 this.workService.updateWorkLog(result).subscribe(() => {
                     this.switchContent(this.currentContent);
+                    this.querying = false;
                     this.snackbar.open('Work log modified.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -107,6 +109,7 @@ export class WorkLogComponent implements OnInit {
                 this.querying = true;
                 this.workService.deleteWorkLog(element.id).subscribe(() => {
                     this.switchContent(this.currentContent);
+                    this.querying = false;
                     this.snackbar.open('Work log deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
