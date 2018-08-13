@@ -68,8 +68,8 @@ export class ManagerProfileComponent implements OnInit {
     }
 
     save(): void {
-        this.managerService.updateManager(this.entityForm.value).subscribe((newUser) => {
-            this.authService.setUser(newUser);
+        this.managerService.updateManager(this.entityForm.value).subscribe(() => {
+            this.entityForm.markAsPristine();
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {
             this.snackbar.open('Failed to save details.', 'Dismiss');

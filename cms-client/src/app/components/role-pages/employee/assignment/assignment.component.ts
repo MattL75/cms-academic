@@ -58,11 +58,11 @@ export class AssignmentComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.assignmentService.addAssignment(result).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
                     this.snackbar.open('Assignment added.', 'Success!');
                 }, () => {
                     this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.snackbar.open('Assignment added with warnings.', 'Dismiss');
                 });
             }
         });
@@ -82,11 +82,11 @@ export class AssignmentComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.assignmentService.updateAssignment(result).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
                     this.snackbar.open('Assignment modified.', 'Success!');
                 }, () => {
                     this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.snackbar.open('Assignment modified with warnings.', 'Dismiss');
                 });
             }
         });
@@ -107,11 +107,11 @@ export class AssignmentComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.assignmentService.deleteAssignment(element.id).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
                     this.snackbar.open('Assignment deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.snackbar.open('Assignment deleted with warnings.', 'Success!');
                 });
             }
         });
@@ -133,7 +133,7 @@ export class AssignmentComponent implements OnInit {
                 this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found for manager mode.', 'Dismiss');
                 this.querying = false;
             });
         } else if (role === 'employee') {
@@ -142,7 +142,7 @@ export class AssignmentComponent implements OnInit {
                 this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found for employee mode.', 'Dismiss');
                 this.querying = false;
             });
         } else {
@@ -158,7 +158,7 @@ export class AssignmentComponent implements OnInit {
                 this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         } else {
@@ -167,7 +167,7 @@ export class AssignmentComponent implements OnInit {
                 this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         }

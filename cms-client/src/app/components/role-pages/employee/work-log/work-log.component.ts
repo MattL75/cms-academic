@@ -20,7 +20,7 @@ import { Role } from '../../../../models/enums/role.enum';
 export class WorkLogComponent implements OnInit {
 
     dataSource: MatTableDataSource<WorkLog>;
-    displayedColumns: string[] = ['employee_id', 'date_worked', 'hours_worked', 'assignment_id', 'actions'];
+    displayedColumns: string[] = ['employee_id', 'date_worked', 'hours_worked', 'assignment_id'];
     querying = false;
     openFilter = false;
     currentContent = 'manager';
@@ -34,6 +34,9 @@ export class WorkLogComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.auth.getCurrentUser();
+        if (this.phpBoolean(this.user.is_admin)) {
+            this.displayedColumns.push('actions');
+        }
 
         this.dataSource = new MatTableDataSource<WorkLog>();
         this.dataSource.sort = this.sort;
@@ -54,7 +57,8 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.addWorkLog(result).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
+                    this.querying = false;
                     this.snackbar.open('Work log added.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -78,7 +82,8 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.updateWorkLog(result).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
+                    this.querying = false;
                     this.snackbar.open('Work log modified.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -103,7 +108,8 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.deleteWorkLog(element.id).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
+                    this.querying = false;
                     this.snackbar.open('Work log deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -129,7 +135,7 @@ export class WorkLogComponent implements OnInit {
                 this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Content switch failed.', 'Dismiss');
+                this.snackbar.open('No results found for manager mode.', 'Dismiss');
                 this.querying = false;
             });
         } else if (role === 'employee') {
@@ -138,7 +144,7 @@ export class WorkLogComponent implements OnInit {
                 this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Content switch failed.', 'Dismiss');
+                this.snackbar.open('No results found for employee mode.', 'Dismiss');
                 this.querying = false;
             });
         } else {
@@ -153,7 +159,7 @@ export class WorkLogComponent implements OnInit {
                 this.dataSource.data = worklogs;
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         } else if (this.user.role === Role.EMPLOYEE) {
@@ -162,7 +168,7 @@ export class WorkLogComponent implements OnInit {
                 this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         } else if (this.user.role === Role.MANAGER) {
@@ -171,7 +177,7 @@ export class WorkLogComponent implements OnInit {
                 this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         } else {

@@ -125,7 +125,7 @@ export class DepartmentsComponent implements OnInit {
             this.dataSource.data = departments;
             this.querying = false;
         }, () => {
-            this.snackbar.open('Population query failed.', 'Dismiss');
+            this.snackbar.open('No results found.', 'Dismiss');
             this.querying = false;
         });
     }

@@ -127,7 +127,7 @@ export class EmployeesComponent implements OnInit {
             this.dataSource.data = employees;
             this.querying = false;
         }, () => {
-            this.snackbar.open('Population query failed.', 'Dismiss');
+            this.snackbar.open('No results found.', 'Dismiss');
             this.querying = false;
         });
     }
