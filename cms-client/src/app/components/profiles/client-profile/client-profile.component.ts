@@ -62,6 +62,7 @@ export class ClientProfileComponent implements OnInit {
 
     save(): void {
         this.clientsService.updateClient(this.entityForm.value).subscribe(() => {
+            this.entityForm.markAsPristine();
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {
             this.snackbar.open('Failed to save details.', 'Dismiss');

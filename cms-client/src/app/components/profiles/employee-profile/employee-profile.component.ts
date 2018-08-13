@@ -69,6 +69,7 @@ export class EmployeeProfileComponent implements OnInit {
 
     save(): void {
         this.employeesService.updateEmployee(this.entityForm.value).subscribe(() => {
+            this.entityForm.markAsPristine();
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {
             this.snackbar.open('Failed to save details.', 'Dismiss');

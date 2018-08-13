@@ -85,8 +85,8 @@ export class ManagersComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Manager modified.', 'Success!');
                 }, () => {
-                    this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.populate();
+                    this.snackbar.open('Manager modified with warnings.', 'Dismiss');
                 });
             }
         });

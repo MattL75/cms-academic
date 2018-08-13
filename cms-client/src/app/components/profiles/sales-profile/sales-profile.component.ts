@@ -39,6 +39,7 @@ export class SalesProfileComponent implements OnInit {
 
     save(): void {
         this.salesService.updateSalesAssociate(this.entityForm.value).subscribe(() => {
+            this.entityForm.markAsPristine();
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {
             this.snackbar.open('Failed to save details.', 'Dismiss');
