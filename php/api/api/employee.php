@@ -23,7 +23,7 @@ function post() {
 
 // put request handler
 function put() {
-  restricted(["Manager"]);
+  restricted(["Manager", "Employee"]);
   $put_body = json_decode(file_get_contents('php://input'));
 
   return Employees::find(['id' => $put_body->id])

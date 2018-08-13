@@ -127,7 +127,7 @@ export class ClientsComponent implements OnInit {
             this.dataSource.data = clients;
             this.querying = false;
         }, () => {
-            this.snackbar.open('Population query failed.', 'Dismiss');
+            this.snackbar.open('No results found.', 'Dismiss');
             this.querying = false;
         });
     }

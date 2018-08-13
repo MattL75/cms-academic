@@ -31,8 +31,6 @@ export class ManagerProfileComponent implements OnInit {
         province_name: new FormControl('', [Validators.required]),
         insurance_type: new FormControl('', [Validators.required]),
         department_id: new FormControl('', [Validators.required]),
-        role: new FormControl(Role.MANAGER, [Validators.required]),
-        is_admin: new FormControl(false, [Validators.required]),
     });
     departments: Department[];
     filteredDepartments: Observable<Department[]>;
@@ -48,10 +46,6 @@ export class ManagerProfileComponent implements OnInit {
             const user = userArray[0];
             this.entityForm.controls['id'].setValue(user.id);
             this.entityForm.controls['department_id'].setValue(user.department_id);
-            this.entityForm.controls['role'].setValue(user.role);
-            this.entityForm.controls['role'].disable();
-            this.entityForm.controls['is_admin'].setValue(this.phpBoolean(user.is_admin));
-            this.entityForm.controls['is_admin'].disable();
             this.entityForm.controls['first_name'].setValue(user.first_name);
             this.entityForm.controls['last_name'].setValue(user.last_name);
             this.entityForm.controls['province_name'].setValue(user.province_name);
@@ -74,8 +68,8 @@ export class ManagerProfileComponent implements OnInit {
     }
 
     save(): void {
-        this.managerService.updateManager(this.entityForm.value).subscribe((newUser) => {
-            this.authService.setUser(newUser);
+        this.managerService.updateManager(this.entityForm.value).subscribe(() => {
+            this.entityForm.markAsPristine();
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {
             this.snackbar.open('Failed to save details.', 'Dismiss');

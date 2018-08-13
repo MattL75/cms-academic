@@ -80,8 +80,8 @@ export class SupervisedComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Relationship deleted.', 'Success!');
                 }, () => {
-                    this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.populate();
+                    this.snackbar.open('Relationship deleted with warnings.', 'Dismiss');
                 });
             }
         });
@@ -94,20 +94,20 @@ export class SupervisedComponent implements OnInit {
     private populate(): void {
         this.querying = true;
         if (this.phpBoolean(this.user.is_admin)) {
-            this.managerService.getSupervisedAll().subscribe(employees => {
+            this.managerService.getSupervisedEmployees(this.user.id).subscribe(employees => {
                 this.dataSource.data = employees;
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
+                this.snackbar.open('No results found.', 'Dismiss');
             });
         } else if (this.user.role === Role.MANAGER) {
             this.managerService.getSupervisedEmployees(this.user.id).subscribe(employees => {
                 this.dataSource.data = employees;
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
+                this.snackbar.open('No results found.', 'Dismiss');
             });
         }
     }

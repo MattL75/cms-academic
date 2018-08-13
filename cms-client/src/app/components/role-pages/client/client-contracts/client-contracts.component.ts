@@ -48,7 +48,7 @@ export class ClientContractsComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 localContract.client_satisfaction = result;
-                this.contractService.updateContract(result).subscribe(() => {
+                this.contractService.updateContract(localContract).subscribe(() => {
                     this.populate();
                     this.snackbar.open('Contract rated.', 'Success!');
                 }, () => {
@@ -69,7 +69,7 @@ export class ClientContractsComponent implements OnInit {
             this.dataSource.data = contracts;
             this.querying = false;
         }, () => {
-            this.snackbar.open('Population query failed.', 'Dismiss');
+            this.snackbar.open('No results found.', 'Dismiss');
             this.querying = false;
         });
     }

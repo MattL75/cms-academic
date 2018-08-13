@@ -56,7 +56,7 @@
                                 <button mat-icon-button (click)="edit(element)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
-                                <button mat-icon-button (click)="delete(element)">
+                                <button mat-icon-button (click)="delete(element)" *ngIf="this.phpBoolean(this.user.is_admin)">
                                     <mat-icon>delete</mat-icon>
                                 </button>
                             </div>

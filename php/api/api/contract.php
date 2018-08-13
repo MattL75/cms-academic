@@ -23,7 +23,7 @@ function post() {
 
 // put request handler
 function put() {
-  restricted(["Sales Associate"]);
+  restricted(["Sales Associate", "Client"]);
   $put_body = json_decode(file_get_contents('php://input'));
   $post_body["is_active"] = $post_body["is_admin"] === "true" ? 1 : 0;
   $post_body["start_date"] = explode("T", $post_body["start_date"])[0];

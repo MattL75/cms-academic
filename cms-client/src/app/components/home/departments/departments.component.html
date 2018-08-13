@@ -12,7 +12,7 @@
                             <input autofocus *ngIf="openFilter" [@expandX] class="search-bar-field" type="text" placeholder="Search here" (keyup)="applyFilter($event.target.value)" />
                         </div>
                     </div>
-                    <button mat-icon-button (click)="add()" *ngIf="this.user.role === Roles.MANAGER || this.phpBoolean(this.user.is_admin)">
+                    <button mat-icon-button (click)="add()" *ngIf="this.phpBoolean(this.user.is_admin)">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -56,7 +56,7 @@
                                 <button mat-icon-button (click)="edit(element)">
                                     <mat-icon>edit</mat-icon>
                                 </button>
-                                <button mat-icon-button (click)="delete(element)">
+                                <button mat-icon-button (click)="delete(element)" *ngIf="this.phpBoolean(this.user.is_admin)">
                                     <mat-icon>delete</mat-icon>
                                 </button>
                             </div>
