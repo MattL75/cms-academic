@@ -97,8 +97,8 @@ export class ContractsComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Contract modified.', 'Success!');
                 }, () => {
-                    this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.populate();
+                    this.snackbar.open('Contract modified with warnings.', 'Dismiss');
                 });
             }
         });
@@ -126,8 +126,8 @@ export class ContractsComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Contract deleted.', 'Success!');
                 }, () => {
-                    this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.populate();
+                    this.snackbar.open('Contract deleted with warnings..', 'Dismiss');
                 });
             }
         });
