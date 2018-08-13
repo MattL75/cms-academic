@@ -42,7 +42,7 @@ export class SalesProfileComponent implements OnInit {
             this.entityForm.markAsPristine();
             this.snackbar.open('Details saved.', 'Success!');
         }, () => {
-            this.snackbar.open('Failed to save details.', 'Dismiss');
+            this.snackbar.open('Details saved with warnings.', 'Dismiss');
         });
     }
 
