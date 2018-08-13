@@ -875,6 +875,25 @@ INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-
 INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 77);
 INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 78);
 
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 30);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 31);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 32);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 33);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 34);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 35);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 36);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 37);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 38);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 39);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 40);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 30);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 31);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 32);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 33);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 34);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 35);
+INSERT INTO Work_Log (date_worked, hours_worked, assignment_id) VALUES ('2018-8-10', 073000, 36);
+
 INSERT INTO Supervises (manager_id, employee_id) VALUES (21, 41);
 INSERT INTO Supervises (manager_id, employee_id) VALUES (21, 42);
 INSERT INTO Supervises (manager_id, employee_id) VALUES (23, 43);
