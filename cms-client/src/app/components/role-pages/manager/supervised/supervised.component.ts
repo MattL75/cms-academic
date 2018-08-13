@@ -98,7 +98,6 @@ export class SupervisedComponent implements OnInit {
                 this.dataSource.data = employees;
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
             });
         } else if (this.user.role === Role.MANAGER) {
@@ -106,7 +105,6 @@ export class SupervisedComponent implements OnInit {
                 this.dataSource.data = employees;
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Population query failed.', 'Dismiss');
                 this.querying = false;
             });
         }
