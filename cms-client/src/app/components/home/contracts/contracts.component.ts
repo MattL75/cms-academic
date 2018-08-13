@@ -69,8 +69,8 @@ export class ContractsComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Contract added.', 'Success!');
                 }, () => {
-                    this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.populate();
+                    this.snackbar.open('Contract added with warnings.', 'Dismiss');
                 });
             }
         });
