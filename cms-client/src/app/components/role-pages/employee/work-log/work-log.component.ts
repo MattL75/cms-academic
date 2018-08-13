@@ -57,7 +57,7 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.addWorkLog(result).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
                     this.snackbar.open('Work log added.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -81,7 +81,7 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.updateWorkLog(result).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
                     this.snackbar.open('Work log modified.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -106,7 +106,7 @@ export class WorkLogComponent implements OnInit {
             if (result) {
                 this.querying = true;
                 this.workService.deleteWorkLog(element.id).subscribe(() => {
-                    this.populate();
+                    this.switchContent(this.currentContent);
                     this.snackbar.open('Work log deleted.', 'Success!');
                 }, () => {
                     this.querying = false;
@@ -132,7 +132,7 @@ export class WorkLogComponent implements OnInit {
                 this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Content switch failed.', 'Dismiss');
+                this.snackbar.open('No results found for manager mode.', 'Dismiss');
                 this.querying = false;
             });
         } else if (role === 'employee') {
@@ -141,7 +141,7 @@ export class WorkLogComponent implements OnInit {
                 this.currentContent = 'employee';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('Content switch failed.', 'Dismiss');
+                this.snackbar.open('No results found for employee mode.', 'Dismiss');
                 this.querying = false;
             });
         } else {
@@ -174,7 +174,7 @@ export class WorkLogComponent implements OnInit {
                 this.currentContent = 'manager';
                 this.querying = false;
             }, () => {
-                this.snackbar.open('No results found..', 'Dismiss');
+                this.snackbar.open('No results found.', 'Dismiss');
                 this.querying = false;
             });
         } else {
