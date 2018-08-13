@@ -94,7 +94,7 @@ export class SupervisedComponent implements OnInit {
     private populate(): void {
         this.querying = true;
         if (this.phpBoolean(this.user.is_admin)) {
-            this.managerService.getSupervisedAll().subscribe(employees => {
+            this.managerService.getSupervisedEmployees(this.user.id).subscribe(employees => {
                 this.dataSource.data = employees;
                 this.querying = false;
             }, () => {
