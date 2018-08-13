@@ -8,7 +8,11 @@ function get() {
   $employees = Managers::find(["id" => $_GET["manager_id"]])->getEmployees();
   $logs = [];
   foreach ($employees as $employee) {
-    $logs += $employee->getHours();
+    try {
+      foreach ($employee->getHours() as $log) {
+        array_push($logs, $log);
+      }
+    } catch (Exception $e) {}
   }
 
 
