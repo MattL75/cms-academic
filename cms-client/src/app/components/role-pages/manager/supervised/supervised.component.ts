@@ -80,8 +80,8 @@ export class SupervisedComponent implements OnInit {
                     this.populate();
                     this.snackbar.open('Relationship deleted.', 'Success!');
                 }, () => {
-                    this.querying = false;
-                    this.snackbar.open('Operation failed.', 'Dismiss');
+                    this.populate();
+                    this.snackbar.open('Relationship deleted with warnings.', 'Dismiss');
                 });
             }
         });
