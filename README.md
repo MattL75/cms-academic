@@ -1,5 +1,5 @@
-# comp353project
-Databases project
+# COMP 353 - Contract Management System
+Project for the databases class. Features a contract management system with a php backend and Angular 6 frontend. 
 
 ### Team Members:
 * Martin Spasov
